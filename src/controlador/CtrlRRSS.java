@@ -11,18 +11,17 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.ConsultasRRSS;
 import modelo.RRSS;
-import vista.MenuPpal;
+import vista.MenuMaestro;
 
 
 public class CtrlRRSS implements ActionListener{
-    
     //Llamamos a las clases que hemos creado
     private RRSS mod1;
     private ConsultasRRSS modC1;
-    private MenuPpal vistaA1;
+    private MenuMaestro vistaA1;
     
     
-    public CtrlRRSS(RRSS mod1, ConsultasRRSS modC1, MenuPpal vistaA1){
+    public CtrlRRSS(RRSS mod1, ConsultasRRSS modC1, MenuMaestro vistaA1){
         
         this.mod1 = mod1;
         this.modC1 = modC1;

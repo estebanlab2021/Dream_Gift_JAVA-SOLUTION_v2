@@ -10,17 +10,17 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Comunas;
 import modelo.ConsultasComunas;
-import vista.MenuPpal;
+import vista.MenuMaestro;
 
 public class CtrlComunas implements ActionListener{
     
     //Llamamos a las clases que hemos creado
     private Comunas mod1;
     private ConsultasComunas modC1;
-    private MenuPpal vistaA;
+    private MenuMaestro vistaA;
     
     
-    public CtrlComunas(Comunas mod1, ConsultasComunas modC1, MenuPpal vistaA){
+    public CtrlComunas(Comunas mod1, ConsultasComunas modC1, MenuMaestro vistaA){
         
         this.mod1 = mod1;
         this.modC1 = modC1;

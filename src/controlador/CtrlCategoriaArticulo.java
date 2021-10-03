@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Cat_Articulo;
 import modelo.ConsultasCatArticulos;
-import vista.MenuPpal;
+import vista.MenuMaestro;
 
 
 public class CtrlCategoriaArticulo implements ActionListener{
@@ -17,10 +17,10 @@ public class CtrlCategoriaArticulo implements ActionListener{
     //Llamamos a las clases que hemos creado
     private Cat_Articulo mod1;
     private ConsultasCatArticulos modC1;
-    private MenuPpal vistaA1;
+    private MenuMaestro vistaA1;
     
     
-    public CtrlCategoriaArticulo(Cat_Articulo mod1, ConsultasCatArticulos modC1, MenuPpal vistaA1){
+    public CtrlCategoriaArticulo(Cat_Articulo mod1, ConsultasCatArticulos modC1, MenuMaestro vistaA1){
         
         this.mod1 = mod1;
         this.modC1 = modC1;

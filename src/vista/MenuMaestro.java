@@ -17,9 +17,10 @@ import javax.swing.DefaultComboBoxModel;
 import modelo.Cat_Articulo;
 import modelo.ConsultasCatArticulos;
 
-public class MenuPpal extends javax.swing.JFrame {
+
+public class MenuMaestro extends javax.swing.JFrame {
    
-    public MenuPpal() {
+    public MenuMaestro() {
         initComponents();
         MostrarComuna();
         MostrarBancos();
@@ -29,6 +30,8 @@ public class MenuPpal extends javax.swing.JFrame {
         MostrarArticulos();
         AgregarItemComboBox();
         MostrarRRSS();
+        MostrarClientes();
+        //llamarDatosCliente();
         txtIdRrss.setVisible(false);
         txtIdCategoria_Articulo.setVisible(false);
         txtIdArticulo.setVisible(false);
@@ -39,6 +42,7 @@ public class MenuPpal extends javax.swing.JFrame {
         } 
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -200,7 +204,7 @@ private void MostrarArticulos(){
     // *** Radio Button *****
     public String guardarRadioButtonValue(){
  
-        String valor=null;
+        String valor="1";
         if(RadioButtonEstado.isSelected()==true){
            valor= "1";
            
@@ -295,10 +299,8 @@ private void MostrarArticulos(){
         try{
             int fila = TablaRRSS.getSelectedRow();
             int ID = (int) TablaRRSS.getValueAt(fila, 0);
-            
             PreparedStatement ps = null;
             ResultSet rs = null;
-            
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
@@ -309,7 +311,6 @@ private void MostrarArticulos(){
             rs = ps.executeQuery();
             
             while(rs.next()){
-                
                 txtIdRrss.setText(String.valueOf(rs.getString("idrrss")));
                 txtRRSS.setText(rs.getString("rrss_nombre"));
                 txtCodigoRs.setText(rs.getString("codigoRS"));
@@ -510,7 +511,106 @@ private void MostrarArticulos(){
         }
         
     }
-          
+
+/********************** Codigo Erick  ************************/
+    
+        // * Radio Button Cliente ***
+    public String guardarRadioBotonCliente(){
+        String valor="1";
+        if(RbtnActCli.isSelected()==true){
+           valor= "1";
+           
+        }else if (RbtnInActCli.isSelected()==true){
+            valor = "0";
+        }
+       
+        return valor;
+    }
+    
+    private void MostrarClientes(){
+        //Tabla de Clientes
+        try{    
+            DefaultTableModel modelo6 = new DefaultTableModel();
+            TablaClientes.setModel(modelo6);
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM cliente";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo6.addColumn("Rut");
+            modelo6.addColumn("Nombre");
+            modelo6.addColumn("Apellido");
+            modelo6.addColumn("Direccion");
+            modelo6.addColumn("Telefono");
+            modelo6.addColumn("Fecha de nacimiento");
+            modelo6.addColumn("Estado");
+            modelo6.addColumn("Mail");
+                     
+            while(rs.next()){
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo6.addRow(filas); 
+            }
+
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+   
+    
+    public void llamarDatosCliente(){
+        try{
+           int fila = TablaClientes.getSelectedRow();
+           String RUT = (String) TablaClientes.getValueAt(fila, 0);
+           PreparedStatement ps = null;
+           ResultSet rs = null;
+           
+           Conexion conn = new Conexion();
+           Connection con = conn.getConexion();
+           
+           String sql = "SELECT * FROM cliente WHERE (RUT = ?)";
+           
+           ps = con.prepareStatement(sql);
+           ps.setString(1, RUT);
+           rs = ps.executeQuery();
+            
+            while(rs.next()){
+            
+                txtRut.setText(rs.getString("RUT"));
+                txtNombresClientes.setText(rs.getString("cli_nombre"));
+                txtApellidosClientes.setText(rs.getString("cli_apellido"));
+                txtDireccionClientes.setText(rs.getString("cli_direccion"));
+                txtTelefono.setText(String.valueOf(rs.getString("cli_telefono")));
+                txtFECHA.setText(rs.getString("fecha_nac"));
+                txtMail.setText(rs.getString("cli_mail"));
+                if(rs.getString("estado").equals("1")){
+                    RbtnActCli.setSelected(true);
+                }else if(rs.getString("estado").equals("0")){
+                    RbtnInActCli.setSelected(true);
+                }
+            }
+           
+       }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }
+    
+    /********************* Fin Codigo Erick *************/
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -519,6 +619,7 @@ private void MostrarArticulos(){
         btnGroupBancos = new javax.swing.ButtonGroup();
         radiobuttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroupRRSS = new javax.swing.ButtonGroup();
+        buttonGroupCli = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelProveedores = new javax.swing.JPanel();
         jPanelPacks = new javax.swing.JPanel();
@@ -613,6 +714,31 @@ private void MostrarArticulos(){
         ScrollTblRsResultado = new javax.swing.JScrollPane();
         TablaRRSS = new javax.swing.JTable();
         jPanelClientes = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        nombre = new javax.swing.JLabel();
+        txtNombresClientes = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtApellidosClientes = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        txtFECHA = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtRut = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtMail = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        txtDireccionClientes = new javax.swing.JTextField();
+        btnRegistrarCli = new javax.swing.JButton();
+        btnLimpiarCli = new javax.swing.JButton();
+        btnModificarCli = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TablaClientes = new javax.swing.JTable();
+        RbtnActCli = new javax.swing.JRadioButton();
+        RbtnInActCli = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1138,16 +1264,117 @@ private void MostrarArticulos(){
 
         jTabbedPane1.addTab("RRSS", jPanelRRSS);
 
-        javax.swing.GroupLayout jPanelClientesLayout = new javax.swing.GroupLayout(jPanelClientes);
-        jPanelClientes.setLayout(jPanelClientesLayout);
-        jPanelClientesLayout.setHorizontalGroup(
-            jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-        );
-        jPanelClientesLayout.setVerticalGroup(
-            jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
-        );
+        jPanelClientes.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("Registro de clientes");
+        jPanelClientes.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 15, -1, -1));
+
+        nombre.setText("Nombre");
+        jPanelClientes.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 61, -1, -1));
+
+        txtNombresClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombresClientesActionPerformed(evt);
+            }
+        });
+        jPanelClientes.add(txtNombresClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 55, 116, -1));
+
+        jLabel17.setText("Telefono");
+        jPanelClientes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+        jPanelClientes.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 41, 128, -1));
+
+        jLabel13.setText("Apellido");
+        jPanelClientes.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 89, -1, -1));
+
+        txtApellidosClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidosClientesActionPerformed(evt);
+            }
+        });
+        jPanelClientes.add(txtApellidosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 89, 116, -1));
+
+        jLabel18.setText("Fecha Nacimiento");
+        jPanelClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 100, -1));
+        jPanelClientes.add(txtFECHA, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 75, 128, -1));
+
+        jLabel14.setText("Rut");
+        jPanelClientes.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 132, -1, -1));
+        jPanelClientes.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 126, 116, -1));
+
+        jLabel19.setText("Estado");
+        jPanelClientes.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 45, -1));
+
+        jLabel15.setText("Mail");
+        jPanelClientes.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 166, -1, -1));
+        jPanelClientes.add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 160, 116, -1));
+
+        jLabel16.setText("Direccion");
+        jPanelClientes.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 194, -1, -1));
+        jPanelClientes.add(txtDireccionClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 194, 116, -1));
+
+        btnRegistrarCli.setText("Insertar");
+        btnRegistrarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarCliActionPerformed(evt);
+            }
+        });
+        jPanelClientes.add(btnRegistrarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 80, -1));
+
+        btnLimpiarCli.setText("Limpiar");
+        btnLimpiarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarCliActionPerformed(evt);
+            }
+        });
+        jPanelClientes.add(btnLimpiarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 86, -1));
+
+        btnModificarCli.setText("Modificar");
+        btnModificarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarCliActionPerformed(evt);
+            }
+        });
+        jPanelClientes.add(btnModificarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 86, -1));
+
+        jLabel20.setText("Buscar Rut");
+        jPanelClientes.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, -1, -1));
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        jPanelClientes.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 140, -1));
+
+        TablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Rut", "Nombre", "Apellido", "Direccion", "Telefono", "Fecha de nacimiento", "Estado", "Mail"
+            }
+        ));
+        TablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(TablaClientes);
+
+        jPanelClientes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 244, 795, 151));
+
+        buttonGroupCli.add(RbtnActCli);
+        RbtnActCli.setText("Activo");
+        jPanelClientes.add(RbtnActCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
+
+        buttonGroupCli.add(RbtnInActCli);
+        RbtnInActCli.setText("Inactivo");
+        jPanelClientes.add(RbtnInActCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
 
         jTabbedPane1.addTab("Clientes", jPanelClientes);
 
@@ -1305,6 +1532,37 @@ private void MostrarArticulos(){
         llamarDatosAriculos();
     }//GEN-LAST:event_TableArticuloMouseClicked
 
+    private void txtNombresClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombresClientesActionPerformed
+
+    private void txtApellidosClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidosClientesActionPerformed
+
+    private void btnRegistrarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCliActionPerformed
+        MostrarClientes();
+        guardarRadioBotonCliente();
+    }//GEN-LAST:event_btnRegistrarCliActionPerformed
+
+    private void btnModificarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCliActionPerformed
+        // TODO add your handling code here:
+        MostrarClientes();
+    }//GEN-LAST:event_btnModificarCliActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void btnLimpiarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarCliActionPerformed
+
+    private void TablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClientesMouseClicked
+        // TODO add your handling code here:
+        llamarDatosCliente();
+    }//GEN-LAST:event_TablaClientesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1322,21 +1580,23 @@ private void MostrarArticulos(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPpal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMaestro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPpal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMaestro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPpal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMaestro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPpal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMaestro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPpal().setVisible(true);
+                new MenuMaestro().setVisible(true);
             }
         });
     }
@@ -1348,7 +1608,10 @@ private void MostrarArticulos(){
     public javax.swing.JRadioButton RBtnInactivo;
     public javax.swing.JRadioButton RadioButtonEstado;
     public javax.swing.JRadioButton RadioButtonEstado0;
+    public javax.swing.JRadioButton RbtnActCli;
+    public javax.swing.JRadioButton RbtnInActCli;
     public javax.swing.JScrollPane ScrollTblRsResultado;
+    public javax.swing.JTable TablaClientes;
     public javax.swing.JTable TablaComuna;
     public javax.swing.JTable TablaRRSS;
     public javax.swing.JTable TableArticulo;
@@ -1367,6 +1630,7 @@ private void MostrarArticulos(){
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnLimpiarArticulo;
     public javax.swing.JButton btnLimpiarBanco;
+    public javax.swing.JButton btnLimpiarCli;
     public javax.swing.JButton btnLimpiarComuna;
     public javax.swing.JButton btnLimpiarRrss;
     public javax.swing.JButton btnModComuna;
@@ -1374,13 +1638,25 @@ private void MostrarArticulos(){
     public javax.swing.JButton btnModificarArticulo;
     public javax.swing.JButton btnModificarBanco;
     public javax.swing.JButton btnModificarCategoriaArticulo;
+    public javax.swing.JButton btnModificarCli;
+    public javax.swing.JButton btnRegistrarCli;
+    public javax.swing.ButtonGroup buttonGroupCli;
     public javax.swing.ButtonGroup buttonGroupRRSS;
     public javax.swing.JButton jButtonCerrarSesion;
     public javax.swing.JButton jButtonMenuInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    public javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    public javax.swing.JLabel jLabel13;
+    public javax.swing.JLabel jLabel14;
+    public javax.swing.JLabel jLabel15;
+    public javax.swing.JLabel jLabel16;
+    public javax.swing.JLabel jLabel17;
+    public javax.swing.JLabel jLabel18;
+    public javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
@@ -1407,6 +1683,7 @@ private void MostrarArticulos(){
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     public javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -1414,12 +1691,15 @@ private void MostrarArticulos(){
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
     public javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTextField jTextField3;
+    public javax.swing.JLabel nombre;
     public javax.swing.ButtonGroup radiobuttonGroup1;
     public javax.swing.JRadioButton rbtnActivarBanco;
     public javax.swing.JRadioButton rbtnActivoComuna;
     public javax.swing.JRadioButton rbtnInactivoComuna;
     public javax.swing.JRadioButton rbtnInactvarBanco;
     public javax.swing.JTable tableBanco;
+    public javax.swing.JTextField txtApellidosClientes;
     public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextField txtBuscarBanco;
     public javax.swing.JTextField txtBuscarComunas;
@@ -1429,16 +1709,22 @@ private void MostrarArticulos(){
     public javax.swing.JTextField txtCodigoBanco;
     public javax.swing.JTextField txtCodigoComuna;
     public javax.swing.JTextField txtCodigoRs;
+    public javax.swing.JTextField txtDireccionClientes;
+    public javax.swing.JTextField txtFECHA;
     public javax.swing.JTextField txtFechaArticulo;
     public javax.swing.JTextField txtIdArticulo;
     public javax.swing.JTextField txtIdBanco;
     public javax.swing.JTextField txtIdCategoria_Articulo;
     public javax.swing.JTextField txtIdComunas;
     public javax.swing.JTextField txtIdRrss;
+    public javax.swing.JTextField txtMail;
     public javax.swing.JTextField txtNombreArticulo;
     public javax.swing.JTextField txtNombreBanco;
     public javax.swing.JTextField txtNombreComuna;
+    public javax.swing.JTextField txtNombresClientes;
     public javax.swing.JTextField txtRRSS;
+    public javax.swing.JTextField txtRut;
     public javax.swing.JTextField txtStockArticulo;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
