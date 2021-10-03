@@ -22,6 +22,8 @@ public class MenuMaestro extends javax.swing.JFrame {
    
     public MenuMaestro() {
         initComponents();
+        this.setTitle("Menu Maestro");
+        this.setLocationRelativeTo(null);
         MostrarComuna();
         MostrarBancos();
         txtIdBanco.setVisible(false);     
@@ -739,6 +741,7 @@ private void MostrarArticulos(){
         TablaClientes = new javax.swing.JTable();
         RbtnActCli = new javax.swing.JRadioButton();
         RbtnInActCli = new javax.swing.JRadioButton();
+        btnRegregarMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -753,7 +756,7 @@ private void MostrarArticulos(){
         );
         jPanelProveedoresLayout.setVerticalGroup(
             jPanelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Proveedores", jPanelProveedores);
@@ -766,7 +769,7 @@ private void MostrarArticulos(){
         );
         jPanelPacksLayout.setVerticalGroup(
             jPanelPacksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
@@ -779,7 +782,7 @@ private void MostrarArticulos(){
         );
         jPanelCategoriaPacksLayout.setVerticalGroup(
             jPanelCategoriaPacksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Categoria Packs", jPanelCategoriaPacks);
@@ -895,7 +898,7 @@ private void MostrarArticulos(){
         );
         jPanelEstados_VentasLayout.setVerticalGroup(
             jPanelEstados_VentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Estados_Venta", jPanelEstados_Ventas);
@@ -908,7 +911,7 @@ private void MostrarArticulos(){
         );
         jPanelUsuarioLayout.setVerticalGroup(
             jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Usuario", jPanelUsuario);
@@ -1098,17 +1101,14 @@ private void MostrarArticulos(){
         jPanelCategoriaArticulos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanelCategoriaArticulos.add(txtIdCategoria_Articulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 17, 193, -1));
 
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Nombre de la categoria");
         jPanelCategoriaArticulos.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 63, -1, -1));
         jPanelCategoriaArticulos.add(txtCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 57, 193, -1));
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Estado:");
         jPanelCategoriaArticulos.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 63, -1, -1));
 
         radiobuttonGroup1.add(RadioButtonEstado);
-        RadioButtonEstado.setForeground(new java.awt.Color(0, 0, 0));
         RadioButtonEstado.setText("Activo");
         RadioButtonEstado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1123,7 +1123,6 @@ private void MostrarArticulos(){
         jPanelCategoriaArticulos.add(RadioButtonEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(563, 62, -1, -1));
 
         radiobuttonGroup1.add(RadioButtonEstado0);
-        RadioButtonEstado0.setForeground(new java.awt.Color(0, 0, 0));
         RadioButtonEstado0.setText("Inactivo");
         jPanelCategoriaArticulos.add(RadioButtonEstado0, new org.netbeans.lib.awtextra.AbsoluteConstraints(634, 62, -1, -1));
 
@@ -1187,7 +1186,6 @@ private void MostrarArticulos(){
         jPanelRRSS.setBackground(new java.awt.Color(153, 204, 255));
         jPanelRRSS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Nombre RRSS");
         jPanelRRSS.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 20, -1, -1));
 
@@ -1206,13 +1204,11 @@ private void MostrarArticulos(){
         });
         jPanelRRSS.add(btnIngresarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 14, 88, -1));
 
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Codigo RRSS");
         jPanelRRSS.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
         jPanelRRSS.add(txtCodigoRs, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 59, -1));
 
         buttonGroupRRSS.add(RBtnActivo);
-        RBtnActivo.setForeground(new java.awt.Color(0, 0, 0));
         RBtnActivo.setText("Activo");
         RBtnActivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1222,7 +1218,6 @@ private void MostrarArticulos(){
         jPanelRRSS.add(RBtnActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 53, 62, -1));
 
         buttonGroupRRSS.add(RBtnInactivo);
-        RBtnInactivo.setForeground(new java.awt.Color(0, 0, 0));
         RBtnInactivo.setText("Inactivo");
         jPanelRRSS.add(RBtnInactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 53, -1, -1));
 
@@ -1378,16 +1373,29 @@ private void MostrarArticulos(){
 
         jTabbedPane1.addTab("Clientes", jPanelClientes);
 
+        btnRegregarMenu.setText("Regresar a Menú Principal");
+        btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegregarMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRegregarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegregarMenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1563,6 +1571,14 @@ private void MostrarArticulos(){
         llamarDatosCliente();
     }//GEN-LAST:event_TablaClientesMouseClicked
 
+    private void btnRegregarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegregarMenuActionPerformed
+        // TODO add your handling code here:
+        menu menuppal = new menu();
+        
+        menuppal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegregarMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1640,6 +1656,7 @@ private void MostrarArticulos(){
     public javax.swing.JButton btnModificarCategoriaArticulo;
     public javax.swing.JButton btnModificarCli;
     public javax.swing.JButton btnRegistrarCli;
+    public javax.swing.JButton btnRegregarMenu;
     public javax.swing.ButtonGroup buttonGroupCli;
     public javax.swing.ButtonGroup buttonGroupRRSS;
     public javax.swing.JButton jButtonCerrarSesion;
