@@ -20,6 +20,7 @@ import modelo.ConsultasRRSS;
 import modelo.Cliente;
 import modelo.ConsultasCliente;
 import controlador.CtrlClientes;
+import vista.Login;
 
 
 public class JavaDG_v2 {
@@ -55,7 +56,10 @@ public class JavaDG_v2 {
         CtrlBancos ctrl8 = new CtrlBancos(mod8, modC8, vistaA);
         ctrl8.iniciar();
         
-        vistaA.setVisible(true);
+        //vistaA.setVisible(true);
+        
+        Login log = new Login();
+        log.setVisible(true);
     }
     
 }
