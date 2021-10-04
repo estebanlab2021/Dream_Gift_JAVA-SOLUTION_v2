@@ -90,7 +90,7 @@ public class Login extends javax.swing.JFrame {
         menu menuPpal = new menu();
         
         menuPpal.setVisible(true);
-        //this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_txtEntrarActionPerformed
 
     /**
