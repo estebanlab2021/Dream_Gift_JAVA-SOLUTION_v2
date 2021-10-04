@@ -5,6 +5,25 @@
  */
 package vista;
 
+import controlador.CtrlArticulo;
+import controlador.CtrlBancos;
+import controlador.CtrlCategoriaArticulo;
+import controlador.CtrlClientes;
+import controlador.CtrlComunas;
+import controlador.CtrlRRSS;
+import modelo.Articulos;
+import modelo.Bancos;
+import modelo.Cat_Articulo;
+import modelo.Cliente;
+import modelo.Comunas;
+import modelo.ConsultasArticulos;
+import modelo.ConsultasBancos;
+import modelo.ConsultasCatArticulos;
+import modelo.ConsultasCliente;
+import modelo.ConsultasComunas;
+import modelo.ConsultasRRSS;
+import modelo.RRSS;
+
 /**
  *
  * @author usuario
@@ -111,10 +130,35 @@ public class menu extends javax.swing.JFrame {
 
     private void btnMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaestroActionPerformed
         // TODO add your handling code here:
-        MenuMaestro maestroppal = new MenuMaestro();
+        MenuMaestro vistaA = new MenuMaestro();
+        Articulos mod = new Articulos();
+        ConsultasArticulos modC = new ConsultasArticulos();       
+        Cat_Articulo mod1 = new Cat_Articulo();
+        ConsultasCatArticulos modC1 = new ConsultasCatArticulos();
+        RRSS mod2 = new RRSS();
+        ConsultasRRSS modC2 = new ConsultasRRSS();
+        Cliente mod3 = new Cliente();
+        ConsultasCliente modC3 = new ConsultasCliente();
+        Comunas mod6 = new Comunas();
+        ConsultasComunas modC6 = new ConsultasComunas();
+        Bancos mod8 = new Bancos();
+        ConsultasBancos modC8 = new ConsultasBancos();
+        
+        CtrlArticulo ctrl = new CtrlArticulo(mod, modC, vistaA);
+        ctrl.iniciar();
+        CtrlCategoriaArticulo ctrl1 = new CtrlCategoriaArticulo(mod1, modC1, vistaA);
+        ctrl1.iniciar();
+        CtrlRRSS ctrl2 = new CtrlRRSS(mod2, modC2, vistaA);
+        ctrl2.iniciar();
+        CtrlClientes ctrl3 = new CtrlClientes(mod3, modC3,vistaA);
+        ctrl3.iniciar();
+        CtrlComunas ctrl6 = new CtrlComunas(mod6, modC6, vistaA);
+        ctrl6.iniciar();
+        CtrlBancos ctrl8 = new CtrlBancos(mod8, modC8, vistaA);
+        ctrl8.iniciar();
         
         //maestroppal.saludo();
-        maestroppal.setVisible(true);
+        vistaA.setVisible(true);
         this.setVisible(false);
         
     }//GEN-LAST:event_btnMaestroActionPerformed
