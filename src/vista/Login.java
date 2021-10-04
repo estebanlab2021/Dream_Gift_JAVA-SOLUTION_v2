@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtEntrar = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtUsuario = new javax.swing.JTextPane();
@@ -47,14 +47,14 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtEntrar.setText("Entrar");
-        txtEntrar.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEntrarActionPerformed(evt);
+                btnEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(txtEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 366, -1, -1));
+        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 366, -1, -1));
 
         txtPassword.setText("jPasswordField1");
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 130, -1));
@@ -85,13 +85,13 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntrarActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
         menu menuPpal = new menu();
         
         menuPpal.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_txtEntrarActionPerformed
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,13 +132,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JButton txtEntrar;
     public javax.swing.JPasswordField txtPassword;
     public javax.swing.JTextPane txtUsuario;
     // End of variables declaration//GEN-END:variables
