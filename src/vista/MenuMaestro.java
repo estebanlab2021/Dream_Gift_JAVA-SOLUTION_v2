@@ -140,6 +140,98 @@ private void MostrarArticulos(){
             System.err.println(ex.toString());
         }      
 }
+
+public DefaultTableModel buscarCateArticulo(String buscar){
+    
+        //Metodo para buscar en tabla de categoria articulo
+        DefaultTableModel modelo1 = new DefaultTableModel();
+        TableCategoriaArt.setModel(modelo1);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+            
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        String sql = "SELECT * FROM categoria_articulo WHERE categoria_articulo LIKE '%"+buscar+"%'";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo1.addColumn("Id");
+            modelo1.addColumn("Categoria");
+            modelo1.addColumn("Estado");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo1.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    
+    }
+    
+    public DefaultTableModel buscarArticulo(String buscar){
+    
+        //Metodo para buscar en tabla de articulos
+        DefaultTableModel modelo2 = new DefaultTableModel();
+        TableArticulo.setModel(modelo2);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+            
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        String sql = "SELECT * FROM articulo WHERE art_descripcion LIKE '%"+buscar+"%'";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo2.addColumn("Codigo");
+            modelo2.addColumn("Categoria");
+            modelo2.addColumn("Nombre");
+            modelo2.addColumn("Stock");
+            modelo2.addColumn("Fecha Vencimiento");
+            modelo2.addColumn("Estado");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo2.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    
+    }
+
     
     private void MostrarRRSS(){
     //Tabla de RRSS
@@ -666,6 +758,8 @@ private void MostrarArticulos(){
         TableArticulo = new javax.swing.JTable();
         btnLimpiarArticulo = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JSeparator();
+        jLabel24 = new javax.swing.JLabel();
+        txtBuscarArticulo = new javax.swing.JTextField();
         jPanelComunas = new javax.swing.JPanel();
         jLabelNombre = new javax.swing.JLabel();
         jLabelCodigo = new javax.swing.JLabel();
@@ -694,10 +788,10 @@ private void MostrarArticulos(){
         btnCategoriaArticulo = new javax.swing.JButton();
         btnModificarCategoriaArticulo = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        btnBuscarCatArt = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         TableCategoriaArt = new javax.swing.JTable();
+        jLabel23 = new javax.swing.JLabel();
         jPanelRRSS = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         txtRRSS = new javax.swing.JTextField();
@@ -881,7 +975,7 @@ private void MostrarArticulos(){
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBancosLayout.createSequentialGroup()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelBancosLayout.setVerticalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1001,6 +1095,17 @@ private void MostrarArticulos(){
         btnLimpiarArticulo.setText("Limpiar");
         jPanelArticulos.add(btnLimpiarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 339, -1, -1));
         jPanelArticulos.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 198, 632, 19));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel24.setText("Buscar:");
+        jPanelArticulos.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
+
+        txtBuscarArticulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarArticuloKeyReleased(evt);
+            }
+        });
+        jPanelArticulos.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 170, -1));
 
         jTabbedPane1.addTab("Articulos", jPanelArticulos);
 
@@ -1142,10 +1247,12 @@ private void MostrarArticulos(){
         btnLimpiar.setText("Limpiar");
         jPanelCategoriaArticulos.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 137, -1, -1));
 
-        btnBuscarCatArt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnBuscarCatArt.setText("Buscar");
-        jPanelCategoriaArticulos.add(btnBuscarCatArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 201, -1, -1));
-        jPanelCategoriaArticulos.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 202, 208, -1));
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        jPanelCategoriaArticulos.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 208, -1));
 
         TableCategoriaArt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1173,7 +1280,11 @@ private void MostrarArticulos(){
         });
         jScrollPane3.setViewportView(TableCategoriaArt);
 
-        jPanelCategoriaArticulos.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 236, 452, 250));
+        jPanelCategoriaArticulos.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 236, 452, 180));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel23.setText("Buscar:");
+        jPanelCategoriaArticulos.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
 
         jTabbedPane1.addTab("Categoria Articulos", jPanelCategoriaArticulos);
 
@@ -1573,6 +1684,16 @@ private void MostrarArticulos(){
         this.setVisible(false);
     }//GEN-LAST:event_btnRegregarMenuActionPerformed
 
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        // TODO add your handling code here:
+        buscarCateArticulo(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtBuscarArticuloKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarArticuloKeyReleased
+        // TODO add your handling code here:
+        buscarArticulo(txtBuscarArticulo.getText());
+    }//GEN-LAST:event_txtBuscarArticuloKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1627,7 +1748,6 @@ private void MostrarArticulos(){
     public javax.swing.JTable TableArticulo;
     public javax.swing.JTable TableCategoriaArt;
     public javax.swing.JButton btnBuscarBanco;
-    public javax.swing.JButton btnBuscarCatArt;
     public javax.swing.JButton btnBuscarComuna;
     public javax.swing.JButton btnBuscarRrss;
     public javax.swing.JButton btnCategoriaArticulo;
@@ -1668,6 +1788,8 @@ private void MostrarArticulos(){
     public javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1710,6 +1832,7 @@ private void MostrarArticulos(){
     public javax.swing.JTable tableBanco;
     public javax.swing.JTextField txtApellidosClientes;
     public javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtBuscarArticulo;
     public javax.swing.JTextField txtBuscarBanco;
     public javax.swing.JTextField txtBuscarComunas;
     public javax.swing.JTextField txtBusqudaRS;
