@@ -446,8 +446,8 @@ private void MostrarArticulos(){
             int CantidadColumnas = rsMd.getColumnCount();
             
             modelo8.addColumn("Id");
-            modelo8.addColumn("Codigo");
             modelo8.addColumn("Banco");
+            modelo8.addColumn("Codigo");
             modelo8.addColumn("Estado");
                         
             while(rs.next()){
@@ -674,8 +674,6 @@ private void MostrarArticulos(){
         txtNombreComuna = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jButtonMenuInicio = new javax.swing.JButton();
-        jButtonCerrarSesion = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtBuscarComunas = new javax.swing.JTextField();
         btnBuscarComuna = new javax.swing.JButton();
@@ -791,17 +789,17 @@ private void MostrarArticulos(){
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setText("Entidad Bancaria");
-        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 153, -1, -1));
+        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jLabel8.setText("Estado");
-        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 228, -1, -1));
+        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
         txtNombreBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(txtNombreBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 147, 150, -1));
+        jPanel12.add(txtNombreBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 150, -1));
 
         btnIngresarBanco.setText("Ingresar");
         btnIngresarBanco.addActionListener(new java.awt.event.ActionListener() {
@@ -809,11 +807,11 @@ private void MostrarArticulos(){
                 btnIngresarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(btnIngresarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 101, 86, -1));
-        jPanel12.add(txtBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 298, 117, -1));
+        jPanel12.add(btnIngresarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 86, -1));
+        jPanel12.add(txtBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 117, -1));
 
         btnBuscarBanco.setText("Buscar");
-        jPanel12.add(btnBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 298, -1, -1));
+        jPanel12.add(btnBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
 
         tableBanco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -823,7 +821,7 @@ private void MostrarArticulos(){
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Codigo", "Banco", "Estado"
+                "ID", "Banco", "Codigo", "Estado"
             }
         ));
         tableBanco.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -833,19 +831,19 @@ private void MostrarArticulos(){
         });
         jScrollPane2.setViewportView(tableBanco);
 
-        jPanel12.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 344, 407, 92));
+        jPanel12.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 246, 590, 190));
 
         jLabel9.setText("Codigo");
-        jPanel12.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 153, -1, -1));
+        jPanel12.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
 
         txtCodigoBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(txtCodigoBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 147, 55, -1));
-        jPanel12.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 270, 872, 10));
-        jPanel12.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 85, 878, 10));
+        jPanel12.add(txtCodigoBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 55, -1));
+        jPanel12.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 200, 872, 80));
+        jPanel12.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 878, 10));
 
         btnGroupBancos.add(rbtnActivarBanco);
         rbtnActivarBanco.setText("Activo");
@@ -854,7 +852,7 @@ private void MostrarArticulos(){
                 rbtnActivarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(rbtnActivarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 227, -1, -1));
+        jPanel12.add(rbtnActivarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
         btnGroupBancos.add(rbtnInactvarBanco);
         rbtnInactvarBanco.setText("Inactivo");
@@ -863,7 +861,7 @@ private void MostrarArticulos(){
                 rbtnInactvarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(rbtnInactvarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 227, -1, -1));
+        jPanel12.add(rbtnInactvarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
         btnModificarBanco.setText("Modificar");
         btnModificarBanco.addActionListener(new java.awt.event.ActionListener() {
@@ -871,17 +869,19 @@ private void MostrarArticulos(){
                 btnModificarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(btnModificarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 147, 86, -1));
+        jPanel12.add(btnModificarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 86, -1));
 
         btnLimpiarBanco.setText("Limpiar");
-        jPanel12.add(btnLimpiarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 193, 86, -1));
-        jPanel12.add(txtIdBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 101, 33, -1));
+        jPanel12.add(btnLimpiarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 86, -1));
+        jPanel12.add(txtIdBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 33, -1));
 
         javax.swing.GroupLayout jPanelBancosLayout = new javax.swing.GroupLayout(jPanelBancos);
         jPanelBancos.setLayout(jPanelBancosLayout);
         jPanelBancosLayout.setHorizontalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelBancosLayout.createSequentialGroup()
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         jPanelBancosLayout.setVerticalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1009,10 +1009,10 @@ private void MostrarArticulos(){
         jPanelComunas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelNombre.setText("Nombre");
-        jPanelComunas.add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        jPanelComunas.add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jLabelCodigo.setText("Codigo Comuna");
-        jPanelComunas.add(jLabelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, -1));
+        jPanelComunas.add(jLabelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
 
         btnIngresarComuna.setText("Ingresar");
         btnIngresarComuna.addActionListener(new java.awt.event.ActionListener() {
@@ -1020,29 +1020,23 @@ private void MostrarArticulos(){
                 btnIngresarComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(btnIngresarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 80, -1));
+        jPanelComunas.add(btnIngresarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 80, -1));
 
         txtCodigoComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(txtCodigoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 50, -1));
+        jPanelComunas.add(txtCodigoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 50, -1));
 
         txtNombreComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(txtNombreComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 170, -1));
-        jPanelComunas.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 58, 880, 10));
-        jPanelComunas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 223, 876, 10));
-
-        jButtonMenuInicio.setText("Menu Inicio");
-        jPanelComunas.add(jButtonMenuInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 393, -1, -1));
-
-        jButtonCerrarSesion.setText("Cerrar Sesion");
-        jPanelComunas.add(jButtonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 393, -1, -1));
+        jPanelComunas.add(txtNombreComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 170, -1));
+        jPanelComunas.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 18, 880, 50));
+        jPanelComunas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 876, 10));
         jPanelComunas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2, 70, 71));
 
         txtBuscarComunas.addActionListener(new java.awt.event.ActionListener() {
@@ -1050,10 +1044,10 @@ private void MostrarArticulos(){
                 txtBuscarComunasActionPerformed(evt);
             }
         });
-        jPanelComunas.add(txtBuscarComunas, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 243, 117, -1));
+        jPanelComunas.add(txtBuscarComunas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 117, -1));
 
         btnBuscarComuna.setText("Buscar");
-        jPanelComunas.add(btnBuscarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 243, -1, -1));
+        jPanelComunas.add(btnBuscarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
 
         TablaComuna.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1073,7 +1067,7 @@ private void MostrarArticulos(){
         });
         jScrollPane5.setViewportView(TablaComuna);
 
-        jPanelComunas.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 283, 407, 92));
+        jPanelComunas.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 480, 220));
 
         btnModComuna.setText("Modificar");
         btnModComuna.addActionListener(new java.awt.event.ActionListener() {
@@ -1081,19 +1075,19 @@ private void MostrarArticulos(){
                 btnModComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(btnModComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 80, -1));
+        jPanelComunas.add(btnModComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 80, -1));
 
         btnLimpiarComuna.setText("Limpiar");
-        jPanelComunas.add(btnLimpiarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 80, -1));
+        jPanelComunas.add(btnLimpiarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 80, -1));
 
         btnGroupComunas.add(rbtnActivoComuna);
         rbtnActivoComuna.setText("Activo");
-        jPanelComunas.add(rbtnActivoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 60, -1));
+        jPanelComunas.add(rbtnActivoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 60, -1));
 
         btnGroupComunas.add(rbtnInactivoComuna);
         rbtnInactivoComuna.setText("Inactivo");
-        jPanelComunas.add(rbtnInactivoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, -1));
-        jPanelComunas.add(txtIdComunas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 60, -1));
+        jPanelComunas.add(rbtnInactivoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
+        jPanelComunas.add(txtIdComunas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 60, -1));
 
         jTabbedPane1.addTab("Comunas", jPanelComunas);
 
@@ -1659,8 +1653,6 @@ private void MostrarArticulos(){
     public javax.swing.JButton btnRegregarMenu;
     public javax.swing.ButtonGroup buttonGroupCli;
     public javax.swing.ButtonGroup buttonGroupRRSS;
-    public javax.swing.JButton jButtonCerrarSesion;
-    public javax.swing.JButton jButtonMenuInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;
