@@ -30,7 +30,7 @@ public class CtrlCategoriaArticulo implements ActionListener{
         this.vistaA1.RadioButtonEstado0.addActionListener(this);
         //this.vistaA1.radiobuttonGroup1.addActionListener(this);
         this.vistaA1.btnModificarCategoriaArticulo.addActionListener(this);
-        this.vistaA1.btnBuscarCatArt.addActionListener(this);
+        //this.vistaA1.btnBuscarCatArt.addActionListener(this);
         this.vistaA1.btnLimpiar.addActionListener(this);
         String estadobtn = null;
         
@@ -79,7 +79,7 @@ public class CtrlCategoriaArticulo implements ActionListener{
                 Logger.getLogger(CtrlCategoriaArticulo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+        /*
         if(e.getSource() == vistaA1.btnBuscarCatArt){
             mod1.setIdcategoria_articulo(Integer.parseInt(vistaA1.txtBuscar.getText()));
             
@@ -99,7 +99,7 @@ public class CtrlCategoriaArticulo implements ActionListener{
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlCategoriaArticulo.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
         
         if(e.getSource() == vistaA1.btnLimpiar){
             limpiar();
