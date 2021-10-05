@@ -232,6 +232,101 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     
     }
 
+    // *********  Busquedas nuevas
+    public DefaultTableModel buscarRrss(String buscarrrss){
+    
+        DefaultTableModel modelorrss = new DefaultTableModel();
+        TablaRRSS.setModel(modelorrss);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+            
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        String sql = "SELECT * FROM rrss WHERE rrss_nombre LIKE '%"+buscarrrss+"%'";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelorrss.addColumn("ID");
+            modelorrss.addColumn("RRSS_Nombre");
+            modelorrss.addColumn("CodigoRS");
+            modelorrss.addColumn("Estado");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelorrss.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    
+    }
+    
+    public DefaultTableModel buscarCliente(String buscarcliente){
+    
+        DefaultTableModel modeloCliente = new DefaultTableModel();
+        TablaClientes.setModel(modeloCliente);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+            
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        String sql = "SELECT * FROM cliente WHERE cli_nombre LIKE '%"+buscarcliente+"%'";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloCliente.addColumn("Rut");
+            modeloCliente.addColumn("Nombre");
+            modeloCliente.addColumn("Apellido");
+            modeloCliente.addColumn("Direccion");
+            modeloCliente.addColumn("Telefono");
+            modeloCliente.addColumn("Fecha de nacimiento");
+            modeloCliente.addColumn("Estado");
+            modeloCliente.addColumn("Mail");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloCliente.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    
+    }
+    
+    
+    // *********  Fin Busquedas nuevas
     
     private void MostrarRRSS(){
     //Tabla de RRSS
@@ -803,10 +898,10 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         btnModRrss = new javax.swing.JButton();
         txtIdRrss = new javax.swing.JTextField();
         btnLimpiarRrss = new javax.swing.JButton();
-        txtBusqudaRS = new javax.swing.JTextField();
-        btnBuscarRrss = new javax.swing.JButton();
+        txtBusquedaRS = new javax.swing.JTextField();
         ScrollTblRsResultado = new javax.swing.JScrollPane();
         TablaRRSS = new javax.swing.JTable();
+        jLabel25 = new javax.swing.JLabel();
         jPanelClientes = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         nombre = new javax.swing.JLabel();
@@ -828,11 +923,12 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         btnLimpiarCli = new javax.swing.JButton();
         btnModificarCli = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtBusquedaCliente = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         TablaClientes = new javax.swing.JTable();
         RbtnActCli = new javax.swing.JRadioButton();
         RbtnInActCli = new javax.swing.JRadioButton();
+        DateFechaNac = new com.toedter.calendar.JDateChooser();
         btnRegregarMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -844,11 +940,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelProveedores.setLayout(jPanelProveedoresLayout);
         jPanelProveedoresLayout.setHorizontalGroup(
             jPanelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 884, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         jPanelProveedoresLayout.setVerticalGroup(
             jPanelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Proveedores", jPanelProveedores);
@@ -857,11 +953,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelPacks.setLayout(jPanelPacksLayout);
         jPanelPacksLayout.setHorizontalGroup(
             jPanelPacksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 884, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         jPanelPacksLayout.setVerticalGroup(
             jPanelPacksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
@@ -870,11 +966,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelCategoriaPacks.setLayout(jPanelCategoriaPacksLayout);
         jPanelCategoriaPacksLayout.setHorizontalGroup(
             jPanelCategoriaPacksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 884, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         jPanelCategoriaPacksLayout.setVerticalGroup(
             jPanelCategoriaPacksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Categoria Packs", jPanelCategoriaPacks);
@@ -988,11 +1084,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelEstados_Ventas.setLayout(jPanelEstados_VentasLayout);
         jPanelEstados_VentasLayout.setHorizontalGroup(
             jPanelEstados_VentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 884, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         jPanelEstados_VentasLayout.setVerticalGroup(
             jPanelEstados_VentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Estados_Venta", jPanelEstados_Ventas);
@@ -1001,11 +1097,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelUsuario.setLayout(jPanelUsuarioLayout);
         jPanelUsuarioLayout.setHorizontalGroup(
             jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 884, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         jPanelUsuarioLayout.setVerticalGroup(
             jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Usuario", jPanelUsuario);
@@ -1337,10 +1433,13 @@ public DefaultTableModel buscarCateArticulo(String buscar){
 
         btnLimpiarRrss.setText("Limpiar");
         jPanelRRSS.add(btnLimpiarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 82, 89, -1));
-        jPanelRRSS.add(txtBusqudaRS, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 146, 291, -1));
 
-        btnBuscarRrss.setText("Buscar");
-        jPanelRRSS.add(btnBuscarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 80, -1));
+        txtBusquedaRS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBusquedaRSKeyReleased(evt);
+            }
+        });
+        jPanelRRSS.add(txtBusquedaRS, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 180, -1));
 
         TablaRRSS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1360,7 +1459,10 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         ScrollTblRsResultado.setViewportView(TablaRRSS);
 
-        jPanelRRSS.add(ScrollTblRsResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 199, 704, 135));
+        jPanelRRSS.add(ScrollTblRsResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 164, 704, 250));
+
+        jLabel25.setText("Busqueda");
+        jPanelRRSS.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 126, 70, 30));
 
         jTabbedPane1.addTab("RRSS", jPanelRRSS);
 
@@ -1441,12 +1543,17 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel20.setText("Buscar Rut");
         jPanelClientes.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, -1, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtBusquedaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtBusquedaClienteActionPerformed(evt);
             }
         });
-        jPanelClientes.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 140, -1));
+        txtBusquedaCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBusquedaClienteKeyReleased(evt);
+            }
+        });
+        jPanelClientes.add(txtBusquedaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 140, -1));
 
         TablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1466,7 +1573,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane4.setViewportView(TablaClientes);
 
-        jPanelClientes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 244, 795, 151));
+        jPanelClientes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 244, 930, 151));
 
         buttonGroupCli.add(RbtnActCli);
         RbtnActCli.setText("Activo");
@@ -1475,6 +1582,9 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         buttonGroupCli.add(RbtnInActCli);
         RbtnInActCli.setText("Inactivo");
         jPanelClientes.add(RbtnInActCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
+
+        DateFechaNac.setDateFormatString("y-MM-d");
+        jPanelClientes.add(DateFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 190, -1));
 
         jTabbedPane1.addTab("Clientes", jPanelClientes);
 
@@ -1489,10 +1599,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnRegregarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnRegregarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1663,9 +1774,9 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         MostrarClientes();
     }//GEN-LAST:event_btnModificarCliActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtBusquedaClienteActionPerformed
 
     private void btnLimpiarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCliActionPerformed
         // TODO add your handling code here:
@@ -1693,6 +1804,16 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         // TODO add your handling code here:
         buscarArticulo(txtBuscarArticulo.getText());
     }//GEN-LAST:event_txtBuscarArticuloKeyReleased
+
+    private void txtBusquedaRSKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaRSKeyReleased
+        // TODO add your handling code here:
+        buscarRrss(txtBusquedaRS.getText());
+    }//GEN-LAST:event_txtBusquedaRSKeyReleased
+
+    private void txtBusquedaClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaClienteKeyReleased
+        // TODO add your handling code here:
+        buscarCliente(txtBusquedaCliente.getText());
+    }//GEN-LAST:event_txtBusquedaClienteKeyReleased
 
     /**
      * @param args the command line arguments
@@ -1735,6 +1856,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JCheckBox CheckBoxVencimientoArticulo;
     public javax.swing.JComboBox<String> ComboBoxArticulo;
+    public com.toedter.calendar.JDateChooser DateFechaNac;
     public javax.swing.JRadioButton RBtnActivo;
     public javax.swing.JRadioButton RBtnInactivo;
     public javax.swing.JRadioButton RadioButtonEstado;
@@ -1749,7 +1871,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTable TableCategoriaArt;
     public javax.swing.JButton btnBuscarBanco;
     public javax.swing.JButton btnBuscarComuna;
-    public javax.swing.JButton btnBuscarRrss;
     public javax.swing.JButton btnCategoriaArticulo;
     public javax.swing.ButtonGroup btnGroupBancos;
     public javax.swing.ButtonGroup btnGroupComunas;
@@ -1790,6 +1911,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1822,7 +1944,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
     public javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTextField jTextField3;
     public javax.swing.JLabel nombre;
     public javax.swing.ButtonGroup radiobuttonGroup1;
     public javax.swing.JRadioButton rbtnActivarBanco;
@@ -1835,7 +1956,8 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JTextField txtBuscarArticulo;
     public javax.swing.JTextField txtBuscarBanco;
     public javax.swing.JTextField txtBuscarComunas;
-    public javax.swing.JTextField txtBusqudaRS;
+    public javax.swing.JTextField txtBusquedaCliente;
+    private javax.swing.JTextField txtBusquedaRS;
     public javax.swing.JTextField txtCategoriaArt;
     public javax.swing.JTextField txtCategoriaArticulo;
     public javax.swing.JTextField txtCodigoBanco;
