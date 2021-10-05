@@ -83,7 +83,7 @@ public class CtrlComunas implements ActionListener{
         }
         
         if(e.getSource() == vistaA.btnBuscarComuna){
-            mod1.setIdcomunas(Integer.parseInt(vistaA.txtBusqudaRS.getText()));
+            mod1.setIdcomunas(Integer.parseInt(vistaA.txtBuscarComunas.getText()));
             
             try {
                 if(modC1.buscarComun(mod1)){
