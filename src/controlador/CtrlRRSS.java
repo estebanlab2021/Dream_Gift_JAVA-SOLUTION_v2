@@ -30,7 +30,6 @@ public class CtrlRRSS implements ActionListener{
         this.vistaA1.RBtnActivo.addActionListener(this);
         this.vistaA1.RBtnInactivo.addActionListener(this);
         this.vistaA1.btnModRrss.addActionListener(this);
-        this.vistaA1.btnBuscarRrss.addActionListener(this);
         this.vistaA1.btnLimpiarRrss.addActionListener(this);
         String estadobtn = null;
     }
@@ -82,23 +81,7 @@ public class CtrlRRSS implements ActionListener{
                 Logger.getLogger(CtrlRRSS.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        if(e.getSource() == vistaA1.btnBuscarRrss){
-            mod1.setIdrrss(Integer.parseInt(vistaA1.txtBusqudaRS.getText()));
-            
-            try {
-                if(modC1.buscarRrss(mod1)){
-                    vistaA1.txtRRSS.setText(mod1.getRrss_nombre());
-
-                }else {
-                    JOptionPane.showMessageDialog(null, "No se encontró el registro");
-                    limpiar();
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(CtrlRRSS.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
+     
         if(e.getSource() == vistaA1.btnLimpiarRrss){
             limpiar();
         }
@@ -110,7 +93,6 @@ public class CtrlRRSS implements ActionListener{
         vistaA1.txtIdRrss.setText(null);
         vistaA1.txtRRSS.setText(null);
         vistaA1.buttonGroupRRSS.clearSelection();
-        vistaA1.txtBusqudaRS.setText(null);
         vistaA1.txtCodigoRs.setText(null);
                 
     }
