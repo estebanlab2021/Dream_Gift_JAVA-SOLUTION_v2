@@ -28,6 +28,7 @@ public class JavaDG_v2 {
     
     public static void main(String[] args) {
         // TODO code application logic here
+        /*
         Articulos mod = new Articulos();
         ConsultasArticulos modC = new ConsultasArticulos();       
 	Cat_Articulo mod1 = new Cat_Articulo();
@@ -55,7 +56,7 @@ public class JavaDG_v2 {
         ctrl6.iniciar();
         CtrlBancos ctrl8 = new CtrlBancos(mod8, modC8, vistaA);
         ctrl8.iniciar();
-        
+        */
         //vistaA.setVisible(true);
         
         Login log = new Login();
