@@ -49,6 +49,7 @@ public class CtrlClientes implements ActionListener {
             mod1.setCli_direccion(frm2.txtDireccionClientes.getText());
             mod1.setCli_telefono(Integer.parseInt(frm2.txtTelefono.getText()));
             mod1.setFecha_nac(frm2.txtFECHA.getText());
+            //mod1.setFecha_nac(frm2.DateFechaNac.objDate());
             mod1.setEstado(Integer.parseInt(frm2.guardarRadioBotonCliente()));
             mod1.setCli_mail(frm2.txtMail.getText());
             try {
