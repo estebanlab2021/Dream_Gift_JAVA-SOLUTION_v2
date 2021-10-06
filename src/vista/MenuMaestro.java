@@ -28,7 +28,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         MostrarBancos();
         txtIdBanco.setVisible(false);     
         txtIdComunas.setVisible(false);
-        txtFECHA.setVisible(false);
+        //txtFECHA.setVisible(false);
         MostrarCatArticulos();
         MostrarArticulos();
         AgregarItemComboBox();
@@ -913,7 +913,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel13 = new javax.swing.JLabel();
         txtApellidosClientes = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        txtFECHA = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtRut = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
@@ -1486,8 +1485,14 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelClientes.add(txtNombresClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 55, 116, -1));
 
         jLabel17.setText("Telefono");
-        jPanelClientes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
-        jPanelClientes.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 41, 128, -1));
+        jPanelClientes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 36, -1, 30));
+
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
+        jPanelClientes.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 128, -1));
 
         jLabel13.setText("Apellido");
         jPanelClientes.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 89, -1, -1));
@@ -1500,8 +1505,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelClientes.add(txtApellidosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 89, 116, -1));
 
         jLabel18.setText("Fecha Nacimiento");
-        jPanelClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 140, -1));
-        jPanelClientes.add(txtFECHA, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 75, 40, -1));
+        jPanelClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 120, 30));
 
         jLabel14.setText("Rut");
         jPanelClientes.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 132, -1, -1));
@@ -1586,7 +1590,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelClientes.add(RbtnInActCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
 
         DateFechaNac.setDateFormatString("y-MM-d");
-        jPanelClientes.add(DateFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 190, -1));
+        jPanelClientes.add(DateFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 130, -1));
 
         jTabbedPane1.addTab("Clientes", jPanelClientes);
 
@@ -1817,6 +1821,10 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         buscarCliente(txtBusquedaCliente.getText());
     }//GEN-LAST:event_txtBusquedaClienteKeyReleased
 
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1966,7 +1974,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTextField txtCodigoComuna;
     public javax.swing.JTextField txtCodigoRs;
     public javax.swing.JTextField txtDireccionClientes;
-    public javax.swing.JTextField txtFECHA;
     public javax.swing.JTextField txtFechaArticulo;
     public javax.swing.JTextField txtIdArticulo;
     public javax.swing.JTextField txtIdBanco;
