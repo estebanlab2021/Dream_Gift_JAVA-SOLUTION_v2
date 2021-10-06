@@ -28,6 +28,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         MostrarBancos();
         txtIdBanco.setVisible(false);     
         txtIdComunas.setVisible(false);
+        txtFECHA.setVisible(false);
         MostrarCatArticulos();
         MostrarArticulos();
         AgregarItemComboBox();
@@ -781,7 +782,8 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                 txtApellidosClientes.setText(rs.getString("cli_apellido"));
                 txtDireccionClientes.setText(rs.getString("cli_direccion"));
                 txtTelefono.setText(String.valueOf(rs.getString("cli_telefono")));
-                txtFECHA.setText(rs.getString("fecha_nac"));
+                //txtFECHA.setText(rs.getString("fecha_nac"));
+                DateFechaNac.setDate(Date.valueOf(rs.getString("fecha_nac")));
                 txtMail.setText(rs.getString("cli_mail"));
                 if(rs.getString("estado").equals("1")){
                     RbtnActCli.setSelected(true);
@@ -1498,8 +1500,8 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelClientes.add(txtApellidosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 89, 116, -1));
 
         jLabel18.setText("Fecha Nacimiento");
-        jPanelClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 100, -1));
-        jPanelClientes.add(txtFECHA, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 75, 128, -1));
+        jPanelClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 140, -1));
+        jPanelClientes.add(txtFECHA, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 75, 40, -1));
 
         jLabel14.setText("Rut");
         jPanelClientes.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 132, -1, -1));
