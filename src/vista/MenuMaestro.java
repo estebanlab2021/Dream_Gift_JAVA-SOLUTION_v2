@@ -34,6 +34,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         AgregarItemComboBox();
         MostrarRRSS();
         MostrarClientes();
+        //llamarDatosCatVenta();
         //llamarDatosCliente();
         txtIdRrss.setVisible(false);
         txtIdCategoria_Articulo.setVisible(false);
@@ -799,7 +800,78 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     }
     
     /********************* Fin Codigo Erick *************/
-    
+    private void MostrarCatVenta(){
+        //Tabla de categoria Venta
+        try{    
+            DefaultTableModel modelo9 = new DefaultTableModel();
+            
+            TableCatVenta.setModel(modelo9);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM estados_venta";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            //cc0 = ConsultasCatArticulos.MostrarCatArticulos_base();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo9.addColumn("Id");
+            modelo9.addColumn("Estados Venta");
+           // modelo9.addColumn("Codigo");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo9.addRow(filas); 
+            }
+            
+            rs.close();
+
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+     public void llamarDatosCatVenta(){
+        try{
+            int fila = TableCatVenta.getSelectedRow();
+            int ID = (int) TableCatVenta.getValueAt(fila, 0);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM estados_venta WHERE (idestados_venta = ?)";
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1,ID);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                txtIdCatVenta.setText(String.valueOf(rs.getString("idestados_venta")));
+                txtCatVenta.setText(rs.getString("est_descripcion"));
+            //    txtCodigoCatVenta.setText(rs.getString("codigo_cat_venta"));
+                
+        }
+        }
+         catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    } 
     
     
     @SuppressWarnings("unchecked")
@@ -856,7 +928,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         btnModificarBanco = new javax.swing.JButton();
         btnLimpiarBanco = new javax.swing.JButton();
         txtIdBanco = new javax.swing.JTextField();
-        jPanelEstados_Ventas = new javax.swing.JPanel();
         jPanelUsuario = new javax.swing.JPanel();
         jPanelArticulos = new javax.swing.JPanel();
         txtIdArticulo = new javax.swing.JTextField();
@@ -952,6 +1023,18 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         RbtnActCli = new javax.swing.JRadioButton();
         RbtnInActCli = new javax.swing.JRadioButton();
         DateFechaNac = new com.toedter.calendar.JDateChooser();
+        jPanelEstados_Ventas1 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        txtCatVenta = new javax.swing.JTextField();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        TableCatVenta = new javax.swing.JTable();
+        btnIngresarCatVenta = new javax.swing.JButton();
+        btnModificarCatVenta = new javax.swing.JButton();
+        btnLimpiarCatVenta = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JSeparator();
+        txtIdCatVenta = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        txtBuscarCatVenta = new javax.swing.JTextField();
         btnRegregarMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1032,7 +1115,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelCategoriaPacks.setBackground(new java.awt.Color(153, 204, 255));
         jPanelCategoriaPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Categoria Pack");
         jPanelCategoriaPacks.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 56, 110, 20));
         jPanelCategoriaPacks.add(txtCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 160, -1));
@@ -1048,7 +1130,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         rbtnInActivoCatPack.setText("Inactivo");
         jPanelCategoriaPacks.add(rbtnInActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, -1, -1));
 
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Estado");
         jPanelCategoriaPacks.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 60, 30));
 
@@ -1172,19 +1253,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         );
 
         jTabbedPane1.addTab("Bancos", jPanelBancos);
-
-        javax.swing.GroupLayout jPanelEstados_VentasLayout = new javax.swing.GroupLayout(jPanelEstados_Ventas);
-        jPanelEstados_Ventas.setLayout(jPanelEstados_VentasLayout);
-        jPanelEstados_VentasLayout.setHorizontalGroup(
-            jPanelEstados_VentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
-        );
-        jPanelEstados_VentasLayout.setVerticalGroup(
-            jPanelEstados_VentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Estados_Venta", jPanelEstados_Ventas);
 
         javax.swing.GroupLayout jPanelUsuarioLayout = new javax.swing.GroupLayout(jPanelUsuario);
         jPanelUsuario.setLayout(jPanelUsuarioLayout);
@@ -1686,6 +1754,125 @@ public DefaultTableModel buscarCateArticulo(String buscar){
 
         jTabbedPane1.addTab("Clientes", jPanelClientes);
 
+        jPanelEstados_Ventas1.setBackground(new java.awt.Color(153, 204, 255));
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel30.setText("Estado Venta");
+
+        txtCatVenta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        TableCatVenta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Id", "Estados Venta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TableCatVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableCatVentaMouseClicked(evt);
+            }
+        });
+        jScrollPane10.setViewportView(TableCatVenta);
+
+        btnIngresarCatVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIngresarCatVenta.setText("Ingresar");
+        btnIngresarCatVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarCatVentaActionPerformed(evt);
+            }
+        });
+
+        btnModificarCatVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificarCatVenta.setText("Modificar");
+        btnModificarCatVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarCatVentaActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarCatVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiarCatVenta.setText("Limpiar");
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("Buscar");
+
+        javax.swing.GroupLayout jPanelEstados_Ventas1Layout = new javax.swing.GroupLayout(jPanelEstados_Ventas1);
+        jPanelEstados_Ventas1.setLayout(jPanelEstados_Ventas1Layout);
+        jPanelEstados_Ventas1Layout.setHorizontalGroup(
+            jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel30)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnIngresarCatVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnLimpiarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(223, 223, 223))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109))
+            .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                        .addGap(370, 370, 370)
+                        .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton1))
+                    .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelEstados_Ventas1Layout.setVerticalGroup(
+            jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
+                        .addComponent(btnIngresarCatVenta)
+                        .addGap(23, 23, 23)
+                        .addComponent(btnModificarCatVenta))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                            .addGap(45, 45, 45)
+                            .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel30)
+                                .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23)
+                .addComponent(btnLimpiarCatVenta)
+                .addGap(52, 52, 52)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+        );
+
+        jTabbedPane1.addTab("Categoria Venta", jPanelEstados_Ventas1);
+
         btnRegregarMenu.setText("Regresar a Menú Principal");
         btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1702,7 +1889,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 934, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnRegregarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 776, Short.MAX_VALUE)))
@@ -1721,6 +1908,124 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegregarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegregarMenuActionPerformed
+        // TODO add your handling code here:
+        menu menuppal = new menu();
+        
+        menuppal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegregarMenuActionPerformed
+
+    private void TablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClientesMouseClicked
+        // TODO add your handling code here:
+        llamarDatosCliente();
+    }//GEN-LAST:event_TablaClientesMouseClicked
+
+    private void txtBusquedaClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaClienteKeyReleased
+        // TODO add your handling code here:
+        buscarCliente(txtBusquedaCliente.getText());
+    }//GEN-LAST:event_txtBusquedaClienteKeyReleased
+
+    private void txtBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBusquedaClienteActionPerformed
+
+    private void btnModificarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCliActionPerformed
+        // TODO add your handling code here:
+        MostrarClientes();
+    }//GEN-LAST:event_btnModificarCliActionPerformed
+
+    private void btnLimpiarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarCliActionPerformed
+
+    private void btnRegistrarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCliActionPerformed
+        MostrarClientes();
+        guardarRadioBotonCliente();
+    }//GEN-LAST:event_btnRegistrarCliActionPerformed
+
+    private void txtApellidosClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidosClientesActionPerformed
+
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
+
+    private void txtNombresClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombresClientesActionPerformed
+
+    private void TablaRRSSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaRRSSMouseClicked
+        // TODO add your handling code here:
+        llamarDatosRRSS();
+    }//GEN-LAST:event_TablaRRSSMouseClicked
+
+    private void txtBusquedaRSKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaRSKeyReleased
+        // TODO add your handling code here:
+        buscarRrss(txtBusquedaRS.getText());
+    }//GEN-LAST:event_txtBusquedaRSKeyReleased
+
+    private void btnModRrssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModRrssActionPerformed
+        // TODO add your handling code here:
+        MostrarRRSS();
+        guardarRadioBotonRRSS();
+    }//GEN-LAST:event_btnModRrssActionPerformed
+
+    private void RBtnActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBtnActivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RBtnActivoActionPerformed
+
+    private void btnIngresarRrssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarRrssActionPerformed
+        // TODO add your handling code here:
+        MostrarRRSS();
+        guardarRadioBotonRRSS();
+    }//GEN-LAST:event_btnIngresarRrssActionPerformed
+
+    private void txtRRSSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRRSSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRRSSActionPerformed
+
+    private void TableCategoriaArtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCategoriaArtMouseClicked
+        // TODO add your handling code here:
+        llamarDatosCateArticulo();
+    }//GEN-LAST:event_TableCategoriaArtMouseClicked
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        // TODO add your handling code here:
+        buscarCateArticulo(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void btnModificarCategoriaArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCategoriaArticuloActionPerformed
+        // TODO add your handling code here:
+        MostrarCatArticulos();
+    }//GEN-LAST:event_btnModificarCategoriaArticuloActionPerformed
+
+    private void btnCategoriaArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaArticuloActionPerformed
+        // TODO add your handling code here:
+        MostrarCatArticulos();
+        guardarRadioButtonValue();
+    }//GEN-LAST:event_btnCategoriaArticuloActionPerformed
+
+    private void RadioButtonEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButtonEstadoActionPerformed
+        // TODO add your handling code here:
+        //guardarRadioButtonValue();
+    }//GEN-LAST:event_RadioButtonEstadoActionPerformed
+
+    private void RadioButtonEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RadioButtonEstadoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RadioButtonEstadoMouseClicked
+
+    private void btnModComunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModComunaActionPerformed
+        // TODO add your handling code here:
+        MostrarComuna();
+    }//GEN-LAST:event_btnModComunaActionPerformed
+
+    private void TablaComunaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaComunaMouseClicked
+        // TODO add your handling code here:
+        llamarDatosComunas();
+    }//GEN-LAST:event_TablaComunaMouseClicked
+
     private void txtBuscarComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarComunasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarComunasActionPerformed
@@ -1738,34 +2043,39 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         MostrarComuna();
     }//GEN-LAST:event_btnIngresarComunaActionPerformed
 
-    private void btnModComunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModComunaActionPerformed
+    private void txtBuscarArticuloKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarArticuloKeyReleased
         // TODO add your handling code here:
-        MostrarComuna();
-    }//GEN-LAST:event_btnModComunaActionPerformed
+        buscarArticulo(txtBuscarArticulo.getText());
+    }//GEN-LAST:event_txtBuscarArticuloKeyReleased
 
-    private void TablaComunaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaComunaMouseClicked
+    private void TableArticuloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableArticuloMouseClicked
         // TODO add your handling code here:
-        llamarDatosComunas();
-    }//GEN-LAST:event_TablaComunaMouseClicked
+        llamarDatosAriculos();
+    }//GEN-LAST:event_TableArticuloMouseClicked
 
-    private void txtNombreBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreBancoActionPerformed
+    private void CheckBoxVencimientoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxVencimientoArticuloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreBancoActionPerformed
+        MostrarCampoFecha();
+    }//GEN-LAST:event_CheckBoxVencimientoArticuloActionPerformed
 
-    private void btnIngresarBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarBancoActionPerformed
+    private void btnModificarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarArticuloActionPerformed
         // TODO add your handling code here:
-        MostrarBancos();
-        guardarRadioButtonBanco();
-    }//GEN-LAST:event_btnIngresarBancoActionPerformed
+        MostrarArticulos();
+    }//GEN-LAST:event_btnModificarArticuloActionPerformed
 
-    private void tableBancoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBancoMouseClicked
+    private void btnModificarArticuloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarArticuloMouseClicked
         // TODO add your handling code here:
-        llamarDatosBancos();
-    }//GEN-LAST:event_tableBancoMouseClicked
+    }//GEN-LAST:event_btnModificarArticuloMouseClicked
 
-    private void txtCodigoBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoBancoActionPerformed
+    private void btnIngregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngregarArticuloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoBancoActionPerformed
+        MostrarArticulos();
+    }//GEN-LAST:event_btnIngregarArticuloActionPerformed
+
+    private void ComboBoxArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxArticuloActionPerformed
+        // TODO add your handling code here:
+        //AgregarItemComboBox();
+    }//GEN-LAST:event_ComboBoxArticuloActionPerformed
 
     private void btnModificarBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBancoActionPerformed
         // TODO add your handling code here:
@@ -1780,147 +2090,36 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnActivarBancoActionPerformed
 
-    private void txtRRSSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRRSSActionPerformed
+    private void txtCodigoBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoBancoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRRSSActionPerformed
+    }//GEN-LAST:event_txtCodigoBancoActionPerformed
 
-    private void btnIngresarRrssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarRrssActionPerformed
+    private void tableBancoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBancoMouseClicked
         // TODO add your handling code here:
-        MostrarRRSS();
-        guardarRadioBotonRRSS();
-    }//GEN-LAST:event_btnIngresarRrssActionPerformed
+        llamarDatosBancos();
+    }//GEN-LAST:event_tableBancoMouseClicked
 
-    private void RBtnActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RBtnActivoActionPerformed
+    private void btnIngresarBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarBancoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RBtnActivoActionPerformed
+        MostrarBancos();
+        guardarRadioButtonBanco();
+    }//GEN-LAST:event_btnIngresarBancoActionPerformed
 
-    private void btnModRrssActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModRrssActionPerformed
+    private void txtNombreBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreBancoActionPerformed
         // TODO add your handling code here:
-        MostrarRRSS();
-        guardarRadioBotonRRSS();
-    }//GEN-LAST:event_btnModRrssActionPerformed
+    }//GEN-LAST:event_txtNombreBancoActionPerformed
 
-    private void TablaRRSSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaRRSSMouseClicked
-        // TODO add your handling code here:
-        llamarDatosRRSS();
-    }//GEN-LAST:event_TablaRRSSMouseClicked
+    private void TableCatVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCatVentaMouseClicked
+        llamarDatosCatVenta();
+    }//GEN-LAST:event_TableCatVentaMouseClicked
 
-    private void RadioButtonEstadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RadioButtonEstadoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RadioButtonEstadoMouseClicked
+    private void btnIngresarCatVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarCatVentaActionPerformed
+        MostrarCatVenta();
+    }//GEN-LAST:event_btnIngresarCatVentaActionPerformed
 
-    private void RadioButtonEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioButtonEstadoActionPerformed
-        // TODO add your handling code here:
-        //guardarRadioButtonValue();
-    }//GEN-LAST:event_RadioButtonEstadoActionPerformed
-
-    private void btnCategoriaArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaArticuloActionPerformed
-        // TODO add your handling code here:
-        MostrarCatArticulos();
-        guardarRadioButtonValue();
-    }//GEN-LAST:event_btnCategoriaArticuloActionPerformed
-
-    private void btnModificarCategoriaArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCategoriaArticuloActionPerformed
-        // TODO add your handling code here:
-        MostrarCatArticulos();
-    }//GEN-LAST:event_btnModificarCategoriaArticuloActionPerformed
-
-    private void TableCategoriaArtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCategoriaArtMouseClicked
-        // TODO add your handling code here:
-        llamarDatosCateArticulo();
-    }//GEN-LAST:event_TableCategoriaArtMouseClicked
-
-    private void ComboBoxArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxArticuloActionPerformed
-        // TODO add your handling code here:
-        //AgregarItemComboBox();
-    }//GEN-LAST:event_ComboBoxArticuloActionPerformed
-
-    private void btnIngregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngregarArticuloActionPerformed
-        // TODO add your handling code here:
-        MostrarArticulos();
-    }//GEN-LAST:event_btnIngregarArticuloActionPerformed
-
-    private void btnModificarArticuloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarArticuloMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarArticuloMouseClicked
-
-    private void btnModificarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarArticuloActionPerformed
-        // TODO add your handling code here:
-        MostrarArticulos();
-    }//GEN-LAST:event_btnModificarArticuloActionPerformed
-
-    private void CheckBoxVencimientoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxVencimientoArticuloActionPerformed
-        // TODO add your handling code here:
-        MostrarCampoFecha();
-    }//GEN-LAST:event_CheckBoxVencimientoArticuloActionPerformed
-
-    private void TableArticuloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableArticuloMouseClicked
-        // TODO add your handling code here:
-        llamarDatosAriculos();
-    }//GEN-LAST:event_TableArticuloMouseClicked
-
-    private void txtNombresClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresClientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombresClientesActionPerformed
-
-    private void txtApellidosClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosClientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidosClientesActionPerformed
-
-    private void btnRegistrarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCliActionPerformed
-        MostrarClientes();
-        guardarRadioBotonCliente();
-    }//GEN-LAST:event_btnRegistrarCliActionPerformed
-
-    private void btnModificarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCliActionPerformed
-        // TODO add your handling code here:
-        MostrarClientes();
-    }//GEN-LAST:event_btnModificarCliActionPerformed
-
-    private void txtBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBusquedaClienteActionPerformed
-
-    private void btnLimpiarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLimpiarCliActionPerformed
-
-    private void TablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClientesMouseClicked
-        // TODO add your handling code here:
-        llamarDatosCliente();
-    }//GEN-LAST:event_TablaClientesMouseClicked
-
-    private void btnRegregarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegregarMenuActionPerformed
-        // TODO add your handling code here:
-        menu menuppal = new menu();
-        
-        menuppal.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnRegregarMenuActionPerformed
-
-    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        // TODO add your handling code here:
-        buscarCateArticulo(txtBuscar.getText());
-    }//GEN-LAST:event_txtBuscarKeyReleased
-
-    private void txtBuscarArticuloKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarArticuloKeyReleased
-        // TODO add your handling code here:
-        buscarArticulo(txtBuscarArticulo.getText());
-    }//GEN-LAST:event_txtBuscarArticuloKeyReleased
-
-    private void txtBusquedaRSKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaRSKeyReleased
-        // TODO add your handling code here:
-        buscarRrss(txtBusquedaRS.getText());
-    }//GEN-LAST:event_txtBusquedaRSKeyReleased
-
-    private void txtBusquedaClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaClienteKeyReleased
-        // TODO add your handling code here:
-        buscarCliente(txtBusquedaCliente.getText());
-    }//GEN-LAST:event_txtBusquedaClienteKeyReleased
-
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
+    private void btnModificarCatVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarCatVentaActionPerformed
+        MostrarCatVenta();
+    }//GEN-LAST:event_btnModificarCatVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1975,6 +2174,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTable TablaComuna;
     public javax.swing.JTable TablaRRSS;
     public javax.swing.JTable TableArticulo;
+    public javax.swing.JTable TableCatVenta;
     public javax.swing.JTable TableCategoriaArt;
     public javax.swing.JButton btnBuscarBanco;
     public javax.swing.JButton btnBuscarComuna;
@@ -1983,11 +2183,13 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.ButtonGroup btnGroupComunas;
     public javax.swing.JButton btnIngregarArticulo;
     public javax.swing.JButton btnIngresarBanco;
+    public javax.swing.JButton btnIngresarCatVenta;
     public javax.swing.JButton btnIngresarComuna;
     public javax.swing.JButton btnIngresarRrss;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnLimpiarArticulo;
     public javax.swing.JButton btnLimpiarBanco;
+    public javax.swing.JButton btnLimpiarCatVenta;
     public javax.swing.JButton btnLimpiarCli;
     public javax.swing.JButton btnLimpiarComuna;
     public javax.swing.JButton btnLimpiarRrss;
@@ -1995,6 +2197,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JButton btnModRrss;
     public javax.swing.JButton btnModificarArticulo;
     public javax.swing.JButton btnModificarBanco;
+    public javax.swing.JButton btnModificarCatVenta;
     public javax.swing.JButton btnModificarCategoriaArticulo;
     public javax.swing.JButton btnModificarCli;
     public javax.swing.JButton btnRegistrarCli;
@@ -2002,6 +2205,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.ButtonGroup buttonGroupCatPack;
     public javax.swing.ButtonGroup buttonGroupCli;
     public javax.swing.ButtonGroup buttonGroupRRSS;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;
@@ -2025,6 +2229,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2042,12 +2247,13 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JPanel jPanelCategoriaPacks;
     private javax.swing.JPanel jPanelClientes;
     public javax.swing.JPanel jPanelComunas;
-    private javax.swing.JPanel jPanelEstados_Ventas;
+    private javax.swing.JPanel jPanelEstados_Ventas1;
     private javax.swing.JPanel jPanelPacks;
     private javax.swing.JPanel jPanelProveedores;
     private javax.swing.JPanel jPanelRRSS;
     private javax.swing.JPanel jPanelUsuario;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2061,6 +2267,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
@@ -2082,10 +2289,12 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtBuscarArticulo;
     public javax.swing.JTextField txtBuscarBanco;
+    public javax.swing.JTextField txtBuscarCatVenta;
     public javax.swing.JTextField txtBuscarComunas;
     public javax.swing.JTextField txtBusquedaCliente;
     private javax.swing.JTextField txtBusquedaRS;
     private javax.swing.JTextField txtCatPack;
+    public javax.swing.JTextField txtCatVenta;
     public javax.swing.JTextField txtCategoriaArt;
     public javax.swing.JTextField txtCategoriaArticulo;
     public javax.swing.JTextField txtCodigoBanco;
@@ -2096,6 +2305,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTextField txtIdArticulo;
     public javax.swing.JTextField txtIdBanco;
     private javax.swing.JTextField txtIdCatPack;
+    public javax.swing.JTextField txtIdCatVenta;
     public javax.swing.JTextField txtIdCategoria_Articulo;
     public javax.swing.JTextField txtIdComunas;
     public javax.swing.JTextField txtIdRrss;
