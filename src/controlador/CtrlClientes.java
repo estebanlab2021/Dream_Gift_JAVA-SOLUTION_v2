@@ -2,6 +2,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+//import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,8 +50,12 @@ public class CtrlClientes implements ActionListener {
             mod1.setCli_apellido(frm2.txtApellidosClientes.getText());
             mod1.setCli_direccion(frm2.txtDireccionClientes.getText());
             mod1.setCli_telefono(Integer.parseInt(frm2.txtTelefono.getText()));
-            mod1.setFecha_nac(frm2.txtFECHA.getText());
-            //mod1.setFecha_nac(frm2.DateFechaNac.objDate());
+            //mod1.setFecha_nac(frm2.txtFECHA.getText());
+            Date date = frm2.DateFechaNac.getDate();
+            long d = date.getTime();
+            java.sql.Date fecha = new java.sql.Date(d);
+            
+            mod1.setFecha_nac(fecha.toString());
             mod1.setEstado(Integer.parseInt(frm2.guardarRadioBotonCliente()));
             mod1.setCli_mail(frm2.txtMail.getText());
             try {
@@ -72,7 +78,13 @@ public class CtrlClientes implements ActionListener {
             mod1.setCli_apellido(frm2.txtApellidosClientes.getText());
             mod1.setCli_direccion(frm2.txtDireccionClientes.getText());
             mod1.setCli_telefono(Integer.parseInt(frm2.txtTelefono.getText()));
-            mod1.setFecha_nac(frm2.txtFECHA.getText());
+            //mod1.setFecha_nac(frm2.txtFECHA.getText());
+            //mod1.setFecha_nac(frm2.DateFechaNac.getDate().toString());
+            Date date = frm2.DateFechaNac.getDate();
+            long d = date.getTime();
+            java.sql.Date fecha = new java.sql.Date(d);
+            
+            mod1.setFecha_nac(fecha.toString());
             mod1.setEstado(Integer.parseInt(frm2.guardarRadioBotonCliente()));
             mod1.setCli_mail(frm2.txtMail.getText());
             
@@ -107,8 +119,11 @@ public class CtrlClientes implements ActionListener {
         frm2.buttonGroupCli.clearSelection();
         frm2.txtMail.setText(null);
         frm2.txtTelefono.setText(null);
+        frm2.DateFechaNac.setCalendar(null);
        
     }
+    
+    
  }
 
    
