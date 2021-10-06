@@ -115,7 +115,7 @@ public class CtrlClientes implements ActionListener {
         frm2.txtNombresClientes.setText(null);
         frm2.txtApellidosClientes.setText(null);
         frm2.txtDireccionClientes.setText(null);
-        frm2.txtFECHA.setText(null);
+        //frm2.txtFECHA.setText(null);
         frm2.buttonGroupCli.clearSelection();
         frm2.txtMail.setText(null);
         frm2.txtTelefono.setText(null);
