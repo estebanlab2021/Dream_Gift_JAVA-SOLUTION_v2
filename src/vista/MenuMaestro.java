@@ -29,6 +29,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtIdBanco.setVisible(false);     
         txtIdComunas.setVisible(false);
         txtIdCatVenta.setVisible(false);
+        txtIdCatPack.setVisible(false);
         //txtFECHA.setVisible(false);
         MostrarCatArticulos();
         MostrarArticulos();
@@ -36,6 +37,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         MostrarRRSS();
         MostrarClientes();
         MostrarCatVenta();
+        MostrarCATPACK();
         //llamarDatosCatVenta();
         //llamarDatosCliente();
         txtIdRrss.setVisible(false);
@@ -373,6 +375,47 @@ public DefaultTableModel buscarCateArticulo(String buscar){
             System.err.println(ex.toString());
         }
     }
+    
+    private void MostrarCATPACK(){
+    //Tabla de Categoria Pack
+        try{    
+            DefaultTableModel modeloCcpp = new DefaultTableModel();
+            
+            TablaCategoriaPack.setModel(modeloCcpp);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM categoria_pack";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloCcpp.addColumn("ID Cat.Pack");
+            modeloCcpp.addColumn("Categoria_Pack");
+            modeloCcpp.addColumn("Estado_Pack");
+                                  
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloCcpp.addRow(filas); 
+            }
+        
+        
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
 
 
     private void AgregarItemComboBox(){
@@ -409,7 +452,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         return valor;
     }
     
-        // *** Radio Button RRSS *****
+        // *** Radio Button Cristian *****
     public String guardarRadioBotonRRSS(){
  
         String valor="1";
@@ -423,6 +466,21 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         return valor;
     }
     
+        public String guardarRBtnCatPack(){
+ 
+        String valor="1";
+        if(rbtnActivoCatPack.isSelected()==true){
+           valor= "1";
+           
+        }else if (rbtnInActivoCatPack.isSelected()==true){
+            valor = "0";
+        }
+       
+        return valor;
+    }
+        
+// ************* Fin Radio Boton CRistian ***********
+        
     public void llamarDatosCateArticulo(){
         try{
             int fila = TableCategoriaArt.getSelectedRow();
@@ -511,6 +569,37 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                     RBtnActivo.setSelected(true);
                 }else if(rs.getString("estado").equals("0")){
                     RBtnInactivo.setSelected(true);
+                }
+            }
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+    
+       //**** Llamar Datos Categoria Pack ********
+    public void llamarDatosCatPacks(){
+        try{
+            int fila = TablaCategoriaPack.getSelectedRow();
+            int ID  = (int) TablaCategoriaPack.getValueAt(fila, 0);
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM categoria_pack WHERE (idcategoria_pack = ?)";
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                txtIdCatPack.setText(String.valueOf(rs.getString("idcategoria_pack")));
+                txtCatPack.setText(rs.getString("categoria_pack"));
+                if(rs.getString("estado_pack").equals("1")){
+                    rbtnActivoCatPack.setSelected(true);
+                }else if(rs.getString("estado_pack").equals("0")){
+                    rbtnInActivoCatPack.setSelected(true);
                 }
             }
             
@@ -902,15 +991,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jList1 = new javax.swing.JList<>();
         jScrollPane9 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
-        jPanelCategoriaPacks = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
-        txtCatPack = new javax.swing.JTextField();
-        txtIdCatPack = new javax.swing.JTextField();
-        rbtnActivoCatPack = new javax.swing.JRadioButton();
-        rbtnInActivoCatPack = new javax.swing.JRadioButton();
-        jLabel27 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanelBancos = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -1037,6 +1117,20 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         txtIdCatVenta = new javax.swing.JTextField();
         txtBuscarCatVenta = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
+        jPanelCategoriaPacks = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        txtCatPack = new javax.swing.JTextField();
+        txtIdCatPack = new javax.swing.JTextField();
+        rbtnActivoCatPack = new javax.swing.JRadioButton();
+        rbtnInActivoCatPack = new javax.swing.JRadioButton();
+        jLabel27 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TablaCategoriaPack = new javax.swing.JTable();
+        jLabel32 = new javax.swing.JLabel();
+        txtBusquedaCatPack = new javax.swing.JTextField();
+        btnIngCatPack = new javax.swing.JButton();
+        btnModCatPack = new javax.swing.JButton();
+        btnLimCatPack = new javax.swing.JButton();
         btnRegregarMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1113,43 +1207,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelPacks.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 170, -1));
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
-
-        jPanelCategoriaPacks.setBackground(new java.awt.Color(153, 204, 255));
-        jPanelCategoriaPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel26.setText("Categoria Pack");
-        jPanelCategoriaPacks.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 56, 110, 20));
-        jPanelCategoriaPacks.add(txtCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 160, -1));
-        jPanelCategoriaPacks.add(txtIdCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 80, -1));
-
-        rbtnActivoCatPack.setBackground(new java.awt.Color(153, 204, 255));
-        buttonGroupCatPack.add(rbtnActivoCatPack);
-        rbtnActivoCatPack.setText("Activo");
-        jPanelCategoriaPacks.add(rbtnActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
-
-        rbtnInActivoCatPack.setBackground(new java.awt.Color(153, 204, 255));
-        buttonGroupCatPack.add(rbtnInActivoCatPack);
-        rbtnInActivoCatPack.setText("Inactivo");
-        jPanelCategoriaPacks.add(rbtnInActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, -1, -1));
-
-        jLabel27.setText("Estado");
-        jPanelCategoriaPacks.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 60, 30));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID Cat.Pack", "Categoria_Pack", "Estado_Pack"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable1);
-
-        jPanelCategoriaPacks.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, 310));
-
-        jTabbedPane1.addTab("Categoria Packs", jPanelCategoriaPacks);
 
         jPanel12.setBackground(new java.awt.Color(153, 204, 255));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1586,6 +1643,15 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelRRSS.add(RBtnInactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 53, -1, -1));
 
         btnModRrss.setText("Modificar");
+        btnModRrss.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                btnModRrssAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         btnModRrss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModRrssActionPerformed(evt);
@@ -1847,7 +1913,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelEstados_Ventas1Layout.setVerticalGroup(
             jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
                         .addComponent(btnIngresarCatVenta)
@@ -1868,14 +1934,92 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                        .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                        .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(3, 3, 3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
 
-        jTabbedPane1.addTab("Categoria Venta", jPanelEstados_Ventas1);
+        jTabbedPane1.addTab("Estados Venta", jPanelEstados_Ventas1);
+
+        jPanelCategoriaPacks.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelCategoriaPacks.setForeground(new java.awt.Color(0, 0, 0));
+        jPanelCategoriaPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Categoria Pack");
+        jPanelCategoriaPacks.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 56, 110, 20));
+        jPanelCategoriaPacks.add(txtCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 160, -1));
+        jPanelCategoriaPacks.add(txtIdCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 80, -1));
+
+        rbtnActivoCatPack.setBackground(new java.awt.Color(153, 204, 255));
+        buttonGroupCatPack.add(rbtnActivoCatPack);
+        rbtnActivoCatPack.setForeground(new java.awt.Color(0, 0, 0));
+        rbtnActivoCatPack.setText("Activo");
+        jPanelCategoriaPacks.add(rbtnActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+
+        rbtnInActivoCatPack.setBackground(new java.awt.Color(153, 204, 255));
+        buttonGroupCatPack.add(rbtnInActivoCatPack);
+        rbtnInActivoCatPack.setForeground(new java.awt.Color(0, 0, 0));
+        rbtnInActivoCatPack.setText("Inactivo");
+        jPanelCategoriaPacks.add(rbtnInActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
+
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Estado");
+        jPanelCategoriaPacks.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 60, 30));
+
+        TablaCategoriaPack.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID Cat.Pack", "Categoria_Pack", "Estado_Pack"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TablaCategoriaPack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaCategoriaPackMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(TablaCategoriaPack);
+
+        jPanelCategoriaPacks.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, 310));
+
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Buscar Categoria");
+        jPanelCategoriaPacks.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, 20));
+        jPanelCategoriaPacks.add(txtBusquedaCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 200, -1));
+
+        btnIngCatPack.setText("Ingresar");
+        btnIngCatPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngCatPackActionPerformed(evt);
+            }
+        });
+        jPanelCategoriaPacks.add(btnIngCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 100, -1));
+
+        btnModCatPack.setText("Modificar");
+        btnModCatPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModCatPackActionPerformed(evt);
+            }
+        });
+        jPanelCategoriaPacks.add(btnModCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 100, -1));
+
+        btnLimCatPack.setText("Limpiar");
+        jPanelCategoriaPacks.add(btnLimCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 100, -1));
+
+        jTabbedPane1.addTab("Categoria Packs", jPanelCategoriaPacks);
 
         btnRegregarMenu.setText("Regresar a Menú Principal");
         btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -2125,6 +2269,26 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         MostrarCatVenta();
     }//GEN-LAST:event_btnModificarCatVentaActionPerformed
 
+    private void TablaCategoriaPackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaCategoriaPackMouseClicked
+        // TODO add your handling code here:
+        llamarDatosCatPacks();
+    }//GEN-LAST:event_TablaCategoriaPackMouseClicked
+
+    private void btnIngCatPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngCatPackActionPerformed
+        // TODO add your handling code here:
+        MostrarCATPACK();
+        guardarRBtnCatPack();
+    }//GEN-LAST:event_btnIngCatPackActionPerformed
+
+    private void btnModCatPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModCatPackActionPerformed
+        // TODO add your handling code here:
+        MostrarCATPACK();
+    }//GEN-LAST:event_btnModCatPackActionPerformed
+
+    private void btnModRrssAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btnModRrssAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModRrssAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -2174,6 +2338,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JRadioButton RbtnActCli;
     public javax.swing.JRadioButton RbtnInActCli;
     public javax.swing.JScrollPane ScrollTblRsResultado;
+    public javax.swing.JTable TablaCategoriaPack;
     public javax.swing.JTable TablaClientes;
     public javax.swing.JTable TablaComuna;
     public javax.swing.JTable TablaRRSS;
@@ -2185,11 +2350,13 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JButton btnCategoriaArticulo;
     public javax.swing.ButtonGroup btnGroupBancos;
     public javax.swing.ButtonGroup btnGroupComunas;
+    public javax.swing.JButton btnIngCatPack;
     public javax.swing.JButton btnIngregarArticulo;
     public javax.swing.JButton btnIngresarBanco;
     public javax.swing.JButton btnIngresarCatVenta;
     public javax.swing.JButton btnIngresarComuna;
     public javax.swing.JButton btnIngresarRrss;
+    public javax.swing.JButton btnLimCatPack;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnLimpiarArticulo;
     public javax.swing.JButton btnLimpiarBanco;
@@ -2197,6 +2364,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JButton btnLimpiarCli;
     public javax.swing.JButton btnLimpiarComuna;
     public javax.swing.JButton btnLimpiarRrss;
+    public javax.swing.JButton btnModCatPack;
     public javax.swing.JButton btnModComuna;
     public javax.swing.JButton btnModRrss;
     public javax.swing.JButton btnModificarArticulo;
@@ -2206,7 +2374,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JButton btnModificarCli;
     public javax.swing.JButton btnRegistrarCli;
     public javax.swing.JButton btnRegregarMenu;
-    private javax.swing.ButtonGroup buttonGroupCatPack;
+    public javax.swing.ButtonGroup buttonGroupCatPack;
     public javax.swing.ButtonGroup buttonGroupCli;
     public javax.swing.ButtonGroup buttonGroupRRSS;
     private javax.swing.JLabel jLabel1;
@@ -2234,6 +2402,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2273,7 +2442,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -2283,9 +2451,9 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JLabel nombre;
     public javax.swing.ButtonGroup radiobuttonGroup1;
     public javax.swing.JRadioButton rbtnActivarBanco;
-    private javax.swing.JRadioButton rbtnActivoCatPack;
+    public javax.swing.JRadioButton rbtnActivoCatPack;
     public javax.swing.JRadioButton rbtnActivoComuna;
-    private javax.swing.JRadioButton rbtnInActivoCatPack;
+    public javax.swing.JRadioButton rbtnInActivoCatPack;
     public javax.swing.JRadioButton rbtnInactivoComuna;
     public javax.swing.JRadioButton rbtnInactvarBanco;
     public javax.swing.JTable tableBanco;
@@ -2295,9 +2463,10 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTextField txtBuscarBanco;
     public javax.swing.JTextField txtBuscarCatVenta;
     public javax.swing.JTextField txtBuscarComunas;
+    public javax.swing.JTextField txtBusquedaCatPack;
     public javax.swing.JTextField txtBusquedaCliente;
     private javax.swing.JTextField txtBusquedaRS;
-    private javax.swing.JTextField txtCatPack;
+    public javax.swing.JTextField txtCatPack;
     public javax.swing.JTextField txtCatVenta;
     public javax.swing.JTextField txtCategoriaArt;
     public javax.swing.JTextField txtCategoriaArticulo;
@@ -2308,7 +2477,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTextField txtFechaArticulo;
     public javax.swing.JTextField txtIdArticulo;
     public javax.swing.JTextField txtIdBanco;
-    private javax.swing.JTextField txtIdCatPack;
+    public javax.swing.JTextField txtIdCatPack;
     public javax.swing.JTextField txtIdCatVenta;
     public javax.swing.JTextField txtIdCategoria_Articulo;
     public javax.swing.JTextField txtIdComunas;
