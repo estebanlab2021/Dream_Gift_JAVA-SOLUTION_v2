@@ -28,12 +28,14 @@ public class MenuMaestro extends javax.swing.JFrame {
         MostrarBancos();
         txtIdBanco.setVisible(false);     
         txtIdComunas.setVisible(false);
+        txtIdCatVenta.setVisible(false);
         //txtFECHA.setVisible(false);
         MostrarCatArticulos();
         MostrarArticulos();
         AgregarItemComboBox();
         MostrarRRSS();
         MostrarClientes();
+        MostrarCatVenta();
         //llamarDatosCatVenta();
         //llamarDatosCliente();
         txtIdRrss.setVisible(false);
@@ -1033,8 +1035,8 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         btnLimpiarCatVenta = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JSeparator();
         txtIdCatVenta = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         txtBuscarCatVenta = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
         btnRegregarMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1806,8 +1808,8 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         btnLimpiarCatVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLimpiarCatVenta.setText("Limpiar");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Buscar");
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel31.setText("Buscar:");
 
         javax.swing.GroupLayout jPanelEstados_Ventas1Layout = new javax.swing.GroupLayout(jPanelEstados_Ventas1);
         jPanelEstados_Ventas1.setLayout(jPanelEstados_Ventas1Layout);
@@ -1822,10 +1824,10 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                     .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                     .addComponent(btnIngresarCatVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnLimpiarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(223, 223, 223))
+                    .addComponent(btnLimpiarCatVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(210, 210, 210))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1833,10 +1835,10 @@ public DefaultTableModel buscarCateArticulo(String buscar){
             .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                        .addGap(370, 370, 370)
-                        .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton1))
+                        .addGap(248, 248, 248)
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1845,7 +1847,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelEstados_Ventas1Layout.setVerticalGroup(
             jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
                         .addComponent(btnIngresarCatVenta)
@@ -1862,10 +1864,12 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                 .addComponent(btnLimpiarCatVenta)
                 .addGap(52, 52, 52)
                 .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                        .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                        .addGap(3, 3, 3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
@@ -2205,7 +2209,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.ButtonGroup buttonGroupCatPack;
     public javax.swing.ButtonGroup buttonGroupCli;
     public javax.swing.ButtonGroup buttonGroupRRSS;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;
@@ -2230,6 +2233,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
