@@ -10,15 +10,15 @@ import java.util.ArrayList;
 
 
 public class Cat_Venta {
-    private int idestado_venta;
+    private int idestados_venta;
     private String est_descripcion;
 
-    public int getIdestado_venta() {
-        return idestado_venta;
+    public int getIdestados_venta() {
+        return idestados_venta;
     }
 
-    public void setIdestado_venta(int idestado_venta) {
-        this.idestado_venta = idestado_venta;
+    public void setIdestados_venta(int idestados_venta) {
+        this.idestados_venta = idestados_venta;
     }
 
     public String getEst_descripcion() {
@@ -28,6 +28,8 @@ public class Cat_Venta {
     public void setEst_descripcion(String est_descripcion) {
         this.est_descripcion = est_descripcion;
     }
+
+   
     
 
 
