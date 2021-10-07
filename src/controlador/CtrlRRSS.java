@@ -31,7 +31,7 @@ public class CtrlRRSS implements ActionListener{
         this.vistaA1.RBtnInactivo.addActionListener(this);
         this.vistaA1.btnModRrss.addActionListener(this);
         this.vistaA1.btnLimpiarRrss.addActionListener(this);
-        String estadobtn = null;
+        
     }
     
     
