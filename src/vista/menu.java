@@ -8,17 +8,20 @@ package vista;
 import controlador.CtrlArticulo;
 import controlador.CtrlBancos;
 import controlador.CtrlCategoriaArticulo;
+import controlador.CtrlCategoriaVenta;
 import controlador.CtrlClientes;
 import controlador.CtrlComunas;
 import controlador.CtrlRRSS;
 import modelo.Articulos;
 import modelo.Bancos;
 import modelo.Cat_Articulo;
+import modelo.Cat_Venta;
 import modelo.Cliente;
 import modelo.Comunas;
 import modelo.ConsultasArticulos;
 import modelo.ConsultasBancos;
 import modelo.ConsultasCatArticulos;
+import modelo.ConsultasCatVentas;
 import modelo.ConsultasCliente;
 import modelo.ConsultasComunas;
 import modelo.ConsultasRRSS;
@@ -60,6 +63,11 @@ public class menu extends javax.swing.JFrame {
         Bancos mod8 = new Bancos();
         ConsultasBancos modC8 = new ConsultasBancos();
         
+        //Agregar nuevos elementos
+        Cat_Venta mod9 = new Cat_Venta(); //Instanciamos el modelo Cat_Ventas
+        ConsultasCatVentas modC9 = new ConsultasCatVentas(); //Instanciamos las consultas ConsultasCatVentas
+        
+        
         CtrlArticulo ctrl = new CtrlArticulo(mod, modC, vistaA);
         ctrl.iniciar();
         CtrlCategoriaArticulo ctrl1 = new CtrlCategoriaArticulo(mod1, modC1, vistaA);
@@ -72,6 +80,8 @@ public class menu extends javax.swing.JFrame {
         ctrl6.iniciar();
         CtrlBancos ctrl8 = new CtrlBancos(mod8, modC8, vistaA);
         ctrl8.iniciar();
+        CtrlCategoriaVenta ctrl9 = new CtrlCategoriaVenta(mod9, modC9, vistaA); //Instanciamos el Controlador CtrlCategoriaVenta
+        ctrl9.iniciar();
         
         vistaA.setVisible(true);
         this.setVisible(false);
