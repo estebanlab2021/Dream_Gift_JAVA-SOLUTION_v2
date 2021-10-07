@@ -32,11 +32,12 @@ public class CtrlCategoriaVenta implements ActionListener {
         vistaA.setTitle("Menu Maestro");
         vistaA.setLocationRelativeTo(null);
     }
-         @Override
+    
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == vistaA.btnIngresarCatVenta){
             mod9.setEst_descripcion(vistaA.txtCatVenta.getText());
-           // mod9.setIdestado_venta(Integer.parseInt(vistaA.txtIdCatVenta.getText()));
+           // mod9.setIdestados_venta(Integer.parseInt(vistaA.txtIdCatVenta.getText()));
             
             
             try {
@@ -53,7 +54,7 @@ public class CtrlCategoriaVenta implements ActionListener {
         }
         
         if(e.getSource() == vistaA.btnModificarCatVenta){
-          //  mod9.setIdestado_venta(Integer.parseInt(vistaA.txtIdCatVenta.getText()));
+            mod9.setIdestados_venta(Integer.parseInt(vistaA.txtIdCatVenta.getText()));
             mod9.setEst_descripcion(vistaA.txtCatVenta.getText());
            // mod9.setCategoria_venta(vistaA.txtCodigoCatVenta.getText());
             
