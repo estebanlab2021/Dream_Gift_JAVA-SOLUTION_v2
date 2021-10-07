@@ -13,15 +13,15 @@ public class ConsultasCatVentas extends Conexion {
         PreparedStatement ps = null;
         Connection con = (Connection) getConexion();
         
-        String sql = "INSERT INTO estados_venta (est_descripcion ) VALUES(?)";
+        String sql = "INSERT INTO estados_venta (est_descripcion) VALUES(?)";
         
         try {
             
             ps = con.prepareStatement(sql);
-         //   ps.setInt(1, catven.getIdestado_venta());
-            ps.setString(1,catven.getEst_descripcion());
-            //ps.setInt(2, catven.getIdestado_venta());
-            return true;             
+            ps.setString(1, catven.getEst_descripcion());
+            ps.execute(); //faltó esto
+            return true;     
+            
             }catch(SQLException e){
             System.err.println(e);
             return false;
@@ -38,13 +38,13 @@ public class ConsultasCatVentas extends Conexion {
         PreparedStatement ps = null;
         Connection con = (Connection) getConexion();
         
-        String sql = "UPDATE estado_venta SET est_descripcion=? WHERE (idcategoria_venta=?)";
+        String sql = "UPDATE estados_venta SET est_descripcion=? WHERE (idestados_venta=?)";
         //System.out.println(sql);
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, catven.getEst_descripcion());
            // ps.setString(2,catven.getCodigo_cat_venta());
-            ps.setInt(2, catven.getIdestado_venta());
+            ps.setInt(2, catven.getIdestados_venta());
             ps.execute();
             return true;
             
