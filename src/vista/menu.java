@@ -12,6 +12,7 @@ import controlador.CtrlCategoriaVenta;
 import controlador.CtrlClientes;
 import controlador.CtrlComunas;
 import controlador.CtrlRRSS;
+import controlador.CtrlCatPacks;
 import modelo.Articulos;
 import modelo.Bancos;
 import modelo.Cat_Articulo;
@@ -26,6 +27,8 @@ import modelo.ConsultasCliente;
 import modelo.ConsultasComunas;
 import modelo.ConsultasRRSS;
 import modelo.RRSS;
+import modelo.CatPacks;
+import modelo.ConsultasCatPacks;
 
 /**
  *
@@ -66,7 +69,8 @@ public class menu extends javax.swing.JFrame {
         //Agregar nuevos elementos
         Cat_Venta mod9 = new Cat_Venta(); //Instanciamos el modelo Cat_Ventas
         ConsultasCatVentas modC9 = new ConsultasCatVentas(); //Instanciamos las consultas ConsultasCatVentas
-        
+        CatPacks mod10 = new CatPacks();
+        ConsultasCatPacks modC10 = new ConsultasCatPacks();
         
         CtrlArticulo ctrl = new CtrlArticulo(mod, modC, vistaA);
         ctrl.iniciar();
@@ -82,6 +86,8 @@ public class menu extends javax.swing.JFrame {
         ctrl8.iniciar();
         CtrlCategoriaVenta ctrl9 = new CtrlCategoriaVenta(mod9, modC9, vistaA); //Instanciamos el Controlador CtrlCategoriaVenta
         ctrl9.iniciar();
+        CtrlCatPacks ctrl10 = new CtrlCatPacks(mod10, modC10, vistaA); // Cristian
+        ctrl10.iniciar(); // Cristian
         
         vistaA.setVisible(true);
         this.setVisible(false);
