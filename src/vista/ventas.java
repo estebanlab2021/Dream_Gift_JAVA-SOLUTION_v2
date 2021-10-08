@@ -267,15 +267,44 @@ public class ventas extends javax.swing.JFrame {
                 txtNombreClienteConfirmacion.setText(rs.getString("cli_nombre") + " " + rs.getString("cli_apellido"));
                 ComboBoxBanco.setSelectedIndex(Integer.parseInt(rs.getString("id_banco")));
                 ComboBoxEstadosVenta.setSelectedIndex(Integer.parseInt(rs.getString("id_estados_venta")));
-                
-                
             }
-            
             rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
     
+    }
+    
+    //Metodo para llamar datoa de la tabla tableVentas en Confirmación
+    public void llamarDatostableVentas(){
+        try{
+            int fila = tableVentas.getSelectedRow();
+            int ID = (int) tableVentas.getValueAt(fila, 0);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT venta.idventa, venta.rut_cliente, cliente.cli_nombre, cliente.cli_apellido, venta.id_banco, venta.id_estados_venta FROM venta JOIN cliente ON venta.rut_cliente = cliente.RUT WHERE (venta.idventa = ?)";
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                txtPedidoConfirmacion.setText(String.valueOf(rs.getString("idventa")));
+                txtRutClienteConfirmacion.setText(rs.getString("rut_cliente"));
+                txtNombreClienteConfirmacion.setText(rs.getString("cli_nombre") + " " + rs.getString("cli_apellido"));
+                ComboBoxBanco.setSelectedIndex(Integer.parseInt(rs.getString("id_banco")));
+                ComboBoxEstadosVenta.setSelectedIndex(Integer.parseInt(rs.getString("id_estados_venta")));
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
     }
     
     
@@ -853,6 +882,11 @@ public class ventas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tableVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableVentasMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(tableVentas);
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1166,6 +1200,11 @@ public class ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         traerClientesConfirmación();
     }//GEN-LAST:event_btnBuscarConfirmacionActionPerformed
+
+    private void tableVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableVentasMouseClicked
+        // TODO add your handling code here:
+        llamarDatostableVentas();
+    }//GEN-LAST:event_tableVentasMouseClicked
 
     /**
      * @param args the command line arguments
