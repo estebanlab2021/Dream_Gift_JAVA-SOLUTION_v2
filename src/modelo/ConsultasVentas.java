@@ -13,7 +13,7 @@ public class ConsultasVentas extends Conexion{
         PreparedStatement ps = null;
         Connection con = (Connection) getConexion();
         
-        String sql ="INSERT INTO venta (rut_cliente, id_rrss, id_pack, id_estados_venta, vta_nombre_destinatario, vta_fecha_entrega, vta_direccion_destinatario, id_comuna, vta_saludo, vta_hora_entrega_inicial, vta_hora_entrega_final) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql ="INSERT INTO venta (rut_cliente, id_rrss, id_pack, id_estados_venta, vta_nombre_destinatario, vta_fecha_entrega, vta_direccion_destinatario, id_comuna, vta_saludo, vta_hora_entrega_inicial, vta_hora_entrega_final, id_banco) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, vtn.getRut_cliente());
@@ -27,6 +27,7 @@ public class ConsultasVentas extends Conexion{
             ps.setString(9, vtn.getVta_saludo());
             ps.setString(10, vtn.getVta_hora_entrega_inicial());
             ps.setString(11, vtn.getVta_hora_entrega_final());
+            ps.setInt(12, vtn.getId_banco());
 
             
             ps.execute();
