@@ -527,7 +527,7 @@ public class ventas extends javax.swing.JFrame {
         txtNombreClienteConfirmacion = new javax.swing.JTextField();
         txtCodigoTransferencia = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btnConfirmarPago = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         fechaPagoConfirmacion = new com.toedter.calendar.JDateChooser();
         btnBuscarConfirmacion = new javax.swing.JButton();
@@ -889,7 +889,7 @@ public class ventas extends javax.swing.JFrame {
 
         jButton9.setText("Cancelar");
 
-        jButton10.setText("Confirmar");
+        btnConfirmarPago.setText("Confirmar");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -953,7 +953,7 @@ public class ventas extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton10)
+                        .addComponent(btnConfirmarPago)
                         .addGap(52, 52, 52))))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(138, 138, 138)
@@ -998,7 +998,7 @@ public class ventas extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton9)
-                                .addComponent(jButton10))
+                                .addComponent(btnConfirmarPago))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
@@ -1468,10 +1468,10 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JTable TableEstadoDespacho;
     public javax.swing.JButton btnBuscarCliente;
     public javax.swing.JButton btnBuscarConfirmacion;
+    public javax.swing.JButton btnConfirmarPago;
     public javax.swing.JButton btnRegistrarPedido;
     public javax.swing.JButton btnRegregarMenu;
     public com.toedter.calendar.JDateChooser fechaPagoConfirmacion;
-    private javax.swing.JButton jButton10;
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton5;
     public javax.swing.JButton jButton6;

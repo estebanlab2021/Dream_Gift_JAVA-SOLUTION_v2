@@ -762,7 +762,7 @@
                                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                   <Component id="jSeparator1" min="-2" pref="11" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnConfirmarPago" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -823,7 +823,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                                           <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnConfirmarPago" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jSeparator1" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
@@ -912,10 +912,13 @@
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton10">
+                <Component class="javax.swing.JButton" name="btnConfirmarPago">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Confirmar"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator1">
                   <Properties>
