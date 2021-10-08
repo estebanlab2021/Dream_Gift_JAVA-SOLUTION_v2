@@ -50,7 +50,7 @@ public class ConsultasVentas extends Conexion{
         PreparedStatement ps = null;
         Connection con = (Connection) getConexion();
         
-        String sql ="INSERT INTO venta (vta_fecha_venta, id_banco, id_estados_venta, vta_codigo_transferencia) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) WHERE (idventa = ?)";
+        String sql ="UPDATE venta SET vta_fecha_venta = ?, id_banco=?, id_estados_venta=?, vta_codigo_transferencia=? WHERE (idventa = ?)";
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, vtn.getVta_fecha_venta());
@@ -59,7 +59,6 @@ public class ConsultasVentas extends Conexion{
             ps.setInt(4, vtn.getVta_codigo_transferencia());
             ps.setInt(5, vtn.getIdventa());
 
-            
             ps.execute();
             return true;
             
