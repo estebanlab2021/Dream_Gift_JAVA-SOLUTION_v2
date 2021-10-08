@@ -260,7 +260,7 @@ public class ventas extends javax.swing.JFrame {
         ArrayList<String> edo = new ArrayList<String>();
         edo = ModVentas.MostrarListadoEdoEntrega();
         for (int i=0; i<edo.size();i++){
-            ComboBoxRRSS.addItem(edo.get(i));
+            ComboBoxEdoEntrega.addItem(edo.get(i));
         }
     }
     
@@ -567,6 +567,12 @@ public class ventas extends javax.swing.JFrame {
         btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegregarMenuActionPerformed(evt);
+            }
+        });
+
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
             }
         });
 
@@ -1392,6 +1398,11 @@ public class ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_ComboBoxEdoEntregaActionPerformed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+        MostrarTablaVentas();
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     /**
      * @param args the command line arguments
