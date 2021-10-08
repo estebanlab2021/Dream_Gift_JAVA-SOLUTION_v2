@@ -406,6 +406,37 @@ public class ventas extends javax.swing.JFrame {
         
     }
     
+    //Metodo para llamar datos de la tabla TableEstadoDespacho en Actualización Despachos
+    public void llamarDatosEstadoDespacho(){
+        try{
+            int fila = TableEstadoDespacho.getSelectedRow();
+            int ID = (int) TableEstadoDespacho.getValueAt(fila, 0);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT venta.idventa, estados_despacho.estados_despacho_name FROM venta JOIN venta.estado_despacho = estados_despacho.idestados_despacho WHERE (venta.id_estados_venta = '2')";
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                txtIdPedidoDespacho.setText(String.valueOf(rs.getString("idventa")));
+                ComboBoxEdoEntrega.setSelectedIndex(Integer.parseInt(rs.getString("id_estados_venta")));
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }
+    
+    
+    
     
     public void tomarItemHoraInicio(){
         String horaIni = (String) ComboBoxHoraInicio.getSelectedItem();
@@ -512,6 +543,10 @@ public class ventas extends javax.swing.JFrame {
         jTextField10 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtIdPedidoDespacho = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        ComboBoxEdoEntrega = new javax.swing.JComboBox<>();
 
         jScrollPane4.setViewportView(jTextPane1);
 
@@ -929,7 +964,7 @@ public class ventas extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel27)
                             .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(btnBuscarConfirmacion)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1009,7 +1044,7 @@ public class ventas extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel29)
                 .addGap(18, 18, 18)
@@ -1144,6 +1179,11 @@ public class ventas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        TableEstadoDespacho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableEstadoDespachoMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(TableEstadoDespacho);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1155,20 +1195,14 @@ public class ventas extends javax.swing.JFrame {
 
         jButton8.setText("Descargar");
 
+        jLabel7.setText("Numero Pedido");
+
+        jLabel16.setText("Estado de la Entrega");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
@@ -1179,23 +1213,51 @@ public class ventas extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(jButton8)
                 .addGap(102, 102, 102))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(248, 248, 248)
+                                .addComponent(jLabel22))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtIdPedidoDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboBoxEdoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jLabel21)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtIdPedidoDespacho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(ComboBoxEdoEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(67, 67, 67)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7)
                     .addComponent(jButton8))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1304,6 +1366,11 @@ public class ventas extends javax.swing.JFrame {
         llamarDatostableVentas();
     }//GEN-LAST:event_tableVentasMouseClicked
 
+    private void TableEstadoDespachoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableEstadoDespachoMouseClicked
+        // TODO add your handling code here:
+        llamarDatosEstadoDespacho();
+    }//GEN-LAST:event_TableEstadoDespachoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1357,6 +1424,7 @@ public class ventas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> ComboBoxBanco;
     public javax.swing.JComboBox<String> ComboBoxComuna;
+    public javax.swing.JComboBox<String> ComboBoxEdoEntrega;
     public javax.swing.JComboBox<String> ComboBoxEstadosVenta;
     public javax.swing.JComboBox<String> ComboBoxHoraFinal;
     public javax.swing.JComboBox<String> ComboBoxHoraInicio;
@@ -1384,6 +1452,7 @@ public class ventas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1400,6 +1469,7 @@ public class ventas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1430,6 +1500,7 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JTextField txtEmailCliente;
     public javax.swing.JTextField txtHoraFin;
     public javax.swing.JTextField txtHoraIni;
+    public javax.swing.JTextField txtIdPedidoDespacho;
     public javax.swing.JTextField txtIdRRSS;
     public javax.swing.JTextField txtNomCliente;
     public javax.swing.JTextField txtNombreClienteConfirmacion;
