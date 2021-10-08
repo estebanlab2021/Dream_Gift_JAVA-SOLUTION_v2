@@ -38,6 +38,7 @@ public class ventas extends javax.swing.JFrame {
         AgregarItemComboBoxPack();
         AgregarItemComboBoxComuna();
         AgregarItemComboBoxRRSS();
+        AgregarItemComboBoxEdoEntrega();
         txtIdRRSS.setVisible(false);
         txtPack.setVisible(false);
         txtComunas.setVisible(false);
@@ -250,6 +251,16 @@ public class ventas extends javax.swing.JFrame {
         rrss = ModVentas.MostrarListadoRRSS();
         for (int i=0; i<rrss.size();i++){
             ComboBoxRRSS.addItem(rrss.get(i));
+        }
+    }
+    
+    private void AgregarItemComboBoxEdoEntrega(){
+        //Agregar datos al ComboBoxRRSS
+        ComboBoxEdoEntrega.addItem("Seleccione Uno");
+        ArrayList<String> edo = new ArrayList<String>();
+        edo = ModVentas.MostrarListadoEdoEntrega();
+        for (int i=0; i<edo.size();i++){
+            ComboBoxRRSS.addItem(edo.get(i));
         }
     }
     
@@ -1199,6 +1210,12 @@ public class ventas extends javax.swing.JFrame {
 
         jLabel16.setText("Estado de la Entrega");
 
+        ComboBoxEdoEntrega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxEdoEntregaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1370,6 +1387,11 @@ public class ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         llamarDatosEstadoDespacho();
     }//GEN-LAST:event_TableEstadoDespachoMouseClicked
+
+    private void ComboBoxEdoEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxEdoEntregaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ComboBoxEdoEntregaActionPerformed
 
     /**
      * @param args the command line arguments
