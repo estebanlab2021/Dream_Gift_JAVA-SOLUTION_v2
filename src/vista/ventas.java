@@ -890,6 +890,11 @@ public class ventas extends javax.swing.JFrame {
         jButton9.setText("Cancelar");
 
         btnConfirmarPago.setText("Confirmar");
+        btnConfirmarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarPagoActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -1403,6 +1408,11 @@ public class ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         MostrarTablaVentas();
     }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void btnConfirmarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarPagoActionPerformed
+        // TODO add your handling code here:
+        MostrarTablaVentas();
+    }//GEN-LAST:event_btnConfirmarPagoActionPerformed
 
     /**
      * @param args the command line arguments
