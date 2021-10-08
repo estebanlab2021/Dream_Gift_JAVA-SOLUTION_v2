@@ -331,6 +331,96 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     
     }
     
+     //BUSCAR BANCO  
+
+    public DefaultTableModel buscarBanco(String buscarbanco){
+    
+        DefaultTableModel modeloBancos = new DefaultTableModel();
+        tableBanco.setModel(modeloBancos);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+            
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        String sql = "SELECT * FROM banco WHERE ban_nombre LIKE '%"+buscarbanco+"%'";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloBancos.addColumn("ID");
+            modeloBancos.addColumn("Banco");
+            modeloBancos.addColumn("Codigo");
+            modeloBancos.addColumn("Estado");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloBancos.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    
+    }   
+ 
+ //BUSCAR ESTADO VENTA
+
+   public DefaultTableModel buscarEstadoVenta(String buscarEst_Venta){
+    
+        DefaultTableModel modeloCat_Venta = new DefaultTableModel();
+        TableCatVenta.setModel(modeloCat_Venta);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+            
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        String sql = "SELECT * FROM estados_venta WHERE est_descripcion LIKE '%"+buscarEst_Venta+"%'";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloCat_Venta.addColumn("Id");
+            modeloCat_Venta.addColumn("Estados Venta");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloCat_Venta.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    
+    }    
+    
     
     // *********  Fin Busquedas nuevas
     
@@ -999,7 +1089,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         txtNombreBanco = new javax.swing.JTextField();
         btnIngresarBanco = new javax.swing.JButton();
         txtBuscarBanco = new javax.swing.JTextField();
-        btnBuscarBanco = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableBanco = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
@@ -1011,6 +1100,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         btnModificarBanco = new javax.swing.JButton();
         btnLimpiarBanco = new javax.swing.JButton();
         txtIdBanco = new javax.swing.JTextField();
+        jLabel44 = new javax.swing.JLabel();
         jPanelUsuario = new javax.swing.JPanel();
         jPanelArticulos = new javax.swing.JPanel();
         txtIdArticulo = new javax.swing.JTextField();
@@ -1240,9 +1330,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanel12.setBackground(new java.awt.Color(153, 204, 255));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel7.setText("Entidad Bancaria");
-        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setText("Estado");
         jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
@@ -1253,6 +1345,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jPanel12.add(txtNombreBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 150, -1));
 
+        btnIngresarBanco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnIngresarBanco.setText("Ingresar");
         btnIngresarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1260,10 +1353,13 @@ public DefaultTableModel buscarCateArticulo(String buscar){
             }
         });
         jPanel12.add(btnIngresarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 86, -1));
-        jPanel12.add(txtBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 117, -1));
 
-        btnBuscarBanco.setText("Buscar");
-        jPanel12.add(btnBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
+        txtBuscarBanco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarBancoKeyReleased(evt);
+            }
+        });
+        jPanel12.add(txtBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 117, -1));
 
         tableBanco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1285,6 +1381,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
 
         jPanel12.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 246, 590, 190));
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel9.setText("Codigo");
         jPanel12.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
 
@@ -1294,7 +1391,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
             }
         });
         jPanel12.add(txtCodigoBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 55, -1));
-        jPanel12.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 200, 872, 80));
+        jPanel12.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 200, 872, 10));
         jPanel12.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 878, 10));
 
         btnGroupBancos.add(rbtnActivarBanco);
@@ -1315,6 +1412,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jPanel12.add(rbtnInactvarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
+        btnModificarBanco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnModificarBanco.setText("Modificar");
         btnModificarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1323,9 +1421,14 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jPanel12.add(btnModificarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 86, -1));
 
+        btnLimpiarBanco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLimpiarBanco.setText("Limpiar");
         jPanel12.add(btnLimpiarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 86, -1));
         jPanel12.add(txtIdBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 33, -1));
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel44.setText("Buscar");
+        jPanel12.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, -1, -1));
 
         javax.swing.GroupLayout jPanelBancosLayout = new javax.swing.GroupLayout(jPanelBancos);
         jPanelBancos.setLayout(jPanelBancosLayout);
@@ -1903,6 +2006,12 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         btnLimpiarCatVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLimpiarCatVenta.setText("Limpiar");
 
+        txtBuscarCatVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarCatVentaKeyReleased(evt);
+            }
+        });
+
         jLabel31.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel31.setText("Buscar:");
 
@@ -2460,6 +2569,16 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
+    private void txtBuscarBancoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarBancoKeyReleased
+        // TODO add your handling code here:
+        buscarBanco(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarBancoKeyReleased
+
+    private void txtBuscarCatVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCatVentaKeyReleased
+        // TODO add your handling code here:
+       buscarEstadoVenta(txtBuscarCatVenta.getText()); 
+    }//GEN-LAST:event_txtBuscarCatVentaKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -2516,7 +2635,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTable TableArticulo;
     public javax.swing.JTable TableCatVenta;
     public javax.swing.JTable TableCategoriaArt;
-    public javax.swing.JButton btnBuscarBanco;
     public javax.swing.JButton btnBuscarComuna;
     public javax.swing.JButton btnCategoriaArticulo;
     public javax.swing.ButtonGroup btnGroupBancos;
@@ -2591,6 +2709,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
