@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
-
+//
 import controlador.CtrlArticulo;
 import controlador.CtrlBancos;
 import controlador.CtrlCategoriaArticulo;
