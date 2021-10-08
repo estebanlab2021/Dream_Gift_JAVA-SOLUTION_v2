@@ -355,5 +355,36 @@ public class ModVentas {
         
     }
     
+    //Esto deberia estan en consultas EstadosEntrega
+    //Metodo para Agregar datos al ComboBoxEdoEntrega
+    public static ArrayList<String> MostrarListadoEdoEntrega(){
+       
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        ArrayList<String> datos = new ArrayList<String>();
+        
+        try{
+            
+            String sql = "SELECT * FROM estados_despacho";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                datos.add(rs.getString("estados_despacho_name"));
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+        return datos;
+        
+    }
+    
     
 }
