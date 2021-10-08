@@ -36,6 +36,11 @@ public class ventas extends javax.swing.JFrame {
         AgregarItemComboBoxPack();
         AgregarItemComboBoxComuna();
         AgregarItemComboBoxRRSS();
+        txtIdRRSS.setVisible(false);
+        txtPack.setVisible(false);
+        txtComunas.setVisible(false);
+        txtHoraIni.setVisible(false);
+        txtHoraFin.setVisible(false);
         
         
     }
@@ -71,7 +76,7 @@ public class ventas extends javax.swing.JFrame {
             modelo1.addColumn("RUT Cliente");
             modelo1.addColumn("Nombre Cliente");
             modelo1.addColumn("Numero Teléfono");
-            modelo1.addColumn("Fecha_Pedido");
+            modelo1.addColumn("Fecha Venta");
             modelo1.addColumn("Monto");
             modelo1.addColumn("Pack");
             modelo1.addColumn("Cod Transferencia");
@@ -419,7 +424,8 @@ public class ventas extends javax.swing.JFrame {
                     .addComponent(txtEmailCliente, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuscarCliente)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(btnBuscarCliente))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -430,7 +436,7 @@ public class ventas extends javax.swing.JFrame {
                             .addComponent(txtTlfCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(txtIdRRSS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,7 +644,7 @@ public class ventas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 334, Short.MAX_VALUE)
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
