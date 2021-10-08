@@ -221,6 +221,7 @@ public class ventas extends javax.swing.JFrame {
         
     }
     
+    //Metodo para buscar Cliente en pestaña Ventas
     public void traerClientes(){
         
         try{
@@ -244,6 +245,37 @@ public class ventas extends javax.swing.JFrame {
         }
     
     }
+    
+    
+    //Metodo para buscar Cliente en pestaña Confirmación
+    public void traerClientesConfirmación(){
+        
+        try{
+            String valor1 = (String) txtRutClienteConfirmacion.getText();
+            String valor2 = (String) txtPedidoConfirmacion.getText();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            //String sql ="SELECT * FROM cliente WHERE (RUT = '"+valor1+"')";
+            String sql = "SELECT venta.idventa, venta.rut_cliente, cliente.cli_nombre, cliente.cli_apellido FROM venta JOIN cliente ON venta.rut_cliente = cliente.RUT WHERE (venta.rut_cliente = '"+valor1+"') OR (venta.idventa = '"+valor2+"')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                txtPedidoConfirmacion.setText(String.valueOf(rs.getString("idventa")));
+                txtRutClienteConfirmacion.setText(rs.getString("rut_cliente"));
+                txtNombreClienteConfirmacion.setText(rs.getString("cli_nombre") + " " + rs.getString("cli_apellido"));
+                
+                
+            }
+            
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    
+    }
+    
     
     public void tomarItemHoraInicio(){
         String horaIni = (String) ComboBoxHoraInicio.getSelectedItem();
@@ -314,19 +346,19 @@ public class ventas extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        txtPedidoConfirmacion = new javax.swing.JTextField();
+        txtRutClienteConfirmacion = new javax.swing.JTextField();
         ComboBoxBanco = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
+        txtNombreClienteConfirmacion = new javax.swing.JTextField();
+        txtCodigoTransferencia = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jButton12 = new javax.swing.JButton();
+        fechaPagoConfirmacion = new com.toedter.calendar.JDateChooser();
+        btnBuscarConfirmacion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         ComboBoxEstadosVenta = new javax.swing.JComboBox<>();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -424,8 +456,7 @@ public class ventas extends javax.swing.JFrame {
                     .addComponent(txtEmailCliente, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnBuscarCliente))
+                    .addComponent(btnBuscarCliente)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -680,9 +711,14 @@ public class ventas extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jDateChooser2.setDateFormatString("y-MM-dd");
+        fechaPagoConfirmacion.setDateFormatString("y-MM-dd");
 
-        jButton12.setText("Buscar");
+        btnBuscarConfirmacion.setText("Buscar");
+        btnBuscarConfirmacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarConfirmacionActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Estado de la Venta:");
 
@@ -706,11 +742,11 @@ public class ventas extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtPedidoConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel24)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtRutClienteConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
@@ -721,13 +757,13 @@ public class ventas extends javax.swing.JFrame {
                                     .addComponent(jLabel26))
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField13)
-                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtNombreClienteConfirmacion)
+                                    .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(12, 12, 12))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField15)
+                                .addComponent(txtCodigoTransferencia)
                                 .addContainerGap())))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGap(127, 127, 127)
@@ -738,8 +774,8 @@ public class ventas extends javax.swing.JFrame {
                         .addComponent(jButton10)
                         .addGap(52, 52, 52))))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(jButton12)
+                .addGap(138, 138, 138)
+                .addComponent(btnBuscarConfirmacion)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -750,21 +786,22 @@ public class ventas extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPedidoConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel24)
-                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtRutClienteConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNombreClienteConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel27)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jButton12)
+                            .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscarConfirmacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -773,7 +810,7 @@ public class ventas extends javax.swing.JFrame {
                             .addComponent(ComboBoxBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel28)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCodigoTransferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -838,7 +875,7 @@ public class ventas extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel29)
                 .addGap(18, 18, 18)
@@ -1123,6 +1160,11 @@ public class ventas extends javax.swing.JFrame {
         tomarItemHoraFin();
     }//GEN-LAST:event_ComboBoxHoraFinalActionPerformed
 
+    private void btnBuscarConfirmacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarConfirmacionActionPerformed
+        // TODO add your handling code here:
+        traerClientesConfirmación();
+    }//GEN-LAST:event_btnBuscarConfirmacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1183,17 +1225,17 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> ComboBoxRRSS;
     public com.toedter.calendar.JDateChooser FechaEntrega;
     public javax.swing.JButton btnBuscarCliente;
+    public javax.swing.JButton btnBuscarConfirmacion;
     public javax.swing.JButton btnRegistrarPedido;
     public javax.swing.JButton btnRegregarMenu;
+    public com.toedter.calendar.JDateChooser fechaPagoConfirmacion;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton5;
     public javax.swing.JButton jButton6;
     public javax.swing.JButton jButton7;
     public javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1240,13 +1282,10 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JTable jTable2;
     public javax.swing.JTextArea jTextArea2;
     public javax.swing.JTextField jTextField10;
-    public javax.swing.JTextField jTextField11;
-    public javax.swing.JTextField jTextField12;
-    public javax.swing.JTextField jTextField13;
-    public javax.swing.JTextField jTextField15;
     public javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPane1;
     public javax.swing.JTable tableVentas;
+    public javax.swing.JTextField txtCodigoTransferencia;
     public javax.swing.JTextField txtComunas;
     public javax.swing.JTextField txtDireccionDestinatario;
     public javax.swing.JTextField txtEmailCliente;
@@ -1254,9 +1293,12 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JTextField txtHoraIni;
     public javax.swing.JTextField txtIdRRSS;
     public javax.swing.JTextField txtNomCliente;
+    public javax.swing.JTextField txtNombreClienteConfirmacion;
     public javax.swing.JTextField txtNombreDestinatario;
     public javax.swing.JTextField txtPack;
+    public javax.swing.JTextField txtPedidoConfirmacion;
     public javax.swing.JTextField txtRutCliente;
+    public javax.swing.JTextField txtRutClienteConfirmacion;
     public javax.swing.JTextArea txtSaludo;
     public javax.swing.JTextField txtTlfCliente;
     // End of variables declaration//GEN-END:variables
