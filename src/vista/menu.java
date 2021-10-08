@@ -13,6 +13,7 @@ import controlador.CtrlClientes;
 import controlador.CtrlComunas;
 import controlador.CtrlRRSS;
 import controlador.CtrlCatPacks;
+import controlador.ctrlVentas;
 import modelo.Articulos;
 import modelo.Bancos;
 import modelo.Cat_Articulo;
@@ -29,6 +30,8 @@ import modelo.ConsultasRRSS;
 import modelo.RRSS;
 import modelo.CatPacks;
 import modelo.ConsultasCatPacks;
+import modelo.ConsultasVentas;
+import modelo.ModVentas;
 
 /**
  *
@@ -173,8 +176,14 @@ public class menu extends javax.swing.JFrame {
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         // TODO add your handling code here:
         ventas menuVentas = new ventas();
+        ModVentas mod1 = new ModVentas();
+        ConsultasVentas modC1 = new ConsultasVentas();
+        
+        ctrlVentas ctrl = new ctrlVentas(mod1, modC1, menuVentas);
         
         menuVentas.setVisible(true);
+        menuVentas.setLocationRelativeTo(null);
+        menuVentas.setTitle("Menu Ventas");
         this.setVisible(false);
     }//GEN-LAST:event_btnVentasActionPerformed
 
