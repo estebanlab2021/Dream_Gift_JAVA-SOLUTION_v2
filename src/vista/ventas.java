@@ -258,13 +258,15 @@ public class ventas extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             //String sql ="SELECT * FROM cliente WHERE (RUT = '"+valor1+"')";
-            String sql = "SELECT venta.idventa, venta.rut_cliente, cliente.cli_nombre, cliente.cli_apellido FROM venta JOIN cliente ON venta.rut_cliente = cliente.RUT WHERE (venta.rut_cliente = '"+valor1+"') OR (venta.idventa = '"+valor2+"')";
+            String sql = "SELECT venta.idventa, venta.rut_cliente, cliente.cli_nombre, cliente.cli_apellido, venta.id_banco, venta.id_estados_venta FROM venta JOIN cliente ON venta.rut_cliente = cliente.RUT WHERE (venta.rut_cliente = '"+valor1+"') OR (venta.idventa = '"+valor2+"')";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
                 txtPedidoConfirmacion.setText(String.valueOf(rs.getString("idventa")));
                 txtRutClienteConfirmacion.setText(rs.getString("rut_cliente"));
                 txtNombreClienteConfirmacion.setText(rs.getString("cli_nombre") + " " + rs.getString("cli_apellido"));
+                ComboBoxBanco.setSelectedIndex(Integer.parseInt(rs.getString("id_banco")));
+                ComboBoxEstadosVenta.setSelectedIndex(Integer.parseInt(rs.getString("id_estados_venta")));
                 
                 
             }
