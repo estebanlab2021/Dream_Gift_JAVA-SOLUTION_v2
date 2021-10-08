@@ -32,6 +32,7 @@ public class ventas extends javax.swing.JFrame {
         //this.setLocationRelativeTo(null);
         MostrarTablaVentas();
         MostrarTablaDestinosDespacho();
+        MostrarTablaEstadosDespacho();
         AgregarItemComboBoxBanco();
         AgregarItemCombBoxEstadoVenta();
         AgregarItemComboBoxPack();
@@ -148,6 +149,55 @@ public class ventas extends javax.swing.JFrame {
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
+    }
+    
+    private void MostrarTablaEstadosDespacho(){
+        //Mostrar TableEstadoDespacho
+        try{    
+            DefaultTableModel modelo1 = new DefaultTableModel();
+            
+            TableEstadoDespacho.setModel(modelo1);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial, estados_despacho.estados_despacho_name FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas JOIN estados_despacho ON venta.estado_despacho = estados_despacho.idestados_despacho WHERE (venta.id_estados_venta = '2')";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo1.addColumn("Id Pedido");
+            modelo1.addColumn("Pack");
+            modelo1.addColumn("Destinatario");
+            modelo1.addColumn("Fecha Entrega");
+            modelo1.addColumn("Comuna");
+            modelo1.addColumn("Direccion");
+            modelo1.addColumn("Hora Entrega");
+            modelo1.addColumn("Estado Despacho");
+            
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo1.addRow(filas); 
+            }
+            
+            rs.close();
+
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
     }
     
     
@@ -324,7 +374,7 @@ public class ventas extends javax.swing.JFrame {
     
     }
     
-    //Metodo para llamar datoa de la tabla tableVentas en Confirmación
+    //Metodo para llamar datos de la tabla tableVentas en Confirmación
     public void llamarDatostableVentas(){
         try{
             int fila = tableVentas.getSelectedRow();
@@ -456,7 +506,7 @@ public class ventas extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        TableEstadoDespacho = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
@@ -881,7 +931,6 @@ public class ventas extends javax.swing.JFrame {
                             .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscarConfirmacion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -1072,7 +1121,7 @@ public class ventas extends javax.swing.JFrame {
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Despacho", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        TableEstadoDespacho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -1095,7 +1144,7 @@ public class ventas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(jTable2);
+        jScrollPane5.setViewportView(TableEstadoDespacho);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setText("Actualización Estado del Despacho");
@@ -1315,6 +1364,7 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> ComboBoxRRSS;
     public com.toedter.calendar.JDateChooser FechaEntrega;
     public javax.swing.JTable TableDestinosDespacho;
+    public javax.swing.JTable TableEstadoDespacho;
     public javax.swing.JButton btnBuscarCliente;
     public javax.swing.JButton btnBuscarConfirmacion;
     public javax.swing.JButton btnRegistrarPedido;
@@ -1369,7 +1419,6 @@ public class ventas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTable jTable2;
     public javax.swing.JTextArea jTextArea2;
     public javax.swing.JTextField jTextField10;
     public javax.swing.JTextField jTextField9;
