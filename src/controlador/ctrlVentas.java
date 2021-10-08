@@ -49,8 +49,12 @@ public class ctrlVentas implements ActionListener{
             mod1.setVta_direccion_destinatario(vistaA1.txtDireccionDestinatario.getText());
             mod1.setId_comuna(Integer.parseInt(vistaA1.txtComunas.getText()));
             mod1.setVta_saludo(vistaA1.txtSaludo.getText());
-            mod1.setVta_hora_entrega_inicial(vistaA1.txtHoraIni.getText());
-            mod1.setVta_hora_entrega_final(vistaA1.txtHoraFin.getText());
+            mod1.setVta_hora_entrega_inicial(vistaA1.ComboBoxHoraInicio.getSelectedItem().toString());
+            mod1.setVta_hora_entrega_final(vistaA1.ComboBoxHoraFinal.getSelectedItem().toString());
+            //mod1.setVta_hora_entrega_inicial(vistaA1.txtHoraIni.getText());
+            //mod1.setVta_hora_entrega_final(vistaA1.txtHoraFin.getText());
+            String edoBanco = "3";
+            mod1.setId_banco(Integer.parseInt(edoBanco));
             
             try {
                 if(modC1.registrarPedido(mod1)){
