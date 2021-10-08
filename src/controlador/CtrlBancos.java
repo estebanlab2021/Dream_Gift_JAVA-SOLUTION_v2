@@ -28,7 +28,7 @@ public CtrlBancos(Bancos mod8, ConsultasBancos modC8, MenuMaestro vistaA8){
         this.vistaA8.btnIngresarBanco.addActionListener(this);
         this.vistaA8.btnModificarBanco.addActionListener(this);
         this.vistaA8.btnLimpiarBanco.addActionListener(this);
-        this.vistaA8.btnBuscarBanco.addActionListener(this);
+        //this.vistaA8.btnBuscarBanco.addActionListener(this);
         this.vistaA8.rbtnInactvarBanco.addActionListener(this);
         this.vistaA8.rbtnActivarBanco.addActionListener(this);
         //*String estadobtn = null;
@@ -81,7 +81,7 @@ public void iniciar(){
             }
     
        }
-            
+        /*
         if(e.getSource() == vistaA8.btnBuscarBanco){
             mod8.setIdbanco(Integer.parseInt(vistaA8.txtBuscarBanco.getText()));
             
@@ -96,7 +96,9 @@ public void iniciar(){
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlBancos.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
+        
+        
         if(e.getSource() == vistaA8.btnLimpiarBanco){
             limpiarBanco();
         }
