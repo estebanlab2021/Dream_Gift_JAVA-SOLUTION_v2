@@ -26,6 +26,7 @@ public class ctrlVentas implements ActionListener{
         this.modC1 = modC1;
         this.vistaA1 = vistaA1;
         this.vistaA1.btnRegistrarPedido.addActionListener(this);
+        this.vistaA1.btnConfirmarPago.addActionListener(this);
         
     
     }
@@ -69,6 +70,36 @@ public class ctrlVentas implements ActionListener{
             
                 }
         }
+        
+        
+        
+        if(e.getSource()== vistaA1.btnConfirmarPago){
+            Date date = vistaA1.fechaPagoConfirmacion.getDate();
+            long d = date.getTime();
+            java.sql.Date fecha = new java.sql.Date(d);
+            mod1.setVta_fecha_venta(fecha.toString());
+            mod1.setId_banco(vistaA1.ComboBoxBanco.getSelectedIndex());
+            mod1.setVta_codigo_transferencia(Integer.parseInt(vistaA1.txtCodigoTransferencia.getText()));
+            mod1.setIdventa(Integer.parseInt(vistaA1.txtPedidoConfirmacion.getText()));
+            
+            try {
+                if(modC1.confirmarPedido(mod1)){
+                JOptionPane.showMessageDialog(null, "Pedido CONFIRMADO");
+                //limpiar();
+            }else{
+                JOptionPane.showMessageDialog(null, "ERROR AL CONFIRMAR");
+                //limpiar();
+            }
+                } catch (SQLException ex) {
+                Logger.getLogger(ctrlVentas.class.getName()).log(Level.SEVERE, null, ex);
+            
+                }
+        
+        
+        }
+        
+        
+        
         
     }
     
