@@ -80,6 +80,7 @@ public class ctrlVentas implements ActionListener{
             mod1.setVta_fecha_venta(fecha.toString());
             mod1.setId_banco(vistaA1.ComboBoxBanco.getSelectedIndex());
             mod1.setVta_codigo_transferencia(Integer.parseInt(vistaA1.txtCodigoTransferencia.getText()));
+            mod1.setId_estados_venta(vistaA1.ComboBoxEstadosVenta.getSelectedIndex());
             mod1.setIdventa(Integer.parseInt(vistaA1.txtPedidoConfirmacion.getText()));
             
             try {
