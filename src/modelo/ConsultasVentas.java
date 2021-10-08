@@ -46,5 +46,34 @@ public class ConsultasVentas extends Conexion{
     }
     
     
+    public boolean confirmarPedido(ModVentas vtn) throws SQLException{
+        PreparedStatement ps = null;
+        Connection con = (Connection) getConexion();
+        
+        String sql ="INSERT INTO venta (vta_fecha_venta, id_banco, id_estados_venta, vta_codigo_transferencia) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) WHERE (idventa = ?)";
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setString(1, vtn.getVta_fecha_venta());
+            ps.setInt(2, vtn.getId_banco());
+            ps.setInt(3, vtn.getId_estados_venta());
+            ps.setInt(4, vtn.getVta_codigo_transferencia());
+            ps.setInt(5, vtn.getIdventa());
+
+            
+            ps.execute();
+            return true;
+            
+        }catch(SQLException e){
+            System.err.println(e);
+            return false;
+        }finally{
+            try{
+                con.close();
+            }catch(SQLException e){
+                System.err.println(e);
+            }
+        }
+    }
+    
     
 }
