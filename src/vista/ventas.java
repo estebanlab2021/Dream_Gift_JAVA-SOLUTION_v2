@@ -429,7 +429,7 @@ public class ventas extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT venta.idventa, estados_despacho.estados_despacho_name FROM venta JOIN venta.estado_despacho = estados_despacho.idestados_despacho WHERE (venta.id_estados_venta = '2')";
+            String sql = "SELECT idventa, estado_despacho FROM venta WHERE (idventa = ?)";
             
             ps = con.prepareStatement(sql);
             ps.setInt(1, ID);
@@ -437,7 +437,7 @@ public class ventas extends javax.swing.JFrame {
             
             while(rs.next()){
                 txtIdPedidoDespacho.setText(String.valueOf(rs.getString("idventa")));
-                ComboBoxEdoEntrega.setSelectedIndex(Integer.parseInt(rs.getString("id_estados_venta")));
+                ComboBoxEdoEntrega.setSelectedIndex(Integer.parseInt(rs.getString("estado_despacho")));
             }
             rs.close();
         }catch(SQLException ex){
