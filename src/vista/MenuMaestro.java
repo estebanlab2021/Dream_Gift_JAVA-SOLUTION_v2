@@ -1434,9 +1434,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelBancos.setLayout(jPanelBancosLayout);
         jPanelBancosLayout.setHorizontalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBancosLayout.createSequentialGroup()
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
         );
         jPanelBancosLayout.setVerticalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2571,7 +2569,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
 
     private void txtBuscarBancoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarBancoKeyReleased
         // TODO add your handling code here:
-        buscarBanco(txtBuscar.getText());
+        buscarBanco(txtBuscarBanco.getText());
     }//GEN-LAST:event_txtBuscarBancoKeyReleased
 
     private void txtBuscarCatVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCatVentaKeyReleased
