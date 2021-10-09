@@ -44,6 +44,7 @@ public class ventas extends javax.swing.JFrame {
         txtComunas.setVisible(false);
         txtHoraIni.setVisible(false);
         txtHoraFin.setVisible(false);
+        txtCostoPack.setVisible(false);
         
         
     }
@@ -304,6 +305,7 @@ public class ventas extends javax.swing.JFrame {
                 TextAreaVentas.append("Pack Seleccionado: " + rs.getString("pck_nombre"));
                 TextAreaVentas.append(System.getProperty("line.separator"));
                 TextAreaVentas.append(System.getProperty("line.separator"));
+                txtCostoPack.setText(rs.getString("pck_costo"));
                 TextAreaVentas.append("TOTAL:  " + rs.getString("pck_costo"));
             }
             TextAreaVentas.setEditable(false);
@@ -516,6 +518,7 @@ public class ventas extends javax.swing.JFrame {
         txtPack = new javax.swing.JTextField();
         txtHoraIni = new javax.swing.JTextField();
         txtHoraFin = new javax.swing.JTextField();
+        txtCostoPack = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         btnRegistrarPedido = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -778,7 +781,9 @@ public class ventas extends javax.swing.JFrame {
                                 .addComponent(ComboBoxPack, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(txtComunas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtComunas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCostoPack, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -829,7 +834,9 @@ public class ventas extends javax.swing.JFrame {
                             .addComponent(ComboBoxHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15))
                         .addGap(8, 8, 8)
-                        .addComponent(txtComunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtComunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCostoPack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))))
@@ -1544,6 +1551,7 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JTable tableVentas;
     public javax.swing.JTextField txtCodigoTransferencia;
     public javax.swing.JTextField txtComunas;
+    public javax.swing.JTextField txtCostoPack;
     public javax.swing.JTextField txtDireccionDestinatario;
     public javax.swing.JTextField txtEmailCliente;
     public javax.swing.JTextField txtHoraFin;
