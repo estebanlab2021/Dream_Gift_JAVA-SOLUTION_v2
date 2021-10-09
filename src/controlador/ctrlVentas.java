@@ -113,7 +113,7 @@ public class ctrlVentas implements ActionListener{
         }
         
         if(e.getSource()== vistaA1.btnLimparDespacho0){
-            //limpiarDespacho();
+            limparDespacho0();
         }
         
         if(e.getSource()== vistaA1.btnLimpiarDespacho){
