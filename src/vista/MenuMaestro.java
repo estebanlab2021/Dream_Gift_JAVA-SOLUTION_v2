@@ -1065,23 +1065,8 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         buttonGroupRRSS = new javax.swing.ButtonGroup();
         buttonGroupCli = new javax.swing.ButtonGroup();
         buttonGroupCatPack = new javax.swing.ButtonGroup();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        buttonGroupPack = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanelPacks = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
         jPanelBancos = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -1250,82 +1235,42 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel42 = new javax.swing.JLabel();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel43 = new javax.swing.JLabel();
+        jPanelPacks = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        txtIdPack = new javax.swing.JTextField();
+        txtIdCategoria = new javax.swing.JTextField();
+        txtPckNombre = new javax.swing.JTextField();
+        txtCostoPack = new javax.swing.JTextField();
+        txtStockPack = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        listArticulosPck = new javax.swing.JList<>();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        listArtXPck = new javax.swing.JList<>();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        rbtnActivaPack = new javax.swing.JRadioButton();
+        rbtnInactivaPack = new javax.swing.JRadioButton();
+        jLabel48 = new javax.swing.JLabel();
+        btnIngresaPack = new javax.swing.JButton();
+        btnModPack = new javax.swing.JButton();
+        btnLimPack = new javax.swing.JButton();
+        cboxCatPack = new javax.swing.JComboBox<>();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        btnIngresarArt = new javax.swing.JButton();
+        btnQuitarArt = new javax.swing.JButton();
         btnRegregarMenu = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane11.setViewportView(jTable1);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(203, 204, 255));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jPanelPacks.setBackground(new java.awt.Color(153, 204, 255));
-        jPanelPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanelPacks.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
-
-        jLabel29.setText("Categoria Pack");
-        jPanelPacks.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
-
-        jTextField1.setText("jTextField1");
-        jPanelPacks.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
-
-        jTextField2.setText("jTextField2");
-        jPanelPacks.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
-
-        jTextField3.setText("jTextField3");
-        jPanelPacks.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
-
-        jTextField4.setText("jTextField4");
-        jPanelPacks.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
-
-        jTextField5.setText("jTextField5");
-        jPanelPacks.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
-            }
-        ));
-        jScrollPane7.setViewportView(jTable2);
-
-        jPanelPacks.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 760, 260));
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane8.setViewportView(jList1);
-
-        jPanelPacks.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 190, -1));
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane9.setViewportView(jList2);
-
-        jPanelPacks.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 170, -1));
-
-        jTabbedPane1.addTab("Packs", jPanelPacks);
 
         jPanel12.setBackground(new java.awt.Color(153, 204, 255));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1434,11 +1379,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelBancos.setLayout(jPanelBancosLayout);
         jPanelBancosLayout.setHorizontalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
         );
         jPanelBancosLayout.setVerticalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Bancos", jPanelBancos);
@@ -1451,7 +1396,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         );
         jPanelUsuarioLayout.setVerticalGroup(
             jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Usuario", jPanelUsuario);
@@ -2271,37 +2216,131 @@ public DefaultTableModel buscarCateArticulo(String buscar){
 
         jTabbedPane1.addTab("Proveedores", jPanelProveedores);
 
+        jPanelPacks.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelPacks.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Categoria Pack");
+        jPanelPacks.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
+        jPanelPacks.add(txtIdPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 60, -1));
+        jPanelPacks.add(txtIdCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
+        jPanelPacks.add(txtPckNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 120, -1));
+        jPanelPacks.add(txtCostoPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 120, -1));
+        jPanelPacks.add(txtStockPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 90, -1));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo Pack", "Categoria Pack", "Nombre Pack", "Costo Pack", "Stock Pack", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(jTable2);
+
+        jPanelPacks.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 830, 230));
+
+        listArticulosPck.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane8.setViewportView(listArticulosPck);
+
+        jPanelPacks.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 190, -1));
+
+        listArtXPck.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane9.setViewportView(listArtXPck);
+
+        jPanelPacks.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 200, -1));
+
+        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel45.setText("Nombre Pack");
+        jPanelPacks.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("Costo $");
+        jPanelPacks.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        jLabel47.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel47.setText("Stock");
+        jPanelPacks.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
+
+        buttonGroupPack.add(rbtnActivaPack);
+        rbtnActivaPack.setForeground(new java.awt.Color(0, 0, 0));
+        rbtnActivaPack.setText("Activo");
+        jPanelPacks.add(rbtnActivaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+
+        buttonGroupPack.add(rbtnInactivaPack);
+        rbtnInactivaPack.setForeground(new java.awt.Color(0, 0, 0));
+        rbtnInactivaPack.setText("Inactivo");
+        jPanelPacks.add(rbtnInactivaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
+
+        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel48.setText("Estado");
+        jPanelPacks.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+
+        btnIngresaPack.setText("Ingresar");
+        jPanelPacks.add(btnIngresaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+
+        btnModPack.setText("Modificar");
+        jPanelPacks.add(btnModPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+
+        btnLimPack.setText("Limpiar");
+        jPanelPacks.add(btnLimPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 80, -1));
+
+        cboxCatPack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanelPacks.add(cboxCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 100, -1));
+
+        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel49.setText("ID Categoria");
+        jPanelPacks.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel50.setText("Articulos para seleccionar");
+        jPanelPacks.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
+
+        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setText("Articulos seleccionados");
+        jPanelPacks.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
+
+        btnIngresarArt.setBackground(new java.awt.Color(51, 204, 255));
+        btnIngresarArt.setForeground(new java.awt.Color(0, 0, 0));
+        btnIngresarArt.setText("Ingresar");
+        jPanelPacks.add(btnIngresarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
+
+        btnQuitarArt.setBackground(new java.awt.Color(255, 153, 102));
+        btnQuitarArt.setForeground(new java.awt.Color(0, 0, 0));
+        btnQuitarArt.setText("Quitar");
+        jPanelPacks.add(btnQuitarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 70, -1));
+
+        jTabbedPane1.addTab("Packs", jPanelPacks);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 40, 934, 504));
+
         btnRegregarMenu.setText("Regresar a Menú Principal");
         btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegregarMenuActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 934, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRegregarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 776, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegregarMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-        );
+        getContentPane().add(btnRegregarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 164, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -2639,11 +2678,14 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.ButtonGroup btnGroupComunas;
     public javax.swing.JButton btnIngCatPack;
     public javax.swing.JButton btnIngregarArticulo;
+    public javax.swing.JButton btnIngresaPack;
+    public javax.swing.JButton btnIngresarArt;
     public javax.swing.JButton btnIngresarBanco;
     public javax.swing.JButton btnIngresarCatVenta;
     public javax.swing.JButton btnIngresarComuna;
     public javax.swing.JButton btnIngresarRrss;
     public javax.swing.JButton btnLimCatPack;
+    public javax.swing.JButton btnLimPack;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnLimpiarArticulo;
     public javax.swing.JButton btnLimpiarBanco;
@@ -2653,17 +2695,21 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JButton btnLimpiarRrss;
     public javax.swing.JButton btnModCatPack;
     public javax.swing.JButton btnModComuna;
+    public javax.swing.JButton btnModPack;
     public javax.swing.JButton btnModRrss;
     public javax.swing.JButton btnModificarArticulo;
     public javax.swing.JButton btnModificarBanco;
     public javax.swing.JButton btnModificarCatVenta;
     public javax.swing.JButton btnModificarCategoriaArticulo;
     public javax.swing.JButton btnModificarCli;
+    public javax.swing.JButton btnQuitarArt;
     public javax.swing.JButton btnRegistrarCli;
     public javax.swing.JButton btnRegregarMenu;
     public javax.swing.ButtonGroup buttonGroupCatPack;
     public javax.swing.ButtonGroup buttonGroupCli;
+    public javax.swing.ButtonGroup buttonGroupPack;
     public javax.swing.ButtonGroup buttonGroupRRSS;
+    public javax.swing.JComboBox<String> cboxCatPack;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -2708,15 +2754,20 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     public javax.swing.JLabel jLabelCodigo;
     public javax.swing.JLabel jLabelNombre;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanelArticulos;
     private javax.swing.JPanel jPanelBancos;
@@ -2733,7 +2784,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2750,27 +2800,25 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    public javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JList<String> listArtXPck;
+    public javax.swing.JList<String> listArticulosPck;
     public javax.swing.JLabel nombre;
     public javax.swing.ButtonGroup radiobuttonGroup1;
+    private javax.swing.JRadioButton rbtnActivaPack;
     public javax.swing.JRadioButton rbtnActivarBanco;
     public javax.swing.JRadioButton rbtnActivoCatPack;
     public javax.swing.JRadioButton rbtnActivoComuna;
     public javax.swing.JRadioButton rbtnInActivoCatPack;
+    private javax.swing.JRadioButton rbtnInactivaPack;
     public javax.swing.JRadioButton rbtnInactivoComuna;
     public javax.swing.JRadioButton rbtnInactvarBanco;
     public javax.swing.JTable tableBanco;
@@ -2790,23 +2838,28 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTextField txtCodigoBanco;
     public javax.swing.JTextField txtCodigoComuna;
     public javax.swing.JTextField txtCodigoRs;
+    public javax.swing.JTextField txtCostoPack;
     public javax.swing.JTextField txtDireccionClientes;
     public javax.swing.JTextField txtFechaArticulo;
     public javax.swing.JTextField txtIdArticulo;
     public javax.swing.JTextField txtIdBanco;
     public javax.swing.JTextField txtIdCatPack;
     public javax.swing.JTextField txtIdCatVenta;
+    public javax.swing.JTextField txtIdCategoria;
     public javax.swing.JTextField txtIdCategoria_Articulo;
     public javax.swing.JTextField txtIdComunas;
+    public javax.swing.JTextField txtIdPack;
     public javax.swing.JTextField txtIdRrss;
     public javax.swing.JTextField txtMail;
     public javax.swing.JTextField txtNombreArticulo;
     public javax.swing.JTextField txtNombreBanco;
     public javax.swing.JTextField txtNombreComuna;
     public javax.swing.JTextField txtNombresClientes;
+    public javax.swing.JTextField txtPckNombre;
     public javax.swing.JTextField txtRRSS;
     public javax.swing.JTextField txtRut;
     public javax.swing.JTextField txtStockArticulo;
+    public javax.swing.JTextField txtStockPack;
     public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
