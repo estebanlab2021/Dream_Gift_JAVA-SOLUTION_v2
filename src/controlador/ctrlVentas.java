@@ -31,6 +31,7 @@ public class ctrlVentas implements ActionListener{
         this.vistaA1.btnLimpiarConfirma.addActionListener(this);
         this.vistaA1.btnLimpiarDespacho.addActionListener(this);
         this.vistaA1.btnLimparDespacho0.addActionListener(this);
+        this.vistaA1.btnModificarDespacho.addActionListener(this);
         
     
     }
@@ -66,16 +67,31 @@ public class ctrlVentas implements ActionListener{
                 if(modC1.registrarPedido(mod1)){
                 JOptionPane.showMessageDialog(null, "Pedido Registrado");
                 limpiarVenta();
-            }else{
+                }else{
                 JOptionPane.showMessageDialog(null, "ERROR AL REGISTRAR");
                 limpiarVenta();
-            }
-                } catch (SQLException ex) {
+                }
+            } catch (SQLException ex) {
                 Logger.getLogger(ctrlVentas.class.getName()).log(Level.SEVERE, null, ex);
             
-                }
+            }
         }
         
+        if(e.getSource()== vistaA1.btnModificarDespacho){
+            mod1.setEstado_despacho(vistaA1.ComboBoxEdoEntrega.getSelectedIndex());
+            mod1.setIdventa(Integer.parseInt(vistaA1.txtIdPedidoDespacho.getText()));
+            try{
+                if(modC1.modificarDespacho(mod1)){
+                    JOptionPane.showMessageDialog(null, "Despacho MODIFICADO");
+                    limpiarDespacho();
+                }else{
+                    JOptionPane.showMessageDialog(null, "ERROR AL Modificar Despacho");
+                    limpiarDespacho();
+                }
+            }catch (SQLException ex) {
+                Logger.getLogger(ctrlVentas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
         
         if(e.getSource()== vistaA1.btnConfirmarPago){
@@ -92,16 +108,14 @@ public class ctrlVentas implements ActionListener{
                 if(modC1.confirmarPedido(mod1)){
                 JOptionPane.showMessageDialog(null, "Pedido CONFIRMADO");
                 limpiarConfirmacion();
-            }else{
+                }else{
                 JOptionPane.showMessageDialog(null, "ERROR AL CONFIRMAR");
                 limpiarConfirmacion();
-            }
-                } catch (SQLException ex) {
+                }
+            } catch (SQLException ex) {
                 Logger.getLogger(ctrlVentas.class.getName()).log(Level.SEVERE, null, ex);
             
-                }
-        
-        
+            }
         }
         
         if(e.getSource()== vistaA1.btnLimpiarVenta){
