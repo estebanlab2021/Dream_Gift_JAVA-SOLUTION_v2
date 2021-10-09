@@ -83,7 +83,7 @@ public class ConsultasVentas extends Conexion{
         try{
             ps = con.prepareStatement(sql);
             ps.setInt(1, vtn.getEstado_despacho());
-            ps.setInt(5, vtn.getIdventa());
+            ps.setInt(2, vtn.getIdventa());
 
             ps.execute();
             return true;
