@@ -1551,7 +1551,7 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JButton btnBuscarConfirmacion;
     public javax.swing.JButton btnConfirmarPago;
     public javax.swing.JButton btnLimparDespacho0;
-    private javax.swing.JButton btnLimpiarConfirma;
+    public javax.swing.JButton btnLimpiarConfirma;
     public javax.swing.JButton btnLimpiarDespacho;
     public javax.swing.JButton btnLimpiarVenta;
     public javax.swing.JButton btnModificarDespacho;
