@@ -206,6 +206,92 @@ public class ventas extends javax.swing.JFrame {
         
     }
     
+    //Metodo para buscar en tabla Deestinos despacho por fecha
+    public DefaultTableModel buscarDestinosDespacho(String buscarfecha){
+        DefaultTableModel modelo1 = new DefaultTableModel();
+        TableDestinosDespacho.setModel(modelo1);
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas WHERE (venta.id_estados_venta = '2') AND (venta.vta_fecha_entrega LIKE '%"+buscarfecha+"%')";
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo1.addColumn("Id Pedido");
+            modelo1.addColumn("Pack");
+            modelo1.addColumn("Destinatario");
+            modelo1.addColumn("Fecha Entrega");
+            modelo1.addColumn("Comuna");
+            modelo1.addColumn("Direccion");
+            modelo1.addColumn("Hora Entrega");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo1.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    }
+    
+    
+    //Metodo para buscar en tabla Actualizacion Deestinos despacho por fecha
+    public DefaultTableModel buscarEstadosDespacho(String buscarfecha){
+        DefaultTableModel modelo1 = new DefaultTableModel();
+        TableEstadoDespacho.setModel(modelo1);
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial, estados_despacho.estados_despacho_name FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas JOIN estados_despacho ON venta.estado_despacho = estados_despacho.idestados_despacho WHERE (venta.id_estados_venta = '2') AND (venta.vta_fecha_entrega LIKE '%"+buscarfecha+"%')";
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo1.addColumn("Id Pedido");
+            modelo1.addColumn("Pack");
+            modelo1.addColumn("Destinatario");
+            modelo1.addColumn("Fecha Entrega");
+            modelo1.addColumn("Comuna");
+            modelo1.addColumn("Direccion");
+            modelo1.addColumn("Hora Entrega");
+            modelo1.addColumn("Estado Despacho");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo1.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    }
+    
     
     
     private void AgregarItemComboBoxBanco(){
@@ -938,6 +1024,11 @@ public class ventas extends javax.swing.JFrame {
         jLabel1.setText("Estado de la Venta:");
 
         btnLimpiarConfirma.setText("Limpiar");
+        btnLimpiarConfirma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarConfirmaActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -1149,11 +1240,22 @@ public class ventas extends javax.swing.JFrame {
 
         jLabel19.setText("Buscar por fecha:");
 
+        txtBuscarDespacho1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarDespacho1KeyReleased(evt);
+            }
+        });
+
         jButton5.setText("Imprimir");
 
         jButton6.setText("Descargar");
 
         btnLimparDespacho0.setText("Limpiar");
+        btnLimparDespacho0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparDespacho0ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1257,6 +1359,12 @@ public class ventas extends javax.swing.JFrame {
 
         jLabel22.setText("Buscar por fecha:");
 
+        txtBuscarDespacho2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarDespacho2KeyReleased(evt);
+            }
+        });
+
         jButton7.setText("Imprimir");
 
         jButton8.setText("Descargar");
@@ -1274,6 +1382,11 @@ public class ventas extends javax.swing.JFrame {
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         btnLimpiarDespacho.setText("Limpiar");
+        btnLimpiarDespacho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarDespachoActionPerformed(evt);
+            }
+        });
 
         btnModificarDespacho.setText("Modificar");
         btnModificarDespacho.addActionListener(new java.awt.event.ActionListener() {
@@ -1321,8 +1434,8 @@ public class ventas extends javax.swing.JFrame {
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addComponent(btnLimpiarDespacho)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 7, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnModificarDespacho)))))
                 .addGap(63, 63, 63))
         );
@@ -1493,6 +1606,31 @@ public class ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         MostrarTablaEstadosDespacho();
     }//GEN-LAST:event_btnModificarDespachoActionPerformed
+
+    private void txtBuscarDespacho1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarDespacho1KeyReleased
+        // TODO add your handling code here:
+        buscarDestinosDespacho(txtBuscarDespacho1.getText());
+    }//GEN-LAST:event_txtBuscarDespacho1KeyReleased
+
+    private void txtBuscarDespacho2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarDespacho2KeyReleased
+        // TODO add your handling code here:
+        buscarEstadosDespacho(txtBuscarDespacho2.getText());
+    }//GEN-LAST:event_txtBuscarDespacho2KeyReleased
+
+    private void btnLimpiarDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarDespachoActionPerformed
+        // TODO add your handling code here:
+        MostrarTablaEstadosDespacho();
+    }//GEN-LAST:event_btnLimpiarDespachoActionPerformed
+
+    private void btnLimparDespacho0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparDespacho0ActionPerformed
+        // TODO add your handling code here:
+        MostrarTablaDestinosDespacho();
+    }//GEN-LAST:event_btnLimparDespacho0ActionPerformed
+
+    private void btnLimpiarConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarConfirmaActionPerformed
+        // TODO add your handling code here:
+        MostrarTablaVentas();
+    }//GEN-LAST:event_btnLimpiarConfirmaActionPerformed
 
     /**
      * @param args the command line arguments
