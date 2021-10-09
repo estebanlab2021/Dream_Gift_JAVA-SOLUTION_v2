@@ -1276,6 +1276,11 @@ public class ventas extends javax.swing.JFrame {
         btnLimpiarDespacho.setText("Limpiar");
 
         btnModificarDespacho.setText("Modificar");
+        btnModificarDespacho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarDespachoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1483,6 +1488,11 @@ public class ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         MostrarTablaVentas();
     }//GEN-LAST:event_btnConfirmarPagoActionPerformed
+
+    private void btnModificarDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarDespachoActionPerformed
+        // TODO add your handling code here:
+        MostrarTablaEstadosDespacho();
+    }//GEN-LAST:event_btnModificarDespachoActionPerformed
 
     /**
      * @param args the command line arguments
