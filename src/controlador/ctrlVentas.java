@@ -56,6 +56,7 @@ public class ctrlVentas implements ActionListener{
             //mod1.setVta_hora_entrega_final(vistaA1.txtHoraFin.getText());
             String edoBanco = "3";
             mod1.setId_banco(Integer.parseInt(edoBanco));
+            mod1.setVta_total(Double.parseDouble(vistaA1.txtCostoPack.getText()));
             
             try {
                 if(modC1.registrarPedido(mod1)){
