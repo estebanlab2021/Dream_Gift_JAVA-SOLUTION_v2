@@ -21,7 +21,7 @@ public class ModVentas {
     private String vta_fecha_venta;
     private String vta_fecha_transferencia;
     private int vta_codigo_transferencia;
-    private int estado;
+    private int estado_despacho;
     private String vta_nombre_destinatario;
     private String vta_direccion_destinatario;
     private String vta_telefono;
@@ -120,13 +120,15 @@ public class ModVentas {
         this.vta_codigo_transferencia = vta_codigo_transferencia;
     }
 
-    public int getEstado() {
-        return estado;
+    public int getEstado_despacho() {
+        return estado_despacho;
     }
 
-    public void setEstado(int estado) {
-        this.estado = estado;
+    public void setEstado_despacho(int estado_despacho) {
+        this.estado_despacho = estado_despacho;
     }
+
+    
 
     public String getVta_nombre_destinatario() {
         return vta_nombre_destinatario;
