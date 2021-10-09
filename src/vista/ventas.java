@@ -1419,6 +1419,8 @@ public class ventas extends javax.swing.JFrame {
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
         MostrarTablaVentas();
+        MostrarTablaDestinosDespacho();
+        MostrarTablaEstadosDespacho();
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void btnConfirmarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarPagoActionPerformed
