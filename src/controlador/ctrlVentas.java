@@ -28,7 +28,7 @@ public class ctrlVentas implements ActionListener{
         this.vistaA1.btnRegistrarPedido.addActionListener(this);
         this.vistaA1.btnConfirmarPago.addActionListener(this);
         this.vistaA1.btnLimpiarVenta.addActionListener(this);
-        this.vistaA1.btnConfirmarPago.addActionListener(this);
+        this.vistaA1.btnLimpiarConfirma.addActionListener(this);
         this.vistaA1.btnLimpiarDespacho.addActionListener(this);
         this.vistaA1.btnLimparDespacho0.addActionListener(this);
         
@@ -108,7 +108,7 @@ public class ctrlVentas implements ActionListener{
             limpiarVenta();
         }
         
-        if(e.getSource()== vistaA1.btnConfirmarPago){
+        if(e.getSource()== vistaA1.btnLimpiarConfirma){
             limpiarConfirmacion();
         }
         
@@ -126,6 +126,7 @@ public class ctrlVentas implements ActionListener{
     public void limpiarVenta(){
         vistaA1.txtRutCliente.setText(null);
         vistaA1.txtNomCliente.setText(null);
+        vistaA1.txtEmailCliente.setText(null);
         vistaA1.txtTlfCliente.setText(null);
         vistaA1.txtIdRRSS.setText(null);
         vistaA1.txtNombreDestinatario.setText(null);
@@ -140,6 +141,8 @@ public class ctrlVentas implements ActionListener{
         vistaA1.ComboBoxRRSS.setSelectedIndex(0);
         vistaA1.ComboBoxPack.setSelectedIndex(0);
         vistaA1.ComboBoxComuna.setSelectedIndex(0);
+        vistaA1.ComboBoxHoraInicio.setSelectedIndex(0);
+        vistaA1.ComboBoxHoraFinal.setSelectedIndex(0);
         vistaA1.FechaEntrega.setCalendar(null);
     }
     
