@@ -75,5 +75,30 @@ public class ConsultasVentas extends Conexion{
         }
     }
     
+    public boolean modificarDespacho(ModVentas vtn) throws SQLException{
+        PreparedStatement ps = null;
+        Connection con = (Connection) getConexion();
+        
+        String sql ="UPDATE venta SET estado_despacho = ? WHERE (idventa = ?)";
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, vtn.getEstado_despacho());
+            ps.setInt(5, vtn.getIdventa());
+
+            ps.execute();
+            return true;
+            
+        }catch(SQLException e){
+            System.err.println(e);
+            return false;
+        }finally{
+            try{
+                con.close();
+            }catch(SQLException e){
+                System.err.println(e);
+            }
+        }
+    }
+    
     
 }
