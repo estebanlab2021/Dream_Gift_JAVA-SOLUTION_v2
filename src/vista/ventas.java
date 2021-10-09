@@ -296,12 +296,17 @@ public class ventas extends javax.swing.JFrame {
             
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
-            String sql ="SELECT idpack FROM pack WHERE (pck_nombre = '"+categoria+"')";
+            String sql ="SELECT * FROM pack WHERE (pck_nombre = '"+categoria+"')";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){    
                 txtPack.setText(String.valueOf(rs.getString("idpack")));
+                TextAreaVentas.append("Pack Seleccionado: " + rs.getString("pck_nombre"));
+                TextAreaVentas.append(System.getProperty("line.separator"));
+                TextAreaVentas.append(System.getProperty("line.separator"));
+                TextAreaVentas.append("TOTAL:  " + rs.getString("pck_costo"));
             }
+            TextAreaVentas.setEditable(false);
             rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
@@ -505,7 +510,7 @@ public class ventas extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         ComboBoxHoraFinal = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        TextAreaVentas = new javax.swing.JTextArea();
         FechaEntrega = new com.toedter.calendar.JDateChooser();
         txtComunas = new javax.swing.JTextField();
         txtPack = new javax.swing.JTextField();
@@ -723,9 +728,9 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        TextAreaVentas.setColumns(20);
+        TextAreaVentas.setRows(5);
+        jScrollPane2.setViewportView(TextAreaVentas);
 
         FechaEntrega.setDateFormatString("y-MM-dd");
 
@@ -1476,6 +1481,7 @@ public class ventas extends javax.swing.JFrame {
     public com.toedter.calendar.JDateChooser FechaEntrega;
     public javax.swing.JTable TableDestinosDespacho;
     public javax.swing.JTable TableEstadoDespacho;
+    public javax.swing.JTextArea TextAreaVentas;
     public javax.swing.JButton btnBuscarCliente;
     public javax.swing.JButton btnBuscarConfirmacion;
     public javax.swing.JButton btnConfirmarPago;
@@ -1532,7 +1538,6 @@ public class ventas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTextArea jTextArea2;
     public javax.swing.JTextField jTextField10;
     public javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPane1;
