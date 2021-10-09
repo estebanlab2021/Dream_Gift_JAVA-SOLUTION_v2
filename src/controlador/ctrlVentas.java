@@ -27,6 +27,10 @@ public class ctrlVentas implements ActionListener{
         this.vistaA1 = vistaA1;
         this.vistaA1.btnRegistrarPedido.addActionListener(this);
         this.vistaA1.btnConfirmarPago.addActionListener(this);
+        this.vistaA1.btnLimpiarVenta.addActionListener(this);
+        this.vistaA1.btnConfirmarPago.addActionListener(this);
+        this.vistaA1.btnLimpiarDespacho.addActionListener(this);
+        this.vistaA1.btnLimparDespacho0.addActionListener(this);
         
     
     }
@@ -61,10 +65,10 @@ public class ctrlVentas implements ActionListener{
             try {
                 if(modC1.registrarPedido(mod1)){
                 JOptionPane.showMessageDialog(null, "Pedido Registrado");
-                //limpiar();
+                limpiarVenta();
             }else{
                 JOptionPane.showMessageDialog(null, "ERROR AL REGISTRAR");
-                //limpiar();
+                limpiarVenta();
             }
                 } catch (SQLException ex) {
                 Logger.getLogger(ctrlVentas.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,10 +91,10 @@ public class ctrlVentas implements ActionListener{
             try {
                 if(modC1.confirmarPedido(mod1)){
                 JOptionPane.showMessageDialog(null, "Pedido CONFIRMADO");
-                //limpiar();
+                limpiarConfirmacion();
             }else{
                 JOptionPane.showMessageDialog(null, "ERROR AL CONFIRMAR");
-                //limpiar();
+                limpiarConfirmacion();
             }
                 } catch (SQLException ex) {
                 Logger.getLogger(ctrlVentas.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,9 +104,64 @@ public class ctrlVentas implements ActionListener{
         
         }
         
+        if(e.getSource()== vistaA1.btnLimpiarVenta){
+            limpiarVenta();
+        }
         
+        if(e.getSource()== vistaA1.btnConfirmarPago){
+            limpiarConfirmacion();
+        }
+        
+        if(e.getSource()== vistaA1.btnLimparDespacho0){
+            //limpiarDespacho();
+        }
+        
+        if(e.getSource()== vistaA1.btnLimpiarDespacho){
+            limpiarDespacho();
+        }
         
         
     }
+    
+    public void limpiarVenta(){
+        vistaA1.txtRutCliente.setText(null);
+        vistaA1.txtNomCliente.setText(null);
+        vistaA1.txtTlfCliente.setText(null);
+        vistaA1.txtIdRRSS.setText(null);
+        vistaA1.txtNombreDestinatario.setText(null);
+        vistaA1.txtPack.setText(null);
+        vistaA1.txtHoraIni.setText(null);
+        vistaA1.txtHoraFin.setText(null);
+        vistaA1.txtDireccionDestinatario.setText(null);
+        vistaA1.txtComunas.setText(null);
+        vistaA1.txtCostoPack.setText(null);
+        vistaA1.txtSaludo.setText(null);
+        vistaA1.TextAreaVentas.setText(null);
+        vistaA1.ComboBoxRRSS.setSelectedIndex(0);
+        vistaA1.ComboBoxPack.setSelectedIndex(0);
+        vistaA1.ComboBoxComuna.setSelectedIndex(0);
+        vistaA1.FechaEntrega.setCalendar(null);
+    }
+    
+    public void limpiarConfirmacion(){
+        vistaA1.txtPedidoConfirmacion.setText(null);
+        vistaA1.txtNombreClienteConfirmacion.setText(null);
+        vistaA1.txtRutClienteConfirmacion.setText(null);
+        vistaA1.txtCodigoTransferencia.setText(null);
+        vistaA1.ComboBoxBanco.setSelectedIndex(0);
+        vistaA1.ComboBoxEstadosVenta.setSelectedIndex(0);
+        vistaA1.fechaPagoConfirmacion.setCalendar(null);
+    }
+    
+    public void limparDespacho0(){
+        vistaA1.txtBuscarDespacho1.setText(null);
+    }
+    
+    public void limpiarDespacho(){
+        vistaA1.txtIdPedidoDespacho.setText(null);
+        vistaA1.txtBuscarDespacho2.setText(null);
+        vistaA1.ComboBoxEdoEntrega.setSelectedIndex(0);
+    }
+    
     
 }
