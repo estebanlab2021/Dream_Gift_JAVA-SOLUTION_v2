@@ -1,15 +1,9 @@
-/****************************************
- ***********RRSS "DreamGift" ************
- ***************************************/
-
 package modelo;
-
 /**
  ******"Cristian Alvarado"*******
  */
 
 public class RRSS {
-    
 private int idrrss;
 private String rrss_nombre;
 private String codigoRS;
