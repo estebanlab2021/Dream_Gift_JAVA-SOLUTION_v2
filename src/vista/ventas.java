@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Conexion;
 //import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.ModVentas;
 
 
@@ -62,6 +64,8 @@ public class ventas extends javax.swing.JFrame {
             DefaultTableModel modelo1 = new DefaultTableModel();
             
             tableVentas.setModel(modelo1);
+            TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo1);
+            tableVentas.setRowSorter(elQueOrdena);
             
             PreparedStatement ps = null;
             ResultSet rs = null;
