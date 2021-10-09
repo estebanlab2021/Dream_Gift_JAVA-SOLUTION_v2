@@ -51,7 +51,7 @@ public class ConsultasVentas extends Conexion{
         PreparedStatement ps = null;
         Connection con = (Connection) getConexion();
         
-        String sql ="UPDATE venta SET vta_fecha_venta = ?, id_banco=?, id_estados_venta=?, vta_codigo_transferencia=? WHERE (idventa = ?)";
+        String sql ="UPDATE venta SET vta_fecha_venta = ?, id_banco=?, id_estados_venta=?, vta_codigo_transferencia=?, estado_despacho='1' WHERE (idventa = ?)";
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, vtn.getVta_fecha_venta());
