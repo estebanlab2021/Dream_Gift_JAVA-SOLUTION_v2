@@ -2813,12 +2813,12 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JList<String> listArticulosPck;
     public javax.swing.JLabel nombre;
     public javax.swing.ButtonGroup radiobuttonGroup1;
-    private javax.swing.JRadioButton rbtnActivaPack;
+    public javax.swing.JRadioButton rbtnActivaPack;
     public javax.swing.JRadioButton rbtnActivarBanco;
     public javax.swing.JRadioButton rbtnActivoCatPack;
     public javax.swing.JRadioButton rbtnActivoComuna;
     public javax.swing.JRadioButton rbtnInActivoCatPack;
-    private javax.swing.JRadioButton rbtnInactivaPack;
+    public javax.swing.JRadioButton rbtnInactivaPack;
     public javax.swing.JRadioButton rbtnInactivoComuna;
     public javax.swing.JRadioButton rbtnInactvarBanco;
     public javax.swing.JTable tableBanco;
