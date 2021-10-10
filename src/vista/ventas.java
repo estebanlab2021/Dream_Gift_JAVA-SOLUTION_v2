@@ -5,6 +5,12 @@
  */
 package vista;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,9 +20,19 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Conexion;
 //import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.ModVentas;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 /**
@@ -158,6 +174,80 @@ public class ventas extends javax.swing.JFrame {
             System.err.println(ex.toString());
         }
     }
+    
+    //Metodo para descargar tabla
+    private void descargarTablaDestinosDespacho(){
+        //Definimos modelos de la Tabla con los datos
+        DefaultTableModel modelo1 = new DefaultTableModel();
+        modelo1 = (DefaultTableModel) TableDestinosDespacho.getModel();
+        
+        //definimos las variables con las vamos hacer la exportacion por Libreria netbeans
+        FileOutputStream excelFOU = null;
+        BufferedOutputStream excelBOU = null;
+        XSSFWorkbook excelJTableExporter = null;
+        
+        //Selecciona locación para descargar
+        JFileChooser excelFileChooser = new JFileChooser();
+        //Nombre de cuadro de dialogo
+        excelFileChooser.setDialogTitle("Salvar como");
+        //Solo extensiona validas de excel para descargar
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("Excel Files", "xls", "xlsx", "xlsm");
+        excelFileChooser.setFileFilter(fnef);
+        //Muesta el cuadro de dialogo
+        int excelChooser = excelFileChooser.showSaveDialog(null);
+        
+        //Si el boton Salvar del cuadro de diáloo es apretado
+        if(excelChooser == JFileChooser.APPROVE_OPTION){
+            try{
+                //importar excel poi libreria a netbeans
+                excelJTableExporter = new XSSFWorkbook();
+                XSSFSheet excelSheet = excelJTableExporter.createSheet("Destinos Despacho");
+                
+                XSSFRow header = excelSheet.createRow(0);
+                header.createCell(0).setCellValue("Id Venta");
+                header.createCell(1).setCellValue("Pack");
+                header.createCell(2).setCellValue("Destinatario");
+                header.createCell(3).setCellValue("Fecha Entrega");
+                header.createCell(4).setCellValue("Comuna");
+                header.createCell(5).setCellValue("Direccion");
+                header.createCell(6).setCellValue("Hora Entrega");
+                
+                //usar un loop para obtener filas y columnas de la Jtable
+                for(int i=0; i<modelo1.getRowCount(); i++){
+                    XSSFRow excelRow = excelSheet.createRow(i);
+                    for(int j=0; j < modelo1.getColumnCount(); j++){
+                        XSSFCell excelCell = excelRow.createCell(j);
+                        excelCell.setCellValue(modelo1.getValueAt(i, j).toString());
+                    }
+                }
+                //Agregar extención xlsx al fichero excel
+                excelFOU = new FileOutputStream(excelFileChooser.getSelectedFile()+".xlsx");
+                excelBOU = new BufferedOutputStream(excelFOU);
+                excelJTableExporter.write(excelBOU);
+                JOptionPane.showMessageDialog(null, "Tabla Descargada Exitosamente!!");
+            }catch(FileNotFoundException ex){
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                Logger.getLogger(ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                try{
+                    if(excelBOU != null){
+                        excelBOU.close();
+                    }
+                    if(excelFOU != null){
+                        excelFOU.close();
+                    }
+                    if(excelJTableExporter != null){
+                        excelJTableExporter.close();
+                    }
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+        
+    }
+    
     
     private void MostrarTablaEstadosDespacho(){
         //Mostrar TableEstadoDespacho
@@ -649,7 +739,7 @@ public class ventas extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         txtBuscarDespacho1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnDescargarDestinos = new javax.swing.JButton();
         btnLimparDespacho0 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -659,7 +749,7 @@ public class ventas extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         txtBuscarDespacho2 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnDescargarEstados = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtIdPedidoDespacho = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -1252,7 +1342,12 @@ public class ventas extends javax.swing.JFrame {
 
         jButton5.setText("Imprimir");
 
-        jButton6.setText("Descargar");
+        btnDescargarDestinos.setText("Descargar");
+        btnDescargarDestinos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDescargarDestinosActionPerformed(evt);
+            }
+        });
 
         btnLimparDespacho0.setText("Limpiar");
         btnLimparDespacho0.addActionListener(new java.awt.event.ActionListener() {
@@ -1281,7 +1376,7 @@ public class ventas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addGap(51, 51, 51)
-                .addComponent(jButton6)
+                .addComponent(btnDescargarDestinos)
                 .addGap(112, 112, 112))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
@@ -1303,7 +1398,7 @@ public class ventas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(btnDescargarDestinos))
                 .addGap(39, 39, 39))
         );
 
@@ -1371,7 +1466,7 @@ public class ventas extends javax.swing.JFrame {
 
         jButton7.setText("Imprimir");
 
-        jButton8.setText("Descargar");
+        btnDescargarEstados.setText("Descargar");
 
         jLabel7.setText("Numero Pedido");
 
@@ -1411,7 +1506,7 @@ public class ventas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton7)
                 .addGap(53, 53, 53)
-                .addComponent(jButton8)
+                .addComponent(btnDescargarEstados)
                 .addGap(102, 102, 102))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1474,7 +1569,7 @@ public class ventas extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton7)
-                            .addComponent(jButton8))))
+                            .addComponent(btnDescargarEstados))))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
 
@@ -1636,6 +1731,11 @@ public class ventas extends javax.swing.JFrame {
         MostrarTablaVentas();
     }//GEN-LAST:event_btnLimpiarConfirmaActionPerformed
 
+    private void btnDescargarDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescargarDestinosActionPerformed
+        // TODO add your handling code here:
+        descargarTablaDestinosDespacho();
+    }//GEN-LAST:event_btnDescargarDestinosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1702,6 +1802,8 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JButton btnBuscarCliente;
     public javax.swing.JButton btnBuscarConfirmacion;
     public javax.swing.JButton btnConfirmarPago;
+    public javax.swing.JButton btnDescargarDestinos;
+    public javax.swing.JButton btnDescargarEstados;
     public javax.swing.JButton btnLimparDespacho0;
     public javax.swing.JButton btnLimpiarConfirma;
     public javax.swing.JButton btnLimpiarDespacho;
@@ -1712,9 +1814,7 @@ public class ventas extends javax.swing.JFrame {
     public com.toedter.calendar.JDateChooser fechaPagoConfirmacion;
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton5;
-    public javax.swing.JButton jButton6;
     public javax.swing.JButton jButton7;
-    public javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
