@@ -1262,7 +1262,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        btnIngresarArt = new javax.swing.JButton();
+        btnAgregarArt = new javax.swing.JButton();
         btnQuitarArt = new javax.swing.JButton();
         btnRegregarMenu = new javax.swing.JButton();
 
@@ -2320,10 +2320,10 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel51.setText("Articulos seleccionados");
         jPanelPacks.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
 
-        btnIngresarArt.setBackground(new java.awt.Color(51, 204, 255));
-        btnIngresarArt.setForeground(new java.awt.Color(0, 0, 0));
-        btnIngresarArt.setText("Ingresar");
-        jPanelPacks.add(btnIngresarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
+        btnAgregarArt.setBackground(new java.awt.Color(51, 204, 255));
+        btnAgregarArt.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarArt.setText("Agregar");
+        jPanelPacks.add(btnAgregarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
 
         btnQuitarArt.setBackground(new java.awt.Color(255, 153, 102));
         btnQuitarArt.setForeground(new java.awt.Color(0, 0, 0));
@@ -2672,6 +2672,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTable TableArticulo;
     public javax.swing.JTable TableCatVenta;
     public javax.swing.JTable TableCategoriaArt;
+    public javax.swing.JButton btnAgregarArt;
     public javax.swing.JButton btnBuscarComuna;
     public javax.swing.JButton btnCategoriaArticulo;
     public javax.swing.ButtonGroup btnGroupBancos;
@@ -2679,7 +2680,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JButton btnIngCatPack;
     public javax.swing.JButton btnIngregarArticulo;
     public javax.swing.JButton btnIngresaPack;
-    public javax.swing.JButton btnIngresarArt;
     public javax.swing.JButton btnIngresarBanco;
     public javax.swing.JButton btnIngresarCatVenta;
     public javax.swing.JButton btnIngresarComuna;
