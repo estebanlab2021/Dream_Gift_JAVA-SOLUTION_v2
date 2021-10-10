@@ -1239,7 +1239,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         txtIdPack = new javax.swing.JTextField();
-        txtIdCategoria = new javax.swing.JTextField();
+        txtIdCategoriaP = new javax.swing.JTextField();
         txtPckNombre = new javax.swing.JTextField();
         txtCostoPack = new javax.swing.JTextField();
         txtStockPack = new javax.swing.JTextField();
@@ -2224,7 +2224,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel29.setText("Categoria Pack");
         jPanelPacks.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
         jPanelPacks.add(txtIdPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 60, -1));
-        jPanelPacks.add(txtIdCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
+        jPanelPacks.add(txtIdCategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
         jPanelPacks.add(txtPckNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 120, -1));
         jPanelPacks.add(txtCostoPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 120, -1));
         jPanelPacks.add(txtStockPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 90, -1));
@@ -2845,7 +2845,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTextField txtIdBanco;
     public javax.swing.JTextField txtIdCatPack;
     public javax.swing.JTextField txtIdCatVenta;
-    public javax.swing.JTextField txtIdCategoria;
+    public javax.swing.JTextField txtIdCategoriaP;
     public javax.swing.JTextField txtIdCategoria_Articulo;
     public javax.swing.JTextField txtIdComunas;
     public javax.swing.JTextField txtIdPack;
