@@ -62,7 +62,7 @@ public class ConsultasPacks extends Conexion{
             }
         }
     }
-    
+   /* 
     //*** Buscar Packs *****
     public boolean buscarPacks(Packs pck) throws SQLException{
         
@@ -98,6 +98,6 @@ public class ConsultasPacks extends Conexion{
             }
         }
    
-    }
+    } */
     
 }
