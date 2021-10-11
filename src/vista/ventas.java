@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.awt.print.PrinterException;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -812,7 +813,7 @@ public class ventas extends javax.swing.JFrame {
         TableDestinosDespacho = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
         txtBuscarDespacho1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btnImprimirDestinos = new javax.swing.JButton();
         btnDescargarDestinos = new javax.swing.JButton();
         btnLimparDespacho0 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -822,7 +823,7 @@ public class ventas extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         txtBuscarDespacho2 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
+        btnImprimirEdoDespacho = new javax.swing.JButton();
         btnDescargarEstados = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtIdPedidoDespacho = new javax.swing.JTextField();
@@ -1414,7 +1415,12 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Imprimir");
+        btnImprimirDestinos.setText("Imprimir");
+        btnImprimirDestinos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirDestinosActionPerformed(evt);
+            }
+        });
 
         btnDescargarDestinos.setText("Descargar");
         btnDescargarDestinos.addActionListener(new java.awt.event.ActionListener() {
@@ -1448,7 +1454,7 @@ public class ventas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(btnImprimirDestinos)
                 .addGap(51, 51, 51)
                 .addComponent(btnDescargarDestinos)
                 .addGap(112, 112, 112))
@@ -1471,7 +1477,7 @@ public class ventas extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(btnImprimirDestinos)
                     .addComponent(btnDescargarDestinos))
                 .addGap(39, 39, 39))
         );
@@ -1538,7 +1544,12 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Imprimir");
+        btnImprimirEdoDespacho.setText("Imprimir");
+        btnImprimirEdoDespacho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirEdoDespachoActionPerformed(evt);
+            }
+        });
 
         btnDescargarEstados.setText("Descargar");
         btnDescargarEstados.addActionListener(new java.awt.event.ActionListener() {
@@ -1583,7 +1594,7 @@ public class ventas extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(btnImprimirEdoDespacho)
                 .addGap(53, 53, 53)
                 .addComponent(btnDescargarEstados)
                 .addGap(102, 102, 102))
@@ -1647,7 +1658,7 @@ public class ventas extends javax.swing.JFrame {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7)
+                            .addComponent(btnImprimirEdoDespacho)
                             .addComponent(btnDescargarEstados))))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
@@ -1820,6 +1831,24 @@ public class ventas extends javax.swing.JFrame {
         descargarTablaEstadoDespacho();
     }//GEN-LAST:event_btnDescargarEstadosActionPerformed
 
+    private void btnImprimirDestinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirDestinosActionPerformed
+        // TODO add your handling code here:
+        try{
+            TableDestinosDespacho.print();
+        }catch(PrinterException ex){
+            System.err.println(ex.toString());
+        }
+    }//GEN-LAST:event_btnImprimirDestinosActionPerformed
+
+    private void btnImprimirEdoDespachoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirEdoDespachoActionPerformed
+        // TODO add your handling code here:
+        try{
+            TableEstadoDespacho.print();
+        }catch(PrinterException ex){
+            System.err.println(ex.toString());
+        }
+    }//GEN-LAST:event_btnImprimirEdoDespachoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1888,6 +1917,8 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JButton btnConfirmarPago;
     public javax.swing.JButton btnDescargarDestinos;
     public javax.swing.JButton btnDescargarEstados;
+    public javax.swing.JButton btnImprimirDestinos;
+    public javax.swing.JButton btnImprimirEdoDespacho;
     public javax.swing.JButton btnLimparDespacho0;
     public javax.swing.JButton btnLimpiarConfirma;
     public javax.swing.JButton btnLimpiarDespacho;
@@ -1897,8 +1928,6 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JButton btnRegregarMenu;
     public com.toedter.calendar.JDateChooser fechaPagoConfirmacion;
     public javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton5;
-    public javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
