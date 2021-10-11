@@ -187,7 +187,7 @@ public class ventas extends javax.swing.JFrame {
         XSSFWorkbook excelJTableExporter = null;
         
         //Selecciona locación para descargar
-        JFileChooser excelFileChooser = new JFileChooser();
+        JFileChooser excelFileChooser = new JFileChooser("C:\\Users\\usuario\\Desktop");
         //Nombre de cuadro de dialogo
         excelFileChooser.setDialogTitle("Salvar como");
         //Solo extensiona validas de excel para descargar
@@ -199,25 +199,22 @@ public class ventas extends javax.swing.JFrame {
         //Si el boton Salvar del cuadro de diáloo es apretado
         if(excelChooser == JFileChooser.APPROVE_OPTION){
             try{
-                //importar excel poi libreria a netbeans
+                //instanciamos excel poi libreria a netbeans
                 excelJTableExporter = new XSSFWorkbook();
                 XSSFSheet excelSheet = excelJTableExporter.createSheet("Destinos Despacho");
                 
-                XSSFRow header = excelSheet.createRow(0);
-                header.createCell(0).setCellValue("Id Venta");
-                header.createCell(1).setCellValue("Pack");
-                header.createCell(2).setCellValue("Destinatario");
-                header.createCell(3).setCellValue("Fecha Entrega");
-                header.createCell(4).setCellValue("Comuna");
-                header.createCell(5).setCellValue("Direccion");
-                header.createCell(6).setCellValue("Hora Entrega");
+                XSSFRow rowCol = excelSheet.createRow(0);
+                for(int i=0; i<modelo1.getColumnCount();i++){
+                    XSSFCell cell = rowCol.createCell(i);
+                    cell.setCellValue(modelo1.getColumnName(i));
+                }
                 
                 //usar un loop para obtener filas y columnas de la Jtable
-                for(int i=0; i<modelo1.getRowCount(); i++){
-                    XSSFRow excelRow = excelSheet.createRow(i);
-                    for(int j=0; j < modelo1.getColumnCount(); j++){
-                        XSSFCell excelCell = excelRow.createCell(j);
-                        excelCell.setCellValue(modelo1.getValueAt(i, j).toString());
+                for(int j=0; j<modelo1.getRowCount(); j++){
+                    XSSFRow excelRow = excelSheet.createRow(j+1);
+                    for(int k=0; k < modelo1.getColumnCount(); k++){
+                        XSSFCell excelCell = excelRow.createCell(k);
+                        excelCell.setCellValue(modelo1.getValueAt(j, k).toString());
                     }
                 }
                 //Agregar extención xlsx al fichero excel
