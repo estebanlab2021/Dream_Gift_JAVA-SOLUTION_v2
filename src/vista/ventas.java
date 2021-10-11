@@ -175,7 +175,7 @@ public class ventas extends javax.swing.JFrame {
         }
     }
     
-    //Metodo para descargar tabla
+    //Metodo para descargar tabla Destinos
     private void descargarTablaDestinosDespacho(){
         //Definimos modelos de la Tabla con los datos
         DefaultTableModel modelo1 = new DefaultTableModel();
@@ -203,6 +203,7 @@ public class ventas extends javax.swing.JFrame {
                 excelJTableExporter = new XSSFWorkbook();
                 XSSFSheet excelSheet = excelJTableExporter.createSheet("Destinos Despacho");
                 
+                //Agregamos los nombres de las columnas
                 XSSFRow rowCol = excelSheet.createRow(0);
                 for(int i=0; i<modelo1.getColumnCount();i++){
                     XSSFCell cell = rowCol.createCell(i);
@@ -223,7 +224,8 @@ public class ventas extends javax.swing.JFrame {
                 excelJTableExporter.write(excelBOU);
                 JOptionPane.showMessageDialog(null, "Tabla Descargada Exitosamente!!");
             }catch(FileNotFoundException ex){
-                ex.printStackTrace();
+                //ex.printStackTrace();
+                System.err.println(ex.toString());
             } catch (IOException ex) {
                 Logger.getLogger(ventas.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
@@ -238,7 +240,82 @@ public class ventas extends javax.swing.JFrame {
                         excelJTableExporter.close();
                     }
                 }catch(IOException ex){
-                    ex.printStackTrace();
+                    //ex.printStackTrace();
+                    System.err.println(ex.toString());
+                }
+            }
+        }
+        
+    }
+    
+    
+    //Metodo para descargar tabla Estados Despacho
+    private void descargarTablaEstadoDespacho(){
+        //Definimos modelos de la Tabla con los datos
+        DefaultTableModel modelo1 = new DefaultTableModel();
+        modelo1 = (DefaultTableModel) TableEstadoDespacho.getModel();
+        
+        //definimos las variables con las vamos hacer la exportacion por Libreria netbeans
+        FileOutputStream excelFOU = null;
+        BufferedOutputStream excelBOU = null;
+        XSSFWorkbook excelJTableExporter = null;
+        
+        //Selecciona locación para descargar
+        JFileChooser excelFileChooser = new JFileChooser("C:\\Users\\usuario\\Desktop");
+        //Nombre de cuadro de dialogo
+        excelFileChooser.setDialogTitle("Salvar como");
+        //Solo extensiona validas de excel para descargar
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("Excel Files", "xls", "xlsx", "xlsm");
+        excelFileChooser.setFileFilter(fnef);
+        //Muesta el cuadro de dialogo
+        int excelChooser = excelFileChooser.showSaveDialog(null);
+        
+        //Si el boton Salvar del cuadro de diáloo es apretado
+        if(excelChooser == JFileChooser.APPROVE_OPTION){
+            try{
+                //instanciamos excel poi libreria a netbeans
+                excelJTableExporter = new XSSFWorkbook();
+                XSSFSheet excelSheet = excelJTableExporter.createSheet("Estados Despacho");
+                
+                //Agregamos los nombres de las columnas
+                XSSFRow rowCol = excelSheet.createRow(0);
+                for(int i=0; i<modelo1.getColumnCount();i++){
+                    XSSFCell cell = rowCol.createCell(i);
+                    cell.setCellValue(modelo1.getColumnName(i));
+                }
+                
+                //usar un loop para obtener filas y columnas de la Jtable
+                for(int j=0; j<modelo1.getRowCount(); j++){
+                    XSSFRow excelRow = excelSheet.createRow(j+1);
+                    for(int k=0; k < modelo1.getColumnCount(); k++){
+                        XSSFCell excelCell = excelRow.createCell(k);
+                        excelCell.setCellValue(modelo1.getValueAt(j, k).toString());
+                    }
+                }
+                //Agregar extención xlsx al fichero excel
+                excelFOU = new FileOutputStream(excelFileChooser.getSelectedFile()+".xlsx");
+                excelBOU = new BufferedOutputStream(excelFOU);
+                excelJTableExporter.write(excelBOU);
+                JOptionPane.showMessageDialog(null, "Tabla Descargada Exitosamente!!");
+            }catch(FileNotFoundException ex){
+                //ex.printStackTrace();
+                System.err.println(ex.toString());
+            } catch (IOException ex) {
+                Logger.getLogger(ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                try{
+                    if(excelBOU != null){
+                        excelBOU.close();
+                    }
+                    if(excelFOU != null){
+                        excelFOU.close();
+                    }
+                    if(excelJTableExporter != null){
+                        excelJTableExporter.close();
+                    }
+                }catch(IOException ex){
+                    //ex.printStackTrace();
+                    System.err.println(ex.toString());
                 }
             }
         }
@@ -1464,6 +1541,11 @@ public class ventas extends javax.swing.JFrame {
         jButton7.setText("Imprimir");
 
         btnDescargarEstados.setText("Descargar");
+        btnDescargarEstados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDescargarEstadosActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Numero Pedido");
 
@@ -1732,6 +1814,11 @@ public class ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         descargarTablaDestinosDespacho();
     }//GEN-LAST:event_btnDescargarDestinosActionPerformed
+
+    private void btnDescargarEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescargarEstadosActionPerformed
+        // TODO add your handling code here:
+        descargarTablaEstadoDespacho();
+    }//GEN-LAST:event_btnDescargarEstadosActionPerformed
 
     /**
      * @param args the command line arguments
