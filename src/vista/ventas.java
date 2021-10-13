@@ -139,8 +139,8 @@ public class ventas extends javax.swing.JFrame {
             DefaultTableModel modelo1 = new DefaultTableModel();
             
             TableDestinosDespacho.setModel(modelo1);
-            TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo1);
-            TableDestinosDespacho.setRowSorter(elQueOrdena);
+            //TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo1);
+            //TableDestinosDespacho.setRowSorter(elQueOrdena);
             
             PreparedStatement ps = null;
             ResultSet rs = null;
@@ -336,8 +336,8 @@ public class ventas extends javax.swing.JFrame {
             DefaultTableModel modelo1 = new DefaultTableModel();
             
             TableEstadoDespacho.setModel(modelo1);
-            TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo1);
-            TableEstadoDespacho.setRowSorter(elQueOrdena);
+            //TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo1);
+            //TableEstadoDespacho.setRowSorter(elQueOrdena);
             
             PreparedStatement ps = null;
             ResultSet rs = null;
