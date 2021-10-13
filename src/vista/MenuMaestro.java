@@ -1338,6 +1338,8 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtCantArt = new javax.swing.JTextField();
         btnQuitarArt = new javax.swing.JButton();
         btnGuardarArtPack = new javax.swing.JButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         btnRegregarMenu = new javax.swing.JButton();
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -2006,7 +2008,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelEstados_Ventas1Layout.setHorizontalGroup(
             jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(109, 109, 109))
             .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
@@ -2375,25 +2377,21 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanelPacks.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
         jLabel49.setText("ID Categoria");
         jPanelPacks.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
         jPanelPacks.add(txtIdPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 60, -1));
         jPanelPacks.add(txtIdCategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
         jPanelPacks.add(txtPckNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 120, -1));
 
-        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
         jLabel45.setText("Nombre Pack");
         jPanelPacks.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
         jLabel46.setText("Costo $");
         jPanelPacks.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
         jPanelPacks.add(txtCostoPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 120, -1));
 
         jPanelPacks.add(cboxCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 140, -1));
 
-        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Categoria Pack");
         jPanelPacks.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
@@ -2407,23 +2405,19 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.add(btnLimPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 80, -1));
         jPanelPacks.add(txtStockPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 90, -1));
 
-        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
         jLabel48.setText("Estado");
         jPanelPacks.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
         rbtnActivaPack.setBackground(new java.awt.Color(153, 204, 255));
         buttonGroupPack.add(rbtnActivaPack);
-        rbtnActivaPack.setForeground(new java.awt.Color(0, 0, 0));
         rbtnActivaPack.setText("Activo");
         jPanelPacks.add(rbtnActivaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
         rbtnInactivaPack.setBackground(new java.awt.Color(153, 204, 255));
         buttonGroupPack.add(rbtnInactivaPack);
-        rbtnInactivaPack.setForeground(new java.awt.Color(0, 0, 0));
         rbtnInactivaPack.setText("Inactivo");
         jPanelPacks.add(rbtnInactivaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
 
-        jLabel47.setForeground(new java.awt.Color(0, 0, 0));
         jLabel47.setText("Stock");
         jPanelPacks.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
 
@@ -2448,22 +2442,19 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(TablaPacks);
 
-        jPanelPacks.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 830, 230));
+        jPanelPacks.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 410, 140));
 
         jScrollPane8.setViewportView(listArticulosPck);
 
         jPanelPacks.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 190, -1));
 
-        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
         jLabel50.setText("Articulos para seleccionar");
         jPanelPacks.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
 
-        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
         jLabel51.setText("Articulos seleccionados");
         jPanelPacks.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
 
         btnAgregarArt.setBackground(new java.awt.Color(51, 204, 255));
-        btnAgregarArt.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarArt.setText("Agregar");
         jPanelPacks.add(btnAgregarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 80, -1));
 
@@ -2473,12 +2464,26 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.add(txtCantArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, 70, -1));
 
         btnQuitarArt.setBackground(new java.awt.Color(255, 153, 102));
-        btnQuitarArt.setForeground(new java.awt.Color(0, 0, 0));
         btnQuitarArt.setText("Quitar");
         jPanelPacks.add(btnQuitarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 80, -1));
 
         btnGuardarArtPack.setText("Guardar");
         jPanelPacks.add(btnGuardarArtPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 80, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane11.setViewportView(jTable1);
+
+        jPanelPacks.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 510, 140));
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
 
@@ -2938,6 +2943,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2958,6 +2964,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
