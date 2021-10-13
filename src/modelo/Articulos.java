@@ -1,6 +1,12 @@
 
 package modelo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class Articulos {
     private int idarticulo;
     private int id_categoria_articulo;
@@ -48,5 +54,28 @@ public class Articulos {
         this.art_fecha_vencimiento = art_fecha_vencimiento;
     }
 
+     //Metodo para Agregar datos al Listado Articulos
+    public static ArrayList<String> MostrarArticulos(){
+       
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        ArrayList<String> datos = new ArrayList<String>();
+        try{
+            String sql = "SELECT * FROM articulo WHERE (art_estado='1')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                datos.add(rs.getString("art_descripcion"));
+            }
+            rs.close();   
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return datos;
+        
+    }
       
 }
