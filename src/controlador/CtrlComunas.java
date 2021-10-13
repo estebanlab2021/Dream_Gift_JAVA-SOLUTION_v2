@@ -15,9 +15,9 @@ import vista.MenuMaestro;
 public class CtrlComunas implements ActionListener{
     
     //Llamamos a las clases que hemos creado
-    private Comunas mod1;
-    private ConsultasComunas modC1;
-    private MenuMaestro vistaA;
+    private final Comunas mod1;
+    private final ConsultasComunas modC1;
+    private final MenuMaestro vistaA;
     
     
     public CtrlComunas(Comunas mod1, ConsultasComunas modC1, MenuMaestro vistaA){
@@ -28,7 +28,6 @@ public class CtrlComunas implements ActionListener{
         this.vistaA.btnIngresarComuna.addActionListener(this);
         this.vistaA.btnModComuna.addActionListener(this);
         this.vistaA.btnLimpiarComuna.addActionListener(this);
-        this.vistaA.btnBuscarComuna.addActionListener(this);
         this.vistaA.rbtnInactivoComuna.addActionListener(this);
         this.vistaA.rbtnActivoComuna .addActionListener(this);
         String estadobtn = null;
@@ -82,22 +81,6 @@ public class CtrlComunas implements ActionListener{
             }
         }
         
-        if(e.getSource() == vistaA.btnBuscarComuna){
-            mod1.setIdcomunas(Integer.parseInt(vistaA.txtBuscarComunas.getText()));
-            
-            try {
-                if(modC1.buscarComun(mod1)){
-                    vistaA.txtNombreComuna.setText(mod1.getNombre_comunas());
-
-                }else {
-                    JOptionPane.showMessageDialog(null, "No se encontró el registro");
-                    limpiar();
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(CtrlComunas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
         if(e.getSource() == vistaA.btnLimpiarComuna){
             limpiar();
         }
@@ -109,7 +92,6 @@ public class CtrlComunas implements ActionListener{
         vistaA.txtIdComunas.setText(null);
         vistaA.txtNombreComuna.setText(null);
         vistaA.btnGroupComunas.clearSelection();
-        vistaA.txtBuscarComunas.setText(null);
         vistaA.txtCodigoComuna.setText(null);
                 
     }
