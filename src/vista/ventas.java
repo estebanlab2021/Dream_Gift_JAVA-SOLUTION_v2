@@ -35,6 +35,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 
 /**
  *
@@ -42,10 +48,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ventas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ventas
-     */
+     FondoPanel fondo = new FondoPanel();
+     
     public ventas() {
+        this.setContentPane(fondo);
         initComponents();
         //this.setTitle("Menu Ventas");
         //this.setLocationRelativeTo(null);
@@ -739,8 +745,8 @@ public class ventas extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         btnRegregarMenu = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jPanel1 = new FondoPanel();
+        jPanel5 = new FondoPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -753,7 +759,7 @@ public class ventas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ComboBoxRRSS = new javax.swing.JComboBox<>();
         txtIdRRSS = new javax.swing.JTextField();
-        jPanel6 = new javax.swing.JPanel();
+        jPanel6 = new FondoPanel();
         jLabel8 = new javax.swing.JLabel();
         txtNombreDestinatario = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -781,8 +787,8 @@ public class ventas extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         btnRegistrarPedido = new javax.swing.JButton();
         btnLimpiarVenta = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        jPanel2 = new FondoPanel();
+        jPanel7 = new FondoPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -806,8 +812,8 @@ public class ventas extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         tableVentas = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        jPanel3 = new FondoPanel();
+        jPanel8 = new FondoPanel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TableDestinosDespacho = new javax.swing.JTable();
@@ -816,8 +822,8 @@ public class ventas extends javax.swing.JFrame {
         btnImprimirDestinos = new javax.swing.JButton();
         btnDescargarDestinos = new javax.swing.JButton();
         btnLimparDespacho0 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
+        jPanel4 = new FondoPanel();
+        jPanel9 = new FondoPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         TableEstadoDespacho = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
@@ -1998,4 +2004,20 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JTextArea txtSaludo;
     public javax.swing.JTextField txtTlfCliente;
     // End of variables declaration//GEN-END:variables
+class FondoPanel extends JPanel
+    {
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g)
+        {
+            imagen = new ImageIcon(getClass().getResource("/imagenes/Cielo.jpg")).getImage();
+            
+            g.drawImage(imagen,0, 0, getWidth(), getHeight(),this);
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
 }

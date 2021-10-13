@@ -1,10 +1,8 @@
-                                                                                             /*
- * Fusion de los proyectos de Jessica, Nicol, Esteban y Cristian
- * Falta integrar proyecto de Eric
- * ..............
- */
+
 package vista;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +12,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import modelo.Cat_Articulo;
 import modelo.ConsultasCatArticulos;
 
 
 public class MenuMaestro extends javax.swing.JFrame {
+    
+   MenuMaestro.FondoPanel fondo = new MenuMaestro.FondoPanel();
    
     public MenuMaestro() {
+        this.setContentPane(fondo);
         initComponents();
         this.setTitle("Menu Maestro");
         this.setLocationRelativeTo(null);
@@ -1066,9 +1069,11 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         buttonGroupCli = new javax.swing.ButtonGroup();
         buttonGroupCatPack = new javax.swing.ButtonGroup();
         buttonGroupPack = new javax.swing.ButtonGroup();
+        jLabel53 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelBancos = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
+        jPanel12 = new FondoPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtNombreBanco = new javax.swing.JTextField();
@@ -1079,15 +1084,14 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel9 = new javax.swing.JLabel();
         txtCodigoBanco = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         rbtnActivarBanco = new javax.swing.JRadioButton();
         rbtnInactvarBanco = new javax.swing.JRadioButton();
         btnModificarBanco = new javax.swing.JButton();
         btnLimpiarBanco = new javax.swing.JButton();
         txtIdBanco = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
-        jPanelUsuario = new javax.swing.JPanel();
-        jPanelArticulos = new javax.swing.JPanel();
+        jPanelUsuario = new FondoPanel();
+        jPanelArticulos = new FondoPanel();
         txtIdArticulo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtNombreArticulo = new javax.swing.JTextField();
@@ -1108,17 +1112,15 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jSeparator8 = new javax.swing.JSeparator();
         jLabel24 = new javax.swing.JLabel();
         txtBuscarArticulo = new javax.swing.JTextField();
-        jPanelComunas = new javax.swing.JPanel();
+        jPanelComunas = new FondoPanel();
         jLabelNombre = new javax.swing.JLabel();
         jLabelCodigo = new javax.swing.JLabel();
         btnIngresarComuna = new javax.swing.JButton();
         txtCodigoComuna = new javax.swing.JTextField();
         txtNombreComuna = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         txtBuscarComunas = new javax.swing.JTextField();
-        btnBuscarComuna = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         TablaComuna = new javax.swing.JTable();
         btnModComuna = new javax.swing.JButton();
@@ -1126,21 +1128,9 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         rbtnActivoComuna = new javax.swing.JRadioButton();
         rbtnInactivoComuna = new javax.swing.JRadioButton();
         txtIdComunas = new javax.swing.JTextField();
-        jPanelCategoriaArticulos = new javax.swing.JPanel();
-        txtIdCategoria_Articulo = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        txtCategoriaArticulo = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        RadioButtonEstado = new javax.swing.JRadioButton();
-        RadioButtonEstado0 = new javax.swing.JRadioButton();
-        btnCategoriaArticulo = new javax.swing.JButton();
-        btnModificarCategoriaArticulo = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TableCategoriaArt = new javax.swing.JTable();
-        jLabel23 = new javax.swing.JLabel();
-        jPanelRRSS = new javax.swing.JPanel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jPanelRRSS = new FondoPanel();
         jLabel21 = new javax.swing.JLabel();
         txtRRSS = new javax.swing.JTextField();
         btnIngresarRrss = new javax.swing.JButton();
@@ -1155,7 +1145,9 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         ScrollTblRsResultado = new javax.swing.JScrollPane();
         TablaRRSS = new javax.swing.JTable();
         jLabel25 = new javax.swing.JLabel();
-        jPanelClientes = new javax.swing.JPanel();
+        jLabel52 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jPanelClientes = new FondoPanel();
         jLabel11 = new javax.swing.JLabel();
         nombre = new javax.swing.JLabel();
         txtNombresClientes = new javax.swing.JTextField();
@@ -1181,7 +1173,8 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         RbtnActCli = new javax.swing.JRadioButton();
         RbtnInActCli = new javax.swing.JRadioButton();
         DateFechaNac = new com.toedter.calendar.JDateChooser();
-        jPanelEstados_Ventas1 = new javax.swing.JPanel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jPanelEstados_Ventas1 = new FondoPanel();
         jLabel30 = new javax.swing.JLabel();
         txtCatVenta = new javax.swing.JTextField();
         jScrollPane10 = new javax.swing.JScrollPane();
@@ -1193,7 +1186,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         txtIdCatVenta = new javax.swing.JTextField();
         txtBuscarCatVenta = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        jPanelCategoriaPacks = new javax.swing.JPanel();
+        jPanelCategoriaPacks = new FondoPanel();
         jLabel26 = new javax.swing.JLabel();
         txtCatPack = new javax.swing.JTextField();
         txtIdCatPack = new javax.swing.JTextField();
@@ -1207,7 +1200,8 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         btnIngCatPack = new javax.swing.JButton();
         btnModCatPack = new javax.swing.JButton();
         btnLimCatPack = new javax.swing.JButton();
-        jPanelProveedores = new javax.swing.JPanel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jPanelProveedores = new FondoPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
@@ -1227,15 +1221,14 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jRadioButton1 = new javax.swing.JRadioButton();
         jLabel42 = new javax.swing.JLabel();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel43 = new javax.swing.JLabel();
-        jPanelPacks = new javax.swing.JPanel();
+        jSeparator10 = new javax.swing.JSeparator();
+        jPanelPacks = new FondoPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         txtIdPack = new javax.swing.JTextField();
@@ -1264,7 +1257,26 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jLabel51 = new javax.swing.JLabel();
         btnAgregarArt = new javax.swing.JButton();
         btnQuitarArt = new javax.swing.JButton();
+        jSeparator11 = new javax.swing.JSeparator();
+        jPanelCategoriaArticulos = new FondoPanel();
+        txtIdCategoria_Articulo = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        txtCategoriaArticulo = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        RadioButtonEstado = new javax.swing.JRadioButton();
+        RadioButtonEstado0 = new javax.swing.JRadioButton();
+        btnCategoriaArticulo = new javax.swing.JButton();
+        btnModificarCategoriaArticulo = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TableCategoriaArt = new javax.swing.JTable();
+        jLabel23 = new javax.swing.JLabel();
+        jSeparator12 = new javax.swing.JSeparator();
         btnRegregarMenu = new javax.swing.JButton();
+
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel53.setText("Estado");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1277,34 +1289,34 @@ public DefaultTableModel buscarCateArticulo(String buscar){
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel7.setText("Entidad Bancaria");
-        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        jPanel12.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setText("Estado");
-        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
 
         txtNombreBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(txtNombreBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 150, -1));
+        jPanel12.add(txtNombreBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 150, -1));
 
-        btnIngresarBanco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIngresarBanco.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnIngresarBanco.setText("Ingresar");
         btnIngresarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(btnIngresarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 86, -1));
+        jPanel12.add(btnIngresarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 130, -1));
 
         txtBuscarBanco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarBancoKeyReleased(evt);
             }
         });
-        jPanel12.add(txtBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 117, -1));
+        jPanel12.add(txtBuscarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 180, -1));
 
         tableBanco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1324,66 +1336,67 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane2.setViewportView(tableBanco);
 
-        jPanel12.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 246, 590, 190));
+        jPanel12.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 590, 190));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel9.setText("Codigo");
-        jPanel12.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
+        jPanel12.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
         txtCodigoBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(txtCodigoBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 55, -1));
-        jPanel12.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 200, 872, 10));
-        jPanel12.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 878, 10));
+        jPanel12.add(txtCodigoBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 55, -1));
+        jPanel12.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 890, 10));
 
         btnGroupBancos.add(rbtnActivarBanco);
+        rbtnActivarBanco.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnActivarBanco.setText("Activo");
         rbtnActivarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnActivarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(rbtnActivarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
+        jPanel12.add(rbtnActivarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 70, -1));
 
         btnGroupBancos.add(rbtnInactvarBanco);
+        rbtnInactvarBanco.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnInactvarBanco.setText("Inactivo");
         rbtnInactvarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnInactvarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(rbtnInactvarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
+        jPanel12.add(rbtnInactvarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 80, -1));
 
-        btnModificarBanco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificarBanco.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModificarBanco.setText("Modificar");
         btnModificarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(btnModificarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 86, -1));
+        jPanel12.add(btnModificarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 130, -1));
 
-        btnLimpiarBanco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiarBanco.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimpiarBanco.setText("Limpiar");
-        jPanel12.add(btnLimpiarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 86, -1));
-        jPanel12.add(txtIdBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 33, -1));
+        jPanel12.add(btnLimpiarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 130, -1));
+        jPanel12.add(txtIdBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 33, -1));
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel44.setText("Buscar");
-        jPanel12.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, -1, -1));
+        jPanel12.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
 
         javax.swing.GroupLayout jPanelBancosLayout = new javax.swing.GroupLayout(jPanelBancos);
         jPanelBancos.setLayout(jPanelBancosLayout);
         jPanelBancosLayout.setHorizontalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
         );
         jPanelBancosLayout.setVerticalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Bancos", jPanelBancos);
@@ -1392,55 +1405,60 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelUsuario.setLayout(jPanelUsuarioLayout);
         jPanelUsuarioLayout.setHorizontalGroup(
             jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
+            .addGap(0, 941, Short.MAX_VALUE)
         );
         jPanelUsuarioLayout.setVerticalGroup(
             jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 418, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Usuario", jPanelUsuario);
 
         jPanelArticulos.setBackground(new java.awt.Color(153, 204, 255));
         jPanelArticulos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanelArticulos.add(txtIdArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 38, 104, -1));
+        jPanelArticulos.add(txtIdArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 104, -1));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Nombre");
-        jPanelArticulos.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 78, -1, -1));
-        jPanelArticulos.add(txtNombreArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 72, 104, -1));
+        jPanelArticulos.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
+        jPanelArticulos.add(txtNombreArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 170, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Categoria Articulo");
-        jPanelArticulos.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 58, 129, -1));
+        jPanelArticulos.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 129, -1));
 
         ComboBoxArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(ComboBoxArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 53, 179, -1));
+        jPanelArticulos.add(ComboBoxArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 190, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Stock");
-        jPanelArticulos.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 124, -1, -1));
-        jPanelArticulos.add(txtStockArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 118, 104, -1));
+        jPanelArticulos.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
+        jPanelArticulos.add(txtStockArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 170, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel4.setText("Fecha de Vencimiento");
-        jPanelArticulos.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 124, -1, -1));
-        jPanelArticulos.add(txtFechaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 118, 165, -1));
-        jPanelArticulos.add(txtCategoriaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 164, 104, -1));
+        jPanelArticulos.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
+        jPanelArticulos.add(txtFechaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 180, -1));
+        jPanelArticulos.add(txtCategoriaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 170, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel6.setText("id Categoria");
-        jPanelArticulos.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 170, -1, -1));
+        jPanelArticulos.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
 
-        btnIngregarArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIngregarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnIngregarArticulo.setText("Ingresar");
         btnIngregarArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngregarArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(btnIngregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 159, -1, -1));
+        jPanelArticulos.add(btnIngregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, -1));
 
-        btnModificarArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModificarArticulo.setText("Modificar");
         btnModificarArticulo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1452,15 +1470,16 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                 btnModificarArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(btnModificarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
+        jPanelArticulos.add(btnModificarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
 
+        CheckBoxVencimientoArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         CheckBoxVencimientoArticulo.setText("Sin Vencimiento");
         CheckBoxVencimientoArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CheckBoxVencimientoArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(CheckBoxVencimientoArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(584, 174, -1, -1));
+        jPanelArticulos.add(CheckBoxVencimientoArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
 
         TableArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1480,23 +1499,23 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane1.setViewportView(TableArticulo);
 
-        jPanelArticulos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 235, 558, 100));
+        jPanelArticulos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 570, 100));
 
-        btnLimpiarArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimpiarArticulo.setText("Limpiar");
-        jPanelArticulos.add(btnLimpiarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 339, -1, -1));
-        jPanelArticulos.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 198, 632, 19));
+        jPanelArticulos.add(btnLimpiarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, -1, -1));
+        jPanelArticulos.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 198, 900, 19));
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel24.setText("Buscar:");
-        jPanelArticulos.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
+        jPanelArticulos.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
 
         txtBuscarArticulo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarArticuloKeyReleased(evt);
             }
         });
-        jPanelArticulos.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 170, -1));
+        jPanelArticulos.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 170, -1));
 
         jTabbedPane1.addTab("Articulos", jPanelArticulos);
 
@@ -1504,46 +1523,45 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelComunas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelComunas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabelNombre.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabelNombre.setText("Nombre");
-        jPanelComunas.add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        jPanelComunas.add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
 
+        jLabelCodigo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabelCodigo.setText("Codigo Comuna");
-        jPanelComunas.add(jLabelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
+        jPanelComunas.add(jLabelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
 
+        btnIngresarComuna.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnIngresarComuna.setText("Ingresar");
         btnIngresarComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(btnIngresarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 80, -1));
+        jPanelComunas.add(btnIngresarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 100, -1));
 
         txtCodigoComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(txtCodigoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 50, -1));
+        jPanelComunas.add(txtCodigoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 50, -1));
 
         txtNombreComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(txtNombreComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 170, -1));
-        jPanelComunas.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 18, 880, 50));
-        jPanelComunas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 876, 10));
-        jPanelComunas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 2, 70, 71));
+        jPanelComunas.add(txtNombreComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 170, -1));
+        jPanelComunas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 876, 10));
+        jPanelComunas.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 70, 71));
 
         txtBuscarComunas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarComunasActionPerformed(evt);
             }
         });
-        jPanelComunas.add(txtBuscarComunas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 117, -1));
-
-        btnBuscarComuna.setText("Buscar");
-        jPanelComunas.add(btnBuscarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
+        jPanelComunas.add(txtBuscarComunas, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 117, -1));
 
         TablaComuna.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1563,160 +1581,87 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane5.setViewportView(TablaComuna);
 
-        jPanelComunas.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 480, 220));
+        jPanelComunas.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 560, 210));
 
+        btnModComuna.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModComuna.setText("Modificar");
         btnModComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(btnModComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 80, -1));
+        jPanelComunas.add(btnModComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 100, -1));
 
+        btnLimpiarComuna.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimpiarComuna.setText("Limpiar");
-        jPanelComunas.add(btnLimpiarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 80, -1));
+        jPanelComunas.add(btnLimpiarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 100, -1));
 
         btnGroupComunas.add(rbtnActivoComuna);
         rbtnActivoComuna.setText("Activo");
-        jPanelComunas.add(rbtnActivoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 60, -1));
+        jPanelComunas.add(rbtnActivoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 60, -1));
 
         btnGroupComunas.add(rbtnInactivoComuna);
         rbtnInactivoComuna.setText("Inactivo");
-        jPanelComunas.add(rbtnInactivoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
-        jPanelComunas.add(txtIdComunas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 60, -1));
+        jPanelComunas.add(rbtnInactivoComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+        jPanelComunas.add(txtIdComunas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 60, -1));
+
+        jLabel54.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel54.setText("Estado");
+        jPanelComunas.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+
+        jLabel55.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel55.setText("Buscar");
+        jPanelComunas.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, -1, -1));
 
         jTabbedPane1.addTab("Comunas", jPanelComunas);
-
-        jPanelCategoriaArticulos.setBackground(new java.awt.Color(153, 204, 255));
-        jPanelCategoriaArticulos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanelCategoriaArticulos.add(txtIdCategoria_Articulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 17, 193, -1));
-
-        jLabel22.setText("Nombre de la categoria");
-        jPanelCategoriaArticulos.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 63, -1, -1));
-        jPanelCategoriaArticulos.add(txtCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 57, 193, -1));
-
-        jLabel10.setText("Estado:");
-        jPanelCategoriaArticulos.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 63, -1, -1));
-
-        radiobuttonGroup1.add(RadioButtonEstado);
-        RadioButtonEstado.setText("Activo");
-        RadioButtonEstado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RadioButtonEstadoMouseClicked(evt);
-            }
-        });
-        RadioButtonEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioButtonEstadoActionPerformed(evt);
-            }
-        });
-        jPanelCategoriaArticulos.add(RadioButtonEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(563, 62, -1, -1));
-
-        radiobuttonGroup1.add(RadioButtonEstado0);
-        RadioButtonEstado0.setText("Inactivo");
-        jPanelCategoriaArticulos.add(RadioButtonEstado0, new org.netbeans.lib.awtextra.AbsoluteConstraints(634, 62, -1, -1));
-
-        btnCategoriaArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCategoriaArticulo.setText("Insertar");
-        btnCategoriaArticulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCategoriaArticuloActionPerformed(evt);
-            }
-        });
-        jPanelCategoriaArticulos.add(btnCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 137, -1, -1));
-
-        btnModificarCategoriaArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnModificarCategoriaArticulo.setText("Modificar");
-        btnModificarCategoriaArticulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarCategoriaArticuloActionPerformed(evt);
-            }
-        });
-        jPanelCategoriaArticulos.add(btnModificarCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 137, -1, -1));
-
-        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        jPanelCategoriaArticulos.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 137, -1, -1));
-
-        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyReleased(evt);
-            }
-        });
-        jPanelCategoriaArticulos.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 208, -1));
-
-        TableCategoriaArt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Id", "Categoria", "Estado"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        TableCategoriaArt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TableCategoriaArtMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(TableCategoriaArt);
-
-        jPanelCategoriaArticulos.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 236, 452, 180));
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel23.setText("Buscar:");
-        jPanelCategoriaArticulos.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
-
-        jTabbedPane1.addTab("Categoria Articulos", jPanelCategoriaArticulos);
 
         jPanelRRSS.setBackground(new java.awt.Color(153, 204, 255));
         jPanelRRSS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel21.setText("Nombre RRSS");
-        jPanelRRSS.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 20, -1, -1));
+        jPanelRRSS.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
+        txtRRSS.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         txtRRSS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRRSSActionPerformed(evt);
             }
         });
-        jPanelRRSS.add(txtRRSS, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 14, 193, -1));
+        jPanelRRSS.add(txtRRSS, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 193, -1));
 
+        btnIngresarRrss.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnIngresarRrss.setText("Insertar");
         btnIngresarRrss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarRrssActionPerformed(evt);
             }
         });
-        jPanelRRSS.add(btnIngresarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 14, 88, -1));
+        jPanelRRSS.add(btnIngresarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 120, -1));
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel12.setText("Codigo RRSS");
-        jPanelRRSS.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
-        jPanelRRSS.add(txtCodigoRs, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 59, -1));
+        jPanelRRSS.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, -1));
+
+        txtCodigoRs.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jPanelRRSS.add(txtCodigoRs, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 59, -1));
 
         buttonGroupRRSS.add(RBtnActivo);
+        RBtnActivo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         RBtnActivo.setText("Activo");
         RBtnActivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RBtnActivoActionPerformed(evt);
             }
         });
-        jPanelRRSS.add(RBtnActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 53, 62, -1));
+        jPanelRRSS.add(RBtnActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 90, -1));
 
         buttonGroupRRSS.add(RBtnInactivo);
+        RBtnInactivo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         RBtnInactivo.setText("Inactivo");
-        jPanelRRSS.add(RBtnInactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 53, -1, -1));
+        jPanelRRSS.add(RBtnInactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
 
+        btnModRrss.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModRrss.setText("Modificar");
         btnModRrss.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -1732,18 +1677,20 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                 btnModRrssActionPerformed(evt);
             }
         });
-        jPanelRRSS.add(btnModRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 48, 89, -1));
-        jPanelRRSS.add(txtIdRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 60, -1));
+        jPanelRRSS.add(btnModRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 120, -1));
+        jPanelRRSS.add(txtIdRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 60, -1));
 
+        btnLimpiarRrss.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimpiarRrss.setText("Limpiar");
-        jPanelRRSS.add(btnLimpiarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(484, 82, 89, -1));
+        jPanelRRSS.add(btnLimpiarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 120, -1));
 
+        txtBusquedaRS.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         txtBusquedaRS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBusquedaRSKeyReleased(evt);
             }
         });
-        jPanelRRSS.add(txtBusquedaRS, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 180, -1));
+        jPanelRRSS.add(txtBusquedaRS, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 140, -1));
 
         TablaRRSS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1763,10 +1710,16 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         ScrollTblRsResultado.setViewportView(TablaRRSS);
 
-        jPanelRRSS.add(ScrollTblRsResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 164, 704, 250));
+        jPanelRRSS.add(ScrollTblRsResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 580, 220));
 
-        jLabel25.setText("Busqueda");
-        jPanelRRSS.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 126, 70, 30));
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel25.setText("Buscar");
+        jPanelRRSS.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 70, 30));
+
+        jLabel52.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel52.setText("Estado");
+        jPanelRRSS.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
+        jPanelRRSS.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 920, 10));
 
         jTabbedPane1.addTab("RRSS", jPanelRRSS);
 
@@ -1775,83 +1728,105 @@ public DefaultTableModel buscarCateArticulo(String buscar){
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Registro de clientes");
-        jPanelClientes.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 15, -1, -1));
+        jPanelClientes.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
+        nombre.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         nombre.setText("Nombre");
-        jPanelClientes.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 61, -1, -1));
+        jPanelClientes.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, -1, -1));
 
+        txtNombresClientes.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         txtNombresClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombresClientesActionPerformed(evt);
             }
         });
-        jPanelClientes.add(txtNombresClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 55, 116, -1));
+        jPanelClientes.add(txtNombresClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 116, -1));
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel17.setText("Telefono");
-        jPanelClientes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 36, -1, 30));
+        jPanelClientes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, 30));
 
+        txtTelefono.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
             }
         });
-        jPanelClientes.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 128, -1));
+        jPanelClientes.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 128, -1));
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel13.setText("Apellido");
-        jPanelClientes.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 89, -1, -1));
+        jPanelClientes.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
 
+        txtApellidosClientes.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         txtApellidosClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidosClientesActionPerformed(evt);
             }
         });
-        jPanelClientes.add(txtApellidosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 89, 116, -1));
+        jPanelClientes.add(txtApellidosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 116, -1));
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel18.setText("Fecha Nacimiento");
-        jPanelClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 120, 30));
+        jPanelClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 120, 30));
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel14.setText("Rut");
-        jPanelClientes.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 132, -1, -1));
-        jPanelClientes.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 126, 116, -1));
+        jPanelClientes.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
 
+        txtRut.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jPanelClientes.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 116, -1));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel19.setText("Estado");
-        jPanelClientes.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 45, -1));
+        jPanelClientes.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 45, -1));
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel15.setText("Mail");
-        jPanelClientes.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 166, -1, -1));
-        jPanelClientes.add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 160, 116, -1));
+        jPanelClientes.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
 
+        txtMail.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jPanelClientes.add(txtMail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 116, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel16.setText("Direccion");
-        jPanelClientes.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 194, -1, -1));
-        jPanelClientes.add(txtDireccionClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 194, 116, -1));
+        jPanelClientes.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
+        txtDireccionClientes.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jPanelClientes.add(txtDireccionClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 116, -1));
+
+        btnRegistrarCli.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnRegistrarCli.setText("Insertar");
         btnRegistrarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarCliActionPerformed(evt);
             }
         });
-        jPanelClientes.add(btnRegistrarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 80, -1));
+        jPanelClientes.add(btnRegistrarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 100, -1));
 
+        btnLimpiarCli.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimpiarCli.setText("Limpiar");
         btnLimpiarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarCliActionPerformed(evt);
             }
         });
-        jPanelClientes.add(btnLimpiarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 86, -1));
+        jPanelClientes.add(btnLimpiarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 86, -1));
 
+        btnModificarCli.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModificarCli.setText("Modificar");
         btnModificarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarCliActionPerformed(evt);
             }
         });
-        jPanelClientes.add(btnModificarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 86, -1));
+        jPanelClientes.add(btnModificarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 100, -1));
 
-        jLabel20.setText("Buscar Rut");
-        jPanelClientes.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, -1, -1));
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel20.setText("Buscar ");
+        jPanelClientes.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, -1, -1));
 
+        txtBusquedaCliente.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         txtBusquedaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBusquedaClienteActionPerformed(evt);
@@ -1862,7 +1837,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                 txtBusquedaClienteKeyReleased(evt);
             }
         });
-        jPanelClientes.add(txtBusquedaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 140, -1));
+        jPanelClientes.add(txtBusquedaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 140, -1));
 
         TablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1882,18 +1857,21 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane4.setViewportView(TablaClientes);
 
-        jPanelClientes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 244, 930, 151));
+        jPanelClientes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 930, 151));
 
         buttonGroupCli.add(RbtnActCli);
+        RbtnActCli.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         RbtnActCli.setText("Activo");
-        jPanelClientes.add(RbtnActCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
+        jPanelClientes.add(RbtnActCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, -1, -1));
 
         buttonGroupCli.add(RbtnInActCli);
+        RbtnInActCli.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         RbtnInActCli.setText("Inactivo");
-        jPanelClientes.add(RbtnInActCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
+        jPanelClientes.add(RbtnInActCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, -1, -1));
 
         DateFechaNac.setDateFormatString("y-MM-d");
-        jPanelClientes.add(DateFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 130, -1));
+        jPanelClientes.add(DateFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 130, -1));
+        jPanelClientes.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 876, 10));
 
         jTabbedPane1.addTab("Clientes", jPanelClientes);
 
@@ -1962,19 +1940,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelEstados_Ventas1.setLayout(jPanelEstados_Ventas1Layout);
         jPanelEstados_Ventas1Layout.setHorizontalGroup(
             jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel30)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                    .addComponent(btnIngresarCatVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLimpiarCatVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(210, 210, 210))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1982,41 +1947,52 @@ public DefaultTableModel buscarCateArticulo(String buscar){
             .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
+                        .addGap(483, 483, 483)
                         .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(284, 284, 284)
+                        .addComponent(btnIngresarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnLimpiarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(jLabel30)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelEstados_Ventas1Layout.setVerticalGroup(
             jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createSequentialGroup()
-                        .addComponent(btnIngresarCatVenta)
-                        .addGap(23, 23, 23)
-                        .addComponent(btnModificarCatVenta))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                            .addGap(45, 45, 45)
-                            .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel30)
-                                .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23)
-                .addComponent(btnLimpiarCatVenta)
-                .addGap(52, 52, 52)
-                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                        .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(3, 3, 3)))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel30)
+                            .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIngresarCatVenta)
+                    .addComponent(btnModificarCatVenta)
+                    .addComponent(btnLimpiarCatVenta))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
@@ -2026,23 +2002,27 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelCategoriaPacks.setBackground(new java.awt.Color(153, 204, 255));
         jPanelCategoriaPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel26.setText("Categoria Pack");
-        jPanelCategoriaPacks.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 56, 110, 20));
-        jPanelCategoriaPacks.add(txtCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 160, -1));
-        jPanelCategoriaPacks.add(txtIdCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 80, -1));
+        jPanelCategoriaPacks.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 110, 20));
+        jPanelCategoriaPacks.add(txtCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 160, -1));
+        jPanelCategoriaPacks.add(txtIdCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 80, -1));
 
         rbtnActivoCatPack.setBackground(new java.awt.Color(153, 204, 255));
         buttonGroupCatPack.add(rbtnActivoCatPack);
+        rbtnActivoCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnActivoCatPack.setText("Activo");
-        jPanelCategoriaPacks.add(rbtnActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+        jPanelCategoriaPacks.add(rbtnActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
 
         rbtnInActivoCatPack.setBackground(new java.awt.Color(153, 204, 255));
         buttonGroupCatPack.add(rbtnInActivoCatPack);
+        rbtnInActivoCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnInActivoCatPack.setText("Inactivo");
-        jPanelCategoriaPacks.add(rbtnInActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
+        jPanelCategoriaPacks.add(rbtnInActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
 
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel27.setText("Estado");
-        jPanelCategoriaPacks.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 60, 30));
+        jPanelCategoriaPacks.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 60, 30));
 
         TablaCategoriaPack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2069,104 +2049,119 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane6.setViewportView(TablaCategoriaPack);
 
-        jPanelCategoriaPacks.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, 310));
+        jPanelCategoriaPacks.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, 190));
 
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel32.setText("Buscar Categoria");
-        jPanelCategoriaPacks.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, 20));
-        jPanelCategoriaPacks.add(txtBusquedaCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 200, -1));
+        jPanelCategoriaPacks.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, 20));
+        jPanelCategoriaPacks.add(txtBusquedaCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 200, -1));
 
+        btnIngCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnIngCatPack.setText("Ingresar");
         btnIngCatPack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngCatPackActionPerformed(evt);
             }
         });
-        jPanelCategoriaPacks.add(btnIngCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 40, 100, -1));
+        jPanelCategoriaPacks.add(btnIngCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 100, -1));
 
+        btnModCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModCatPack.setText("Modificar");
         btnModCatPack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModCatPackActionPerformed(evt);
             }
         });
-        jPanelCategoriaPacks.add(btnModCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 100, -1));
+        jPanelCategoriaPacks.add(btnModCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 100, -1));
 
+        btnLimCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimCatPack.setText("Limpiar");
-        jPanelCategoriaPacks.add(btnLimCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 100, -1));
+        jPanelCategoriaPacks.add(btnLimCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 100, -1));
+        jPanelCategoriaPacks.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 876, 10));
 
         jTabbedPane1.addTab("Categoria Packs", jPanelCategoriaPacks);
 
         jPanelProveedores.setBackground(new java.awt.Color(153, 204, 255));
         jPanelProveedores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel33.setText("Nombre");
-        jPanelProveedores.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPanelProveedores.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
 
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel34.setText("Dirección");
-        jPanelProveedores.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        jPanelProveedores.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
 
+        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel35.setText("Rut");
-        jPanelProveedores.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanelProveedores.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
 
+        jLabel36.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel36.setText("Telefono");
-        jPanelProveedores.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
+        jPanelProveedores.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, -1));
 
+        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel37.setText("Mail");
-        jPanelProveedores.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
+        jPanelProveedores.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
 
+        jLabel38.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel38.setText("Razón Social");
-        jPanelProveedores.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, -1));
+        jPanelProveedores.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
 
+        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel39.setText("Nombre Proveedor");
-        jPanelProveedores.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        jPanelProveedores.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
-        jLabel40.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel40.setText("Lista de Proveedores");
-        jPanelProveedores.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
+        jPanelProveedores.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
+        jLabel41.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel41.setText("Buscar");
-        jPanelProveedores.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, 20));
+        jPanelProveedores.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, -1, 20));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanelProveedores.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 180, -1));
-        jPanelProveedores.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 170, -1));
-        jPanelProveedores.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 170, -1));
-        jPanelProveedores.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 170, -1));
+        jPanelProveedores.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 180, -1));
+        jPanelProveedores.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 170, -1));
+        jPanelProveedores.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 170, -1));
+        jPanelProveedores.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 170, -1));
 
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
             }
         });
-        jPanelProveedores.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 170, -1));
-        jPanelProveedores.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 170, -1));
+        jPanelProveedores.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 170, -1));
+        jPanelProveedores.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 170, -1));
 
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField12ActionPerformed(evt);
             }
         });
-        jPanelProveedores.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 170, -1));
+        jPanelProveedores.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 170, -1));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton1.setText("Ingresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanelProveedores.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        jPanelProveedores.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton2.setText("OK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanelProveedores.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, 30));
+        jPanelProveedores.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, 30));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -2174,13 +2169,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jPanelProveedores.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 140, -1));
-
-        jButton3.setText("Menú Inicio");
-        jPanelProveedores.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, -1, -1));
-
-        jButton4.setText("Cerrar Sesión");
-        jPanelProveedores.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, -1, -1));
+        jPanelProveedores.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 140, -1));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2195,24 +2184,28 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         ));
         jScrollPane12.setViewportView(jTable3);
 
-        jPanelProveedores.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, 90));
+        jPanelProveedores.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 560, 90));
 
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jRadioButton1.setText("Inactivo");
-        jPanelProveedores.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, -1, -1));
+        jPanelProveedores.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
 
         jLabel42.setText("Estado");
         jPanelProveedores.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 164, 40, 0));
 
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jRadioButton2.setText("Activo");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
             }
         });
-        jPanelProveedores.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
+        jPanelProveedores.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, -1, -1));
 
+        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel43.setText("Estado");
-        jPanelProveedores.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
+        jPanelProveedores.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
+        jPanelProveedores.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 876, 10));
 
         jTabbedPane1.addTab("Proveedores", jPanelProveedores);
 
@@ -2220,13 +2213,13 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         jPanelPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanelPacks.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel29.setText("Categoria Pack");
-        jPanelPacks.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
-        jPanelPacks.add(txtIdPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 60, -1));
-        jPanelPacks.add(txtIdCategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
-        jPanelPacks.add(txtPckNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 120, -1));
-        jPanelPacks.add(txtCostoPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 120, -1));
+        jPanelPacks.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        jPanelPacks.add(txtIdPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 60, -1));
+        jPanelPacks.add(txtIdCategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 120, -1));
+        jPanelPacks.add(txtPckNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 120, -1));
+        jPanelPacks.add(txtCostoPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 120, -1));
         jPanelPacks.add(txtStockPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 90, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -2250,7 +2243,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane7.setViewportView(jTable2);
 
-        jPanelPacks.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 830, 230));
+        jPanelPacks.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 830, 210));
 
         listArticulosPck.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -2259,7 +2252,7 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane8.setViewportView(listArticulosPck);
 
-        jPanelPacks.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 190, -1));
+        jPanelPacks.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 190, -1));
 
         listArtXPck.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -2268,79 +2261,181 @@ public DefaultTableModel buscarCateArticulo(String buscar){
         });
         jScrollPane9.setViewportView(listArtXPck);
 
-        jPanelPacks.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 200, -1));
+        jPanelPacks.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, 190, -1));
 
-        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel45.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel45.setText("Nombre Pack");
-        jPanelPacks.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        jPanelPacks.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
 
-        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel46.setText("Costo $");
-        jPanelPacks.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        jPanelPacks.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
-        jLabel47.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel47.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel47.setText("Stock");
         jPanelPacks.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
 
         buttonGroupPack.add(rbtnActivaPack);
-        rbtnActivaPack.setForeground(new java.awt.Color(0, 0, 0));
+        rbtnActivaPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnActivaPack.setText("Activo");
         jPanelPacks.add(rbtnActivaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
         buttonGroupPack.add(rbtnInactivaPack);
-        rbtnInactivaPack.setForeground(new java.awt.Color(0, 0, 0));
+        rbtnInactivaPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnInactivaPack.setText("Inactivo");
         jPanelPacks.add(rbtnInactivaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
 
-        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel48.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel48.setText("Estado");
         jPanelPacks.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
+        btnIngresaPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnIngresaPack.setText("Ingresar");
         jPanelPacks.add(btnIngresaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
+        btnModPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModPack.setText("Modificar");
         jPanelPacks.add(btnModPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
 
+        btnLimPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimPack.setText("Limpiar");
         jPanelPacks.add(btnLimPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 80, -1));
 
         cboxCatPack.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanelPacks.add(cboxCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 100, -1));
+        jPanelPacks.add(cboxCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 100, -1));
 
-        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel49.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel49.setText("ID Categoria");
-        jPanelPacks.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        jPanelPacks.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel50.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel50.setText("Articulos para seleccionar");
-        jPanelPacks.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
+        jPanelPacks.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
-        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel51.setText("Articulos seleccionados");
         jPanelPacks.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
 
         btnAgregarArt.setBackground(new java.awt.Color(51, 204, 255));
-        btnAgregarArt.setForeground(new java.awt.Color(0, 0, 0));
+        btnAgregarArt.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnAgregarArt.setText("Agregar");
-        jPanelPacks.add(btnAgregarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
+        jPanelPacks.add(btnAgregarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, 90, -1));
 
         btnQuitarArt.setBackground(new java.awt.Color(255, 153, 102));
-        btnQuitarArt.setForeground(new java.awt.Color(0, 0, 0));
+        btnQuitarArt.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnQuitarArt.setText("Quitar");
-        jPanelPacks.add(btnQuitarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 70, -1));
+        jPanelPacks.add(btnQuitarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 90, -1));
+        jPanelPacks.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 876, 10));
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 40, 934, 504));
+        jPanelCategoriaArticulos.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelCategoriaArticulos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelCategoriaArticulos.add(txtIdCategoria_Articulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 193, -1));
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel22.setText("Nombre de la categoria");
+        jPanelCategoriaArticulos.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, -1));
+        jPanelCategoriaArticulos.add(txtCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 193, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel10.setText("Estado:");
+        jPanelCategoriaArticulos.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, -1, -1));
+
+        radiobuttonGroup1.add(RadioButtonEstado);
+        RadioButtonEstado.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        RadioButtonEstado.setText("Activo");
+        RadioButtonEstado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RadioButtonEstadoMouseClicked(evt);
+            }
+        });
+        RadioButtonEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RadioButtonEstadoActionPerformed(evt);
+            }
+        });
+        jPanelCategoriaArticulos.add(RadioButtonEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, -1, -1));
+
+        radiobuttonGroup1.add(RadioButtonEstado0);
+        RadioButtonEstado0.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        RadioButtonEstado0.setText("Inactivo");
+        jPanelCategoriaArticulos.add(RadioButtonEstado0, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, -1, -1));
+
+        btnCategoriaArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCategoriaArticulo.setText("Insertar");
+        btnCategoriaArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaArticuloActionPerformed(evt);
+            }
+        });
+        jPanelCategoriaArticulos.add(btnCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
+
+        btnModificarCategoriaArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificarCategoriaArticulo.setText("Modificar");
+        btnModificarCategoriaArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarCategoriaArticuloActionPerformed(evt);
+            }
+        });
+        jPanelCategoriaArticulos.add(btnModificarCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
+
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        jPanelCategoriaArticulos.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, -1, -1));
+
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        jPanelCategoriaArticulos.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 200, 210, -1));
+
+        TableCategoriaArt.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Id", "Categoria", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TableCategoriaArt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableCategoriaArtMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(TableCategoriaArt);
+
+        jPanelCategoriaArticulos.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 580, 180));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel23.setText("Buscar:");
+        jPanelCategoriaArticulos.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 200, 60, -1));
+        jPanelCategoriaArticulos.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 876, 10));
+
+        jTabbedPane1.addTab("Categoria Articulos", jPanelCategoriaArticulos);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 950, 450));
+
+        btnRegregarMenu.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnRegregarMenu.setText("Regresar a Menú Principal");
         btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegregarMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegregarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 164, -1));
+        getContentPane().add(btnRegregarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 220, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -2673,7 +2768,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTable TableCatVenta;
     public javax.swing.JTable TableCategoriaArt;
     public javax.swing.JButton btnAgregarArt;
-    public javax.swing.JButton btnBuscarComuna;
     public javax.swing.JButton btnCategoriaArticulo;
     public javax.swing.ButtonGroup btnGroupBancos;
     public javax.swing.ButtonGroup btnGroupComunas;
@@ -2712,8 +2806,6 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JComboBox<String> cboxCatPack;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2762,6 +2854,10 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -2793,10 +2889,15 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    public javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
@@ -2862,4 +2963,20 @@ public DefaultTableModel buscarCateArticulo(String buscar){
     public javax.swing.JTextField txtStockPack;
     public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+class FondoPanel extends JPanel
+    {
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g)
+        {
+            imagen = new ImageIcon(getClass().getResource("/imagenes/Cielo.jpg")).getImage();
+            
+            g.drawImage(imagen,0, 0, getWidth(), getHeight(),this);
+            
+            setOpaque(false);
+            super.paint(g);
+        }  
+            
+    }    
 }
