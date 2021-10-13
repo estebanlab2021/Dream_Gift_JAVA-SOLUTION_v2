@@ -2412,11 +2412,13 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
         rbtnActivaPack.setBackground(new java.awt.Color(153, 204, 255));
+        buttonGroupPack.add(rbtnActivaPack);
         rbtnActivaPack.setForeground(new java.awt.Color(0, 0, 0));
         rbtnActivaPack.setText("Activo");
         jPanelPacks.add(rbtnActivaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
         rbtnInactivaPack.setBackground(new java.awt.Color(153, 204, 255));
+        buttonGroupPack.add(rbtnInactivaPack);
         rbtnInactivaPack.setForeground(new java.awt.Color(0, 0, 0));
         rbtnInactivaPack.setText("Inactivo");
         jPanelPacks.add(rbtnInactivaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
