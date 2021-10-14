@@ -13,6 +13,7 @@ public class Articulos {
     private String art_descripcion;
     private int art_stock;
     private String art_fecha_vencimiento;
+    private int art_estado;
 
     public int getIdarticulo() {
         return idarticulo;
@@ -53,6 +54,16 @@ public class Articulos {
     public void setArt_fecha_vencimiento(String art_fecha_vencimiento) {
         this.art_fecha_vencimiento = art_fecha_vencimiento;
     }
+
+    public int getArt_estado() {
+        return art_estado;
+    }
+
+    public void setArt_estado(int art_estado) {
+        this.art_estado = art_estado;
+    }
+    
+    
 
      //Metodo para Agregar datos al Listado Articulos
     public static ArrayList<String> MostrarArticulos(){
