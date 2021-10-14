@@ -73,6 +73,10 @@ public class MenuMaestro extends javax.swing.JFrame {
         RadioButtonUserInactivo.setEnabled(false);
         mostrarTablaArticuloHasPack();
         txtIdPack.setEditable(false);
+        txtIdCategoriaP.setVisible(false);
+        txtPrueba.setVisible(false);
+        txtIdArticuloPack.setVisible(false);
+        btnGuardarArtPack.setEnabled(false);
     }
 
     
@@ -1546,7 +1550,13 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
     
-    
+    private void EliminarArticulosPack(){
+        int indice = listArtXPck.getSelectedIndex();
+        //System.out.println(indice);
+        modelo1.remove(indice);
+        
+        
+    }
     
     
     
@@ -1747,6 +1757,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         tablaArtHasPack = new javax.swing.JTable();
         txtPrueba = new javax.swing.JTextField();
         txtIdArticuloPack = new javax.swing.JTextField();
+        jLabel38 = new javax.swing.JLabel();
         jPanelProveedores1 = new FondoPanel();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
@@ -2727,6 +2738,11 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.add(btnModPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
 
         btnLimPack.setText("Limpiar");
+        btnLimPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimPackActionPerformed(evt);
+            }
+        });
         jPanelPacks.add(btnLimPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 80, -1));
         jPanelPacks.add(txtStockPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 90, -1));
 
@@ -2796,10 +2812,21 @@ public class MenuMaestro extends javax.swing.JFrame {
         jScrollPane9.setViewportView(listArtXPck);
 
         jPanelPacks.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 40, 200, -1));
+
+        txtCantArt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCantArtKeyReleased(evt);
+            }
+        });
         jPanelPacks.add(txtCantArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, 70, -1));
 
         btnQuitarArt.setBackground(new java.awt.Color(255, 153, 102));
         btnQuitarArt.setText("Quitar");
+        btnQuitarArt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarArtActionPerformed(evt);
+            }
+        });
         jPanelPacks.add(btnQuitarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 80, -1));
 
         btnGuardarArtPack.setText("Guardar");
@@ -2826,6 +2853,9 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 510, 140));
         jPanelPacks.add(txtPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 130, -1));
         jPanelPacks.add(txtIdArticuloPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 200, 30, -1));
+
+        jLabel38.setText("Unidades");
+        jPanelPacks.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, -1));
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
 
@@ -3480,6 +3510,25 @@ public class MenuMaestro extends javax.swing.JFrame {
         mostrarTablaArticuloHasPack();
     }//GEN-LAST:event_btnGuardarArtPackActionPerformed
 
+    private void btnQuitarArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarArtActionPerformed
+        // TODO add your handling code here:
+        EliminarArticulosPack();
+    }//GEN-LAST:event_btnQuitarArtActionPerformed
+
+    private void txtCantArtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantArtKeyReleased
+        // TODO add your handling code here:
+        btnGuardarArtPack.setEnabled(true);
+    }//GEN-LAST:event_txtCantArtKeyReleased
+
+    private void btnLimPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimPackActionPerformed
+        // TODO add your handling code here:
+        modelo1.clear();
+        pak.clear();
+        txtPrueba.setText(null);
+        txtIdArticuloPack.setText(null);
+        mostrarTablaArticuloHasPack();
+    }//GEN-LAST:event_btnLimPackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3619,6 +3668,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
