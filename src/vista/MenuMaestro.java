@@ -2507,41 +2507,48 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelProveedores1.setBackground(new java.awt.Color(153, 204, 255));
         jPanelProveedores1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel56.setText("Nombre");
-        jPanelProveedores1.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        jPanelProveedores1.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
 
+        jLabel57.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel57.setText("Dirección");
-        jPanelProveedores1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        jPanelProveedores1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
+        jLabel58.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel58.setText("Rut");
-        jPanelProveedores1.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        jPanelProveedores1.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
+        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel59.setText("Telefono");
-        jPanelProveedores1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+        jPanelProveedores1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, -1, -1));
 
+        jLabel60.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel60.setText("Mail");
-        jPanelProveedores1.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
+        jPanelProveedores1.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
 
+        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel61.setText("Razón Social");
-        jPanelProveedores1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, -1, -1));
-        jPanelProveedores1.add(txtNombreProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 170, -1));
-        jPanelProveedores1.add(txtDirProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 170, -1));
+        jPanelProveedores1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+        jPanelProveedores1.add(txtNombreProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 170, -1));
+        jPanelProveedores1.add(txtDirProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 170, -1));
 
         txtTelProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(txtTelProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 170, -1));
-        jPanelProveedores1.add(txtMailProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 170, -1));
+        jPanelProveedores1.add(txtTelProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 170, -1));
+        jPanelProveedores1.add(txtMailProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 170, -1));
 
         txtRazSocProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRazSocProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(txtRazSocProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 170, -1));
+        jPanelProveedores1.add(txtRazSocProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 170, -1));
 
+        btnIngProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnIngProv.setText("Ingresar");
         btnIngProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2552,6 +2559,7 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         rbtnInActivoProv.setBackground(new java.awt.Color(153, 204, 255));
         buttonGroupProv.add(rbtnInActivoProv);
+        rbtnInActivoProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnInActivoProv.setText("Inactivo");
         jPanelProveedores1.add(rbtnInActivoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
 
@@ -2560,6 +2568,7 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         rbtnActivoProv.setBackground(new java.awt.Color(153, 204, 255));
         buttonGroupProv.add(rbtnActivoProv);
+        rbtnActivoProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnActivoProv.setText("Activo");
         rbtnActivoProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2568,25 +2577,28 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
         jPanelProveedores1.add(rbtnActivoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
 
+        jLabel63.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel63.setText("Estado");
         jPanelProveedores1.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
 
+        btnModProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModProv.setText("Modificar");
         btnModProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(btnModProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
+        jPanelProveedores1.add(btnModProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
 
+        btnLimProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimProv.setText("Limpiar");
         btnLimProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(btnLimProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
-        jPanelProveedores1.add(txtIdProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 120, -1));
+        jPanelProveedores1.add(btnLimProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
+        jPanelProveedores1.add(txtIdProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 170, -1));
 
         TablaProv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
