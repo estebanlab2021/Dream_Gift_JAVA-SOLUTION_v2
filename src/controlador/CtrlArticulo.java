@@ -51,7 +51,7 @@ public class CtrlArticulo implements ActionListener{
             }else{
                 mod.setArt_fecha_vencimiento(vistaA.txtDefaul.getText());
             }
-            mod.setArt_fecha_vencimiento(vistaA.txtFechaArticulo.getText());
+            //mod.setArt_fecha_vencimiento(vistaA.txtFechaArticulo.getText());
             mod.setArt_estado(Integer.parseInt(vistaA.guardarRadioButtonArticulo()));
             
             try {
