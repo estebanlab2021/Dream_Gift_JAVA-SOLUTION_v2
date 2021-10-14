@@ -59,7 +59,7 @@ public class ctrlVentas implements ActionListener{
             mod1.setVta_hora_entrega_final(vistaA1.ComboBoxHoraFinal.getSelectedItem().toString());
             //mod1.setVta_hora_entrega_inicial(vistaA1.txtHoraIni.getText());
             //mod1.setVta_hora_entrega_final(vistaA1.txtHoraFin.getText());
-            String edoBanco = "3";
+            String edoBanco = "22";
             mod1.setId_banco(Integer.parseInt(edoBanco));
             mod1.setVta_total(Double.parseDouble(vistaA1.txtCostoPack.getText()));
             
@@ -95,10 +95,10 @@ public class ctrlVentas implements ActionListener{
         
         
         if(e.getSource()== vistaA1.btnConfirmarPago){
-            Date date = vistaA1.fechaPagoConfirmacion.getDate();
-            long d = date.getTime();
-            java.sql.Date fecha = new java.sql.Date(d);
-            mod1.setVta_fecha_venta(fecha.toString());
+            Date date1 = vistaA1.fechaPagoConfirmacion.getDate();
+            long d1 = date1.getTime();
+            java.sql.Date fecha1 = new java.sql.Date(d1);
+            mod1.setVta_fecha_venta(fecha1.toString());
             mod1.setId_banco(vistaA1.ComboBoxBanco.getSelectedIndex());
             mod1.setVta_codigo_transferencia(Integer.parseInt(vistaA1.txtCodigoTransferencia.getText()));
             mod1.setId_estados_venta(vistaA1.ComboBoxEstadosVenta.getSelectedIndex());
