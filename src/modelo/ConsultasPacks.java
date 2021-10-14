@@ -62,6 +62,36 @@ public class ConsultasPacks extends Conexion{
             }
         }
     }
+    
+    
+    public boolean guardarDetallePack(ArticuloHasPack haspck) throws SQLException{
+        PreparedStatement ps = null;
+        Connection con = (Connection) getConexion();
+        
+        String sql ="INSERT INTO articulo_has_pack (id_articulo_art, id_pack_pck, cantidad) VALES(?.?,?)";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, haspck.getId_articulo_art());
+            ps.setInt(2, haspck.getId_pack_pck());
+            ps.setInt(3, haspck.getCantidad());
+            
+            ps.execute();
+            return true;
+        }catch(SQLException e){
+            System.err.println(e);
+            return false;
+        }finally{
+            try{
+                con.close();
+            }catch(SQLException e){
+                System.err.println(e);
+            }
+        }
+    }
+    
+    
+    
    /* 
     //*** Buscar Packs *****
     public boolean buscarPacks(Packs pck) throws SQLException{
