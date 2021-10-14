@@ -72,6 +72,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         RadioButtonUserActivo.setEnabled(false);
         RadioButtonUserInactivo.setEnabled(false);
         mostrarTablaArticuloHasPack();
+        txtIdPack.setEditable(false);
     }
 
     
@@ -2686,10 +2687,10 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanelPacks.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jLabel49.setText("ID Categoria");
-        jPanelPacks.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
-        jPanelPacks.add(txtIdPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 60, -1));
-        jPanelPacks.add(txtIdCategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 120, -1));
+        jLabel49.setText("ID PACK");
+        jPanelPacks.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        jPanelPacks.add(txtIdPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 60, -1));
+        jPanelPacks.add(txtIdCategoriaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 30, -1));
         jPanelPacks.add(txtPckNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 120, -1));
 
         jLabel45.setText("Nombre Pack");
@@ -2802,7 +2803,12 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.add(btnQuitarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 80, -1));
 
         btnGuardarArtPack.setText("Guardar");
-        jPanelPacks.add(btnGuardarArtPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 80, -1));
+        btnGuardarArtPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarArtPackActionPerformed(evt);
+            }
+        });
+        jPanelPacks.add(btnGuardarArtPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 190, 80, -1));
 
         tablaArtHasPack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -3468,6 +3474,11 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtCantArt.setText(null);
         traerIdArticulo();
     }//GEN-LAST:event_btnAgregarArtActionPerformed
+
+    private void btnGuardarArtPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarArtPackActionPerformed
+        // TODO add your handling code here:
+        mostrarTablaArticuloHasPack();
+    }//GEN-LAST:event_btnGuardarArtPackActionPerformed
 
     /**
      * @param args the command line arguments
