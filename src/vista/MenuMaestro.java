@@ -1573,7 +1573,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT id_pack_pck, id_articulo_art, cantidad FROM articulo_has_pack";
+            String sql = "SELECT articulo_has_pack.id_pack_pck, articulo.art_descripcion, articulo_has_pack.cantidad FROM articulo_has_pack JOIN articulo ON articulo_has_pack.id_articulo_art = articulo.idarticulo";
             
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -1582,7 +1582,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             int CantidadColumnas = rsMd.getColumnCount();
             
             modelo1.addColumn("Id Pack");
-            modelo1.addColumn("Id Articulo");
+            modelo1.addColumn("Articulo");
             modelo1.addColumn("Cantidad");
             
             
