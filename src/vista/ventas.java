@@ -148,7 +148,7 @@ public class ventas extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas WHERE (venta.id_estados_venta = '2')";
+            String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas WHERE (venta.id_estados_venta = '1')";
             
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -345,7 +345,7 @@ public class ventas extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial, estados_despacho.estados_despacho_name FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas JOIN estados_despacho ON venta.estado_despacho = estados_despacho.idestados_despacho WHERE (venta.id_estados_venta = '2')";
+            String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial, estados_despacho.estados_despacho_name FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas JOIN estados_despacho ON venta.estado_despacho = estados_despacho.idestados_despacho WHERE (venta.id_estados_venta = '1')";
             
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -389,7 +389,7 @@ public class ventas extends javax.swing.JFrame {
         ResultSet rs = null;
         Conexion conn = new Conexion();
         Connection con = conn.getConexion();
-        String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas WHERE (venta.id_estados_venta = '2') AND (venta.vta_fecha_entrega LIKE '%"+buscarfecha+"%')";
+        String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas WHERE (venta.id_estados_venta = '1') AND (venta.vta_fecha_entrega LIKE '%"+buscarfecha+"%')";
         try{
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -432,7 +432,7 @@ public class ventas extends javax.swing.JFrame {
         ResultSet rs = null;
         Conexion conn = new Conexion();
         Connection con = conn.getConexion();
-        String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial, estados_despacho.estados_despacho_name FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas JOIN estados_despacho ON venta.estado_despacho = estados_despacho.idestados_despacho WHERE (venta.id_estados_venta = '2') AND (venta.vta_fecha_entrega LIKE '%"+buscarfecha+"%')";
+        String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, comunas.nombre_comunas, venta.vta_direccion_destinatario, venta.vta_hora_entrega_inicial, estados_despacho.estados_despacho_name FROM venta JOIN pack ON venta.id_pack = pack.idpack JOIN comunas ON venta.id_comuna = comunas.idcomunas JOIN estados_despacho ON venta.estado_despacho = estados_despacho.idestados_despacho WHERE (venta.id_estados_venta = '1') AND (venta.vta_fecha_entrega LIKE '%"+buscarfecha+"%')";
         try{
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
