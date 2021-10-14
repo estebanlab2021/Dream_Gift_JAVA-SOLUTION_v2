@@ -68,7 +68,7 @@ public class ConsultasPacks extends Conexion{
         PreparedStatement ps = null;
         Connection con = (Connection) getConexion();
         
-        String sql ="INSERT INTO articulo_has_pack (id_articulo_art, id_pack_pck, cantidad) VALES(?.?,?)";
+        String sql ="INSERT INTO articulo_has_pack (id_articulo_art, id_pack_pck, cantidad) VALUES(?.?,?)";
         
         try{
             ps = con.prepareStatement(sql);
