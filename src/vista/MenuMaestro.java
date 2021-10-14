@@ -44,6 +44,8 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtIdComunas.setVisible(false);
         txtIdCatVenta.setVisible(false);
         txtIdCatPack.setVisible(false);
+        txtCategoriaArt.setVisible(false);
+        txtDefaul.setVisible(false);
         //txtFECHA.setVisible(false);
         MostrarCatArticulos();
         MostrarArticulos();
@@ -160,6 +162,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             modelo2.addColumn("Nombre");
             modelo2.addColumn("Stock");
             modelo2.addColumn("Fecha Vencimiento");
+            modelo2.addColumn("Estado");
             
             while(rs.next()){
                 
@@ -825,6 +828,33 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
     
+    public void traerIdcatArticulo(){
+        try{
+            //int fila = TableCategoriaArt.getSelectedRow();
+            //int ID = (int) TableCategoriaArt.getValueAt(fila, 0);
+            String categoria = (String) ComboBoxArticulo.getSelectedItem();
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT idcategoria_articulo FROM categoria_articulo WHERE (categoria_articulo = '"+categoria+"')";
+            //System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                txtCategoriaArt.setText(String.valueOf(rs.getString("idcategoria_articulo")));
+            }
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+    
     public void llamarDatosAriculos(){
         try{
             int fila = TableArticulo.getSelectedRow();
@@ -849,6 +879,13 @@ public class MenuMaestro extends javax.swing.JFrame {
                 txtStockArticulo.setText(String.valueOf(rs.getString("art_stock")));
                 txtFechaArticulo.setText(rs.getString("art_fecha_vencimiento"));
                 txtCategoriaArt.setText(String.valueOf(rs.getString("id_categoria_articulo")));
+                if(rs.getString("art_estado").equals("1")){
+                    RadioButtonActivoArt.setSelected(true);
+                }else if(rs.getString("art_estado").equals("0")){
+                    RadioButtonInactivoArt.setSelected(true);
+                }
+                int indice = Integer.parseInt(rs.getString("id_categoria_articulo")) ;
+                ComboBoxArticulo.setSelectedIndex(indice);
             }
             
         }catch(SQLException ex){
@@ -3419,6 +3456,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private void ComboBoxArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxArticuloActionPerformed
         // TODO add your handling code here:
         //AgregarItemComboBox();
+        traerIdcatArticulo();
     }//GEN-LAST:event_ComboBoxArticuloActionPerformed
 
     private void btnModificarBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarBancoActionPerformed
