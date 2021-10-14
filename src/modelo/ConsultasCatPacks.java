@@ -13,13 +13,13 @@ public class ConsultasCatPacks extends Conexion{
     public boolean registrar(CatPacks CP) throws SQLException{
         PreparedStatement ps = null;
         Connection con = (Connection) getConexion();
-        String sql = "INSERT INTO categoria_pack (categoria_pack, estado_pack) VALUES(?,?)";
+        String sql = "INSERT INTO categoria_pack (categoria_pack) VALUES(?)";
         
         try {
             ps = con.prepareStatement(sql);
             //ps.setInt(1, rs.getIdrrss());
             ps.setString(1, CP.getCategoria_pack());
-            ps.setInt(2, CP.getEstado_pack());
+            //ps.setInt(2, CP.getEstado_pack());
             ps.execute();
             return true;
         
@@ -38,13 +38,13 @@ public class ConsultasCatPacks extends Conexion{
     public boolean modificar(CatPacks CP) throws SQLException{
         PreparedStatement ps = null;
         Connection con = (Connection) getConexion();
-        String sql = "UPDATE categoria_pack SET categoria_pack=?, estado_pack=? WHERE (idcategoria_pack=?)";
+        String sql = "UPDATE categoria_pack SET categoria_pack=? WHERE (idcategoria_pack=?)";
         
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, CP.getCategoria_pack());
-            ps.setInt(2, CP.getEstado_pack());
-            ps.setInt(3, CP.getIdcategoria_pack());
+            //ps.setInt(2, CP.getEstado_pack());
+            ps.setInt(2, CP.getIdcategoria_pack());
             ps.execute();
             return true;
             
