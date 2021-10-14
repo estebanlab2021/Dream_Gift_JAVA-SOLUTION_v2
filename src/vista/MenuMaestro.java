@@ -49,6 +49,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         MostrarCatVenta();
         MostrarCATPACK();
         MostrarPACK();
+        MostrarProveedores();
         AgregarItemCBoxPack();
         AgregarListadoArticulo();
         //llamarDatosCatVenta();
@@ -432,8 +433,58 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
         return null;
     
-    }    
+    } 
     
+     // *********  Busquedas Proveedores
+    
+    public DefaultTableModel buscarProveedor(String buscarproveedor){
+    
+        DefaultTableModel modeloprov = new DefaultTableModel();
+        TablaProv.setModel(modeloprov);
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+            
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        String sql = "SELECT * FROM proveedor WHERE pro_nombre LIKE '%"+buscarproveedor+"%'";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloprov.addColumn("Rut");
+            modeloprov.addColumn("Nombre");
+            modeloprov.addColumn("Teléfono");
+            modeloprov.addColumn("Direccion");
+            modeloprov.addColumn("Mail");
+            modeloprov.addColumn("Razón Social");
+            modeloprov.addColumn("Estado");
+
+
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloprov.addRow(filas); 
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        return null;
+    
+    }
     
 //************** Fin Busquedas nuevas
     
@@ -478,6 +529,51 @@ public class MenuMaestro extends javax.swing.JFrame {
             System.err.println(ex.toString());
         }
     }
+     private void MostrarProveedores(){
+    //Tabla de Proveedores
+        try{    
+            DefaultTableModel modeloProveedores = new DefaultTableModel();
+            
+            TablaProv.setModel(modeloProveedores);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM proveedor";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloProveedores.addColumn("Rut");
+            modeloProveedores.addColumn("Nombre");
+            modeloProveedores.addColumn("Teléfono");
+            modeloProveedores.addColumn("Dirección");
+            modeloProveedores.addColumn("Mail");
+            modeloProveedores.addColumn("Razón Social");
+            modeloProveedores.addColumn("Estado");
+                        
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloProveedores.addRow(filas); 
+            }
+        
+        
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+    
     
     private void MostrarCATPACK(){
     //Tabla de Categoria Pack
@@ -637,7 +733,25 @@ public class MenuMaestro extends javax.swing.JFrame {
     }
         
 // ************* Fin Radio Boton CRistian ***********
+                
+//************** Radio Button Jessica **********
+
+  
+        public String guardarRadioButtonProv(){
+ 
+        String valor="1";
+        if(rbtnActivoProv.isSelected()==true){
+           valor= "1";
+           
+        }else if (rbtnInActivoProv.isSelected()==true){
+             valor = "0";
+
+        }
         
+        return valor;
+    }
+        
+// ************* Fin Radio Boton Jessica ***********      
     public void llamarDatosCateArticulo(){
         try{
             int fila = TableCategoriaArt.getSelectedRow();
@@ -951,6 +1065,40 @@ public class MenuMaestro extends javax.swing.JFrame {
         
     }
 
+     //**** Llamar Datos Proveedores ********
+    public void llamarDatosPROVEEDORES(){
+        try{
+            int fila = TablaProv.getSelectedRow();
+            String RUT = (String) TablaProv.getValueAt(fila, 0);
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM proveedor WHERE (idproveedor = ?)";
+            
+            ps = con.prepareStatement(sql);
+            ps.setString(1, RUT);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                txtIdProv.setText(rs.getString("idproveedor"));
+                txtNombreProv.setText(rs.getString("pro_nombre"));
+                txtTelProv.setText(rs.getString("pro_telefono"));
+                txtMailProv.setText(rs.getString("pro_correo"));
+                txtDirProv.setText(rs.getString("pro_direccion"));
+                txtRazSocProv.setText(rs.getString("razon_social"));
+                if(rs.getString("estado").equals("1")){
+                    rbtnActivoProv.setSelected(true);
+                }else if(rs.getString("estado").equals("0")){
+                    rbtnInActivoProv.setSelected(true);
+                }
+            }
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
 /********************** Codigo Erick  ************************/
     
         // * Radio Button Cliente ***
@@ -1128,7 +1276,7 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         btnGroupComunas = new javax.swing.ButtonGroup();
         btnGroupBancos = new javax.swing.ButtonGroup();
-        radiobuttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroupProv = new javax.swing.ButtonGroup();
         buttonGroupRRSS = new javax.swing.ButtonGroup();
         buttonGroupCli = new javax.swing.ButtonGroup();
         buttonGroupCatPack = new javax.swing.ButtonGroup();
@@ -1265,33 +1413,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         btnModCatPack = new javax.swing.JButton();
         btnLimCatPack = new javax.swing.JButton();
         jSeparator7 = new javax.swing.JSeparator();
-        jPanelProveedores = new FondoPanel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jLabel42 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jLabel43 = new javax.swing.JLabel();
-        jSeparator10 = new javax.swing.JSeparator();
         jPanelCategoriaArticulos = new FondoPanel();
         txtIdCategoria_Articulo = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -1340,6 +1461,30 @@ public class MenuMaestro extends javax.swing.JFrame {
         btnGuardarArtPack = new javax.swing.JButton();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanelProveedores1 = new FondoPanel();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        txtNombreProv = new javax.swing.JTextField();
+        txtDirProv = new javax.swing.JTextField();
+        txtTelProv = new javax.swing.JTextField();
+        txtMailProv = new javax.swing.JTextField();
+        txtRazSocProv = new javax.swing.JTextField();
+        btnIngProv = new javax.swing.JButton();
+        rbtnInActivoProv = new javax.swing.JRadioButton();
+        jLabel62 = new javax.swing.JLabel();
+        rbtnActivoProv = new javax.swing.JRadioButton();
+        jLabel63 = new javax.swing.JLabel();
+        btnModProv = new javax.swing.JButton();
+        btnLimProv = new javax.swing.JButton();
+        txtIdProv = new javax.swing.JTextField();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        TablaProv = new javax.swing.JTable();
+        txtBuscarProv = new javax.swing.JTextField();
+        jLabel64 = new javax.swing.JLabel();
         btnRegregarMenu = new javax.swing.JButton();
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -1463,7 +1608,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         );
         jPanelBancosLayout.setVerticalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Bancos", jPanelBancos);
@@ -1476,7 +1621,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         );
         jPanelUsuarioLayout.setVerticalGroup(
             jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addGap(0, 558, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Usuario", jPanelUsuario);
@@ -2048,7 +2193,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                             .addComponent(jLabel30)
                             .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresarCatVenta)
                     .addComponent(btnModificarCatVenta)
@@ -2059,7 +2204,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
@@ -2148,134 +2293,6 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Categoria Packs", jPanelCategoriaPacks);
 
-        jPanelProveedores.setBackground(new java.awt.Color(153, 204, 255));
-        jPanelProveedores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel33.setText("Nombre");
-        jPanelProveedores.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
-
-        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel34.setText("Dirección");
-        jPanelProveedores.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
-
-        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel35.setText("Rut");
-        jPanelProveedores.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
-
-        jLabel36.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel36.setText("Telefono");
-        jPanelProveedores.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, -1));
-
-        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel37.setText("Mail");
-        jPanelProveedores.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
-
-        jLabel38.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel38.setText("Razón Social");
-        jPanelProveedores.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
-
-        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel39.setText("Nombre Proveedor");
-        jPanelProveedores.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
-
-        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel40.setText("Lista de Proveedores");
-        jPanelProveedores.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
-
-        jLabel41.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel41.setText("Buscar");
-        jPanelProveedores.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, -1, 20));
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        jPanelProveedores.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 180, -1));
-        jPanelProveedores.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 170, -1));
-        jPanelProveedores.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 170, -1));
-        jPanelProveedores.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 170, -1));
-
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
-            }
-        });
-        jPanelProveedores.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 170, -1));
-        jPanelProveedores.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 170, -1));
-
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
-            }
-        });
-        jPanelProveedores.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 170, -1));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanelProveedores.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jButton2.setText("OK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanelProveedores.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, 30));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-        jPanelProveedores.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 140, -1));
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Teléfono", "Dirección", "Mail", "Rut", "Razón Social"
-            }
-        ));
-        jScrollPane12.setViewportView(jTable3);
-
-        jPanelProveedores.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 560, 90));
-
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jRadioButton1.setText("Inactivo");
-        jPanelProveedores.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
-
-        jLabel42.setText("Estado");
-        jPanelProveedores.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 164, 40, 0));
-
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jRadioButton2.setText("Activo");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
-            }
-        });
-        jPanelProveedores.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, -1, -1));
-
-        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel43.setText("Estado");
-        jPanelProveedores.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
-        jPanelProveedores.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 876, 10));
-
-        jTabbedPane1.addTab("Proveedores", jPanelProveedores);
-
         jPanelCategoriaArticulos.setBackground(new java.awt.Color(153, 204, 255));
         jPanelCategoriaArticulos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanelCategoriaArticulos.add(txtIdCategoria_Articulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 193, -1));
@@ -2289,7 +2306,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jLabel10.setText("Estado:");
         jPanelCategoriaArticulos.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, -1, -1));
 
-        radiobuttonGroup1.add(RadioButtonEstado);
+        buttonGroupProv.add(RadioButtonEstado);
         RadioButtonEstado.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         RadioButtonEstado.setText("Activo");
         RadioButtonEstado.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2304,7 +2321,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
         jPanelCategoriaArticulos.add(RadioButtonEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, -1, -1));
 
-        radiobuttonGroup1.add(RadioButtonEstado0);
+        buttonGroupProv.add(RadioButtonEstado0);
         RadioButtonEstado0.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         RadioButtonEstado0.setText("Inactivo");
         jPanelCategoriaArticulos.add(RadioButtonEstado0, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, -1, -1));
@@ -2487,7 +2504,128 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, 490));
+        jPanelProveedores1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanelProveedores1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel56.setText("Nombre");
+        jPanelProveedores1.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+
+        jLabel57.setText("Dirección");
+        jPanelProveedores1.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        jLabel58.setText("Rut");
+        jPanelProveedores1.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+
+        jLabel59.setText("Telefono");
+        jPanelProveedores1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+
+        jLabel60.setText("Mail");
+        jPanelProveedores1.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
+
+        jLabel61.setText("Razón Social");
+        jPanelProveedores1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, -1, -1));
+        jPanelProveedores1.add(txtNombreProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 170, -1));
+        jPanelProveedores1.add(txtDirProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 170, -1));
+
+        txtTelProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelProvActionPerformed(evt);
+            }
+        });
+        jPanelProveedores1.add(txtTelProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 170, -1));
+        jPanelProveedores1.add(txtMailProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 170, -1));
+
+        txtRazSocProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRazSocProvActionPerformed(evt);
+            }
+        });
+        jPanelProveedores1.add(txtRazSocProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 170, -1));
+
+        btnIngProv.setText("Ingresar");
+        btnIngProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngProvActionPerformed(evt);
+            }
+        });
+        jPanelProveedores1.add(btnIngProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+
+        rbtnInActivoProv.setBackground(new java.awt.Color(153, 204, 255));
+        buttonGroupProv.add(rbtnInActivoProv);
+        rbtnInActivoProv.setText("Inactivo");
+        jPanelProveedores1.add(rbtnInActivoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
+
+        jLabel62.setText("Estado");
+        jPanelProveedores1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 164, 40, 0));
+
+        rbtnActivoProv.setBackground(new java.awt.Color(153, 204, 255));
+        buttonGroupProv.add(rbtnActivoProv);
+        rbtnActivoProv.setText("Activo");
+        rbtnActivoProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnActivoProvActionPerformed(evt);
+            }
+        });
+        jPanelProveedores1.add(rbtnActivoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
+
+        jLabel63.setText("Estado");
+        jPanelProveedores1.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
+
+        btnModProv.setText("Modificar");
+        btnModProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModProvActionPerformed(evt);
+            }
+        });
+        jPanelProveedores1.add(btnModProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
+
+        btnLimProv.setText("Limpiar");
+        btnLimProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimProvActionPerformed(evt);
+            }
+        });
+        jPanelProveedores1.add(btnLimProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        jPanelProveedores1.add(txtIdProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 120, -1));
+
+        TablaProv.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Rut", "Nombre", "Teléfono", "Dirección", "Mail", "Razón Social", "Estado"
+            }
+        ));
+        TablaProv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaProvMouseClicked(evt);
+            }
+        });
+        jScrollPane13.setViewportView(TablaProv);
+
+        jPanelProveedores1.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 840, 190));
+
+        txtBuscarProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarProvActionPerformed(evt);
+            }
+        });
+        txtBuscarProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarProvKeyReleased(evt);
+            }
+        });
+        jPanelProveedores1.add(txtBuscarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 180, 20));
+
+        jLabel64.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel64.setText("Buscar");
+        jPanelProveedores1.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, -1, 30));
+
+        jTabbedPane1.addTab("Proveedores", jPanelProveedores1);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, 590));
 
         btnRegregarMenu.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnRegregarMenu.setText("Regresar a Menú Principal");
@@ -2734,34 +2872,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModRrssAncestorAdded
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
-
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
-
     private void txtBuscarBancoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarBancoKeyReleased
         // TODO add your handling code here:
         buscarBanco(txtBuscarBanco.getText());
@@ -2771,6 +2881,50 @@ public class MenuMaestro extends javax.swing.JFrame {
         // TODO add your handling code here:
        buscarEstadoVenta(txtBuscarCatVenta.getText()); 
     }//GEN-LAST:event_txtBuscarCatVentaKeyReleased
+
+    private void txtTelProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelProvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelProvActionPerformed
+
+    private void txtRazSocProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRazSocProvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRazSocProvActionPerformed
+
+    private void btnIngProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngProvActionPerformed
+        // TODO add your handling code here:
+        MostrarProveedores();
+        guardarRadioButtonProv();
+    }//GEN-LAST:event_btnIngProvActionPerformed
+
+    private void rbtnActivoProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnActivoProvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnActivoProvActionPerformed
+
+    private void btnModProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModProvActionPerformed
+        // TODO add your handling code here:
+        MostrarProveedores();
+        guardarRadioButtonProv();
+    }//GEN-LAST:event_btnModProvActionPerformed
+
+    private void btnLimProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimProvActionPerformed
+        // TODO add your handling code here:
+        MostrarProveedores();
+        guardarRadioButtonProv();
+    }//GEN-LAST:event_btnLimProvActionPerformed
+
+    private void TablaProvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProvMouseClicked
+        // TODO add your handling code here:
+        llamarDatosPROVEEDORES();
+    }//GEN-LAST:event_TablaProvMouseClicked
+
+    private void txtBuscarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarProvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarProvActionPerformed
+
+    private void txtBuscarProvKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarProvKeyReleased
+        buscarProveedor(txtBuscarProv.getText());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarProvKeyReleased
 
     /**
      * @param args the command line arguments
@@ -2825,6 +2979,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JTable TablaClientes;
     public javax.swing.JTable TablaComuna;
     public javax.swing.JTable TablaPacks;
+    public javax.swing.JTable TablaProv;
     public javax.swing.JTable TablaRRSS;
     public javax.swing.JTable TableArticulo;
     public javax.swing.JTable TableCatVenta;
@@ -2835,6 +2990,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.ButtonGroup btnGroupComunas;
     public javax.swing.JButton btnGuardarArtPack;
     public javax.swing.JButton btnIngCatPack;
+    public javax.swing.JButton btnIngProv;
     public javax.swing.JButton btnIngregarArticulo;
     public javax.swing.JButton btnIngresaPack;
     public javax.swing.JButton btnIngresarBanco;
@@ -2843,6 +2999,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JButton btnIngresarRrss;
     public javax.swing.JButton btnLimCatPack;
     public javax.swing.JButton btnLimPack;
+    public javax.swing.JButton btnLimProv;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnLimpiarArticulo;
     public javax.swing.JButton btnLimpiarBanco;
@@ -2853,6 +3010,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JButton btnModCatPack;
     public javax.swing.JButton btnModComuna;
     public javax.swing.JButton btnModPack;
+    public javax.swing.JButton btnModProv;
     public javax.swing.JButton btnModRrss;
     public javax.swing.JButton btnModificarArticulo;
     public javax.swing.JButton btnModificarBanco;
@@ -2865,11 +3023,9 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.ButtonGroup buttonGroupCatPack;
     public javax.swing.ButtonGroup buttonGroupCli;
     public javax.swing.ButtonGroup buttonGroupPack;
+    public javax.swing.ButtonGroup buttonGroupProv;
     public javax.swing.ButtonGroup buttonGroupRRSS;
     public javax.swing.JComboBox<String> cboxCatPack;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;
@@ -2896,18 +3052,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
@@ -2921,7 +3066,16 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2936,15 +3090,13 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JPanel jPanelComunas;
     private javax.swing.JPanel jPanelEstados_Ventas1;
     private javax.swing.JPanel jPanelPacks;
-    private javax.swing.JPanel jPanelProveedores;
+    private javax.swing.JPanel jPanelProveedores1;
     private javax.swing.JPanel jPanelRRSS;
     private javax.swing.JPanel jPanelUsuario;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2953,7 +3105,6 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -2965,23 +3116,16 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     public javax.swing.JList<String> listArtXPck;
     public javax.swing.JList<String> listArticulosPck;
     public javax.swing.JLabel nombre;
-    public javax.swing.ButtonGroup radiobuttonGroup1;
     public javax.swing.JRadioButton rbtnActivaPack;
     public javax.swing.JRadioButton rbtnActivarBanco;
     public javax.swing.JRadioButton rbtnActivoCatPack;
     public javax.swing.JRadioButton rbtnActivoComuna;
+    public javax.swing.JRadioButton rbtnActivoProv;
     public javax.swing.JRadioButton rbtnInActivoCatPack;
+    public javax.swing.JRadioButton rbtnInActivoProv;
     public javax.swing.JRadioButton rbtnInactivaPack;
     public javax.swing.JRadioButton rbtnInactivoComuna;
     public javax.swing.JRadioButton rbtnInactvarBanco;
@@ -2992,6 +3136,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JTextField txtBuscarBanco;
     public javax.swing.JTextField txtBuscarCatVenta;
     public javax.swing.JTextField txtBuscarComunas;
+    public javax.swing.JTextField txtBuscarProv;
     public javax.swing.JTextField txtBusquedaCatPack;
     public javax.swing.JTextField txtBusquedaCliente;
     private javax.swing.JTextField txtBusquedaRS;
@@ -3004,6 +3149,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JTextField txtCodigoComuna;
     public javax.swing.JTextField txtCodigoRs;
     public javax.swing.JTextField txtCostoPack;
+    public javax.swing.JTextField txtDirProv;
     public javax.swing.JTextField txtDireccionClientes;
     public javax.swing.JTextField txtFechaArticulo;
     public javax.swing.JTextField txtIdArticulo;
@@ -3014,17 +3160,22 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JTextField txtIdCategoria_Articulo;
     public javax.swing.JTextField txtIdComunas;
     public javax.swing.JTextField txtIdPack;
+    public javax.swing.JTextField txtIdProv;
     public javax.swing.JTextField txtIdRrss;
     public javax.swing.JTextField txtMail;
+    public javax.swing.JTextField txtMailProv;
     public javax.swing.JTextField txtNombreArticulo;
     public javax.swing.JTextField txtNombreBanco;
     public javax.swing.JTextField txtNombreComuna;
+    public javax.swing.JTextField txtNombreProv;
     public javax.swing.JTextField txtNombresClientes;
     public javax.swing.JTextField txtPckNombre;
     public javax.swing.JTextField txtRRSS;
+    public javax.swing.JTextField txtRazSocProv;
     public javax.swing.JTextField txtRut;
     public javax.swing.JTextField txtStockArticulo;
     public javax.swing.JTextField txtStockPack;
+    public javax.swing.JTextField txtTelProv;
     public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel
