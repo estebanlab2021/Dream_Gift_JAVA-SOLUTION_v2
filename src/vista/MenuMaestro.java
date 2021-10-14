@@ -77,6 +77,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtPrueba.setVisible(false);
         txtIdArticuloPack.setVisible(false);
         btnGuardarArtPack.setEnabled(false);
+        mostrartablaCountPack();
     }
 
     
@@ -1552,12 +1553,49 @@ public class MenuMaestro extends javax.swing.JFrame {
     
     private void EliminarArticulosPack(){
         int indice = listArtXPck.getSelectedIndex();
-        //System.out.println(indice);
         modelo1.remove(indice);
-        
-        
     }
     
+    private void mostrartablaCountPack(){
+        try{    
+            DefaultTableModel modelo1 = new DefaultTableModel();
+            
+            tablaCountPack.setModel(modelo1);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT pck_nombre, SUM(pck_stock) FROM pack  group by id_categoria_pack;";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo1.addColumn("Pack");
+            modelo1.addColumn("Cantidad");
+            
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo1.addRow(filas); 
+            }
+            
+            rs.close();
+
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
     
     
     
@@ -1758,6 +1796,8 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtPrueba = new javax.swing.JTextField();
         txtIdArticuloPack = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        tablaCountPack = new javax.swing.JTable();
         jPanelProveedores1 = new FondoPanel();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
@@ -2468,13 +2508,6 @@ public class MenuMaestro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(btnIngresarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnLimpiarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
                         .addGap(210, 210, 210)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
@@ -2483,7 +2516,14 @@ public class MenuMaestro extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
+                        .addGap(279, 279, 279)
+                        .addComponent(btnIngresarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnLimpiarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelEstados_Ventas1Layout.setVerticalGroup(
@@ -2497,20 +2537,20 @@ public class MenuMaestro extends javax.swing.JFrame {
                             .addComponent(jLabel30)
                             .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIngresarCatVenta)
                     .addComponent(btnModificarCatVenta)
                     .addComponent(btnLimpiarCatVenta))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelEstados_Ventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(162, 162, 162))
         );
 
         jTabbedPane1.addTab("Estados Venta", jPanelEstados_Ventas1);
@@ -2788,7 +2828,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(TablaPacks);
 
-        jPanelPacks.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 410, 140));
+        jPanelPacks.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 410, 110));
 
         jScrollPane8.setViewportView(listArticulosPck);
 
@@ -2850,12 +2890,27 @@ public class MenuMaestro extends javax.swing.JFrame {
         ));
         jScrollPane11.setViewportView(tablaArtHasPack);
 
-        jPanelPacks.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 510, 140));
+        jPanelPacks.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 510, 210));
         jPanelPacks.add(txtPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 130, -1));
         jPanelPacks.add(txtIdArticuloPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 200, 30, -1));
 
         jLabel38.setText("Unidades");
         jPanelPacks.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, -1));
+
+        tablaCountPack.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane14.setViewportView(tablaCountPack);
+
+        jPanelPacks.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 410, 100));
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
 
@@ -3459,12 +3514,14 @@ public class MenuMaestro extends javax.swing.JFrame {
         // TODO add your handling code here:
         MostrarPACK();
         guardarRBtnPack();
+        mostrartablaCountPack();
     }//GEN-LAST:event_btnIngresaPackActionPerformed
 
     private void btnModPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPackActionPerformed
         // TODO add your handling code here:
         MostrarPACK();
         guardarRBtnPack();
+        mostrartablaCountPack();
     }//GEN-LAST:event_btnModPackActionPerformed
 
     private void TablaPacksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPacksMouseClicked
@@ -3716,6 +3773,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3750,6 +3808,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JRadioButton rbtnInactivoComuna;
     public javax.swing.JRadioButton rbtnInactvarBanco;
     public javax.swing.JTable tablaArtHasPack;
+    public javax.swing.JTable tablaCountPack;
     public javax.swing.JTable tableBanco;
     public javax.swing.JTextField txtApellidosClientes;
     public javax.swing.JTextField txtBuscar;
