@@ -44,6 +44,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import modelo.ArticuloHasPack;
 
 
 /**
@@ -85,6 +86,7 @@ public class menu extends javax.swing.JFrame {
         Proveedores mod11 = new Proveedores();
         ConsultasProveedores modC11 = new ConsultasProveedores();
         Packs mod12 = new Packs();
+        ArticuloHasPack haspck = new ArticuloHasPack();
         ConsultasPacks modC12 = new ConsultasPacks();
                 
         CtrlArticulo ctrl = new CtrlArticulo(mod, modC, vistaA);
@@ -105,7 +107,7 @@ public class menu extends javax.swing.JFrame {
         ctrl10.iniciar(); // Cristian
         CtrlProveedores ctrl11 = new CtrlProveedores (mod11, modC11, vistaA);
         ctrl11.iniciar();
-        CtrlPacks ctrl12 = new CtrlPacks(mod12, modC12, vistaA); // Cristian
+        CtrlPacks ctrl12 = new CtrlPacks(mod12, haspck, modC12, vistaA); // Cristian
         ctrl12.iniciar(); // Cristian
         
         vistaA.setVisible(true);
