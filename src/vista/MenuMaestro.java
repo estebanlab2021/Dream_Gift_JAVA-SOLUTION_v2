@@ -29,6 +29,10 @@ public class MenuMaestro extends javax.swing.JFrame {
    DefaultListModel modelo = new DefaultListModel();
    MenuMaestro.FondoPanel fondo = new MenuMaestro.FondoPanel();
    
+   //DefaultListModel modelo = new DefaultListModel();
+   DefaultListModel modelo1 = new DefaultListModel();
+   ArrayList<String> pak = new ArrayList<String>();
+   
     public MenuMaestro() {
         this.setContentPane(fondo);
         initComponents();
@@ -67,6 +71,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtIdUsuario.setVisible(false);
         RadioButtonUserActivo.setEnabled(false);
         RadioButtonUserInactivo.setEnabled(false);
+        mostrarTablaArticuloHasPack();
     }
 
     
@@ -1462,6 +1467,92 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
      
+    //Agregar Articulos a PACK
+    private void AgregarArticulosPACK(){
+        //Agregar Articulos a la lista listArtXPck de la lista listArticulosPck
+        listArtXPck.setModel(modelo1);
+        pak.add(listArticulosPck.getSelectedValue());
+        modelo1.removeAllElements();
+        for (int i=0; i<pak.size();i++){
+            modelo1.addElement(pak.get(i));
+        }
+    }
+    
+    
+    //Metodo para agregar Id del Listado Articulos
+    public void traerIdArticulo(){
+        //Tarer id de listArtXPck
+        try{
+            String categoria = txtPrueba.getText();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql ="SELECT idarticulo FROM articulo WHERE (art_descripcion = '"+categoria+"')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){    
+                txtIdArticuloPack.setText(String.valueOf(rs.getString("idarticulo")));
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }
+    
+    //Mostrar las tablas Has_Pack
+    private void mostrarTablaArticuloHasPack(){
+        try{    
+            DefaultTableModel modelo1 = new DefaultTableModel();
+            
+            tablaArtHasPack.setModel(modelo1);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT id_pack_pck, id_articulo_art, cantidad FROM articulo_has_pack";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo1.addColumn("Id Pack");
+            modelo1.addColumn("Id Articulo");
+            modelo1.addColumn("Cantidad");
+            
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo1.addRow(filas); 
+            }
+            
+            rs.close();
+
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -1652,7 +1743,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         btnQuitarArt = new javax.swing.JButton();
         btnGuardarArtPack = new javax.swing.JButton();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaArtHasPack = new javax.swing.JTable();
         txtPrueba = new javax.swing.JTextField();
         txtIdArticuloPack = new javax.swing.JTextField();
         jPanelProveedores1 = new FondoPanel();
@@ -2694,6 +2785,11 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         btnAgregarArt.setBackground(new java.awt.Color(51, 204, 255));
         btnAgregarArt.setText("Agregar");
+        btnAgregarArt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarArtActionPerformed(evt);
+            }
+        });
         jPanelPacks.add(btnAgregarArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 40, 80, -1));
 
         jScrollPane9.setViewportView(listArtXPck);
@@ -2708,7 +2804,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         btnGuardarArtPack.setText("Guardar");
         jPanelPacks.add(btnGuardarArtPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 80, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaArtHasPack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -2719,7 +2815,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane11.setViewportView(jTable1);
+        jScrollPane11.setViewportView(tablaArtHasPack);
 
         jPanelPacks.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 510, 140));
         jPanelPacks.add(txtPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 130, -1));
@@ -3351,6 +3447,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         mostrarTablaUsuarios();
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void TableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableUsuariosMouseClicked
@@ -3362,6 +3459,15 @@ public class MenuMaestro extends javax.swing.JFrame {
         // TODO add your handling code here:
         traerIdCatPack();
     }//GEN-LAST:event_cboxCatPackActionPerformed
+
+    private void btnAgregarArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArtActionPerformed
+        // TODO add your handling code here:
+        AgregarArticulosPACK();
+        int indice = listArtXPck.getLastVisibleIndex();
+        txtPrueba.setText(modelo1.get(indice).toString());
+        txtCantArt.setText(null);
+        traerIdArticulo();
+    }//GEN-LAST:event_btnAgregarArtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3569,7 +3675,6 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTable jTable1;
     public javax.swing.JList<String> listArtXPck;
     public javax.swing.JList<String> listArticulosPck;
     public javax.swing.JLabel nombre;
@@ -3583,6 +3688,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JRadioButton rbtnInactivaPack;
     public javax.swing.JRadioButton rbtnInactivoComuna;
     public javax.swing.JRadioButton rbtnInactvarBanco;
+    public javax.swing.JTable tablaArtHasPack;
     public javax.swing.JTable tableBanco;
     public javax.swing.JTextField txtApellidosClientes;
     public javax.swing.JTextField txtBuscar;
