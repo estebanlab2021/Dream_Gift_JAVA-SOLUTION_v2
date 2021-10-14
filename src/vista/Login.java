@@ -29,11 +29,10 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new FondoPanel();
         btnEntrar = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtUsuario = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(202, 71, 76));
@@ -53,13 +52,12 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 366, -1, -1));
 
-        txtPassword.setText("jPasswordField1");
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 130, -1));
-
-        txtUsuario.setText("Usuario");
-        jScrollPane1.setViewportView(txtUsuario);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 130, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/REGALOTRANSPARENTE.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -72,6 +70,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Contraseña");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, -1, -1));
+        jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 130, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 500));
 
@@ -85,6 +84,10 @@ public class Login extends javax.swing.JFrame {
         menuPpal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,9 +133,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JPasswordField txtPassword;
-    public javax.swing.JTextPane txtUsuario;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
     class FondoPanel extends JPanel
