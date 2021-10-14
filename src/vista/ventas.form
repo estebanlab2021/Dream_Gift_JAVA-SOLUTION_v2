@@ -335,10 +335,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="FechaEntrega" alignment="0" pref="153" max="32767" attributes="0"/>
                                   <Component id="txtNombreDestinatario" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtDireccionDestinatario" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ComboBoxComuna" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="ComboBoxComuna" alignment="0" pref="153" max="32767" attributes="0"/>
+                                  <Component id="FechaEntrega" alignment="0" pref="153" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -393,10 +393,13 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtPack" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtHoraIni" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtPack" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtHoraIni" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="FechaEntrega" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -404,7 +407,6 @@
                                       <Component id="ComboBoxHoraInicio" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="FechaEntrega" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -445,7 +447,7 @@
                                       <Component id="txtComunas" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtCostoPack" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="9" max="32767" attributes="0"/>
                                   <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               </Group>
@@ -619,14 +621,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="com.toedter.calendar.JDateChooser" name="FechaEntrega">
-                  <Properties>
-                    <Property name="dateFormatString" type="java.lang.String" value="y-MM-dd"/>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                  </AuxValues>
-                </Component>
                 <Component class="javax.swing.JTextField" name="txtComunas">
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -648,6 +642,14 @@
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCostoPack">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="FechaEntrega">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="y-MM-dd"/>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
@@ -779,10 +781,15 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtNombreClienteConfirmacion" max="32767" attributes="0"/>
-                                              <Component id="fechaPagoConfirmacion" max="32767" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="txtNombreClienteConfirmacion" max="32767" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="fechaPagoConfirmacion" max="32767" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
@@ -837,8 +844,8 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fechaPagoConfirmacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fechaPagoConfirmacion" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -972,14 +979,6 @@
                     <Property name="orientation" type="int" value="1"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="fechaPagoConfirmacion">
-                  <Properties>
-                    <Property name="dateFormatString" type="java.lang.String" value="y-MM-dd"/>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                  </AuxValues>
-                </Component>
                 <Component class="javax.swing.JButton" name="btnBuscarConfirmacion">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
@@ -1022,6 +1021,14 @@
                   <Properties>
                     <Property name="orientation" type="int" value="1"/>
                   </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="fechaPagoConfirmacion">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="y-MM-dd"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

@@ -778,12 +778,12 @@ public class ventas extends javax.swing.JFrame {
         ComboBoxHoraFinal = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         TextAreaVentas = new javax.swing.JTextArea();
-        FechaEntrega = new com.toedter.calendar.JDateChooser();
         txtComunas = new javax.swing.JTextField();
         txtPack = new javax.swing.JTextField();
         txtHoraIni = new javax.swing.JTextField();
         txtHoraFin = new javax.swing.JTextField();
         txtCostoPack = new javax.swing.JTextField();
+        FechaEntrega = new com.toedter.calendar.JDateChooser();
         jButton3 = new javax.swing.JButton();
         btnRegistrarPedido = new javax.swing.JButton();
         btnLimpiarVenta = new javax.swing.JButton();
@@ -803,12 +803,12 @@ public class ventas extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         btnConfirmarPago = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        fechaPagoConfirmacion = new com.toedter.calendar.JDateChooser();
         btnBuscarConfirmacion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         ComboBoxEstadosVenta = new javax.swing.JComboBox<>();
         btnLimpiarConfirma = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        fechaPagoConfirmacion = new com.toedter.calendar.JDateChooser();
         jScrollPane6 = new javax.swing.JScrollPane();
         tableVentas = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
@@ -1025,10 +1025,10 @@ public class ventas extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(FechaEntrega, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                         .addComponent(txtNombreDestinatario, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtDireccionDestinatario, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ComboBoxComuna, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(ComboBoxComuna, javax.swing.GroupLayout.Alignment.LEADING, 0, 153, Short.MAX_VALUE)
+                        .addComponent(FechaEntrega, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -1070,14 +1070,15 @@ public class ventas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHoraIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtPack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtHoraIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(FechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(ComboBoxHoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(FechaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -1109,7 +1110,7 @@ public class ventas extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtComunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCostoPack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))))
         );
@@ -1145,7 +1146,7 @@ public class ventas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 334, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
@@ -1187,8 +1188,6 @@ public class ventas extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        fechaPagoConfirmacion.setDateFormatString("y-MM-dd");
-
         btnBuscarConfirmacion.setText("Buscar");
         btnBuscarConfirmacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1206,6 +1205,8 @@ public class ventas extends javax.swing.JFrame {
         });
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        fechaPagoConfirmacion.setDateFormatString("y-MM-dd");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1242,9 +1243,12 @@ public class ventas extends javax.swing.JFrame {
                                     .addComponent(jLabel26))
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombreClienteConfirmacion)
-                                    .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(12, 12, 12))
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(txtNombreClienteConfirmacion)
+                                        .addGap(12, 12, 12))
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addContainerGap())))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1666,7 +1670,7 @@ public class ventas extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnImprimirEdoDespacho)
                             .addComponent(btnDescargarEstados))))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1706,7 +1710,7 @@ public class ventas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnRegregarMenu)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
