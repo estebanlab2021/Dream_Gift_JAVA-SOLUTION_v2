@@ -48,6 +48,7 @@ public class ConsultasPacks extends Conexion{
             ps.setDouble(3, pck.getPck_costo());
             ps.setInt(4, pck.getPck_stock());
             ps.setInt(5, pck.getEstado());
+            ps.setInt(6, pck.getIdpack());
             ps.execute();
             return true;
             
