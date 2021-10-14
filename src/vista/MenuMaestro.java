@@ -61,7 +61,12 @@ public class MenuMaestro extends javax.swing.JFrame {
             txtFechaArticulo.setVisible(false);
         }else{
             txtFechaArticulo.setVisible(true);
-        } 
+        }
+        //LOs metodos de USUARIOS
+        mostrarTablaUsuarios();
+        txtIdUsuario.setVisible(false);
+        RadioButtonUserActivo.setEnabled(false);
+        RadioButtonUserInactivo.setEnabled(false);
     }
 
     
@@ -1275,8 +1280,188 @@ public class MenuMaestro extends javax.swing.JFrame {
          catch(SQLException ex){
             System.err.println(ex.toString());
         }
-    } 
+    }
     
+    //**********Metodos de Menu USUARIOS**************************
+     
+ 
+    public boolean verificarCamposVacios(){
+        char p1 [] = PasswordUsuario.getPassword();
+        String pass1 = new String(p1);
+        char p2 [] = PasswordVerified.getPassword();
+        String pass2 = new String(p2);
+        
+        if("".equals(txtNombreUsuario.getText())){
+            JOptionPane.showMessageDialog(null, "Por favor un nombre de Usuario");
+            return false;
+        }else if("".equals(pass1)){
+            JOptionPane.showMessageDialog(null, "Por favor una contraseña");
+            return false;
+        }else if(pass2.equals(pass1)){
+            //JOptionPane.showMessageDialog(null, "Bien hecho");
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "Las contraseñas deben coincidir");
+            return false;
+        }
+    }
+    
+    //Mostrar TableUsuarios
+    private void mostrarTablaUsuarios(){
+        try{    
+            DefaultTableModel modelo1 = new DefaultTableModel();
+            
+            TableUsuarios.setModel(modelo1);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT idusuario, usuario, user_estado FROM usuario";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo1.addColumn("Id Usuario");
+            modelo1.addColumn("Usuario");
+            modelo1.addColumn("Estado");
+            
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo1.addRow(filas); 
+            }
+            
+            rs.close();
+
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+    
+    //LLamar datos desde la tabla
+    public void llamarDatosUsuario(){
+        try{
+            int fila = TableUsuarios.getSelectedRow();
+            int ID = (int) TableUsuarios.getValueAt(fila, 0);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM usuario WHERE (idusuario = ?)";
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                txtIdUsuario.setText(String.valueOf(rs.getString("idusuario")));
+                txtNombreUsuario.setText(rs.getString("usuario"));
+                if(rs.getString("user_estado").equals("1")){
+                    RadioButtonUserActivo.setSelected(true);
+                }else if(rs.getString("user_estado").equals("0")){
+                    RadioButtonUserInactivo.setSelected(true);
+                }
+                PasswordUsuario.setText("password");
+                PasswordVerified.setText("password");
+                
+            }
+            txtNombreUsuario.setEditable(false);
+            PasswordUsuario.setEditable(false);
+            PasswordVerified.setEditable(false);
+            RadioButtonUserActivo.setEnabled(true);
+            RadioButtonUserInactivo.setEnabled(true);
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }
+    
+    public String guardarRadioButtonEdoUsuario(){
+        String valor="1";
+        if(RadioButtonUserActivo.isSelected()==true){
+           valor= "1";
+        }else if (RadioButtonUserInactivo.isSelected()==true){
+            valor = "0";
+        }
+        return valor;
+    }
+    
+    //**********Metodos de Menu PACKS**************************
+    
+    public void traerIdCatPack(){
+        //Tarer id de Categoria PACK desde cboxCatPack
+        try{
+            String categoria = (String) cboxCatPack.getSelectedItem();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql ="SELECT idcategoria_pack FROM categoria_pack WHERE (categoria_pack = '"+categoria+"')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){    
+                txtIdCategoriaP.setText(String.valueOf(rs.getString("idcategoria_pack")));
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+    }
+     
+    //LLamar Datos de tabla Pack
+    private void llamarDatosTablaPacks(){
+        try{    
+            int fila = TablaPacks.getSelectedRow();
+            int ID = (int) TablaPacks.getValueAt(fila, 0);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT * FROM pack WHERE (idpack = ?)";
+                        
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+                                  
+            while(rs.next()){
+                txtIdPack.setText(String.valueOf(rs.getString("idpack")));
+                txtIdCategoriaP.setText(String.valueOf(rs.getString("id_categoria_pack")));
+                txtPckNombre.setText(rs.getString("pck_nombre"));
+                txtCostoPack.setText(String.valueOf(rs.getString("pck_costo")));
+                cboxCatPack.setSelectedIndex(Integer.parseInt(rs.getString("id_categoria_pack")));
+                txtStockPack.setText(String.valueOf(rs.getString("pck_stock")));
+                if(rs.getString("estado").equals("1")){
+                    rbtnActivaPack.setSelected(true);
+                }else if(rs.getString("estado").equals("0")){
+                    rbtnInactivaPack.setSelected(true);
+                }
+                
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+     
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -1310,7 +1495,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         btnLimpiarBanco = new javax.swing.JButton();
         txtIdBanco = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
-        jPanelUsuario = new FondoPanel();
         jPanelArticulos = new FondoPanel();
         txtIdArticulo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -1469,6 +1653,8 @@ public class MenuMaestro extends javax.swing.JFrame {
         btnGuardarArtPack = new javax.swing.JButton();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        txtPrueba = new javax.swing.JTextField();
+        txtIdArticuloPack = new javax.swing.JTextField();
         jPanelProveedores1 = new FondoPanel();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
@@ -1493,6 +1679,26 @@ public class MenuMaestro extends javax.swing.JFrame {
         TablaProv = new javax.swing.JTable();
         txtBuscarProv = new javax.swing.JTextField();
         jLabel64 = new javax.swing.JLabel();
+        jPanel8 = new FondoPanel();
+        jPanel9 = new FondoPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        txtNombreUsuario = new javax.swing.JTextField();
+        PasswordUsuario = new javax.swing.JPasswordField();
+        PasswordVerified = new javax.swing.JPasswordField();
+        btnLimpiar1 = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
+        jLabel36 = new javax.swing.JLabel();
+        RadioButtonUserActivo = new javax.swing.JRadioButton();
+        RadioButtonUserInactivo = new javax.swing.JRadioButton();
+        txtIdUsuario = new javax.swing.JTextField();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        TableUsuarios = new javax.swing.JTable();
+        jLabel37 = new javax.swing.JLabel();
         btnRegregarMenu = new javax.swing.JButton();
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -1620,19 +1826,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Bancos", jPanelBancos);
-
-        javax.swing.GroupLayout jPanelUsuarioLayout = new javax.swing.GroupLayout(jPanelUsuario);
-        jPanelUsuario.setLayout(jPanelUsuarioLayout);
-        jPanelUsuarioLayout.setHorizontalGroup(
-            jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 996, Short.MAX_VALUE)
-        );
-        jPanelUsuarioLayout.setVerticalGroup(
-            jPanelUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Usuario", jPanelUsuario);
 
         jPanelArticulos.setBackground(new java.awt.Color(153, 204, 255));
         jPanelArticulos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2415,6 +2608,11 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
         jPanelPacks.add(txtCostoPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 120, -1));
 
+        cboxCatPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxCatPackActionPerformed(evt);
+            }
+        });
         jPanelPacks.add(cboxCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 140, -1));
 
         jLabel29.setText("Categoria Pack");
@@ -2524,6 +2722,8 @@ public class MenuMaestro extends javax.swing.JFrame {
         jScrollPane11.setViewportView(jTable1);
 
         jPanelPacks.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, 510, 140));
+        jPanelPacks.add(txtPrueba, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 130, -1));
+        jPanelPacks.add(txtIdArticuloPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 200, 30, -1));
 
         jTabbedPane1.addTab("Packs", jPanelPacks);
 
@@ -2659,6 +2859,168 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelProveedores1.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, -1, 30));
 
         jTabbedPane1.addTab("Proveedores", jPanelProveedores1);
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Administración de Usuarios"));
+
+        jLabel33.setText("Nombre de Usuario:");
+
+        jLabel34.setText("Ingrese Clave:");
+
+        jLabel35.setText("Repita Clave:");
+
+        btnLimpiar1.setText("Limpiar");
+
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel36.setText("Estado:");
+
+        RadioButtonUserActivo.setText("Activo");
+
+        RadioButtonUserInactivo.setText("Inactivo");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel36)
+                        .addGap(18, 18, 18)
+                        .addComponent(RadioButtonUserActivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(RadioButtonUserInactivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addComponent(btnLimpiar1)
+                        .addGap(21, 21, 21)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnIngresar))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel34)
+                            .addComponent(jLabel35))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombreUsuario)
+                            .addComponent(PasswordUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                            .addComponent(PasswordVerified))
+                        .addGap(72, 72, 72)
+                        .addComponent(txtIdUsuario)))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34)
+                            .addComponent(PasswordUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel35)
+                            .addComponent(PasswordVerified, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLimpiar1)
+                            .addComponent(btnIngresar)
+                            .addComponent(btnModificar)
+                            .addComponent(jLabel36)
+                            .addComponent(RadioButtonUserActivo)
+                            .addComponent(RadioButtonUserInactivo)))
+                    .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        TableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Id Usuario", "Usuario", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TableUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableUsuariosMouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(TableUsuarios);
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel37.setText("USUARIOS REGISTRADOS");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(266, 266, 266)
+                        .addComponent(jLabel37)))
+                .addContainerGap(334, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel37)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Usuarios", jPanel8);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, 590));
 
@@ -2975,8 +3337,31 @@ public class MenuMaestro extends javax.swing.JFrame {
 
     private void TablaPacksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPacksMouseClicked
         // TODO add your handling code here:
+        llamarDatosTablaPacks();
         
     }//GEN-LAST:event_TablaPacksMouseClicked
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+        //verificarCamposVacios();
+        guardarRadioButtonEdoUsuario();
+        mostrarTablaUsuarios();
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        mostrarTablaUsuarios();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void TableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableUsuariosMouseClicked
+        // TODO add your handling code here:
+        llamarDatosUsuario();
+    }//GEN-LAST:event_TableUsuariosMouseClicked
+
+    private void cboxCatPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxCatPackActionPerformed
+        // TODO add your handling code here:
+        traerIdCatPack();
+    }//GEN-LAST:event_cboxCatPackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3020,10 +3405,14 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JCheckBox CheckBoxVencimientoArticulo;
     public javax.swing.JComboBox<String> ComboBoxArticulo;
     public com.toedter.calendar.JDateChooser DateFechaNac;
+    public javax.swing.JPasswordField PasswordUsuario;
+    public javax.swing.JPasswordField PasswordVerified;
     public javax.swing.JRadioButton RBtnActivo;
     public javax.swing.JRadioButton RBtnInactivo;
     public javax.swing.JRadioButton RadioButtonEstado;
     public javax.swing.JRadioButton RadioButtonEstado0;
+    public javax.swing.JRadioButton RadioButtonUserActivo;
+    public javax.swing.JRadioButton RadioButtonUserInactivo;
     public javax.swing.JRadioButton RbtnActCli;
     public javax.swing.JRadioButton RbtnInActCli;
     public javax.swing.JScrollPane ScrollTblRsResultado;
@@ -3036,6 +3425,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JTable TableArticulo;
     public javax.swing.JTable TableCatVenta;
     public javax.swing.JTable TableCategoriaArt;
+    public javax.swing.JTable TableUsuarios;
     public javax.swing.JButton btnAgregarArt;
     public javax.swing.JButton btnCategoriaArticulo;
     public javax.swing.ButtonGroup btnGroupBancos;
@@ -3045,6 +3435,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JButton btnIngProv;
     public javax.swing.JButton btnIngregarArticulo;
     public javax.swing.JButton btnIngresaPack;
+    public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnIngresarBanco;
     public javax.swing.JButton btnIngresarCatVenta;
     public javax.swing.JButton btnIngresarComuna;
@@ -3053,6 +3444,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JButton btnLimPack;
     public javax.swing.JButton btnLimProv;
     public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnLimpiar1;
     public javax.swing.JButton btnLimpiarArticulo;
     public javax.swing.JButton btnLimpiarBanco;
     public javax.swing.JButton btnLimpiarCatVenta;
@@ -3064,6 +3456,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JButton btnModPack;
     public javax.swing.JButton btnModProv;
     public javax.swing.JButton btnModRrss;
+    public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnModificarArticulo;
     public javax.swing.JButton btnModificarBanco;
     public javax.swing.JButton btnModificarCatVenta;
@@ -3104,6 +3497,11 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
@@ -3134,6 +3532,8 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JLabel jLabelCodigo;
     public javax.swing.JLabel jLabelNombre;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelArticulos;
     private javax.swing.JPanel jPanelBancos;
     private javax.swing.JPanel jPanelCategoriaArticulos;
@@ -3144,10 +3544,10 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelPacks;
     private javax.swing.JPanel jPanelProveedores1;
     private javax.swing.JPanel jPanelRRSS;
-    private javax.swing.JPanel jPanelUsuario;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     public javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -3157,6 +3557,8 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -3205,6 +3607,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JTextField txtDireccionClientes;
     public javax.swing.JTextField txtFechaArticulo;
     public javax.swing.JTextField txtIdArticulo;
+    public javax.swing.JTextField txtIdArticuloPack;
     public javax.swing.JTextField txtIdBanco;
     public javax.swing.JTextField txtIdCatPack;
     public javax.swing.JTextField txtIdCatVenta;
@@ -3214,14 +3617,17 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JTextField txtIdPack;
     public javax.swing.JTextField txtIdProv;
     public javax.swing.JTextField txtIdRrss;
+    public javax.swing.JTextField txtIdUsuario;
     public javax.swing.JTextField txtMail;
     public javax.swing.JTextField txtMailProv;
     public javax.swing.JTextField txtNombreArticulo;
     public javax.swing.JTextField txtNombreBanco;
     public javax.swing.JTextField txtNombreComuna;
     public javax.swing.JTextField txtNombreProv;
+    public javax.swing.JTextField txtNombreUsuario;
     public javax.swing.JTextField txtNombresClientes;
     public javax.swing.JTextField txtPckNombre;
+    public javax.swing.JTextField txtPrueba;
     public javax.swing.JTextField txtRRSS;
     public javax.swing.JTextField txtRazSocProv;
     public javax.swing.JTextField txtRut;
