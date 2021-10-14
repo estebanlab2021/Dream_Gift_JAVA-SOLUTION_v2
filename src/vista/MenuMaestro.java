@@ -81,6 +81,8 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtIdArticuloPack.setVisible(false);
         btnGuardarArtPack.setEnabled(false);
         mostrartablaCountPack();
+        rbtnActivoCatPack.setVisible(false);
+        rbtnInActivoCatPack.setVisible(false);
     }
 
     
@@ -944,11 +946,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             while(rs.next()){
                 txtIdCatPack.setText(String.valueOf(rs.getString("idcategoria_pack")));
                 txtCatPack.setText(rs.getString("categoria_pack"));
-                if(rs.getString("estado_pack").equals("1")){
-                    rbtnActivoCatPack.setSelected(true);
-                }else if(rs.getString("estado_pack").equals("0")){
-                    rbtnInActivoCatPack.setSelected(true);
-                }
+                
             }
             
         }catch(SQLException ex){
@@ -1793,7 +1791,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtIdCatPack = new javax.swing.JTextField();
         rbtnActivoCatPack = new javax.swing.JRadioButton();
         rbtnInActivoCatPack = new javax.swing.JRadioButton();
-        jLabel27 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         TablaCategoriaPack = new javax.swing.JTable();
         jLabel32 = new javax.swing.JLabel();
@@ -2641,10 +2638,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         rbtnInActivoCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnInActivoCatPack.setText("Inactivo");
         jPanelCategoriaPacks.add(rbtnInActivoCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel27.setText("Estado");
-        jPanelCategoriaPacks.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 60, 30));
 
         TablaCategoriaPack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -3514,7 +3507,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private void btnIngCatPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngCatPackActionPerformed
         // TODO add your handling code here:
         MostrarCATPACK();
-        guardarRBtnCatPack();
+        //guardarRBtnCatPack();
     }//GEN-LAST:event_btnIngCatPackActionPerformed
 
     private void btnModCatPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModCatPackActionPerformed
@@ -3787,7 +3780,6 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
