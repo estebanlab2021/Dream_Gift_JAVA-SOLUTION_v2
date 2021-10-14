@@ -53,6 +53,11 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupUsuario">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -3605,6 +3610,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="RadioButtonUserActivo">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroupUsuario"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Activo"/>
                   </Properties>
                   <AuxValues>
@@ -3613,6 +3621,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="RadioButtonUserInactivo">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroupUsuario"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Inactivo"/>
                   </Properties>
                   <AuxValues>

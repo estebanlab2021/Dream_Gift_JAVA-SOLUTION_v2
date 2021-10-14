@@ -1669,6 +1669,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jLabel53 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         buttonGroupArticulos = new javax.swing.ButtonGroup();
+        buttonGroupUsuario = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelBancos = new javax.swing.JPanel();
         jPanel12 = new FondoPanel();
@@ -3142,8 +3143,10 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         jLabel36.setText("Estado:");
 
+        buttonGroupUsuario.add(RadioButtonUserActivo);
         RadioButtonUserActivo.setText("Activo");
 
+        buttonGroupUsuario.add(RadioButtonUserInactivo);
         RadioButtonUserInactivo.setText("Inactivo");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -3763,6 +3766,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.ButtonGroup buttonGroupPack;
     public javax.swing.ButtonGroup buttonGroupProv;
     public javax.swing.ButtonGroup buttonGroupRRSS;
+    public javax.swing.ButtonGroup buttonGroupUsuario;
     public javax.swing.JComboBox<String> cboxCatPack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
