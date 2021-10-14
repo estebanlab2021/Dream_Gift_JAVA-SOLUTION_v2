@@ -61,6 +61,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtIdRrss.setVisible(false);
         txtIdCategoria_Articulo.setVisible(false);
         txtIdArticulo.setVisible(false);
+        txtDefaul.setText("3000-01-01");
         if(CheckBoxVencimientoArticulo.isSelected()==true){
             txtFechaArticulo.setVisible(false);
         }else{
@@ -707,6 +708,20 @@ public class MenuMaestro extends javax.swing.JFrame {
     }
     
 //*************** Radio Button *****
+    public String guardarRadioButtonArticulo(){
+       
+        //Guardar valores Radio Button Articulos
+        String valor="1";
+        if(RadioButtonActivoArt.isSelected()==true){
+           valor= "1";
+        }else if (RadioButtonInactivoArt.isSelected()==true){
+            valor = "0";
+        }
+        return valor;
+    }
+    
+    
+    
     public String guardarRadioButtonValue(){
  
         String valor="1";
@@ -1616,6 +1631,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         buttonGroupPack = new javax.swing.ButtonGroup();
         jLabel53 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        buttonGroupArticulos = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelBancos = new javax.swing.JPanel();
         jPanel12 = new FondoPanel();
@@ -1646,7 +1662,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtFechaArticulo = new javax.swing.JTextField();
         txtCategoriaArt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         btnIngregarArticulo = new javax.swing.JButton();
         btnModificarArticulo = new javax.swing.JButton();
         CheckBoxVencimientoArticulo = new javax.swing.JCheckBox();
@@ -1656,6 +1671,10 @@ public class MenuMaestro extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JSeparator();
         jLabel24 = new javax.swing.JLabel();
         txtBuscarArticulo = new javax.swing.JTextField();
+        txtDefaul = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        RadioButtonInactivoArt = new javax.swing.JRadioButton();
+        RadioButtonActivoArt = new javax.swing.JRadioButton();
         jPanelComunas = new FondoPanel();
         jLabelNombre = new javax.swing.JLabel();
         jLabelCodigo = new javax.swing.JLabel();
@@ -1999,11 +2018,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jLabel4.setText("Fecha de Vencimiento");
         jPanelArticulos.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
         jPanelArticulos.add(txtFechaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 180, -1));
-        jPanelArticulos.add(txtCategoriaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 170, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel6.setText("id Categoria");
-        jPanelArticulos.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
+        jPanelArticulos.add(txtCategoriaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 50, -1));
 
         btnIngregarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnIngregarArticulo.setText("Ingresar");
@@ -2012,7 +2027,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 btnIngregarArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(btnIngregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, -1));
+        jPanelArticulos.add(btnIngregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
 
         btnModificarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnModificarArticulo.setText("Modificar");
@@ -2026,7 +2041,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 btnModificarArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(btnModificarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
+        jPanelArticulos.add(btnModificarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, -1));
 
         CheckBoxVencimientoArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         CheckBoxVencimientoArticulo.setText("Sin Vencimiento");
@@ -2035,7 +2050,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 CheckBoxVencimientoArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(CheckBoxVencimientoArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
+        jPanelArticulos.add(CheckBoxVencimientoArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 150, -1, -1));
 
         TableArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2055,23 +2070,36 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TableArticulo);
 
-        jPanelArticulos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 570, 100));
+        jPanelArticulos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 570, 100));
 
         btnLimpiarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLimpiarArticulo.setText("Limpiar");
-        jPanelArticulos.add(btnLimpiarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, -1, -1));
-        jPanelArticulos.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 198, 900, 19));
+        jPanelArticulos.add(btnLimpiarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, -1, -1));
+        jPanelArticulos.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 900, 19));
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel24.setText("Buscar:");
-        jPanelArticulos.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
+        jPanelArticulos.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
 
         txtBuscarArticulo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarArticuloKeyReleased(evt);
             }
         });
-        jPanelArticulos.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 170, -1));
+        jPanelArticulos.add(txtBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 170, 30));
+        jPanelArticulos.add(txtDefaul, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 120, -1));
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel39.setText("Estado:");
+        jPanelArticulos.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
+
+        buttonGroupArticulos.add(RadioButtonInactivoArt);
+        RadioButtonInactivoArt.setText("Inactivo");
+        jPanelArticulos.add(RadioButtonInactivoArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
+
+        buttonGroupArticulos.add(RadioButtonActivoArt);
+        RadioButtonActivoArt.setText("Activo");
+        jPanelArticulos.add(RadioButtonActivoArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
 
         jTabbedPane1.addTab("Articulos", jPanelArticulos);
 
@@ -3385,6 +3413,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private void btnIngregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngregarArticuloActionPerformed
         // TODO add your handling code here:
         MostrarArticulos();
+        guardarRadioButtonArticulo();
     }//GEN-LAST:event_btnIngregarArticuloActionPerformed
 
     private void ComboBoxArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxArticuloActionPerformed
@@ -3632,8 +3661,10 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JPasswordField PasswordVerified;
     public javax.swing.JRadioButton RBtnActivo;
     public javax.swing.JRadioButton RBtnInactivo;
+    public javax.swing.JRadioButton RadioButtonActivoArt;
     public javax.swing.JRadioButton RadioButtonEstado;
     public javax.swing.JRadioButton RadioButtonEstado0;
+    public javax.swing.JRadioButton RadioButtonInactivoArt;
     public javax.swing.JRadioButton RadioButtonUserActivo;
     public javax.swing.JRadioButton RadioButtonUserInactivo;
     public javax.swing.JRadioButton RbtnActCli;
@@ -3688,6 +3719,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JButton btnQuitarArt;
     public javax.swing.JButton btnRegistrarCli;
     public javax.swing.JButton btnRegregarMenu;
+    public javax.swing.ButtonGroup buttonGroupArticulos;
     public javax.swing.ButtonGroup buttonGroupCatPack;
     public javax.swing.ButtonGroup buttonGroupCli;
     public javax.swing.ButtonGroup buttonGroupPack;
@@ -3726,6 +3758,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
@@ -3744,7 +3777,6 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
@@ -3829,6 +3861,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JTextField txtCodigoComuna;
     public javax.swing.JTextField txtCodigoRs;
     public javax.swing.JTextField txtCostoPack;
+    public javax.swing.JTextField txtDefaul;
     public javax.swing.JTextField txtDirProv;
     public javax.swing.JTextField txtDireccionClientes;
     public javax.swing.JTextField txtFechaArticulo;
