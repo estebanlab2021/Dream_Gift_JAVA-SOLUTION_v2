@@ -112,5 +112,6 @@ public class CtrlPacks implements ActionListener{
         vistaA1.txtCostoPack.setText(null);
         vistaA1.txtStockPack.setText(null);
         vistaA1.txtCantArt.setText(null);
+        vistaA1.cboxCatPack.setSelectedIndex(0);
     }
 }
