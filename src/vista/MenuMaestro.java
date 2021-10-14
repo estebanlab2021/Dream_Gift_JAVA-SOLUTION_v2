@@ -529,7 +529,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             System.err.println(ex.toString());
         }
     }
-     private void MostrarProveedores(){
+    private void MostrarProveedores(){
     //Tabla de Proveedores
         try{    
             DefaultTableModel modeloProveedores = new DefaultTableModel();
@@ -616,7 +616,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
 
-    //**************** Mostrar tabla Pack *************
+//**************** Mostrar tabla Pack *************
     private void MostrarPACK(){
         try{    
             DefaultTableModel modeloPacks = new DefaultTableModel();
@@ -671,7 +671,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
     
-    //**************** Agregar datos al ComboBOXPack
+//**************** Agregar datos al ComboBOXPack
     private void AgregarItemCBoxPack(){
         cboxCatPack.addItem("Seleccione Uno");
         ArrayList<String> cc = new ArrayList<String>();
@@ -690,7 +690,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
     
-    // *** Radio Button *****
+//*************** Radio Button *****
     public String guardarRadioButtonValue(){
  
         String valor="1";
@@ -705,7 +705,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         return valor;
     }
     
-        // *** Radio Button Cristian *****
+// ************** Radio Button Cristian *****
     public String guardarRadioBotonRRSS(){
  
         String valor="1";
@@ -731,12 +731,21 @@ public class MenuMaestro extends javax.swing.JFrame {
        
         return valor;
     }
-        
+
+    public String guardarRBtnPack(){
+        String valor="1";
+        if(rbtnActivaPack.isSelected()==true){
+           valor= "1";
+        }else if (rbtnInactivaPack.isSelected()==true){
+            valor = "0";
+        }
+        return valor;
+    }
+    
 // ************* Fin Radio Boton CRistian ***********
                 
 //************** Radio Button Jessica **********
 
-  
         public String guardarRadioButtonProv(){
  
         String valor="1";
@@ -751,7 +760,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         return valor;
     }
         
-// ************* Fin Radio Boton Jessica ***********      
+//************************* Fin Radio Boton Jessica ***********      
     public void llamarDatosCateArticulo(){
         try{
             int fila = TableCategoriaArt.getSelectedRow();
@@ -816,7 +825,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
     
-    //**** Llamar Datos RRSS ********
+//************************ Llamar Datos RRSS ********
     public void llamarDatosRRSS(){
         try{
             int fila = TablaRRSS.getSelectedRow();
@@ -848,7 +857,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
     
-       //**** Llamar Datos Categoria Pack ********
+//************************ Llamar Datos Categoria Pack ********
     public void llamarDatosCatPacks(){
         try{
             int fila = TablaCategoriaPack.getSelectedRow();
@@ -879,7 +888,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
     
-    /*************************  Fin codigo Cristian - Esteban **************************/
+//*************************  Fin codigo Cristian - Esteban **************************
     
     private void MostrarComuna(){
     
@@ -938,7 +947,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     }
     
     
-    //**** Llamar Datos Comunas ********
+//********************** Llamar Datos Comunas ********
     public void llamarDatosComunas(){
         try{
             int fila = TablaComuna.getSelectedRow();
@@ -1017,7 +1026,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
          
-      // * Radio Button Bancos ***
+//********************** Radio Button Bancos *****************
     public String guardarRadioButtonBanco(){
       
         String valor="1";
@@ -1029,7 +1038,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     return valor;
     } 
-        //**** Llamar Datos Bancos ********
+//********************** Llamar Datos Bancos *****************
     public void llamarDatosBancos(){
         try{
             int fila = tableBanco.getSelectedRow();
@@ -1065,7 +1074,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         
     }
 
-     //**** Llamar Datos Proveedores ********
+//********************** Llamar Datos Proveedores ************
     public void llamarDatosPROVEEDORES(){
         try{
             int fila = TablaProv.getSelectedRow();
@@ -1099,9 +1108,9 @@ public class MenuMaestro extends javax.swing.JFrame {
             System.err.println(ex.toString());
         }
     }
-/********************** Codigo Erick  ************************/
+//********************** Codigo Erick  ************************
     
-        // * Radio Button Cliente ***
+//********************* Radio Button Cliente ******************
     public String guardarRadioBotonCliente(){
         String valor="1";
         if(RbtnActCli.isSelected()==true){
@@ -1155,7 +1164,6 @@ public class MenuMaestro extends javax.swing.JFrame {
         }
     }
    
-    
     public void llamarDatosCliente(){
         try{
            int fila = TablaClientes.getSelectedRow();
@@ -1195,7 +1203,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         
     }
     
-    /********************* Fin Codigo Erick *************/
+//********************* Fin Codigo Erick **********************
     private void MostrarCatVenta(){
         //Tabla de categoria Venta
         try{    
@@ -2413,9 +2421,19 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelPacks.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
         btnIngresaPack.setText("Ingresar");
+        btnIngresaPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresaPackActionPerformed(evt);
+            }
+        });
         jPanelPacks.add(btnIngresaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
         btnModPack.setText("Modificar");
+        btnModPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModPackActionPerformed(evt);
+            }
+        });
         jPanelPacks.add(btnModPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
 
         btnLimPack.setText("Limpiar");
@@ -2455,6 +2473,11 @@ public class MenuMaestro extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        TablaPacks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaPacksMouseClicked(evt);
             }
         });
         jScrollPane7.setViewportView(TablaPacks);
@@ -2938,6 +2961,23 @@ public class MenuMaestro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarProvKeyReleased
 
+    private void btnIngresaPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaPackActionPerformed
+        // TODO add your handling code here:
+        MostrarPACK();
+        guardarRBtnPack();
+    }//GEN-LAST:event_btnIngresaPackActionPerformed
+
+    private void btnModPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPackActionPerformed
+        // TODO add your handling code here:
+        MostrarPACK();
+        guardarRBtnPack();
+    }//GEN-LAST:event_btnModPackActionPerformed
+
+    private void TablaPacksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPacksMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_TablaPacksMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3127,7 +3167,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     public javax.swing.JList<String> listArtXPck;
     public javax.swing.JList<String> listArticulosPck;
     public javax.swing.JLabel nombre;

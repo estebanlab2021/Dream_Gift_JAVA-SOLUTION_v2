@@ -35,7 +35,9 @@ import modelo.ConsultasVentas;
 import modelo.ModVentas;
 import modelo.Proveedores;
 import modelo.ConsultasProveedores;
-
+import controlador.CtrlPacks;
+import modelo.ConsultasPacks;
+import modelo.Packs;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -82,6 +84,8 @@ public class menu extends javax.swing.JFrame {
         ConsultasCatPacks modC10 = new ConsultasCatPacks();
         Proveedores mod11 = new Proveedores();
         ConsultasProveedores modC11 = new ConsultasProveedores();
+        Packs mod12 = new Packs();
+        ConsultasPacks modC12 = new ConsultasPacks();
                 
         CtrlArticulo ctrl = new CtrlArticulo(mod, modC, vistaA);
         ctrl.iniciar();
@@ -101,6 +105,8 @@ public class menu extends javax.swing.JFrame {
         ctrl10.iniciar(); // Cristian
         CtrlProveedores ctrl11 = new CtrlProveedores (mod11, modC11, vistaA);
         ctrl11.iniciar();
+        CtrlPacks ctrl12 = new CtrlPacks(mod12, modC12, vistaA); // Cristian
+        ctrl12.iniciar(); // Cristian
         
         vistaA.setVisible(true);
         this.setVisible(false);

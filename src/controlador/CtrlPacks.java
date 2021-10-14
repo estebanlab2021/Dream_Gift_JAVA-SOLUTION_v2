@@ -14,40 +14,37 @@ import vista.MenuMaestro;
  ** Cristian Alvarado
  */
 public class CtrlPacks implements ActionListener{
-    //Llamamos a las clases que hemos creado
     private Packs mod1;
     private ConsultasPacks modC1;
     private MenuMaestro vistaA1;
     
-    
     public CtrlPacks(Packs mod1, ConsultasPacks modC1, MenuMaestro vistaA1){
-        
         this.mod1 = mod1;
         this.modC1 = modC1;
         this.vistaA1 = vistaA1;
         this.vistaA1.btnIngresaPack.addActionListener(this);
         this.vistaA1.rbtnActivaPack.addActionListener(this);
-        this.vistaA1.RBtnInactivo.addActionListener(this);
+        this.vistaA1.rbtnInactivaPack.addActionListener(this);
         this.vistaA1.btnModPack.addActionListener(this);
         this.vistaA1.btnLimPack.addActionListener(this);
-        
+        this.vistaA1.btnAgregarArt.addActionListener(this);
+        this.vistaA1.btnQuitarArt.addActionListener(this); 
     }
-    
     
     public void iniciar(){
         vistaA1.setTitle("Menu Principal");
         vistaA1.setLocationRelativeTo(null);
     }
     
-    
     @Override
     public void actionPerformed(ActionEvent e){
         
         if(e.getSource() == vistaA1.btnIngresaPack){
             mod1.setId_categoria_pack(Integer.parseInt(vistaA1.txtIdCategoriaP.getText()));
-           // mod1.setCodigoRS(vistaA1.txtCodigoRs.getText());
-            mod1.setEstado(Integer.parseInt(vistaA1.guardarRadioBotonRRSS()));
-            
+            mod1.setPck_nombre(vistaA1.txtPckNombre.getText());
+            mod1.setPck_costo(Double.parseDouble(vistaA1.txtCostoPack.getText()));
+            mod1.setPck_stock(Integer.parseInt(vistaA1.txtStockPack.getText()));
+            mod1.setEstado(Integer.parseInt(vistaA1.guardarRBtnPack()));
             try {
                 if(modC1.registrar(mod1)){
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -57,44 +54,42 @@ public class CtrlPacks implements ActionListener{
                     limpiar();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(CtrlRRSS.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+                Logger.getLogger(CtrlPacks.class.getName()).log(Level.SEVERE, null, ex);
+            } 
         }
         
-        if(e.getSource() == vistaA1.btnModRrss){
-           // mod1.setIdrrss(Integer.parseInt(vistaA1.txtIdRrss.getText()));
-           // mod1.setRrss_nombre(vistaA1.txtRRSS.getText());
-           // mod1.setCodigoRS(vistaA1.txtCodigoRs.getText());
-            mod1.setEstado(Integer.parseInt(vistaA1.guardarRadioBotonRRSS()));
-            
+        if(e.getSource() == vistaA1.btnModPack){
+            mod1.setIdpack(Integer.parseInt(vistaA1.txtIdPack.getText()));
+            mod1.setId_categoria_pack(Integer.parseInt(vistaA1.txtIdCategoriaP.getText()));
+            mod1.setPck_nombre(vistaA1.txtPckNombre.getText());
+            mod1.setPck_costo(Double.parseDouble(vistaA1.txtCostoPack.getText()));
+            mod1.setPck_stock(Integer.parseInt(vistaA1.txtStockPack.getText()));
+            mod1.setEstado(Integer.parseInt(vistaA1.guardarRBtnPack()));
             try {
                 if(modC1.modificar(mod1)){
                     JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    //System.out.println(modC1.modificar());
-                    //limpiar();
+                    limpiar();
                 }else {
                     JOptionPane.showMessageDialog(null, "Error al Modificar");
                     limpiar();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(CtrlRRSS.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CtrlPacks.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
      
-        if(e.getSource() == vistaA1.btnLimpiarRrss){
+        if(e.getSource() == vistaA1.btnLimPack){
             limpiar();
         }
-        
-        
     }
     
     public void limpiar(){
-        vistaA1.txtIdRrss.setText(null);
-        vistaA1.txtRRSS.setText(null);
-        vistaA1.buttonGroupRRSS.clearSelection();
-        vistaA1.txtCodigoRs.setText(null);
-                
+        vistaA1.txtIdPack.setText(null);
+        vistaA1.txtIdCategoriaP.setText(null);
+        vistaA1.buttonGroupPack.clearSelection();
+        vistaA1.txtPckNombre.setText(null);
+        vistaA1.txtCostoPack.setText(null);
+        vistaA1.txtStockPack.setText(null);
+        vistaA1.txtCantArt.setText(null);
     }
-    
 }
