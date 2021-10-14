@@ -45,14 +45,14 @@ public class CtrlArticulo implements ActionListener{
             mod.setId_categoria_articulo(Integer.parseInt(vistaA.txtCategoriaArt.getText()));
             mod.setArt_descripcion(vistaA.txtNombreArticulo.getText());
             mod.setArt_stock(Integer.parseInt(vistaA.txtStockArticulo.getText()));
-            //Tengo un error al ingresar facha en blanco
-            /*
-            if(vistaA.txtFechaArticulo.getText() !=""){
+            
+            if(vistaA.txtFechaArticulo.isVisible()==true){
                 mod.setArt_fecha_vencimiento(vistaA.txtFechaArticulo.getText());
             }else{
-                mod.setArt_fecha_vencimiento("2000-01-01");
-            }*/
+                mod.setArt_fecha_vencimiento(vistaA.txtDefaul.getText());
+            }
             mod.setArt_fecha_vencimiento(vistaA.txtFechaArticulo.getText());
+            mod.setArt_estado(Integer.parseInt(vistaA.guardarRadioButtonArticulo()));
             
             try {
                 if(modC.registrar(mod)){
@@ -72,6 +72,7 @@ public class CtrlArticulo implements ActionListener{
             mod.setArt_descripcion(vistaA.txtNombreArticulo.getText());
             mod.setArt_stock(Integer.parseInt(vistaA.txtStockArticulo.getText()));
             mod.setArt_fecha_vencimiento(vistaA.txtFechaArticulo.getText());
+            mod.setArt_estado(Integer.parseInt(vistaA.guardarRadioButtonArticulo()));
             
             try {
                 if(modC.modificar(mod)){
@@ -100,6 +101,10 @@ public class CtrlArticulo implements ActionListener{
         vistaA.txtNombreArticulo.setText(null);
         vistaA.txtStockArticulo.setText(null);
         vistaA.txtFechaArticulo.setText(null);
+        vistaA.ComboBoxArticulo.setSelectedIndex(0);
+        vistaA.CheckBoxVencimientoArticulo.setSelected(false);
+        //vistaA.CheckBoxVencimientoArticulo.doClick();
+        vistaA.buttonGroupArticulos.clearSelection();
         
     }
     
