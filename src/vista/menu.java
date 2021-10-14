@@ -36,6 +36,7 @@ import modelo.ModVentas;
 import modelo.Proveedores;
 import modelo.ConsultasProveedores;
 import controlador.CtrlPacks;
+import controlador.ctrlMenuUsuarios;
 import modelo.ConsultasPacks;
 import modelo.Packs;
 
@@ -45,6 +46,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import modelo.ArticuloHasPack;
+import modelo.ConsultaUsuario;
+import modelo.Usuarios;
 
 
 /**
@@ -88,6 +91,8 @@ public class menu extends javax.swing.JFrame {
         Packs mod12 = new Packs();
         ArticuloHasPack haspck = new ArticuloHasPack();
         ConsultasPacks modC12 = new ConsultasPacks();
+        Usuarios user = new Usuarios();
+        ConsultaUsuario userc = new ConsultaUsuario();
                 
         CtrlArticulo ctrl = new CtrlArticulo(mod, modC, vistaA);
         ctrl.iniciar();
@@ -109,6 +114,8 @@ public class menu extends javax.swing.JFrame {
         ctrl11.iniciar();
         CtrlPacks ctrl12 = new CtrlPacks(mod12, haspck, modC12, vistaA); // Cristian
         ctrl12.iniciar(); // Cristian
+        ctrlMenuUsuarios ctrlUser = new ctrlMenuUsuarios(user, userc, vistaA);
+        ctrlUser.iniciar();
         
         vistaA.setVisible(true);
         this.setVisible(false);
