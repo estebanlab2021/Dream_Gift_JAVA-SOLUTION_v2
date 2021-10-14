@@ -113,7 +113,7 @@ public class CtrlCategoriaArticulo implements ActionListener{
         vistaA1.txtCategoriaArticulo.setText(null);
         //vistaA1.RadioButtonEstado.setSelected(false);
         //vistaA1.RadioButtonEstado0.setSelected(false);
-        vistaA1.radiobuttonGroup1.clearSelection();
+        vistaA1.buttonGroupProv.clearSelection();
         vistaA1.txtBuscar.setText(null);
         
     }
