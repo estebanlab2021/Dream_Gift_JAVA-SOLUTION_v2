@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.ArticuloHasPack;
 import modelo.ConsultasPacks;
 import modelo.Packs;
 import vista.MenuMaestro;
@@ -15,11 +16,13 @@ import vista.MenuMaestro;
  */
 public class CtrlPacks implements ActionListener{
     private Packs mod1;
+    private ArticuloHasPack haspck;
     private ConsultasPacks modC1;
     private MenuMaestro vistaA1;
     
-    public CtrlPacks(Packs mod1, ConsultasPacks modC1, MenuMaestro vistaA1){
+    public CtrlPacks(Packs mod1, ArticuloHasPack haspck, ConsultasPacks modC1, MenuMaestro vistaA1){
         this.mod1 = mod1;
+        this.haspck = haspck;
         this.modC1 = modC1;
         this.vistaA1 = vistaA1;
         this.vistaA1.btnIngresaPack.addActionListener(this);
@@ -29,6 +32,7 @@ public class CtrlPacks implements ActionListener{
         this.vistaA1.btnLimPack.addActionListener(this);
         this.vistaA1.btnAgregarArt.addActionListener(this);
         this.vistaA1.btnQuitarArt.addActionListener(this); 
+        this.vistaA1.btnGuardarArtPack.addActionListener(this); 
     }
     
     public void iniciar(){
@@ -77,6 +81,23 @@ public class CtrlPacks implements ActionListener{
                 Logger.getLogger(CtrlPacks.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        if(e.getSource() == vistaA1.btnGuardarArtPack){
+            haspck.setId_pack_pck(Integer.parseInt(vistaA1.txtIdPack.getText()));
+            haspck.setId_articulo_art(Integer.parseInt(vistaA1.txtIdArticuloPack.getText()));
+            haspck.setCantidad(Integer.parseInt(vistaA1.txtCantArt.getText()));
+            try {
+                if(modC1.guardarDetallePack(haspck)){
+                    JOptionPane.showMessageDialog(null, "Articulo Agregado al PACK");
+                }else{
+                    JOptionPane.showMessageDialog(null, "ERROR AL Agregar Articulo");
+                }
+            }catch (SQLException ex){
+                Logger.getLogger(CtrlPacks.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
      
         if(e.getSource() == vistaA1.btnLimPack){
             limpiar();
