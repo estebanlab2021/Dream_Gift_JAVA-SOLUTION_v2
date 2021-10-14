@@ -83,8 +83,8 @@ public class CtrlPacks implements ActionListener{
         }
         
         if(e.getSource() == vistaA1.btnGuardarArtPack){
-            haspck.setId_pack_pck(Integer.parseInt(vistaA1.txtIdPack.getText()));
             haspck.setId_articulo_art(Integer.parseInt(vistaA1.txtIdArticuloPack.getText()));
+            haspck.setId_pack_pck(Integer.parseInt(vistaA1.txtIdPack.getText()));
             haspck.setCantidad(Integer.parseInt(vistaA1.txtCantArt.getText()));
             try {
                 if(modC1.guardarDetallePack(haspck)){
