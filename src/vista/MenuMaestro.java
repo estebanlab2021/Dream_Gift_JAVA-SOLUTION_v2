@@ -482,8 +482,8 @@ public class MenuMaestro extends javax.swing.JFrame {
             modeloprov.addColumn("Rut");
             modeloprov.addColumn("Nombre");
             modeloprov.addColumn("Teléfono");
-            modeloprov.addColumn("Direccion");
             modeloprov.addColumn("Mail");
+            modeloprov.addColumn("Direccion");
             modeloprov.addColumn("Razón Social");
             modeloprov.addColumn("Estado");
 
@@ -575,8 +575,8 @@ public class MenuMaestro extends javax.swing.JFrame {
             modeloProveedores.addColumn("Rut");
             modeloProveedores.addColumn("Nombre");
             modeloProveedores.addColumn("Teléfono");
-            modeloProveedores.addColumn("Dirección");
             modeloProveedores.addColumn("Mail");
+            modeloProveedores.addColumn("Direccion");
             modeloProveedores.addColumn("Razón Social");
             modeloProveedores.addColumn("Estado");
                         
