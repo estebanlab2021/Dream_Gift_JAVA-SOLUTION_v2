@@ -4,6 +4,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -46,8 +47,12 @@ public class CtrlArticulo implements ActionListener{
             mod.setArt_descripcion(vistaA.txtNombreArticulo.getText());
             mod.setArt_stock(Integer.parseInt(vistaA.txtStockArticulo.getText()));
             
+            Date date = vistaA.DateChooserFechaArticulo.getDate();
+            long d = date.getTime();
+            java.sql.Date fecha = new java.sql.Date(d);
+            
             if(vistaA.txtFechaArticulo.isVisible()==true){
-                mod.setArt_fecha_vencimiento(vistaA.txtFechaArticulo.getText());
+                mod.setArt_fecha_vencimiento(fecha.toString());
             }else{
                 mod.setArt_fecha_vencimiento(vistaA.txtDefaul.getText());
             }
@@ -57,8 +62,10 @@ public class CtrlArticulo implements ActionListener{
             try {
                 if(modC.registrar(mod)){
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
+                    limpiarArt();
                 }else {
                     JOptionPane.showMessageDialog(null, "Error al Guardar");
+                    limpiarArt();
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlArticulo.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,7 +78,13 @@ public class CtrlArticulo implements ActionListener{
             mod.setId_categoria_articulo(Integer.parseInt(vistaA.txtCategoriaArt.getText()));
             mod.setArt_descripcion(vistaA.txtNombreArticulo.getText());
             mod.setArt_stock(Integer.parseInt(vistaA.txtStockArticulo.getText()));
-            mod.setArt_fecha_vencimiento(vistaA.txtFechaArticulo.getText());
+            
+            Date date1 = vistaA.DateChooserFechaArticulo.getDate();
+            long d1 = date1.getTime();
+            java.sql.Date fecha1 = new java.sql.Date(d1);
+            
+            mod.setArt_fecha_vencimiento(fecha1.toString());
+            //mod.setArt_fecha_vencimiento(vistaA.txtFechaArticulo.getText());
             mod.setArt_estado(Integer.parseInt(vistaA.guardarRadioButtonArticulo()));
             
             try {
@@ -105,6 +118,7 @@ public class CtrlArticulo implements ActionListener{
         vistaA.CheckBoxVencimientoArticulo.setSelected(false);
         //vistaA.CheckBoxVencimientoArticulo.doClick();
         vistaA.buttonGroupArticulos.clearSelection();
+        vistaA.DateChooserFechaArticulo.setCalendar(null);
         
     }
     
