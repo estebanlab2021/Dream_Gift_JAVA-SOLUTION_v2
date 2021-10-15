@@ -22,7 +22,7 @@ public class ctrlMenuUsuarios implements ActionListener{
         this.vistaM = vistaM;
         vistaM.btnIngresar.addActionListener(this);
         vistaM.btnModificar.addActionListener(this);
-        vistaM.btnLimpiar.addActionListener(this);
+        vistaM.btnLimpiarUsuarios.addActionListener(this);
     }
     public void iniciar(){
         vistaM.setTitle("Menu Usuario");
@@ -73,7 +73,7 @@ public class ctrlMenuUsuarios implements ActionListener{
             }
         }
         
-        if(e.getSource()== vistaM.btnLimpiar){
+        if(e.getSource()== vistaM.btnLimpiarUsuarios){
             limpiarUsuario();
         }
     
