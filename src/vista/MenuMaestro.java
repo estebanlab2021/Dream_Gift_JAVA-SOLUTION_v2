@@ -1622,7 +1622,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT pck_nombre, SUM(pck_stock) FROM pack  group by id_categoria_pack;";
+            String sql = "SELECT pack.pck_nombre, (pack.pck_stock - COUNT(venta.id_pack)) as Stock_Real FROM pack JOIN venta ON pack.idpack = venta.id_pack GROUP BY pack.idpack";
             
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
