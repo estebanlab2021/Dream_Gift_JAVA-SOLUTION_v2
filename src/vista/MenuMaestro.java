@@ -1884,7 +1884,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtNombreUsuario = new javax.swing.JTextField();
         PasswordUsuario = new javax.swing.JPasswordField();
         PasswordVerified = new javax.swing.JPasswordField();
-        btnLimpiar1 = new javax.swing.JButton();
+        btnLimpiarUsuarios = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -3114,7 +3114,7 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         jLabel35.setText("Repita Clave:");
 
-        btnLimpiar1.setText("Limpiar");
+        btnLimpiarUsuarios.setText("Limpiar");
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -3156,7 +3156,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(RadioButtonUserInactivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                        .addComponent(btnLimpiar1)
+                        .addComponent(btnLimpiarUsuarios)
                         .addGap(21, 21, 21)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -3200,7 +3200,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                             .addComponent(PasswordVerified, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimpiar1)
+                            .addComponent(btnLimpiarUsuarios)
                             .addComponent(btnIngresar)
                             .addComponent(btnModificar)
                             .addComponent(jLabel36)
@@ -3732,13 +3732,13 @@ public class MenuMaestro extends javax.swing.JFrame {
     public javax.swing.JButton btnLimPack;
     public javax.swing.JButton btnLimProv;
     public javax.swing.JButton btnLimpiar;
-    public javax.swing.JButton btnLimpiar1;
     public javax.swing.JButton btnLimpiarArticulo;
     public javax.swing.JButton btnLimpiarBanco;
     public javax.swing.JButton btnLimpiarCatVenta;
     public javax.swing.JButton btnLimpiarCli;
     public javax.swing.JButton btnLimpiarComuna;
     public javax.swing.JButton btnLimpiarRrss;
+    public javax.swing.JButton btnLimpiarUsuarios;
     public javax.swing.JButton btnModCatPack;
     public javax.swing.JButton btnModComuna;
     public javax.swing.JButton btnModPack;
