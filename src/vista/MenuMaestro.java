@@ -83,6 +83,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         mostrartablaCountPack();
         rbtnActivoCatPack.setVisible(false);
         rbtnInActivoCatPack.setVisible(false);
+        txtFechaArticulo.setVisible(false);
     }
 
     
@@ -879,7 +880,10 @@ public class MenuMaestro extends javax.swing.JFrame {
                 txtIdArticulo.setText(String.valueOf(rs.getString("idarticulo")));
                 txtNombreArticulo.setText(rs.getString("art_descripcion"));
                 txtStockArticulo.setText(String.valueOf(rs.getString("art_stock")));
-                txtFechaArticulo.setText(rs.getString("art_fecha_vencimiento"));
+                
+                DateChooserFechaArticulo.setDate(Date.valueOf(rs.getString("art_fecha_vencimiento")));
+                
+                //txtFechaArticulo.setText(rs.getString("art_fecha_vencimiento"));
                 txtCategoriaArt.setText(String.valueOf(rs.getString("id_categoria_articulo")));
                 if(rs.getString("art_estado").equals("1")){
                     RadioButtonActivoArt.setSelected(true);
@@ -1711,6 +1715,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         RadioButtonInactivoArt = new javax.swing.JRadioButton();
         RadioButtonActivoArt = new javax.swing.JRadioButton();
+        DateChooserFechaArticulo = new com.toedter.calendar.JDateChooser();
         jPanelComunas = new FondoPanel();
         jLabelNombre = new javax.swing.JLabel();
         jLabelCodigo = new javax.swing.JLabel();
@@ -2052,7 +2057,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel4.setText("Fecha de Vencimiento");
         jPanelArticulos.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
-        jPanelArticulos.add(txtFechaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 180, -1));
+        jPanelArticulos.add(txtFechaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, 30, -1));
         jPanelArticulos.add(txtCategoriaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 50, -1));
 
         btnIngregarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -2135,6 +2140,9 @@ public class MenuMaestro extends javax.swing.JFrame {
         buttonGroupArticulos.add(RadioButtonActivoArt);
         RadioButtonActivoArt.setText("Activo");
         jPanelArticulos.add(RadioButtonActivoArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
+
+        DateChooserFechaArticulo.setDateFormatString("y-MM-dd");
+        jPanelArticulos.add(DateChooserFechaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 190, -1));
 
         jTabbedPane1.addTab("Articulos", jPanelArticulos);
 
@@ -3690,6 +3698,7 @@ public class MenuMaestro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JCheckBox CheckBoxVencimientoArticulo;
     public javax.swing.JComboBox<String> ComboBoxArticulo;
+    public com.toedter.calendar.JDateChooser DateChooserFechaArticulo;
     public com.toedter.calendar.JDateChooser DateFechaNac;
     public javax.swing.JPasswordField PasswordUsuario;
     public javax.swing.JPasswordField PasswordVerified;
