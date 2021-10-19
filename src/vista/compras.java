@@ -566,7 +566,7 @@ public class compras extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT factura.idfactura, factura.fac_numero, factura.fac_fecha_factura, factura.id_proveedor, SUM(detalle_factura.det_valor) FROM factura JOIN detalle_factura ON factura.idfactura = detalle_factura.id_factura_pk GROUP BY factura.idfactura";
+            String sql = "SELECT factura.idfactura, factura.fac_numero, factura.fac_fecha_factura, factura.id_proveedor, SUM(detalle_factura.det_valor), factura.fac_estado FROM factura JOIN detalle_factura ON factura.idfactura = detalle_factura.id_factura_pk GROUP BY factura.idfactura";
             
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -607,7 +607,7 @@ public class compras extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT factura.fac_numero, factura.id_proveedor, factura.fac_fecha_factura, proveedor.razon_social FROM factura JOIN proveedor ON factura.id_proveedor = proveedor.idproveedor  WHERE (factura.idfactura = ?)";
+            String sql = "SELECT factura.fac_numero, factura.id_proveedor, factura.fac_fecha_factura, proveedor.razon_social, factura.fac_estado FROM factura JOIN proveedor ON factura.id_proveedor = proveedor.idproveedor  WHERE (factura.idfactura = ?)";
             
             ps = con.prepareStatement(sql);
             ps.setInt(1, ID);
@@ -654,7 +654,7 @@ public class compras extends javax.swing.JFrame {
             modelo1.addColumn("Cantidad");
             modelo1.addColumn("valor");
             modelo1.addColumn("Fecha Vencimiento");
-            modelo1.addColumn("Estado");
+            //modelo1.addColumn("Estado");
             
             while(rs.next()){
                 Object[] filas = new Object[CantidadColumnas];
@@ -1546,14 +1546,14 @@ public class compras extends javax.swing.JFrame {
 
         tableDetalleFacturas2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Id Factura", "Articulo", "Cantidad", "Valor", "Estado"
+                "Id Factura", "Articulo", "Cantidad", "Valor"
             }
         ));
         jScrollPane8.setViewportView(tableDetalleFacturas2);
