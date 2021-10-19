@@ -407,6 +407,39 @@ public class compras extends javax.swing.JFrame {
         }
     }
     
+    //FIltrar ComboBoxArticulo
+    public void filtrarComboBoxArticulo(){
+        try{
+            int fila = tableFacturas.getSelectedRow();
+            int ID = (int) tableFacturas.getValueAt(fila, 3);
+            
+            ComboBoxArticulo.removeAllItems();
+            ComboBoxArticulo.addItem("Seleccione Uno");
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            ArrayList<String> datos = new ArrayList<String>();
+            
+            String sql = "SELECT detalle_orden_compra.id_orden_compra_pk, articulo.art_descripcion FROM detalle_orden_compra JOIN articulo ON detalle_orden_compra.id_articulo_pk = articulo.idarticulo WHERE (detalle_orden_compra.id_orden_compra_pk = ?)";
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                datos.add(rs.getString("art_descripcion"));
+                for (int i=0; i<datos.size();i++){
+                    ComboBoxArticulo.addItem(datos.get(i));
+                }
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
 
 
 
@@ -1692,6 +1725,7 @@ public class compras extends javax.swing.JFrame {
     private void tableFacturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFacturasMouseClicked
         // TODO add your handling code here:
         llamarDatosTableFactura();
+        filtrarComboBoxArticulo();
     }//GEN-LAST:event_tableFacturasMouseClicked
 
     private void ComboBoxProveedor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxProveedor2ActionPerformed
