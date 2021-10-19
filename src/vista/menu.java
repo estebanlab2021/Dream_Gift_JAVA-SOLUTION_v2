@@ -36,7 +36,9 @@ import modelo.ModVentas;
 import modelo.Proveedores;
 import modelo.ConsultasProveedores;
 import controlador.CtrlPacks;
+import controlador.ctrlFactura;
 import controlador.ctrlMenuUsuarios;
+import controlador.ctrlPedido;
 import modelo.ConsultasPacks;
 import modelo.Packs;
 
@@ -47,6 +49,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import modelo.ArticuloHasPack;
 import modelo.ConsultaUsuario;
+import modelo.ConsultasFacturas;
+import modelo.ConsultasPedidos;
+import modelo.Detalle_Factura;
+import modelo.Detalle_orden_compra;
+import modelo.Factura;
+import modelo.Pedido;
 import modelo.Usuarios;
 
 
@@ -150,8 +158,18 @@ public class menu extends javax.swing.JFrame {
         });
 
         btnCompras.setText("Compras");
+        btnCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprasActionPerformed(evt);
+            }
+        });
 
         btnInformes.setText("Informes");
+        btnInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInformesActionPerformed(evt);
+            }
+        });
 
         btnMaestro.setText("Maestro");
         btnMaestro.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +253,35 @@ public class menu extends javax.swing.JFrame {
         llamarMaestro();
         
     }//GEN-LAST:event_btnMaestroActionPerformed
+
+    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
+        // TODO add your handling code here:
+        compras menuCompras = new compras();
+        Pedido ped = new Pedido();
+        Detalle_orden_compra com = new Detalle_orden_compra();
+        ConsultasPedidos pedC = new ConsultasPedidos();
+        Factura fac = new Factura();
+        Detalle_Factura detfac = new Detalle_Factura();
+        ConsultasFacturas confac = new ConsultasFacturas();
+        
+        ctrlPedido ctrl = new ctrlPedido(ped, com, pedC, menuCompras);
+        ctrlFactura ctrl1 = new ctrlFactura(fac, detfac, confac, menuCompras);
+        
+        menuCompras.setVisible(true);
+        menuCompras.setLocationRelativeTo(null);
+        menuCompras.setTitle("Menu Compras");
+        this.setVisible(false);
+    }//GEN-LAST:event_btnComprasActionPerformed
+
+    private void btnInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformesActionPerformed
+        // TODO add your handling code here:
+        informes menuInformes = new informes();
+        
+        menuInformes.setVisible(true);
+        menuInformes.setLocationRelativeTo(null);
+        menuInformes.setTitle("Menu Informes");
+        this.setVisible(false);
+    }//GEN-LAST:event_btnInformesActionPerformed
 
     /**
      * @param args the command line arguments
