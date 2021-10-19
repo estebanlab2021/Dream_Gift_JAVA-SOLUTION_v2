@@ -380,7 +380,7 @@ public class compras extends javax.swing.JFrame {
         //Agregar listado al ListArticulo
         ComboBoxArticulo.addItem("Seleccione Uno");
         ArrayList<String> art = new ArrayList<String>();
-        art = Pedido.MostrarListadoArticulos();
+        art = Pedido.MostrarListadoArticulosFactura();
         for (int i=0; i<art.size();i++){
             ComboBoxArticulo.addItem(art.get(i));
         }
@@ -492,7 +492,7 @@ public class compras extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT id_factura_pk, id_articulo_pk, det_cantidad, det_valor, fecha_vencimiento FROM detalle_factura";
+            String sql = "SELECT detalle_factura.id_factura_pk, articulo.art_descripcion, detalle_factura.det_cantidad, det_valor, detalle_factura.fecha_vencimiento FROM detalle_factura JOIN articulo ON detalle_factura.id_articulo_pk = articulo.idarticulo";
             
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
