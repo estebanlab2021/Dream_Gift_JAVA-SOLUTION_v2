@@ -69,11 +69,11 @@ public class ctrlFactura implements ActionListener{
             detfac.setId_articulo_pk(Integer.parseInt(vistaC.txtIdArticuloFac.getText()));
             detfac.setDet_cantidad(Integer.parseInt(vistaC.txtCantidadFactura.getText()));
             detfac.setDet_valor(Double.parseDouble(vistaC.txtValorFactura.getText()));
-            Date date1 = vistaC.FechaVencimiento.getDate();
-            long d1 = date1.getTime();
-            java.sql.Date fecha1 = new java.sql.Date(d1);
             
             if(vistaC.FechaVencimiento.isEnabled()==true){
+                Date date1 = vistaC.FechaVencimiento.getDate();
+                long d1 = date1.getTime();
+                java.sql.Date fecha1 = new java.sql.Date(d1);
                 detfac.setFecha_vencimiento(fecha1.toString());
             }else{
                 detfac.setFecha_vencimiento(vistaC.txtFechaDefault.getText());
