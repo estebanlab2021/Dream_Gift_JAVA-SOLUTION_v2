@@ -1215,6 +1215,8 @@ public class compras extends javax.swing.JFrame {
             }
         });
 
+        txtFechaDefault.setText("3000-01-01");
+
         CheckBoxSinVenc.setText("Sin Vencimiento");
         CheckBoxSinVenc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1712,6 +1714,7 @@ public class compras extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(CheckBoxSinVenc.isSelected()==true){
             FechaVencimiento.setEnabled(false);
+            txtFechaDefault.setText("3000-01-01");
         }else{
             FechaVencimiento.setEnabled(true);
         }
