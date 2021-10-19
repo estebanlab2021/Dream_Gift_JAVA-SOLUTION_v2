@@ -99,5 +99,35 @@ public class Pedido {
         
     }
     
+    //Metodo para Agregar datos al ListArticulos de DetalleFactura
+    public static ArrayList<String> MostrarListadoArticulosFactura(){
+       
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        
+        ArrayList<String> datos = new ArrayList<String>();
+        
+        try{
+            
+            String sql = "SELECT detalle_factura.id_factura_pk, detalle_factura.id_articulo_pk, articulo.art_descripcion, detalle_factura.det_cantidad, det_valor, detalle_factura.fecha_vencimiento FROM detalle_factura JOIN articulo ON detalle_factura.id_articulo_pk = articulo.idarticulo";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                datos.add(rs.getString("art_descripcion"));
+            }
+            
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+        
+        return datos;
+        
+    }
+    
     
 }
