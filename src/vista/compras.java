@@ -431,10 +431,10 @@ public class compras extends javax.swing.JFrame {
             
             while(rs.next()){
                 datos.add(rs.getString("art_descripcion"));
-                for (int i=0; i<datos.size();i++){
+            }
+            for (int i=0; i<datos.size();i++){
                     ComboBoxArticulo.addItem(datos.get(i));
                 }
-            }
             rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
