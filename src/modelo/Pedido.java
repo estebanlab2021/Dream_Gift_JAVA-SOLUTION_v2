@@ -111,7 +111,7 @@ public class Pedido {
         
         try{
             
-            String sql = "SELECT detalle_factura.id_factura_pk, detalle_factura.id_articulo_pk, articulo.art_descripcion, detalle_factura.det_cantidad, det_valor, detalle_factura.fecha_vencimiento FROM detalle_factura JOIN articulo ON detalle_factura.id_articulo_pk = articulo.idarticulo";
+            String sql = "SELECT detalle_orden_compra.id_orden_compra_pk, articulo.art_descripcion FROM detalle_orden_compra JOIN articulo ON detalle_orden_compra.id_articulo_pk = articulo.idarticulo";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             
