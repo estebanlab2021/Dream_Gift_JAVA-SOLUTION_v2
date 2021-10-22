@@ -7,6 +7,8 @@ package vista;
 
 //import com.toedter.calendar.IDateEditor;
 //import com.toedter.calendar.JDateChooser;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 import modelo.Conexion;
@@ -31,12 +35,14 @@ public class compras extends javax.swing.JFrame {
     DefaultListModel modelo = new DefaultListModel();
     DefaultListModel modelo1 = new DefaultListModel();
     ArrayList<String> ped = new ArrayList<String>();
+    compras.FondoPanel fondo = new compras.FondoPanel();
     
 
     /**
      * Creates new form compras
      */
     public compras() {
+        this.setContentPane(fondo);
         initComponents();
         txtIdPedido.setEditable(false);
         AgregarListadoArticulos();
@@ -681,8 +687,8 @@ public class compras extends javax.swing.JFrame {
         buttonGroupEdoPedido = new javax.swing.ButtonGroup();
         btnRegregarMenu = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new FondoPanel();
+        jPanel4 = new FondoPanel();
         jLabel1 = new javax.swing.JLabel();
         FechaPedido = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
@@ -715,8 +721,8 @@ public class compras extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         TableOrdenCompra = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        jPanel2 = new FondoPanel();
+        jPanel5 = new FondoPanel();
         jLabel8 = new javax.swing.JLabel();
         txtNumFactura = new javax.swing.JTextField();
         btnBuscarProveedor = new javax.swing.JButton();
@@ -732,7 +738,7 @@ public class compras extends javax.swing.JFrame {
         txtIdProveedor = new javax.swing.JTextField();
         txtOrdenPedido = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        jPanel6 = new FondoPanel();
         jLabel12 = new javax.swing.JLabel();
         txtCodigoFactura = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -754,8 +760,8 @@ public class compras extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         tableDetalleFacturas = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        jPanel3 = new FondoPanel();
+        jPanel7 = new FondoPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -1889,4 +1895,22 @@ public class compras extends javax.swing.JFrame {
     public javax.swing.JTextField txtRUTProveedor2;
     public javax.swing.JTextField txtValorFactura;
     // End of variables declaration//GEN-END:variables
+class FondoPanel extends JPanel
+    {
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g)
+        {
+            imagen = new ImageIcon(getClass().getResource("/imagenes/Cielo.jpg")).getImage();
+            
+            g.drawImage(imagen,0, 0, getWidth(), getHeight(),this);
+            
+            setOpaque(false);
+            super.paint(g);
+        }  
+            
+    }    
+
 }
+
