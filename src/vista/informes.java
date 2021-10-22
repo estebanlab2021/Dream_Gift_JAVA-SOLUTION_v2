@@ -23,6 +23,7 @@ public class informes extends javax.swing.JFrame {
         this.setContentPane(fondo);
         initComponents();
         MostrarInformeVenta();
+        MostrarInfCliente();
     }
 
     /**
@@ -78,16 +79,64 @@ private void MostrarInformeVenta(){
         }
     }
 
+    //---------------Codigo de Jessica------------------
+
+private void MostrarInfCliente(){
+    //Tabla de InfCliente
+        try{    
+            DefaultTableModel modeloInfCliente = new DefaultTableModel();
+            
+            TablaInfCliente.setModel(modeloInfCliente);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT venta.id_pack, venta.rut_cliente, cliente.cli_nombre, cliente.cli_apellido, pack.pck_nombre, venta.vta_fecha_venta, estados_despacho.estados_despacho_name, comunas.nombre_comunas from venta left join pack on venta.id_pack=pack.idpack left join cliente on venta.rut_cliente=cliente.RUT left join comunas on venta.id_comuna=comunas.idcomunas left join estados_despacho on venta.estado_despacho=estados_despacho.idestados_despacho where venta.estado_despacho='4'";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloInfCliente.addColumn("Id Pack");
+            modeloInfCliente.addColumn("Rut Cliente");
+            modeloInfCliente.addColumn("Nombre Cliente");
+            modeloInfCliente.addColumn("Apellido Cliente");
+            modeloInfCliente.addColumn("Pack");
+            modeloInfCliente.addColumn("Fecha Pedido");
+            modeloInfCliente.addColumn("Estado Despacho");
+            modeloInfCliente.addColumn("Comuna");
+                         
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloInfCliente.addRow(filas); 
+            }
+        
+        
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnRegregarMenu = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new FondoPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableInf_Venta = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
+        jPanel5 = new FondoPanel();
         jLabel1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
@@ -100,10 +149,10 @@ private void MostrarInformeVenta(){
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new FondoPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
+        jPanel6 = new FondoPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
@@ -118,10 +167,10 @@ private void MostrarInformeVenta(){
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton6 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel3 = new FondoPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jPanel7 = new javax.swing.JPanel();
+        TablaInfCliente = new javax.swing.JTable();
+        jPanel7 = new FondoPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
@@ -132,10 +181,10 @@ private void MostrarInformeVenta(){
         jTextField3 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel4 = new FondoPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        jPanel8 = new javax.swing.JPanel();
+        jPanel8 = new FondoPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jDateChooser7 = new com.toedter.calendar.JDateChooser();
@@ -438,27 +487,27 @@ private void MostrarInformeVenta(){
 
         jTabbedPane1.addTab("Informe Inventario", jPanel2);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        TablaInfCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id Pack", "Pack", "Fecha Pedido", "Nombre Cliente", "Edo Despacho", "Comuna"
+                "Id Pack", "Rut Cliente", "Nombre Cliente", "Apellido Cliente", "Pack", "Fecha Pedido", "Estado Despacho", "Comuna"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(TablaInfCliente);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informe Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
@@ -502,7 +551,7 @@ private void MostrarInformeVenta(){
                         .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButton4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,18 +581,17 @@ private void MostrarInformeVenta(){
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addGap(198, 198, 198))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jScrollPane3)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,7 +616,7 @@ private void MostrarInformeVenta(){
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id Venta", "Pack", "Destinatario", "Fecha de Entrega", "Comuna", "Hora de Entrega", "Devolución"
+                "Id Venta", "Pack", "Destinatario", "Fecha de Entrega", "Hora de Entrega", "Comuna", "Devolución"
             }
         ) {
             Class[] types = new Class [] {
@@ -749,6 +797,7 @@ private void MostrarInformeVenta(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTable TablaInfCliente;
     public javax.swing.JButton btnRegregarMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -806,7 +855,6 @@ private void MostrarInformeVenta(){
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     public javax.swing.JTable jTable2;
-    public javax.swing.JTable jTable3;
     public javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
