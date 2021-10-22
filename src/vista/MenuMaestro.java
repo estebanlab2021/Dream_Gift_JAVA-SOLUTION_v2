@@ -2024,7 +2024,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         );
         jPanelBancosLayout.setVerticalGroup(
             jPanelBancosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Bancos", jPanelBancos);
@@ -3273,12 +3273,12 @@ public class MenuMaestro extends javax.swing.JFrame {
                 .addComponent(jLabel37)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Usuarios", jPanel8);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, 590));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, 540));
 
         btnRegregarMenu.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnRegregarMenu.setText("Regresar a Menú Principal");

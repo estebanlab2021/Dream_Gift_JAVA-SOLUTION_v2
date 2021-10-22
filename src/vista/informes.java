@@ -24,6 +24,7 @@ public class informes extends javax.swing.JFrame {
         initComponents();
         MostrarInformeVenta();
         MostrarInfCliente();
+        MostrarInventario01();
     }
 
     /**
@@ -127,6 +128,54 @@ private void MostrarInfCliente(){
         }
     }
 
+/**************************** Codigo Cristian ********************************/
+private void MostrarInventario01(){
+    //Tabla de Inventario
+        try{    
+            DefaultTableModel modeloInventario01 = new DefaultTableModel();
+            
+            tablaInventario01.setModel(modeloInventario01);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT DISTINCT articulo.idarticulo, articulo.art_estado, articulo.art_descripcion, articulo.art_fecha_vencimiento, articulo.art_stock, SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)) as comprado, ((articulo.art_stock) + (SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)))) as total1, SUM(DISTINCT COALESCE(pack.pck_stock,0)) as total_PACK, (((articulo.art_stock) + (SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)))) - (SUM(DISTINCT COALESCE(pack.pck_stock,0)))) as stock_final FROM articulo LEFT JOIN detalle_factura ON articulo.idarticulo = detalle_factura.id_articulo_pk LEFT JOIN articulo_has_pack ON articulo.idarticulo = articulo_has_pack.id_articulo_art LEFT JOIN pack ON articulo_has_pack.id_pack_pck = pack.idpack WHERE articulo.art_estado = '1' GROUP BY articulo.idarticulo, articulo_has_pack.id_articulo_art ORDER BY stock_final DESC";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloInventario01.addColumn("Id Articulo");
+            modeloInventario01.addColumn("Estado");
+            modeloInventario01.addColumn("Articulo");
+            modeloInventario01.addColumn("Fecha Vencimiento");
+            modeloInventario01.addColumn("Stock");
+            modeloInventario01.addColumn("Comprado");
+            modeloInventario01.addColumn("Total Art");
+            modeloInventario01.addColumn("Total Pack");
+            modeloInventario01.addColumn("Stock F");
+                         
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloInventario01.addRow(filas); 
+            }
+        
+        
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -151,7 +200,7 @@ private void MostrarInfCliente(){
         jTextField2 = new javax.swing.JTextField();
         jPanel2 = new FondoPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaInventario01 = new javax.swing.JTable();
         jPanel6 = new FondoPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -340,27 +389,27 @@ private void MostrarInfCliente(){
 
         jTabbedPane1.addTab("Informe Ventas", jPanel1);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaInventario01.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id Articulo", "Articulo", "Stock", "Fecha Vencimiento", "Valor Producto", "Categoría", "RUT Proveedor"
+                "Id Articulo", "Estado", "Articulo", "Fecha Vencimiento", "Stock", "Comprado", "Total_Art", "Total Pack", "Stock F"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tablaInventario01);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informe Inventario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
@@ -854,12 +903,12 @@ private void MostrarInfCliente(){
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTable jTable2;
     public javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    public javax.swing.JTable tablaInventario01;
     public javax.swing.JTable tableInf_Venta;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel
