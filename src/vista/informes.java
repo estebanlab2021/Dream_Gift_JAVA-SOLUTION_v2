@@ -204,17 +204,10 @@ private void MostrarInventario01(){
         jPanel6 = new FondoPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        FDesdeInvt = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
-        jDateChooser4 = new com.toedter.calendar.JDateChooser();
-        jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jDateChooser9 = new com.toedter.calendar.JDateChooser();
-        jLabel18 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
+        FHastaInvt = new com.toedter.calendar.JDateChooser();
+        btnBuscarInvent = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jPanel3 = new FondoPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -246,6 +239,7 @@ private void MostrarInventario01(){
         jLabel23 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnRegregarMenu.setText("Regresar a Menú Principal");
         btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -253,6 +247,7 @@ private void MostrarInventario01(){
                 btnRegregarMenuActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegregarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         tableInf_Venta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -412,95 +407,21 @@ private void MostrarInventario01(){
         jScrollPane2.setViewportView(tablaInventario01);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informe Inventario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setText("Busqueda por Rango de Fecha");
+        jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 24, -1, -1));
 
         jLabel8.setText("Desde: ");
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        jPanel6.add(FDesdeInvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 154, -1));
 
         jLabel9.setText("Hasta: ");
+        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, -1, -1));
+        jPanel6.add(FHastaInvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 154, -1));
 
-        jButton3.setText("Buscar");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel16.setText("Categoria Articulo");
-
-        jLabel17.setText("Fecha Vencimiento");
-
-        jLabel18.setText("Proveedor: ");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton6.setText("Buscar");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(jLabel8)
-                                .addGap(29, 29, 29))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jLabel16))
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel17))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jDateChooser4, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                    .addComponent(jDateChooser9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(27, 27, 27)
-                                .addComponent(jButton3))
-                            .addComponent(jButton6))))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jDateChooser4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8))
-                            .addComponent(jButton3))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        btnBuscarInvent.setText("Buscar");
+        jPanel6.add(btnBuscarInvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("DETALLE INVENTARIO");
@@ -526,12 +447,12 @@ private void MostrarInventario01(){
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Informe Inventario", jPanel2);
@@ -779,24 +700,7 @@ private void MostrarInventario01(){
 
         jTabbedPane1.addTab("Informe Dev & Cambios", jPanel4);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegregarMenu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegregarMenu)
-                .addGap(30, 30, 30)
-                .addComponent(jTabbedPane1))
-        );
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 64, 744, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -846,27 +750,23 @@ private void MostrarInventario01(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser FDesdeInvt;
+    private com.toedter.calendar.JDateChooser FHastaInvt;
     public javax.swing.JTable TablaInfCliente;
+    private javax.swing.JButton btnBuscarInvent;
     public javax.swing.JButton btnRegregarMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser4;
     private com.toedter.calendar.JDateChooser jDateChooser5;
     private com.toedter.calendar.JDateChooser jDateChooser6;
     private com.toedter.calendar.JDateChooser jDateChooser7;
     private com.toedter.calendar.JDateChooser jDateChooser8;
-    private com.toedter.calendar.JDateChooser jDateChooser9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -874,9 +774,6 @@ private void MostrarInventario01(){
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
