@@ -28,6 +28,8 @@ public class ctrlPedido implements ActionListener{
         this.vistaC = vistaC;
         this.vistaC.btnIngresarPedido.addActionListener(this);
         this.vistaC.btnGuardarPedido.addActionListener(this);
+        this.vistaC.btnModificarPedido.addActionListener(this);
+        this.vistaC.btnLimpiarPedido.addActionListener(this);
         
         
     }
@@ -83,12 +85,42 @@ public class ctrlPedido implements ActionListener{
             }
             
         }
-    
-    
-    
+        
+        if(e.getSource() == vistaC.btnModificarPedido){
+            Date date1 = vistaC.FechaPedido.getDate();
+            long d1 = date1.getTime();
+            java.sql.Date fecha1 = new java.sql.Date(d1);
+            ped.setFecha_orden_compra(fecha1.toString());
+            ped.setEdo_orden_compra(Integer.parseInt(vistaC.guardarRadioBotonEdoPedido()));
+            ped.setIdorden_compra(Integer.parseInt(vistaC.txtIdPedido.getText()));
+            try{
+                if(pedC.modificarPedido(ped)){
+                    JOptionPane.showMessageDialog(null, "Pedido MODIFICADO");
+                    limpiarPedido();
+                }else{
+                    JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+                    limpiarPedido();
+                }
+            }catch (SQLException ex){
+                Logger.getLogger(ctrlFactura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        if(e.getSource() == vistaC.btnLimpiarPedido){
+            limpiarPedido();
+        }
     }
     
-    
+    //btnLimpiarPedido
+    public void limpiarPedido(){
+        vistaC.txtIdPedido.setText(null);
+        vistaC.FechaPedido.setCalendar(null);
+        vistaC.buttonGroupEdoPedido.clearSelection();
+        vistaC.FechaPedido.setEnabled(true);
+        vistaC.RadioButtonActivoPedido.setEnabled(false);
+        vistaC.txtIdPedido.setEditable(false);
+        vistaC.btnModificarPedido.setEnabled(false);
+    }
     
     
 }
