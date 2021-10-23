@@ -30,6 +30,7 @@ public class ctrlFactura implements ActionListener{
         this.vistaC.btnAgregaArtFact.addActionListener(this);
         this.vistaC.btnLimpiarArtFact.addActionListener(this);     
         this.vistaC.btnLimpiarRevisonFacturas.addActionListener(this);
+        this.vistaC.btnModificarFac.addActionListener(this);
     }
     
     public void iniciar(){
@@ -93,6 +94,31 @@ public class ctrlFactura implements ActionListener{
             }
         }
         
+        ///vistaC.btnModificarFac
+        if(e.getSource() == vistaC.btnModificarFac){
+            
+            fac.setFac_numero(Integer.parseInt(vistaC.txtNumFactura2.getText()));
+            fac.setId_proveedor(vistaC.txtRUTProveedor2.getText());
+            Date date2 = vistaC.FechaRegCompra2.getDate();
+            long d2 = date2.getTime();
+            java.sql.Date fecha2 = new java.sql.Date(d2);
+            fac.setFac_fecha_factura(fecha2.toString());
+            fac.setFac_estado(Integer.parseInt(vistaC.guardarRadioBotonEdoFactura()));
+            fac.setIdfactura(Integer.parseInt(vistaC.txtIdFacturaRev.getText()));
+            
+            try{
+                if(confac.modificarFactura(fac)){
+                    JOptionPane.showMessageDialog(null, "FACTURA MODIFICADA");
+                    limpiarRevisionFacturas();
+                }else{
+                    JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+                    limpiarRevisionFacturas();
+                }
+            }catch (SQLException ex){
+                Logger.getLogger(ctrlFactura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
         if(e.getSource() == vistaC.btnLimpiarRegCompra){
             limpiarRegFacProveedores();
         }
@@ -137,5 +163,7 @@ public class ctrlFactura implements ActionListener{
         vistaC.FechaRegCompra2.setCalendar(null);
         vistaC.ComboBoxProveedor2.setSelectedIndex(0);
         vistaC.txtIdProveedor2.setText(null);
+        vistaC.txtIdFacturaRev.setText(null);
+        vistaC.buttonGroupEdoFactura.clearSelection();
     }
 }
