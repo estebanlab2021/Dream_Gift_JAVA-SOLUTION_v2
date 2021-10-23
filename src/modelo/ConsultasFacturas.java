@@ -60,4 +60,32 @@ public class ConsultasFacturas extends Conexion{
         }
     }
     
+    public boolean modificarFactura(Factura fac) throws SQLException{
+        
+        PreparedStatement ps = null;
+        Connection con = (Connection) getConexion();
+        
+        String sql ="UPDATE factura SET fac_numero=?, id_proveedor=?, fac_fecha_factura=?, fac_estado=? WHERE (idfactura=?)";
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, fac.getFac_numero());
+            ps.setString(2, fac.getId_proveedor());
+            ps.setString(3, fac.getFac_fecha_factura());
+            ps.setInt(4, fac.getFac_estado());
+            ps.setInt(5, fac.getIdfactura());
+            ps.execute();
+            return true;
+        }catch(SQLException e){
+            System.err.println(e);
+            return false;
+        }finally{
+            try{
+                con.close();
+            }catch(SQLException e){
+                System.err.println(e);
+            }
+        }
+    
+    }
+    
 }
