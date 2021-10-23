@@ -20,6 +20,7 @@ import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
@@ -68,6 +69,8 @@ public class compras extends javax.swing.JFrame {
         mostrarTableFacturasInventariadas();
         mostrarTablaDetalleFacturas2();
         AgregarItemComboBoxProveedor2();
+        txtIdFacturaRev.setVisible(false);
+        btnModificarPedido.setEnabled(false);
     }
 
     /**
@@ -206,6 +209,43 @@ public class compras extends javax.swing.JFrame {
             System.err.println(ex.toString());
         }
     }
+    
+    public void buscarOrdenCompra(){
+        try{
+            String valor = (String) txtIdPedido.getText();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql ="SELECT * FROM orden_compra WHERE (idorden_compra = '"+valor+"')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                FechaPedido.setDate(Date.valueOf(rs.getString("fecha_orden_compra")));
+                if(rs.getString("edo_orden_compra").equals("1")){
+                    RadioButtonActivoPedido.setSelected(true);
+                }else if(rs.getString("edo_orden_compra").equals("0")){
+                    RadioButtonInactivoPedido.setSelected(true);
+                }
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+    
+    public String guardarRadioBotonEdoPedido(){
+        String valor="1";
+        if(RadioButtonActivoPedido.isSelected()==true){
+           valor= "1";
+           
+        }else if (RadioButtonInactivoPedido.isSelected()==true){
+            valor = "0";
+        }
+       
+        return valor;
+    }
+    
     
     //Mostrar TableDetalleOrdenCompra
     private void mostrarTablaDetalleOrdenCompra(){
@@ -613,7 +653,7 @@ public class compras extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT factura.fac_numero, factura.id_proveedor, factura.fac_fecha_factura, proveedor.razon_social, factura.fac_estado FROM factura JOIN proveedor ON factura.id_proveedor = proveedor.idproveedor  WHERE (factura.idfactura = ?)";
+            String sql = "SELECT factura.idfactura, factura.fac_numero, factura.id_proveedor, factura.fac_fecha_factura, proveedor.razon_social, factura.fac_estado FROM factura JOIN proveedor ON factura.id_proveedor = proveedor.idproveedor  WHERE (factura.idfactura = ?)";
             
             ps = con.prepareStatement(sql);
             ps.setInt(1, ID);
@@ -624,11 +664,60 @@ public class compras extends javax.swing.JFrame {
                 txtRUTProveedor2.setText(String.valueOf(rs.getString("id_proveedor")));
                 FechaRegCompra2.setDate(Date.valueOf(rs.getString("fac_fecha_factura")));
                 ComboBoxProveedor2.setSelectedItem(rs.getString("razon_social"));
+                if(rs.getString("fac_estado").equals("1")){
+                    RadioButtonActivoFactura.setSelected(true);
+                }else if(rs.getString("fac_estado").equals("0")){
+                    RadioButtonInactivoFactura.setSelected(true);
+                }
+                txtIdFacturaRev.setText(String.valueOf(rs.getString("idfactura")));
             }
             rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
+    }
+    
+    public void buscarFacturasInventariadas(){
+        try{
+            String valor = (String) txtNumFactura2.getText();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql ="SELECT factura.idfactura, factura.fac_numero, factura.id_proveedor, factura.fac_fecha_factura, proveedor.razon_social, factura.fac_estado FROM factura JOIN proveedor ON factura.id_proveedor = proveedor.idproveedor WHERE (fac_numero = '"+valor+"')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                txtRUTProveedor2.setText(String.valueOf(rs.getString("id_proveedor")));
+                FechaRegCompra2.setDate(Date.valueOf(rs.getString("fac_fecha_factura")));
+                ComboBoxProveedor2.setSelectedItem(rs.getString("razon_social"));
+                if(rs.getString("fac_estado").equals("1")){
+                    RadioButtonActivoFactura.setSelected(true);
+                }else if(rs.getString("fac_estado").equals("0")){
+                    RadioButtonInactivoFactura.setSelected(true);
+                }
+                txtIdFacturaRev.setText(String.valueOf(rs.getString("idfactura")));
+                
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+    
+    
+    
+    
+    public String guardarRadioBotonEdoFactura(){
+        String valor="1";
+        if(RadioButtonActivoFactura.isSelected()==true){
+           valor= "1";
+           
+        }else if (RadioButtonInactivoFactura.isSelected()==true){
+            valor = "0";
+        }
+       
+        return valor;
     }
     
     
@@ -647,7 +736,7 @@ public class compras extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT id_factura_pk, id_articulo_pk, det_cantidad, det_valor, fecha_vencimiento FROM detalle_factura";
+            String sql = "SELECT detalle_factura.id_factura_pk, articulo.art_descripcion, detalle_factura.det_cantidad, detalle_factura.det_valor, detalle_factura.fecha_vencimiento FROM detalle_factura LEFT JOIN articulo ON detalle_factura.id_articulo_pk = articulo.idarticulo";
             
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -676,6 +765,50 @@ public class compras extends javax.swing.JFrame {
     }
     
     
+    //FIltrar tableDetalleFacturas2 por tabla tableFacturasInventariadas
+    public void filtrartableDetalleFacturas2(){
+        try{
+            int fila = tableFacturasInventariadas.getSelectedRow();
+            int ID = (int) tableFacturasInventariadas.getValueAt(fila, 0);
+            
+            DefaultTableModel modelo1 = new DefaultTableModel();
+            tableDetalleFacturas2.setModel(modelo1);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT detalle_factura.id_factura_pk, articulo.art_descripcion, detalle_factura.det_cantidad, detalle_factura.det_valor, detalle_factura.fecha_vencimiento FROM detalle_factura LEFT JOIN articulo ON detalle_factura.id_articulo_pk = articulo.idarticulo WHERE (detalle_factura.id_factura_pk = ?)";
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, ID);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modelo1.addColumn("Id Factura");
+            modelo1.addColumn("Articulo");
+            modelo1.addColumn("Cantidad");
+            modelo1.addColumn("valor");
+            modelo1.addColumn("Fecha Vencimiento");
+            
+            while(rs.next()){
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modelo1.addRow(filas); 
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+    
     
     
     @SuppressWarnings("unchecked")
@@ -685,6 +818,7 @@ public class compras extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         buttonGroupEdoPedido = new javax.swing.ButtonGroup();
+        buttonGroupEdoFactura = new javax.swing.ButtonGroup();
         btnRegregarMenu = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new FondoPanel();
@@ -716,6 +850,7 @@ public class compras extends javax.swing.JFrame {
         btnActivarBusqueda = new javax.swing.JButton();
         txtIdArticulo = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
+        btnModificarPedido = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TableDetalleOrdenCompra = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -773,6 +908,10 @@ public class compras extends javax.swing.JFrame {
         ComboBoxProveedor2 = new javax.swing.JComboBox<>();
         txtIdProveedor2 = new javax.swing.JTextField();
         btnLimpiarRevisonFacturas = new javax.swing.JButton();
+        RadioButtonActivoFactura = new javax.swing.JRadioButton();
+        RadioButtonInactivoFactura = new javax.swing.JRadioButton();
+        btnModificarFac = new javax.swing.JButton();
+        txtIdFacturaRev = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         tableFacturasInventariadas = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -871,6 +1010,11 @@ public class compras extends javax.swing.JFrame {
         jLabel7.setText("Id Pedido");
 
         btnBuscarPedido.setText("Buscar");
+        btnBuscarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPedidoActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -882,27 +1026,23 @@ public class compras extends javax.swing.JFrame {
         });
 
         btnActivarBusqueda.setText("Activar B");
+        btnActivarBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActivarBusquedaActionPerformed(evt);
+            }
+        });
+
+        btnModificarPedido.setText("Modificar");
+        btnModificarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(txtIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(FechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(RadioButtonActivoPedido)
-                .addGap(18, 18, 18)
-                .addComponent(RadioButtonInactivoPedido)
-                .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -918,16 +1058,6 @@ public class compras extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtIdArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(345, 345, 345))))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnActivarBusqueda)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscarPedido)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIngresarPedido)
-                .addGap(61, 61, 61))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator5)
@@ -956,6 +1086,37 @@ public class compras extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(FechaPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnActivarBusqueda)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscarPedido)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnIngresarPedido)
+                        .addGap(221, 221, 221)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnModificarPedido)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(RadioButtonActivoPedido)
+                        .addGap(18, 18, 18)
+                        .addComponent(RadioButtonInactivoPedido)))
+                .addGap(41, 41, 41))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -973,11 +1134,13 @@ public class compras extends javax.swing.JFrame {
                         .addComponent(RadioButtonInactivoPedido)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnBuscarPedido)
-                        .addComponent(btnActivarBusqueda))
-                    .addComponent(btnIngresarPedido, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBuscarPedido)
+                            .addComponent(btnActivarBusqueda))
+                        .addComponent(btnIngresarPedido, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnModificarPedido))
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1451,6 +1614,11 @@ public class compras extends javax.swing.JFrame {
         FechaRegCompra2.setDateFormatString("y-MM-dd");
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel21.setText("Proveedor / Razon Social ");
 
@@ -1461,6 +1629,24 @@ public class compras extends javax.swing.JFrame {
         });
 
         btnLimpiarRevisonFacturas.setText("Limpiar");
+        btnLimpiarRevisonFacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarRevisonFacturasActionPerformed(evt);
+            }
+        });
+
+        buttonGroupEdoFactura.add(RadioButtonActivoFactura);
+        RadioButtonActivoFactura.setText("Activo");
+
+        buttonGroupEdoFactura.add(RadioButtonInactivoFactura);
+        RadioButtonInactivoFactura.setText("Inactivo");
+
+        btnModificarFac.setText("Modificar");
+        btnModificarFac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarFacActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1480,20 +1666,28 @@ public class compras extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jButton1)
-                        .addGap(53, 53, 53)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtIdFacturaRev)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtIdProveedor2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ComboBoxProveedor2, 0, 169, Short.MAX_VALUE)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(txtIdProveedor2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(RadioButtonActivoFactura)
+                                .addGap(18, 18, 18)
+                                .addComponent(RadioButtonInactivoFactura)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(ComboBoxProveedor2, 0, 169, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLimpiarRevisonFacturas)
-                        .addGap(135, 135, 135))))
+                        .addGap(30, 30, 30)
+                        .addComponent(btnModificarFac)
+                        .addGap(62, 62, 62))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1504,12 +1698,17 @@ public class compras extends javax.swing.JFrame {
                     .addComponent(txtNumFactura2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jLabel21)
-                    .addComponent(ComboBoxProveedor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(txtRUTProveedor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBoxProveedor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtIdProveedor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(RadioButtonActivoFactura)
+                        .addComponent(RadioButtonInactivoFactura))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel19)
+                        .addComponent(txtRUTProveedor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdFacturaRev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -1519,7 +1718,9 @@ public class compras extends javax.swing.JFrame {
                         .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLimpiarRevisonFacturas)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLimpiarRevisonFacturas)
+                            .addComponent(btnModificarFac))
                         .addContainerGap())))
         );
 
@@ -1604,7 +1805,7 @@ public class compras extends javax.swing.JFrame {
                 .addComponent(jLabel22)
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jLabel23)
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1681,6 +1882,7 @@ public class compras extends javax.swing.JFrame {
         btnGuardarPedido.setEnabled(false);
         btnIngresarPedido.setEnabled(true);
         mostrarTablaDetalleOrdenCompra();
+        btnBuscarPedido.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarPedidoActionPerformed
 
     private void TableOrdenCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableOrdenCompraMouseClicked
@@ -1742,6 +1944,7 @@ public class compras extends javax.swing.JFrame {
     private void tableFacturasInventariadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFacturasInventariadasMouseClicked
         // TODO add your handling code here:
         llamarDatosTableFacturasInventariadas();
+        filtrartableDetalleFacturas2();
     }//GEN-LAST:event_tableFacturasInventariadasMouseClicked
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
@@ -1759,6 +1962,43 @@ public class compras extends javax.swing.JFrame {
             FechaVencimiento.setEnabled(true);
         }
     }//GEN-LAST:event_CheckBoxSinVencActionPerformed
+
+    private void btnModificarFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarFacActionPerformed
+        // TODO add your handling code here:
+        mostrarTableFacturasInventariadas();
+    }//GEN-LAST:event_btnModificarFacActionPerformed
+
+    private void btnActivarBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarBusquedaActionPerformed
+        // TODO add your handling code here:
+        btnBuscarPedido.setEnabled(true);
+        btnIngresarPedido.setEnabled(false);
+        btnModificarPedido.setEnabled(true);
+        FechaPedido.setEnabled(false);
+        txtIdPedido.setEditable(true);
+    }//GEN-LAST:event_btnActivarBusquedaActionPerformed
+
+    private void btnBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidoActionPerformed
+        // TODO add your handling code here:
+        buscarOrdenCompra();
+        FechaPedido.setEnabled(true);
+        RadioButtonActivoPedido.setEnabled(true);
+        txtIdPedido.setEditable(false);
+    }//GEN-LAST:event_btnBuscarPedidoActionPerformed
+
+    private void btnModificarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPedidoActionPerformed
+        // TODO add your handling code here:
+        mostrarTablaOrdenCompra();
+    }//GEN-LAST:event_btnModificarPedidoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        buscarFacturasInventariadas();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnLimpiarRevisonFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarRevisonFacturasActionPerformed
+        // TODO add your handling code here:
+        mostrarTablaDetalleFacturas2();
+    }//GEN-LAST:event_btnLimpiarRevisonFacturasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1807,7 +2047,9 @@ public class compras extends javax.swing.JFrame {
     public com.toedter.calendar.JDateChooser FechaVencimiento;
     public javax.swing.JList<String> ListArticulos;
     public javax.swing.JList<String> ListArticulosPedido;
+    public javax.swing.JRadioButton RadioButtonActivoFactura;
     public javax.swing.JRadioButton RadioButtonActivoPedido;
+    public javax.swing.JRadioButton RadioButtonInactivoFactura;
     public javax.swing.JRadioButton RadioButtonInactivoPedido;
     public javax.swing.JTable TableDetalleOrdenCompra;
     public javax.swing.JTable TableOrdenCompra;
@@ -1824,7 +2066,10 @@ public class compras extends javax.swing.JFrame {
     public javax.swing.JButton btnLimpiarPedido;
     public javax.swing.JButton btnLimpiarRegCompra;
     public javax.swing.JButton btnLimpiarRevisonFacturas;
+    public javax.swing.JButton btnModificarFac;
+    public javax.swing.JButton btnModificarPedido;
     public javax.swing.JButton btnRegregarMenu;
+    public javax.swing.ButtonGroup buttonGroupEdoFactura;
     public javax.swing.ButtonGroup buttonGroupEdoPedido;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -1884,6 +2129,7 @@ public class compras extends javax.swing.JFrame {
     public javax.swing.JTextField txtFechaDefault;
     public javax.swing.JTextField txtIdArticulo;
     public javax.swing.JTextField txtIdArticuloFac;
+    public javax.swing.JTextField txtIdFacturaRev;
     public javax.swing.JTextField txtIdPedido;
     public javax.swing.JTextField txtIdProveedor;
     public javax.swing.JTextField txtIdProveedor2;
