@@ -7,6 +7,7 @@ public class Factura {
     private String fac_fecha_factura;
     private int id_roden_compra;
     private String id_proveedor;
+    private int fac_estado;
 
     public int getIdfactura() {
         return idfactura;
@@ -46,6 +47,14 @@ public class Factura {
 
     public void setId_proveedor(String id_proveedor) {
         this.id_proveedor = id_proveedor;
+    }
+
+    public int getFac_estado() {
+        return fac_estado;
+    }
+
+    public void setFac_estado(int fac_estado) {
+        this.fac_estado = fac_estado;
     }
     
     
