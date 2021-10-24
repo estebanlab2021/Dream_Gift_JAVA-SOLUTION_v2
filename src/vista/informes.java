@@ -2,6 +2,11 @@ package vista;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.print.PrinterException;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -11,7 +16,16 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Conexion;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class informes extends javax.swing.JFrame {
    DefaultListModel modelo = new DefaultListModel();
@@ -25,6 +39,7 @@ public class informes extends javax.swing.JFrame {
         MostrarInformeVenta();
         MostrarInfCliente();
         MostrarInventario01();
+        
     }
 
     /**
@@ -176,6 +191,79 @@ private void MostrarInventario01(){
         }
     }
 
+//Metodo para descargar tabla Inventario
+    private void descargartablaInventario01() {
+        //Definimos modelos de la Tabla con los datos
+        DefaultTableModel modelo1 = new DefaultTableModel();
+        modelo1 = (DefaultTableModel) tablaInventario01.getModel();
+        
+        //definimos las variables con las vamos hacer la exportacion por Libreria netbeans
+        FileOutputStream excelFOU = null;
+        BufferedOutputStream excelBOU = null;
+        XSSFWorkbook excelJTableExporter = null;
+        
+        //Selecciona locación para descargar
+        JFileChooser excelFileChooser = new JFileChooser("C:\\Users\\usuario\\Desktop");
+        //Nombre de cuadro de dialogo
+        excelFileChooser.setDialogTitle("Salvar como");
+        //Solo extensiona validas de excel para descargar
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("Excel Files", "xls", "xlsx", "xlsm");
+        excelFileChooser.setFileFilter(fnef);
+        //Muesta el cuadro de dialogo
+        int excelChooser = excelFileChooser.showSaveDialog(null);
+        
+        //Si el boton Salvar del cuadro de diáloo es apretado
+        if(excelChooser == JFileChooser.APPROVE_OPTION){
+            try{
+                //instanciamos excel poi libreria a netbeans
+                excelJTableExporter = new XSSFWorkbook();
+                XSSFSheet excelSheet = excelJTableExporter.createSheet("Inventario");
+                
+                //Agregamos los nombres de las columnas
+                XSSFRow rowCol = excelSheet.createRow(0);
+                for(int i=0; i<modelo1.getColumnCount();i++){
+                    XSSFCell cell = rowCol.createCell(i);
+                    cell.setCellValue(modelo1.getColumnName(i));
+                }
+                
+                //usar un loop para obtener filas y columnas de la Jtable
+                for(int j=0; j<modelo1.getRowCount(); j++){
+                    XSSFRow excelRow = excelSheet.createRow(j+1);
+                    for(int k=0; k < modelo1.getColumnCount(); k++){
+                        XSSFCell excelCell = excelRow.createCell(k);
+                        excelCell.setCellValue(modelo1.getValueAt(j, k).toString());
+                    }
+                }
+                //Agregar extención xlsx al fichero excel
+                excelFOU = new FileOutputStream(excelFileChooser.getSelectedFile()+".xlsx");
+                excelBOU = new BufferedOutputStream(excelFOU);
+                excelJTableExporter.write(excelBOU);
+                JOptionPane.showMessageDialog(null, "Tabla Descargada Exitosamente!!");
+            }catch(FileNotFoundException ex){
+                //ex.printStackTrace();
+                System.err.println(ex.toString());
+            } catch (IOException ex) {
+                Logger.getLogger(informes.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                try{
+                    if(excelBOU != null){
+                        excelBOU.close();
+                    }
+                    if(excelFOU != null){
+                        excelFOU.close();
+                    }
+                    if(excelJTableExporter != null){
+                        excelJTableExporter.close();
+                    }
+                }catch(IOException ex){
+                    //ex.printStackTrace();
+                    System.err.println(ex.toString());
+                }
+            }
+        }
+        
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,6 +297,8 @@ private void MostrarInventario01(){
         FHastaInvt = new com.toedter.calendar.JDateChooser();
         btnBuscarInvent = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
+        btnImprInvent = new javax.swing.JButton();
+        btndescargarInvent = new javax.swing.JButton();
         jPanel3 = new FondoPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaInfCliente = new javax.swing.JTable();
@@ -248,6 +338,12 @@ private void MostrarInventario01(){
             }
         });
         getContentPane().add(btnRegregarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         tableInf_Venta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -360,7 +456,7 @@ private void MostrarInventario01(){
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 37, Short.MAX_VALUE)))
+                        .addGap(0, 47, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -379,7 +475,7 @@ private void MostrarInventario01(){
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Informe Ventas", jPanel1);
@@ -426,6 +522,20 @@ private void MostrarInventario01(){
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("DETALLE INVENTARIO");
 
+        btnImprInvent.setText("Imprimir");
+        btnImprInvent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprInventActionPerformed(evt);
+            }
+        });
+
+        btndescargarInvent.setText("Descargar");
+        btndescargarInvent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndescargarInventActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -440,8 +550,14 @@ private void MostrarInventario01(){
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE))))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(btnImprInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btndescargarInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(158, 158, 158))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,7 +568,11 @@ private void MostrarInventario01(){
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnImprInvent)
+                    .addComponent(btndescargarInvent))
+                .addGap(35, 35, 35))
         );
 
         jTabbedPane1.addTab("Informe Inventario", jPanel2);
@@ -521,7 +641,7 @@ private void MostrarInventario01(){
                         .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButton4)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,7 +692,7 @@ private void MostrarInventario01(){
                 .addComponent(jLabel21)
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Informe Clientes", jPanel3);
@@ -684,7 +804,7 @@ private void MostrarInventario01(){
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,7 +815,7 @@ private void MostrarInventario01(){
                 .addComponent(jLabel23)
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Informe Dev & Cambios", jPanel4);
@@ -712,6 +832,25 @@ private void MostrarInventario01(){
         menuppal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegregarMenuActionPerformed
+
+    private void btnImprInventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprInventActionPerformed
+        // TODO add your handling code here:
+        try{
+            tablaInventario01.print();
+        }catch(PrinterException ex){
+            System.err.println(ex.toString());
+        }
+    }//GEN-LAST:event_btnImprInventActionPerformed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+        MostrarInventario01();
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void btndescargarInventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescargarInventActionPerformed
+        // TODO add your handling code here:
+        descargartablaInventario01();
+    }//GEN-LAST:event_btndescargarInventActionPerformed
 
     /**
      * @param args the command line arguments
@@ -754,7 +893,9 @@ private void MostrarInventario01(){
     private com.toedter.calendar.JDateChooser FHastaInvt;
     public javax.swing.JTable TablaInfCliente;
     private javax.swing.JButton btnBuscarInvent;
+    private javax.swing.JButton btnImprInvent;
     public javax.swing.JButton btnRegregarMenu;
+    private javax.swing.JButton btndescargarInvent;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
