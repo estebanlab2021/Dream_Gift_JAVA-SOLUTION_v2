@@ -24,6 +24,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.Conexion;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -437,8 +439,10 @@ private void MostrarInventario01(){
     //Tabla de Inventario
         try{    
             DefaultTableModel modeloInventario01 = new DefaultTableModel();
-            
             tablaInventario01.setModel(modeloInventario01);
+            
+            //TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modeloInventario01);
+            //tablaInventario01.setRowSorter(elQueOrdena);
             
             PreparedStatement ps = null;
             ResultSet rs = null;
