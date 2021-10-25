@@ -1,5 +1,6 @@
 package vista;
 
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.print.PrinterException;
@@ -14,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -91,11 +93,57 @@ private void MostrarInformeVenta(){
                 }
                 modeloInfVenta.addRow(filas); 
             }
-        
+            rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
     }
+
+public void buscarRangoFechasVenta(){
+        try{
+            Date date1 = DateChooserVenta1.getDate();
+	    long d1 = date1.getTime();
+	    java.sql.Date fecha1 = new java.sql.Date(d1);
+
+	    Date date2 = DateChooserVenta2.getDate();
+	    long d2 = date2.getTime();
+	    java.sql.Date fecha2 = new java.sql.Date(d2);
+	    
+	    DefaultTableModel modeloInfVenta = new DefaultTableModel();
+            tableInf_Venta.setModel(modeloInfVenta);
+
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql ="SELECT venta.idventa, venta.rut_cliente, cliente.cli_nombre, venta.vta_fecha_venta, venta.vta_fecha_entrega, pack.pck_nombre, venta.vta_total from venta left join cliente on venta.rut_cliente=cliente.RUT left join pack on venta.id_pack=pack.idpack WHERE (venta.id_estados_venta=1) AND (venta.vta_fecha_venta BETWEEN '"+fecha1.toString()+"' AND '"+fecha2.toString()+"')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+	    ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+	    modeloInfVenta.addColumn("Numero Pedido");
+            modeloInfVenta.addColumn("Rut Ciente");
+            modeloInfVenta.addColumn("Nombre Cliente");
+            modeloInfVenta.addColumn("Fecha de Compra");
+            modeloInfVenta.addColumn("Fecha de Entrega");
+            modeloInfVenta.addColumn("Pack vendido");
+            modeloInfVenta.addColumn("Monto");
+
+            while(rs.next()){
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloInfVenta.addRow(filas); 
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+
+
 
 public DefaultTableModel buscarPorRUT(String buscar, JTable tabla){
     
@@ -189,8 +237,7 @@ private void MostrarInfCliente(){
                 }
                 modeloInfCliente.addRow(filas); 
             }
-        
-        
+            rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
@@ -288,8 +335,7 @@ private void MostrarDevCambios(){
                 }
                 modeloDevCambios.addRow(filas); 
             }
-        
-        
+            rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
@@ -338,17 +384,17 @@ private void MostrarInventario01(){
                 modeloInventario01.addRow(filas); 
             }
         
-        
+            rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
     }
 
 //Metodo para descargar tabla Inventario
-    private void descargartablaInventario01() {
+    private void descargartablaInventario01(JTable tabla) {
         //Definimos modelos de la Tabla con los datos
         DefaultTableModel modelo1 = new DefaultTableModel();
-        modelo1 = (DefaultTableModel) tablaInventario01.getModel();
+        modelo1 = (DefaultTableModel) tabla.getModel();
         
         //definimos las variables con las vamos hacer la exportacion por Libreria netbeans
         FileOutputStream excelFOU = null;
@@ -428,8 +474,8 @@ private void MostrarInventario01(){
         tableInf_Venta = new javax.swing.JTable();
         jPanel5 = new FondoPanel();
         jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        DateChooserVenta1 = new com.toedter.calendar.JDateChooser();
+        DateChooserVenta2 = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -455,9 +501,9 @@ private void MostrarInventario01(){
         jPanel7 = new FondoPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jDateChooser5 = new com.toedter.calendar.JDateChooser();
+        DateChooserCliente1 = new com.toedter.calendar.JDateChooser();
         jLabel13 = new javax.swing.JLabel();
-        jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        DateChooserCliente2 = new com.toedter.calendar.JDateChooser();
         jButton4 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -468,9 +514,9 @@ private void MostrarInventario01(){
         jPanel8 = new FondoPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jDateChooser7 = new com.toedter.calendar.JDateChooser();
+        DateChooserDevol1 = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
-        jDateChooser8 = new com.toedter.calendar.JDateChooser();
+        DateChooserDevol2 = new com.toedter.calendar.JDateChooser();
         jButton5 = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
 
@@ -518,6 +564,10 @@ private void MostrarInventario01(){
 
         jLabel1.setText("Busqueda por Rango de Fecha");
 
+        DateChooserVenta1.setDateFormatString("y-MM-dd");
+
+        DateChooserVenta2.setDateFormatString("y-MM-dd");
+
         jLabel2.setText("Desde: ");
 
         jLabel3.setText("Hasta: ");
@@ -531,6 +581,11 @@ private void MostrarInventario01(){
         });
 
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -551,11 +606,11 @@ private void MostrarInventario01(){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserVenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButton2))
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -570,8 +625,8 @@ private void MostrarInventario01(){
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserVenta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
@@ -645,10 +700,14 @@ private void MostrarInventario01(){
 
         jLabel8.setText("Desde: ");
         jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+
+        FDesdeInvt.setDateFormatString("y-MM-dd");
         jPanel6.add(FDesdeInvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 154, -1));
 
         jLabel9.setText("Hasta: ");
         jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, -1, -1));
+
+        FHastaInvt.setDateFormatString("y-MM-dd");
         jPanel6.add(FHastaInvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 154, -1));
 
         btnBuscarInvent.setText("Buscar");
@@ -740,7 +799,11 @@ private void MostrarInventario01(){
 
         jLabel12.setText("Desde: ");
 
+        DateChooserCliente1.setDateFormatString("y-MM-dd");
+
         jLabel13.setText("Hasta: ");
+
+        DateChooserCliente2.setDateFormatString("y-MM-dd");
 
         jButton4.setText("Buscar");
 
@@ -767,7 +830,7 @@ private void MostrarInventario01(){
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addGap(29, 29, 29)
-                                .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(DateChooserCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
                                 .addComponent(jLabel13))
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -776,7 +839,7 @@ private void MostrarInventario01(){
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(92, 92, 92)))
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButton4)))
                 .addContainerGap(84, Short.MAX_VALUE))
@@ -790,8 +853,8 @@ private void MostrarInventario01(){
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jDateChooser6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserCliente2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12))
                     .addComponent(jButton4))
                 .addGap(31, 31, 31)
@@ -862,7 +925,11 @@ private void MostrarInventario01(){
 
         jLabel14.setText("Desde: ");
 
+        DateChooserDevol1.setDateFormatString("y-MM-dd");
+
         jLabel15.setText("Hasta: ");
+
+        DateChooserDevol2.setDateFormatString("y-MM-dd");
 
         jButton5.setText("Buscar");
 
@@ -879,11 +946,11 @@ private void MostrarInventario01(){
                         .addGap(63, 63, 63)
                         .addComponent(jLabel14)
                         .addGap(29, 29, 29)
-                        .addComponent(jDateChooser7, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserDevol1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
-                        .addComponent(jDateChooser8, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserDevol2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButton5)))
                 .addContainerGap(85, Short.MAX_VALUE))
@@ -897,8 +964,8 @@ private void MostrarInventario01(){
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel15)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDateChooser7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jDateChooser8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserDevol1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateChooserDevol2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel14))
                     .addComponent(jButton5))
                 .addContainerGap(78, Short.MAX_VALUE))
@@ -969,7 +1036,7 @@ private void MostrarInventario01(){
 
     private void btndescargarInventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndescargarInventActionPerformed
         // TODO add your handling code here:
-        descargartablaInventario01();
+        descargartablaInventario01(tablaInventario01);
     }//GEN-LAST:event_btndescargarInventActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
@@ -981,6 +1048,11 @@ private void MostrarInventario01(){
         // TODO add your handling code here:
         buscarPorRUT2(jTextField3.getText(), TablaInfCliente);
     }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        buscarRangoFechasVenta();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1019,8 +1091,14 @@ private void MostrarInventario01(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser FDesdeInvt;
-    private com.toedter.calendar.JDateChooser FHastaInvt;
+    public com.toedter.calendar.JDateChooser DateChooserCliente1;
+    public com.toedter.calendar.JDateChooser DateChooserCliente2;
+    public com.toedter.calendar.JDateChooser DateChooserDevol1;
+    public com.toedter.calendar.JDateChooser DateChooserDevol2;
+    public com.toedter.calendar.JDateChooser DateChooserVenta1;
+    public com.toedter.calendar.JDateChooser DateChooserVenta2;
+    public com.toedter.calendar.JDateChooser FDesdeInvt;
+    public com.toedter.calendar.JDateChooser FHastaInvt;
     public javax.swing.JTable TablaDevCambios;
     public javax.swing.JTable TablaInfCliente;
     private javax.swing.JButton btnBuscarInvent;
@@ -1030,12 +1108,6 @@ private void MostrarInventario01(){
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private com.toedter.calendar.JDateChooser jDateChooser5;
-    private com.toedter.calendar.JDateChooser jDateChooser6;
-    private com.toedter.calendar.JDateChooser jDateChooser7;
-    private com.toedter.calendar.JDateChooser jDateChooser8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
