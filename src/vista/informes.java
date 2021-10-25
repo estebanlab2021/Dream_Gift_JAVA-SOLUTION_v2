@@ -39,6 +39,7 @@ public class informes extends javax.swing.JFrame {
         MostrarInformeVenta();
         MostrarInfCliente();
         MostrarInventario01();
+        MostrarDevCambios();
         
     }
 
@@ -142,6 +143,53 @@ private void MostrarInfCliente(){
             System.err.println(ex.toString());
         }
     }
+
+private void MostrarDevCambios(){
+    //Tabla de InfDevCambios
+        try{    
+            DefaultTableModel modeloDevCambios = new DefaultTableModel();
+            
+            TablaDevCambios.setModel(modeloDevCambios);
+            
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, concat(venta.vta_hora_entrega_inicial, '-' ,venta.vta_hora_entrega_final) as Rango_Hora, comunas.nombre_comunas, estados_despacho.estados_despacho_name from venta left join comunas on venta.id_comuna=comunas.idcomunas left join pack on venta.id_pack=pack.idpack left join cliente on venta.rut_cliente=cliente.RUT left join estados_despacho on venta.estado_despacho=estados_despacho.idestados_despacho where venta.estado_despacho <> 4";
+
+          
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloDevCambios.addColumn("Id Venta");
+            modeloDevCambios.addColumn("Pack");
+            modeloDevCambios.addColumn("Destinatario");
+            modeloDevCambios.addColumn("Fecha de Entrega");
+            modeloDevCambios.addColumn("Hora de Entrega");
+            modeloDevCambios.addColumn("Comuna");
+            modeloDevCambios.addColumn("Devolucion");
+                                     
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloDevCambios.addRow(filas); 
+            }
+        
+        
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+
 
 /**************************** Codigo Cristian ********************************/
 private void MostrarInventario01(){
@@ -315,7 +363,7 @@ private void MostrarInventario01(){
         jLabel21 = new javax.swing.JLabel();
         jPanel4 = new FondoPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        TablaDevCambios = new javax.swing.JTable();
         jPanel8 = new FondoPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -697,7 +745,7 @@ private void MostrarInventario01(){
 
         jTabbedPane1.addTab("Informe Clientes", jPanel3);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        TablaDevCambios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -717,7 +765,7 @@ private void MostrarInventario01(){
                 return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(TablaDevCambios);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informe Devolución y Cambios", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
@@ -891,6 +939,7 @@ private void MostrarInventario01(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser FDesdeInvt;
     private com.toedter.calendar.JDateChooser FHastaInvt;
+    public javax.swing.JTable TablaDevCambios;
     public javax.swing.JTable TablaInfCliente;
     private javax.swing.JButton btnBuscarInvent;
     private javax.swing.JButton btnImprInvent;
@@ -941,7 +990,6 @@ private void MostrarInventario01(){
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
