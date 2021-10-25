@@ -293,6 +293,51 @@ public DefaultTableModel buscarPorRUT2(String buscar, JTable tabla){
     
     }
 
+public void buscarRangoFechasClientes(){
+        try{
+            Date date1 = DateChooserCliente1.getDate();
+	    long d1 = date1.getTime();
+	    java.sql.Date fecha1 = new java.sql.Date(d1);
+
+	    Date date2 = DateChooserCliente2.getDate();
+	    long d2 = date2.getTime();
+	    java.sql.Date fecha2 = new java.sql.Date(d2);
+	    
+	    DefaultTableModel modeloInfCliente = new DefaultTableModel();
+            TablaInfCliente.setModel(modeloInfCliente);
+
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql ="SELECT venta.id_pack, venta.rut_cliente, cliente.cli_nombre, cliente.cli_apellido, pack.pck_nombre, venta.vta_fecha_venta, estados_despacho.estados_despacho_name, comunas.nombre_comunas from venta left join pack on venta.id_pack=pack.idpack left join cliente on venta.rut_cliente=cliente.RUT left join comunas on venta.id_comuna=comunas.idcomunas left join estados_despacho on venta.estado_despacho=estados_despacho.idestados_despacho WHERE (venta.estado_despacho='4') AND (venta.vta_fecha_venta BETWEEN '"+fecha1.toString()+"' AND '"+fecha2.toString()+"')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+	    ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+	    modeloInfCliente.addColumn("Id Pack");
+            modeloInfCliente.addColumn("Rut Cliente");
+            modeloInfCliente.addColumn("Nombre Cliente");
+            modeloInfCliente.addColumn("Apellido Cliente");
+            modeloInfCliente.addColumn("Pack");
+            modeloInfCliente.addColumn("Fecha Pedido");
+            modeloInfCliente.addColumn("Estado Despacho");
+            modeloInfCliente.addColumn("Comuna");
+
+            while(rs.next()){
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloInfCliente.addRow(filas); 
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
 
 
 
@@ -328,6 +373,51 @@ private void MostrarDevCambios(){
                                      
             while(rs.next()){
                 
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloDevCambios.addRow(filas); 
+            }
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+
+public void buscarRangoFechasDevol(){
+        try{
+            Date date1 = DateChooserDevol1.getDate();
+	    long d1 = date1.getTime();
+	    java.sql.Date fecha1 = new java.sql.Date(d1);
+
+	    Date date2 = DateChooserDevol2.getDate();
+	    long d2 = date2.getTime();
+	    java.sql.Date fecha2 = new java.sql.Date(d2);
+	    
+	    DefaultTableModel modeloDevCambios = new DefaultTableModel();
+            TablaDevCambios.setModel(modeloDevCambios);
+
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql ="SELECT venta.idventa, pack.pck_nombre, venta.vta_nombre_destinatario, venta.vta_fecha_entrega, concat(venta.vta_hora_entrega_inicial, '-' ,venta.vta_hora_entrega_final) as Rango_Hora, comunas.nombre_comunas, estados_despacho.estados_despacho_name from venta left join comunas on venta.id_comuna=comunas.idcomunas left join pack on venta.id_pack=pack.idpack left join cliente on venta.rut_cliente=cliente.RUT left join estados_despacho on venta.estado_despacho=estados_despacho.idestados_despacho WHERE (venta.estado_despacho <> '4') AND (venta.vta_fecha_entrega BETWEEN '"+fecha1.toString()+"' AND '"+fecha2.toString()+"')";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+	    ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+	    modeloDevCambios.addColumn("Id Venta");
+            modeloDevCambios.addColumn("Pack");
+            modeloDevCambios.addColumn("Destinatario");
+            modeloDevCambios.addColumn("Fecha de Entrega");
+            modeloDevCambios.addColumn("Hora de Entrega");
+            modeloDevCambios.addColumn("Comuna");
+            modeloDevCambios.addColumn("Devolucion");
+
+            while(rs.next()){
                 Object[] filas = new Object[CantidadColumnas];
                 
                 for(int i=0; i < CantidadColumnas; i++){
@@ -384,6 +474,54 @@ private void MostrarInventario01(){
                 modeloInventario01.addRow(filas); 
             }
         
+            rs.close();
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+
+
+public void buscarRangoFechasInventario(){
+        try{
+            Date date1 = FDesdeInvt.getDate();
+	    long d1 = date1.getTime();
+	    java.sql.Date fecha1 = new java.sql.Date(d1);
+
+	    Date date2 = FHastaInvt.getDate();
+	    long d2 = date2.getTime();
+	    java.sql.Date fecha2 = new java.sql.Date(d2);
+	    
+	    DefaultTableModel modeloInventario01 = new DefaultTableModel();
+            tablaInventario01.setModel(modeloInventario01);
+
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql ="SELECT DISTINCT articulo.idarticulo, articulo.art_estado, articulo.art_descripcion, articulo.art_fecha_vencimiento, articulo.art_stock, SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)) as comprado, ((articulo.art_stock) + (SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)))) as total1, SUM(DISTINCT COALESCE(pack.pck_stock,0)) as total_PACK, (((articulo.art_stock) + (SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)))) - (SUM(DISTINCT COALESCE(pack.pck_stock,0)))) as stock_final FROM articulo LEFT JOIN detalle_factura ON articulo.idarticulo = detalle_factura.id_articulo_pk LEFT JOIN articulo_has_pack ON articulo.idarticulo = articulo_has_pack.id_articulo_art LEFT JOIN pack ON articulo_has_pack.id_pack_pck = pack.idpack WHERE (articulo.art_estado = '1') AND (articulo.art_fecha_vencimiento BETWEEN '"+fecha1.toString()+"' AND '"+fecha2.toString()+"') GROUP BY articulo.idarticulo, articulo_has_pack.id_articulo_art ORDER BY stock_final DESC";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+	    ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+	    modeloInventario01.addColumn("Id Articulo");
+            modeloInventario01.addColumn("Estado");
+            modeloInventario01.addColumn("Articulo");
+            modeloInventario01.addColumn("Fecha Vencimiento");
+            modeloInventario01.addColumn("Stock");
+            modeloInventario01.addColumn("Comprado");
+            modeloInventario01.addColumn("Total Art");
+            modeloInventario01.addColumn("Total Pack");
+            modeloInventario01.addColumn("Stock F");
+
+            while(rs.next()){
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloInventario01.addRow(filas); 
+            }
             rs.close();
         }catch(SQLException ex){
             System.err.println(ex.toString());
@@ -699,19 +837,24 @@ private void MostrarInventario01(){
         jPanel6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 24, -1, -1));
 
         jLabel8.setText("Desde: ");
-        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        jPanel6.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
         FDesdeInvt.setDateFormatString("y-MM-dd");
         jPanel6.add(FDesdeInvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 154, -1));
 
         jLabel9.setText("Hasta: ");
-        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, -1, -1));
+        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
 
         FHastaInvt.setDateFormatString("y-MM-dd");
-        jPanel6.add(FHastaInvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 154, -1));
+        jPanel6.add(FHastaInvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 154, -1));
 
         btnBuscarInvent.setText("Buscar");
-        jPanel6.add(btnBuscarInvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, -1, -1));
+        btnBuscarInvent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarInventActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnBuscarInvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("DETALLE INVENTARIO");
@@ -806,6 +949,11 @@ private void MostrarInventario01(){
         DateChooserCliente2.setDateFormatString("y-MM-dd");
 
         jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel20.setText("Busqueda por RUT:");
 
@@ -932,6 +1080,11 @@ private void MostrarInventario01(){
         DateChooserDevol2.setDateFormatString("y-MM-dd");
 
         jButton5.setText("Buscar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1053,6 +1206,21 @@ private void MostrarInventario01(){
         // TODO add your handling code here:
         buscarRangoFechasVenta();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        buscarRangoFechasDevol();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        buscarRangoFechasClientes();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnBuscarInventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInventActionPerformed
+        // TODO add your handling code here:
+        buscarRangoFechasInventario();
+    }//GEN-LAST:event_btnBuscarInventActionPerformed
 
     /**
      * @param args the command line arguments
