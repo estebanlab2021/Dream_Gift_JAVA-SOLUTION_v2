@@ -3323,13 +3323,14 @@ public class MenuMaestro extends javax.swing.JFrame {
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, 540));
 
         btnRegregarMenu.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnRegregarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresar0.png"))); // NOI18N
         btnRegregarMenu.setText("Regresar a Menú Principal");
         btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegregarMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegregarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 220, -1));
+        getContentPane().add(btnRegregarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
