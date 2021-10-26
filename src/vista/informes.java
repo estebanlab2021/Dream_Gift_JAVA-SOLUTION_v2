@@ -630,8 +630,9 @@ public void buscarRangoFechasInventario(){
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtRUTVenta = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        btnLimpiarVentas = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnImprVentas = new javax.swing.JButton();
         btndescargarVentas = new javax.swing.JButton();
@@ -645,6 +646,7 @@ public void buscarRangoFechasInventario(){
         jLabel9 = new javax.swing.JLabel();
         FHastaInvt = new com.toedter.calendar.JDateChooser();
         btnBuscarInvent = new javax.swing.JButton();
+        btnLimpiarInventario = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         btnImprInvent = new javax.swing.JButton();
         btndescargarInvent = new javax.swing.JButton();
@@ -659,7 +661,8 @@ public void buscarRangoFechasInventario(){
         DateChooserCliente2 = new com.toedter.calendar.JDateChooser();
         jButton4 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtRUTClientes = new javax.swing.JTextField();
+        btnLimpiarClientes = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         btnImprClientes = new javax.swing.JButton();
         btndescargarClientes = new javax.swing.JButton();
@@ -673,6 +676,7 @@ public void buscarRangoFechasInventario(){
         jLabel15 = new javax.swing.JLabel();
         DateChooserDevol2 = new com.toedter.calendar.JDateChooser();
         jButton5 = new javax.swing.JButton();
+        btnLimpiarDevol = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         btnImprDevol = new javax.swing.JButton();
         btndescargarDevol = new javax.swing.JButton();
@@ -731,9 +735,9 @@ public void buscarRangoFechasInventario(){
 
         jLabel4.setText("Busqueda por RUT:");
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtRUTVenta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                txtRUTVentaKeyReleased(evt);
             }
         });
 
@@ -741,6 +745,13 @@ public void buscarRangoFechasInventario(){
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarVentas.setText("Limpiar");
+        btnLimpiarVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarVentasActionPerformed(evt);
             }
         });
 
@@ -761,16 +772,19 @@ public void buscarRangoFechasInventario(){
                         .addGap(19, 19, 19)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(DateChooserVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(DateChooserVenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton2))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DateChooserVenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(txtRUTVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimpiarVentas)))
+                .addGap(27, 27, 27)
+                .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -786,11 +800,17 @@ public void buscarRangoFechasInventario(){
                         .addComponent(DateChooserVenta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
                     .addComponent(jButton2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtRUTVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(32, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimpiarVentas)
+                        .addGap(19, 19, 19))))
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -899,6 +919,14 @@ public void buscarRangoFechasInventario(){
         });
         jPanel6.add(btnBuscarInvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
 
+        btnLimpiarInventario.setText("Limpiar");
+        btnLimpiarInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarInventarioActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnLimpiarInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, -1, -1));
+
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("DETALLE INVENTARIO");
 
@@ -1000,9 +1028,16 @@ public void buscarRangoFechasInventario(){
 
         jLabel20.setText("Busqueda por RUT:");
 
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtRUTClientes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
+                txtRUTClientesKeyReleased(evt);
+            }
+        });
+
+        btnLimpiarClientes.setText("Limpiar");
+        btnLimpiarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarClientesActionPerformed(evt);
             }
         });
 
@@ -1027,12 +1062,15 @@ public void buscarRangoFechasInventario(){
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtRUTClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(92, 92, 92)))
                         .addGap(18, 18, 18)
-                        .addComponent(DateChooserCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton4)))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(DateChooserCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButton4))
+                            .addComponent(btnLimpiarClientes))))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1048,11 +1086,12 @@ public void buscarRangoFechasInventario(){
                         .addComponent(DateChooserCliente2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12))
                     .addComponent(jButton4))
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(txtRUTClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiarClientes))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -1154,6 +1193,13 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btnLimpiarDevol.setText("Limpiar");
+        btnLimpiarDevol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarDevolActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -1173,7 +1219,9 @@ public void buscarRangoFechasInventario(){
                         .addGap(18, 18, 18)
                         .addComponent(DateChooserDevol2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton5)))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLimpiarDevol)
+                            .addComponent(jButton5))))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -1189,7 +1237,9 @@ public void buscarRangoFechasInventario(){
                         .addComponent(DateChooserDevol2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel14))
                     .addComponent(jButton5))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btnLimpiarDevol)
+                .addGap(22, 22, 22))
         );
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -1286,15 +1336,15 @@ public void buscarRangoFechasInventario(){
         descargarTablas(tablaInventario01);
     }//GEN-LAST:event_btndescargarInventActionPerformed
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void txtRUTVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRUTVentaKeyReleased
         // TODO add your handling code here:
-        buscarPorRUT(jTextField1.getText(),tableInf_Venta);
-    }//GEN-LAST:event_jTextField1KeyReleased
+        buscarPorRUT(txtRUTVenta.getText(),tableInf_Venta);
+    }//GEN-LAST:event_txtRUTVentaKeyReleased
 
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+    private void txtRUTClientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRUTClientesKeyReleased
         // TODO add your handling code here:
-        buscarPorRUT2(jTextField3.getText(), TablaInfCliente);
-    }//GEN-LAST:event_jTextField3KeyReleased
+        buscarPorRUT2(txtRUTClientes.getText(), TablaInfCliente);
+    }//GEN-LAST:event_txtRUTClientesKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -1345,6 +1395,36 @@ public void buscarRangoFechasInventario(){
         // TODO add your handling code here:
         descargarTablas(TablaDevCambios);
     }//GEN-LAST:event_btndescargarDevolActionPerformed
+
+    private void btnLimpiarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarVentasActionPerformed
+        // TODO add your handling code here:
+        txtRUTVenta.setText(null);
+        DateChooserVenta1.setCalendar(null);
+        DateChooserVenta2.setCalendar(null);
+        MostrarInformeVenta();
+    }//GEN-LAST:event_btnLimpiarVentasActionPerformed
+
+    private void btnLimpiarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarInventarioActionPerformed
+        // TODO add your handling code here:
+        FDesdeInvt.setCalendar(null);
+        FHastaInvt.setCalendar(null);
+        MostrarInventario01();
+    }//GEN-LAST:event_btnLimpiarInventarioActionPerformed
+
+    private void btnLimpiarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarClientesActionPerformed
+        // TODO add your handling code here:
+        txtRUTClientes.setText(null);
+        DateChooserCliente1.setCalendar(null);
+        DateChooserCliente2.setCalendar(null);
+        MostrarInfCliente();
+    }//GEN-LAST:event_btnLimpiarClientesActionPerformed
+
+    private void btnLimpiarDevolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarDevolActionPerformed
+        // TODO add your handling code here:
+        DateChooserDevol1.setCalendar(null);
+        DateChooserDevol2.setCalendar(null);
+        MostrarDevCambios();
+    }//GEN-LAST:event_btnLimpiarDevolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1398,6 +1478,10 @@ public void buscarRangoFechasInventario(){
     private javax.swing.JButton btnImprDevol;
     private javax.swing.JButton btnImprInvent;
     private javax.swing.JButton btnImprVentas;
+    public javax.swing.JButton btnLimpiarClientes;
+    public javax.swing.JButton btnLimpiarDevol;
+    public javax.swing.JButton btnLimpiarInventario;
+    public javax.swing.JButton btnLimpiarVentas;
     public javax.swing.JButton btnRegregarMenu;
     private javax.swing.JButton btndescargarClientes;
     private javax.swing.JButton btndescargarDevol;
@@ -1437,10 +1521,10 @@ public void buscarRangoFechasInventario(){
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     public javax.swing.JTable tablaInventario01;
     public javax.swing.JTable tableInf_Venta;
+    private javax.swing.JTextField txtRUTClientes;
+    private javax.swing.JTextField txtRUTVenta;
     // End of variables declaration//GEN-END:variables
 class FondoPanel extends JPanel
     {
