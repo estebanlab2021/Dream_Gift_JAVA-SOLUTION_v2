@@ -18,6 +18,42 @@ import java.util.ArrayList;
  */
 public class ConsultaUsuario extends Conexion{
     
+    public ArrayList<Usuarios> loginUsuario(String user, String pass) {
+        PreparedStatement ps = null;
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        ResultSet rs = null;
+        Usuarios usuario;
+        ArrayList list = new ArrayList();
+        
+        String sql = "SELECT * FROM usuario WHERE (usuario = ? AND password = ?)";
+        
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user);
+            ps.setString(2, pass);
+            //ps.execute();
+            rs = ps.executeQuery();
+            //rs.close();
+            while(rs.next()){
+                usuario = new Usuarios();
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setPassword(rs.getString("password"));
+                list.add(usuario);
+            }
+            
+        }catch(Exception ex){
+            System.err.println(ex.toString());
+        }finally{
+            try{
+                con.close();
+            }catch(SQLException ex){
+                System.err.println(ex.toString());
+            }
+        }
+        return list;
+    }
+    
     public boolean BuscarUsuario(Usuarios user) throws SQLException{
         PreparedStatement ps = null;
         Conexion conn = new Conexion();
