@@ -440,10 +440,9 @@ private void MostrarInventario01(){
         try{    
             DefaultTableModel modeloInventario01 = new DefaultTableModel();
             tablaInventario01.setModel(modeloInventario01);
-            
             //TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modeloInventario01);
             //tablaInventario01.setRowSorter(elQueOrdena);
-            
+                      
             PreparedStatement ps = null;
             ResultSet rs = null;
             
@@ -479,6 +478,7 @@ private void MostrarInventario01(){
             }
         
             rs.close();
+            
         }catch(SQLException ex){
             System.err.println(ex.toString());
         }
