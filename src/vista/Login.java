@@ -79,10 +79,10 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        menu menuPpal = new menu();
+        //menu menuPpal = new menu();
         
-        menuPpal.setVisible(true);
-        this.setVisible(false);
+        //menuPpal.setVisible(true);
+        //this.setVisible(false);
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
