@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import modelo.ConsultaUsuario;
 import modelo.Usuarios;
 import vista.Login;
+import vista.menu;
 
 /**
  *
@@ -43,20 +44,26 @@ public class crtlUsuario implements ActionListener{
     public void actionPerformed(ActionEvent e){
         
         if(e.getSource() == vistaU.btnEntrar){
-            user.setUsuario(vistaU.txtUsuario.getText());
+            //user.setUsuario(vistaU.txtUsuario.getText());
+            String user = vistaU.txtUsuario.getText();
             char p [] = vistaU.txtPassword.getPassword();
             String pass = new String(p);
-            user.setPassword(pass);
-           
+            //user.setPassword(pass);
+           ArrayList<Usuarios> list;
+           list = userc.loginUsuario(user, pass);
             try{
-                if(userc.BuscarUsuario(user)){
-                    
+                if(list.size()>0){
                     JOptionPane.showMessageDialog(null, "Usuario Registrado, BIENVENIDO " + vistaU.txtUsuario.getText());
+                    vistaU.dispose();
+                    menu menuppal = new menu();
+                    menuppal.setVisible(true);
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuario NO Registrado");
+                    vistaU.txtUsuario.setText(null);
+                    vistaU.txtPassword.setText(null);
                 }
-            }catch (SQLException ex) {
-                Logger.getLogger(crtlUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }catch (Exception ex) {
+                System.err.println(ex.toString());
             }
         }
         
