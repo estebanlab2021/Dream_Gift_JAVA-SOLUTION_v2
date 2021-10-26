@@ -151,7 +151,7 @@ public class menu extends javax.swing.JFrame {
         jLabel1.setText("MENU PRINCIPAL");
 
         btnCompras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCompras.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\OneDrive\\Documentos\\NetBeansProjects\\DG_JavaSolution_Proyecto\\Dream_Gift_JAVA-SOLUTION_v2\\src\\icons\\compra0.png")); // NOI18N
+        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/compra0.png"))); // NOI18N
         btnCompras.setText("Compras");
         btnCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +160,7 @@ public class menu extends javax.swing.JFrame {
         });
 
         btnInformes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnInformes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/informe0.png"))); // NOI18N
+        btnInformes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informe0.png"))); // NOI18N
         btnInformes.setText("Informes");
         btnInformes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +169,7 @@ public class menu extends javax.swing.JFrame {
         });
 
         btnMaestro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnMaestro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/maestro2.png"))); // NOI18N
+        btnMaestro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/maestro0.png"))); // NOI18N
         btnMaestro.setText("Maestro");
         btnMaestro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +180,7 @@ public class menu extends javax.swing.JFrame {
         DG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/REGALOTRANSCH.png"))); // NOI18N
 
         btnVentas1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnVentas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/venta0.png"))); // NOI18N
+        btnVentas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/venta0.png"))); // NOI18N
         btnVentas1.setText("Ventas");
         btnVentas1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,15 +195,14 @@ public class menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(DG2)
-                                .addGap(44, 44, 44))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(btnVentas1)
-                                .addGap(29, 29, 29)))
+                                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(DG2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnCompras)
@@ -215,21 +214,16 @@ public class menu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel1)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(DG2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGap(6, 6, 6)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(DG2))
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVentas1)
                     .addComponent(btnCompras)
@@ -237,7 +231,7 @@ public class menu extends javax.swing.JFrame {
                     .addComponent(btnMaestro))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         pack();

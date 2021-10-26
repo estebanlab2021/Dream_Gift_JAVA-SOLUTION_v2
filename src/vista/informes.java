@@ -839,6 +839,7 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar0.png"))); // NOI18N
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -846,6 +847,7 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btnLimpiarVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimpiarVentas.setText("Limpiar");
         btnLimpiarVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -890,30 +892,36 @@ public void buscarRangoFechasInventario(){
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(DateChooserVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DateChooserVenta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
-                    .addComponent(jButton2))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtRUTVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(32, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLimpiarVentas)
-                        .addGap(19, 19, 19))))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(DateChooserVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(DateChooserVenta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtRUTVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLimpiarVentas)
+                                .addGap(19, 19, 19))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("DETALLE DE VENTAS REALIZADAS");
 
+        btnImprVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imprimir0.png"))); // NOI18N
         btnImprVentas.setText("Imprimir");
         btnImprVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -921,6 +929,7 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btndescargarVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga0.png"))); // NOI18N
         btndescargarVentas.setText("Descargar");
         btndescargarVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -946,9 +955,9 @@ public void buscarRangoFechasInventario(){
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnImprVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148)
-                .addComponent(btndescargarVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnImprVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126)
+                .addComponent(btndescargarVentas)
                 .addGap(179, 179, 179))
         );
         jPanel1Layout.setVerticalGroup(
@@ -960,7 +969,7 @@ public void buscarRangoFechasInventario(){
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImprVentas)
                     .addComponent(btndescargarVentas))
@@ -1014,25 +1023,28 @@ public void buscarRangoFechasInventario(){
         FHastaInvt.setDateFormatString("y-MM-dd");
         jPanel6.add(FHastaInvt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 154, -1));
 
+        btnBuscarInvent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar0.png"))); // NOI18N
         btnBuscarInvent.setText("Buscar");
         btnBuscarInvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarInventActionPerformed(evt);
             }
         });
-        jPanel6.add(btnBuscarInvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
+        jPanel6.add(btnBuscarInvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
 
+        btnLimpiarInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimpiarInventario.setText("Limpiar");
         btnLimpiarInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarInventarioActionPerformed(evt);
             }
         });
-        jPanel6.add(btnLimpiarInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, -1, -1));
+        jPanel6.add(btnLimpiarInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setText("DETALLE INVENTARIO");
 
+        btnImprInvent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imprimir0.png"))); // NOI18N
         btnImprInvent.setText("Imprimir");
         btnImprInvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1040,6 +1052,7 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btndescargarInvent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga0.png"))); // NOI18N
         btndescargarInvent.setText("Descargar");
         btndescargarInvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1071,9 +1084,9 @@ public void buscarRangoFechasInventario(){
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(212, 212, 212)
-                .addComponent(btnImprInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnImprInvent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btndescargarInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btndescargarInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1100,7 +1113,7 @@ public void buscarRangoFechasInventario(){
                     .addComponent(btnOrdenInventariofechaDESC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImprInvent)
                     .addComponent(btndescargarInvent))
@@ -1143,6 +1156,7 @@ public void buscarRangoFechasInventario(){
 
         DateChooserCliente2.setDateFormatString("y-MM-dd");
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar0.png"))); // NOI18N
         jButton4.setText("Buscar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1158,6 +1172,7 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btnLimpiarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimpiarClientes.setText("Limpiar");
         btnLimpiarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1195,7 +1210,7 @@ public void buscarRangoFechasInventario(){
                                 .addGap(27, 27, 27)
                                 .addComponent(jButton4))
                             .addComponent(btnLimpiarClientes))))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1215,12 +1230,13 @@ public void buscarRangoFechasInventario(){
                     .addComponent(jLabel20)
                     .addComponent(txtRUTClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarClientes))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setText("DETALLE DE DISTRIBUICIÓN DE PACK");
 
+        btnImprClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imprimir0.png"))); // NOI18N
         btnImprClientes.setText("Imprimir");
         btnImprClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1228,6 +1244,7 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btndescargarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga0.png"))); // NOI18N
         btndescargarClientes.setText("Descargar");
         btndescargarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1253,9 +1270,9 @@ public void buscarRangoFechasInventario(){
                                 .addComponent(jLabel21)
                                 .addGap(198, 198, 198))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnImprClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(148, 148, 148)
-                                .addComponent(btndescargarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnImprClientes)
+                                .addGap(126, 126, 126)
+                                .addComponent(btndescargarClientes)
                                 .addGap(205, 205, 205))))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -1271,7 +1288,7 @@ public void buscarRangoFechasInventario(){
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImprClientes)
                     .addComponent(btndescargarClientes))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Informe Clientes", jPanel3);
@@ -1310,6 +1327,7 @@ public void buscarRangoFechasInventario(){
 
         DateChooserDevol2.setDateFormatString("y-MM-dd");
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar0.png"))); // NOI18N
         jButton5.setText("Buscar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1317,6 +1335,7 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btnLimpiarDevol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimpiarDevol.setText("Limpiar");
         btnLimpiarDevol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1346,7 +1365,7 @@ public void buscarRangoFechasInventario(){
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLimpiarDevol)
                             .addComponent(jButton5))))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1369,6 +1388,7 @@ public void buscarRangoFechasInventario(){
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel23.setText("DETALLE DE DEVOLUCIONES Y CAMBIOS");
 
+        btnImprDevol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imprimir0.png"))); // NOI18N
         btnImprDevol.setText("Imprimir");
         btnImprDevol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1376,6 +1396,7 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btndescargarDevol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga0.png"))); // NOI18N
         btndescargarDevol.setText("Descargar");
         btndescargarDevol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1403,10 +1424,10 @@ public void buscarRangoFechasInventario(){
                 .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnImprDevol, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148)
-                .addComponent(btndescargarDevol, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(200, 200, 200))
+                .addComponent(btnImprDevol)
+                .addGap(142, 142, 142)
+                .addComponent(btndescargarDevol)
+                .addGap(188, 188, 188))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1417,16 +1438,16 @@ public void buscarRangoFechasInventario(){
                 .addComponent(jLabel23)
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnImprDevol)
-                    .addComponent(btndescargarDevol))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(btndescargarDevol)
+                    .addComponent(btnImprDevol))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Informe Dev & Cambios", jPanel4);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 64, 800, 490));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 44, 800, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

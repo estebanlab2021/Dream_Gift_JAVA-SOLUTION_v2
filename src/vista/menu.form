@@ -38,16 +38,15 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                              <Component id="DG2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnVentas1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="DG2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -66,26 +65,19 @@
                       <Component id="jSeparator1" min="-2" pref="541" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="DG2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="DG2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnVentas1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCompras" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -94,7 +86,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+              <EmptySpace pref="146" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,7 +111,7 @@
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\usuario\OneDrive\Documentos\NetBeansProjects\DG_JavaSolution_Proyecto\Dream_Gift_JAVA-SOLUTION_v2\src\icons\compra0.png"/>
+          <Image iconType="3" name="/imagenes/compra0.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Compras"/>
       </Properties>
@@ -133,7 +125,7 @@
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/informe0.png"/>
+          <Image iconType="3" name="/imagenes/informe0.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Informes"/>
       </Properties>
@@ -147,7 +139,7 @@
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/maestro2.png"/>
+          <Image iconType="3" name="/imagenes/maestro0.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Maestro"/>
       </Properties>
@@ -171,7 +163,7 @@
           <Font name="Tahoma" size="12" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/venta0.png"/>
+          <Image iconType="3" name="/imagenes/venta0.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ventas"/>
       </Properties>
