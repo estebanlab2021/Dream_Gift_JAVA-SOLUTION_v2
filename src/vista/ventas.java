@@ -878,6 +878,7 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
+        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar0.png"))); // NOI18N
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1110,15 +1111,18 @@ public class ventas extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtComunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCostoPack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))))
         );
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar0.png"))); // NOI18N
         jButton3.setText("Cancelar");
 
+        btnRegistrarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Guardar0.png"))); // NOI18N
         btnRegistrarPedido.setText("Guardar");
 
+        btnLimpiarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimpiarVenta.setText("Limpiar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1130,15 +1134,15 @@ public class ventas extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLimpiarVenta)
-                .addGap(34, 34, 34)
-                .addComponent(jButton3)
                 .addGap(31, 31, 31)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegistrarPedido)
-                .addGap(92, 92, 92))
+                .addGap(121, 121, 121))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1177,8 +1181,10 @@ public class ventas extends javax.swing.JFrame {
 
         jLabel28.setText("Codigo Transacción");
 
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar0.png"))); // NOI18N
         jButton9.setText("Cancelar");
 
+        btnConfirmarPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Guardar0.png"))); // NOI18N
         btnConfirmarPago.setText("Confirmar");
         btnConfirmarPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1188,6 +1194,7 @@ public class ventas extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        btnBuscarConfirmacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar0.png"))); // NOI18N
         btnBuscarConfirmacion.setText("Buscar");
         btnBuscarConfirmacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1197,6 +1204,7 @@ public class ventas extends javax.swing.JFrame {
 
         jLabel1.setText("Estado de la Venta:");
 
+        btnLimpiarConfirma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimpiarConfirma.setText("Limpiar");
         btnLimpiarConfirma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1255,7 +1263,7 @@ public class ventas extends javax.swing.JFrame {
                                 .addComponent(txtCodigoTransferencia)
                                 .addContainerGap())))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLimpiarConfirma)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1292,7 +1300,7 @@ public class ventas extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel27)
                             .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscarConfirmacion)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1425,6 +1433,7 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
+        btnImprimirDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imprimir0.png"))); // NOI18N
         btnImprimirDestinos.setText("Imprimir");
         btnImprimirDestinos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1432,6 +1441,7 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
+        btnDescargarDestinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga0.png"))); // NOI18N
         btnDescargarDestinos.setText("Descargar");
         btnDescargarDestinos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1439,6 +1449,7 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
+        btnLimparDespacho0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimparDespacho0.setText("Limpiar");
         btnLimparDespacho0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1470,7 +1481,7 @@ public class ventas extends javax.swing.JFrame {
                 .addGap(112, 112, 112))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -1554,6 +1565,7 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
+        btnImprimirEdoDespacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imprimir0.png"))); // NOI18N
         btnImprimirEdoDespacho.setText("Imprimir");
         btnImprimirEdoDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1561,6 +1573,7 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
+        btnDescargarEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/descarga0.png"))); // NOI18N
         btnDescargarEstados.setText("Descargar");
         btnDescargarEstados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1580,6 +1593,7 @@ public class ventas extends javax.swing.JFrame {
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        btnLimpiarDespacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimpiarDespacho.setText("Limpiar");
         btnLimpiarDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1587,6 +1601,7 @@ public class ventas extends javax.swing.JFrame {
             }
         });
 
+        btnModificarDespacho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar0.png"))); // NOI18N
         btnModificarDespacho.setText("Modificar");
         btnModificarDespacho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1670,7 +1685,7 @@ public class ventas extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnImprimirEdoDespacho)
                             .addComponent(btnDescargarEstados))))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
