@@ -35,9 +35,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class informes extends javax.swing.JFrame {
    DefaultListModel modelo = new DefaultListModel();
    informes.FondoPanel fondo = new informes.FondoPanel();
-    /**
-     * Creates new form informes
-     */
+   //DefaultTableModel modeloInventario01 = new DefaultTableModel();
+    
+   
     public informes() {
         this.setContentPane(fondo);
         initComponents();
@@ -484,6 +484,100 @@ private void MostrarInventario01(){
         }
     }
 
+//Filtrar por fecha tabla tablaInventario01
+private void filtrarFechaInventario01_ASC(){
+        try{    
+            DefaultTableModel modeloInventario01 = new DefaultTableModel();
+            tablaInventario01.setModel(modeloInventario01);
+                      
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT DISTINCT articulo.idarticulo, articulo.art_estado, articulo.art_descripcion, articulo.art_fecha_vencimiento, articulo.art_stock, SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)) as comprado, ((articulo.art_stock) + (SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)))) as total1, SUM(DISTINCT COALESCE(pack.pck_stock,0)) as total_PACK, (((articulo.art_stock) + (SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)))) - (SUM(DISTINCT COALESCE(pack.pck_stock,0)))) as stock_final FROM articulo LEFT JOIN detalle_factura ON articulo.idarticulo = detalle_factura.id_articulo_pk LEFT JOIN articulo_has_pack ON articulo.idarticulo = articulo_has_pack.id_articulo_art LEFT JOIN pack ON articulo_has_pack.id_pack_pck = pack.idpack WHERE articulo.art_estado = '1' GROUP BY articulo.idarticulo, articulo_has_pack.id_articulo_art ORDER BY articulo.art_fecha_vencimiento ASC";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloInventario01.addColumn("Id Articulo");
+            modeloInventario01.addColumn("Estado");
+            modeloInventario01.addColumn("Articulo");
+            modeloInventario01.addColumn("Fecha Vencimiento");
+            modeloInventario01.addColumn("Stock");
+            modeloInventario01.addColumn("Comprado");
+            modeloInventario01.addColumn("Total Art");
+            modeloInventario01.addColumn("Total Pack");
+            modeloInventario01.addColumn("Stock F");
+                         
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloInventario01.addRow(filas); 
+            }
+        
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+
+
+private void filtrarFechaInventario01_DESC(){
+        try{    
+            DefaultTableModel modeloInventario01 = new DefaultTableModel();
+            tablaInventario01.setModel(modeloInventario01);
+                      
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            
+            String sql = "SELECT DISTINCT articulo.idarticulo, articulo.art_estado, articulo.art_descripcion, articulo.art_fecha_vencimiento, articulo.art_stock, SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)) as comprado, ((articulo.art_stock) + (SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)))) as total1, SUM(DISTINCT COALESCE(pack.pck_stock,0)) as total_PACK, (((articulo.art_stock) + (SUM(DISTINCT COALESCE(detalle_factura.det_cantidad,0)))) - (SUM(DISTINCT COALESCE(pack.pck_stock,0)))) as stock_final FROM articulo LEFT JOIN detalle_factura ON articulo.idarticulo = detalle_factura.id_articulo_pk LEFT JOIN articulo_has_pack ON articulo.idarticulo = articulo_has_pack.id_articulo_art LEFT JOIN pack ON articulo_has_pack.id_pack_pck = pack.idpack WHERE articulo.art_estado = '1' GROUP BY articulo.idarticulo, articulo_has_pack.id_articulo_art ORDER BY articulo.art_fecha_vencimiento DESC";
+            
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            ResultSetMetaData rsMd = rs.getMetaData();
+            int CantidadColumnas = rsMd.getColumnCount();
+            
+            modeloInventario01.addColumn("Id Articulo");
+            modeloInventario01.addColumn("Estado");
+            modeloInventario01.addColumn("Articulo");
+            modeloInventario01.addColumn("Fecha Vencimiento");
+            modeloInventario01.addColumn("Stock");
+            modeloInventario01.addColumn("Comprado");
+            modeloInventario01.addColumn("Total Art");
+            modeloInventario01.addColumn("Total Pack");
+            modeloInventario01.addColumn("Stock F");
+                         
+            while(rs.next()){
+                
+                Object[] filas = new Object[CantidadColumnas];
+                
+                for(int i=0; i < CantidadColumnas; i++){
+                    filas[i] = rs.getObject(i + 1);
+                }
+                modeloInventario01.addRow(filas); 
+            }
+        
+            rs.close();
+            
+        }catch(SQLException ex){
+            System.err.println(ex.toString());
+        }
+    }
+
 
 public void buscarRangoFechasInventario(){
         try{
@@ -613,6 +707,8 @@ public void buscarRangoFechasInventario(){
             System.err.println(ex.toString());
         }
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -650,6 +746,8 @@ public void buscarRangoFechasInventario(){
         jLabel19 = new javax.swing.JLabel();
         btnImprInvent = new javax.swing.JButton();
         btndescargarInvent = new javax.swing.JButton();
+        btnOrdenInventariofechaASC = new javax.swing.JButton();
+        btnOrdenInventariofechaDESC = new javax.swing.JButton();
         jPanel3 = new FondoPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaInfCliente = new javax.swing.JTable();
@@ -891,6 +989,11 @@ public void buscarRangoFechasInventario(){
                 return types [columnIndex];
             }
         });
+        tablaInventario01.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaInventario01MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaInventario01);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informe Inventario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
@@ -944,21 +1047,27 @@ public void buscarRangoFechasInventario(){
             }
         });
 
+        btnOrdenInventariofechaASC.setText("Orden por Fecha ASC");
+        btnOrdenInventariofechaASC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenInventariofechaASCActionPerformed(evt);
+            }
+        });
+
+        btnOrdenInventariofechaDESC.setText("Orden por Fecha DESC");
+        btnOrdenInventariofechaDESC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenInventariofechaDESCActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE))))
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(212, 212, 212)
@@ -966,17 +1075,32 @@ public void buscarRangoFechasInventario(){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btndescargarInvent, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOrdenInventariofechaASC)
+                .addGap(18, 18, 18)
+                .addComponent(btnOrdenInventariofechaDESC)
+                .addGap(84, 84, 84))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel19)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(btnOrdenInventariofechaASC)
+                    .addComponent(btnOrdenInventariofechaDESC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImprInvent)
                     .addComponent(btndescargarInvent))
@@ -1071,7 +1195,7 @@ public void buscarRangoFechasInventario(){
                                 .addGap(27, 27, 27)
                                 .addComponent(jButton4))
                             .addComponent(btnLimpiarClientes))))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1222,7 +1346,7 @@ public void buscarRangoFechasInventario(){
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLimpiarDevol)
                             .addComponent(jButton5))))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1276,7 +1400,7 @@ public void buscarRangoFechasInventario(){
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnImprDevol, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1302,7 +1426,7 @@ public void buscarRangoFechasInventario(){
 
         jTabbedPane1.addTab("Informe Dev & Cambios", jPanel4);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 64, 770, 490));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 64, 800, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1426,6 +1550,20 @@ public void buscarRangoFechasInventario(){
         MostrarDevCambios();
     }//GEN-LAST:event_btnLimpiarDevolActionPerformed
 
+    private void tablaInventario01MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInventario01MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaInventario01MouseClicked
+
+    private void btnOrdenInventariofechaASCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenInventariofechaASCActionPerformed
+        // TODO add your handling code here:
+        filtrarFechaInventario01_ASC();
+    }//GEN-LAST:event_btnOrdenInventariofechaASCActionPerformed
+
+    private void btnOrdenInventariofechaDESCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenInventariofechaDESCActionPerformed
+        // TODO add your handling code here:
+        filtrarFechaInventario01_DESC();
+    }//GEN-LAST:event_btnOrdenInventariofechaDESCActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1482,6 +1620,8 @@ public void buscarRangoFechasInventario(){
     public javax.swing.JButton btnLimpiarDevol;
     public javax.swing.JButton btnLimpiarInventario;
     public javax.swing.JButton btnLimpiarVentas;
+    public javax.swing.JButton btnOrdenInventariofechaASC;
+    public javax.swing.JButton btnOrdenInventariofechaDESC;
     public javax.swing.JButton btnRegregarMenu;
     private javax.swing.JButton btndescargarClientes;
     private javax.swing.JButton btndescargarDevol;
