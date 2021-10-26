@@ -137,11 +137,11 @@ public class menu extends javax.swing.JFrame {
         DG1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btnVentas = new javax.swing.JButton();
         btnCompras = new javax.swing.JButton();
         btnInformes = new javax.swing.JButton();
         btnMaestro = new javax.swing.JButton();
         DG2 = new javax.swing.JLabel();
+        btnVentas1 = new javax.swing.JButton();
 
         DG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/REGALOTRANSCH.png"))); // NOI18N
 
@@ -150,13 +150,8 @@ public class menu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("MENU PRINCIPAL");
 
-        btnVentas.setText("Ventas");
-        btnVentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasActionPerformed(evt);
-            }
-        });
-
+        btnCompras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCompras.setIcon(new javax.swing.ImageIcon("C:\\Users\\usuario\\OneDrive\\Documentos\\NetBeansProjects\\DG_JavaSolution_Proyecto\\Dream_Gift_JAVA-SOLUTION_v2\\src\\icons\\compra0.png")); // NOI18N
         btnCompras.setText("Compras");
         btnCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +159,8 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        btnInformes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnInformes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/informe0.png"))); // NOI18N
         btnInformes.setText("Informes");
         btnInformes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +168,8 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        btnMaestro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnMaestro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/maestro2.png"))); // NOI18N
         btnMaestro.setText("Maestro");
         btnMaestro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +179,15 @@ public class menu extends javax.swing.JFrame {
 
         DG2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/REGALOTRANSCH.png"))); // NOI18N
 
+        btnVentas1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnVentas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/venta0.png"))); // NOI18N
+        btnVentas1.setText("Ventas");
+        btnVentas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentas1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,27 +195,27 @@ public class menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(btnVentas)
-                                .addGap(50, 50, 50))
+                                .addGap(75, 75, 75)
+                                .addComponent(DG2)
+                                .addGap(44, 44, 44))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(DG2)
-                                .addGap(18, 18, 18)))
+                                .addComponent(btnVentas1)
+                                .addGap(29, 29, 29)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnCompras)
-                                .addGap(53, 53, 53)
+                                .addGap(35, 35, 35)
                                 .addComponent(btnInformes)
-                                .addGap(49, 49, 49)
+                                .addGap(32, 32, 32)
                                 .addComponent(btnMaestro))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,32 +229,19 @@ public class menu extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(DG2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVentas)
+                    .addComponent(btnVentas1)
                     .addComponent(btnCompras)
                     .addComponent(btnInformes)
                     .addComponent(btnMaestro))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        // TODO add your handling code here:
-        ventas menuVentas = new ventas();
-        ModVentas mod1 = new ModVentas();
-        ConsultasVentas modC1 = new ConsultasVentas();
-        
-        ctrlVentas ctrl = new ctrlVentas(mod1, modC1, menuVentas);
-        
-        menuVentas.setVisible(true);
-        menuVentas.setLocationRelativeTo(null);
-        menuVentas.setTitle("Menu Ventas");
-        this.setVisible(false);
-    }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaestroActionPerformed
         // TODO add your handling code here:
@@ -282,6 +277,20 @@ public class menu extends javax.swing.JFrame {
         menuInformes.setTitle("Menu Informes");
         this.setVisible(false);
     }//GEN-LAST:event_btnInformesActionPerformed
+
+    private void btnVentas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentas1ActionPerformed
+        // TODO add your handling code here:
+        ventas menuVentas = new ventas();
+        ModVentas mod1 = new ModVentas();
+        ConsultasVentas modC1 = new ConsultasVentas();
+        
+        ctrlVentas ctrl = new ctrlVentas(mod1, modC1, menuVentas);
+        
+        menuVentas.setVisible(true);
+        menuVentas.setLocationRelativeTo(null);
+        menuVentas.setTitle("Menu Ventas");
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVentas1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,7 +333,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnInformes;
     private javax.swing.JButton btnMaestro;
-    private javax.swing.JButton btnVentas;
+    private javax.swing.JButton btnVentas1;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

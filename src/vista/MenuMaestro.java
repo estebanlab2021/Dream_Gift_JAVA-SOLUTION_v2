@@ -1931,13 +1931,14 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanel12.add(txtNombreBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 150, -1));
 
         btnIngresarBanco.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnIngresarBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngresarBanco.setText("Ingresar");
         btnIngresarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(btnIngresarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 130, -1));
+        jPanel12.add(btnIngresarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 130, -1));
 
         txtBuscarBanco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -1999,16 +2000,23 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanel12.add(rbtnInactvarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 80, -1));
 
         btnModificarBanco.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModificarBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModificarBanco.setText("Modificar");
         btnModificarBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarBancoActionPerformed(evt);
             }
         });
-        jPanel12.add(btnModificarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, 130, -1));
+        jPanel12.add(btnModificarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 130, -1));
 
         btnLimpiarBanco.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnLimpiarBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimpiarBanco.setText("Limpiar");
+        btnLimpiarBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarBancoActionPerformed(evt);
+            }
+        });
         jPanel12.add(btnLimpiarBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 130, -1));
         jPanel12.add(txtIdBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 33, -1));
 
@@ -2061,15 +2069,17 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelArticulos.add(txtCategoriaArt, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 50, -1));
 
         btnIngregarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnIngregarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngregarArticulo.setText("Ingresar");
         btnIngregarArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngregarArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(btnIngregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
+        jPanelArticulos.add(btnIngregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
 
         btnModificarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModificarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModificarArticulo.setText("Modificar");
         btnModificarArticulo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2081,7 +2091,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 btnModificarArticuloActionPerformed(evt);
             }
         });
-        jPanelArticulos.add(btnModificarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, -1, -1));
+        jPanelArticulos.add(btnModificarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
 
         CheckBoxVencimientoArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         CheckBoxVencimientoArticulo.setText("Sin Vencimiento");
@@ -2113,6 +2123,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelArticulos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 570, 100));
 
         btnLimpiarArticulo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnLimpiarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimpiarArticulo.setText("Limpiar");
         jPanelArticulos.add(btnLimpiarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, -1, -1));
         jPanelArticulos.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 900, 19));
@@ -2159,13 +2170,14 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelComunas.add(jLabelCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
 
         btnIngresarComuna.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnIngresarComuna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngresarComuna.setText("Ingresar");
         btnIngresarComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(btnIngresarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 100, -1));
+        jPanelComunas.add(btnIngresarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 140, -1));
 
         txtCodigoComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2211,17 +2223,19 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelComunas.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 560, 210));
 
         btnModComuna.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModComuna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModComuna.setText("Modificar");
         btnModComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModComunaActionPerformed(evt);
             }
         });
-        jPanelComunas.add(btnModComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 100, -1));
+        jPanelComunas.add(btnModComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 140, -1));
 
         btnLimpiarComuna.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnLimpiarComuna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimpiarComuna.setText("Limpiar");
-        jPanelComunas.add(btnLimpiarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 100, -1));
+        jPanelComunas.add(btnLimpiarComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 140, -1));
 
         btnGroupComunas.add(rbtnActivoComuna);
         rbtnActivoComuna.setText("Activo");
@@ -2258,13 +2272,14 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelRRSS.add(txtRRSS, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 193, -1));
 
         btnIngresarRrss.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnIngresarRrss.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngresarRrss.setText("Insertar");
         btnIngresarRrss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarRrssActionPerformed(evt);
             }
         });
-        jPanelRRSS.add(btnIngresarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 120, -1));
+        jPanelRRSS.add(btnIngresarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 140, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel12.setText("Codigo RRSS");
@@ -2289,6 +2304,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelRRSS.add(RBtnInactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
 
         btnModRrss.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModRrss.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModRrss.setText("Modificar");
         btnModRrss.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -2304,12 +2320,13 @@ public class MenuMaestro extends javax.swing.JFrame {
                 btnModRrssActionPerformed(evt);
             }
         });
-        jPanelRRSS.add(btnModRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 120, -1));
+        jPanelRRSS.add(btnModRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 140, -1));
         jPanelRRSS.add(txtIdRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 60, -1));
 
         btnLimpiarRrss.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnLimpiarRrss.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimpiarRrss.setText("Limpiar");
-        jPanelRRSS.add(btnLimpiarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 120, -1));
+        jPanelRRSS.add(btnLimpiarRrss, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 140, -1));
 
         txtBusquedaRS.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         txtBusquedaRS.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -2317,7 +2334,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 txtBusquedaRSKeyReleased(evt);
             }
         });
-        jPanelRRSS.add(txtBusquedaRS, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 160, 140, -1));
+        jPanelRRSS.add(txtBusquedaRS, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 140, -1));
 
         TablaRRSS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2337,16 +2354,16 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
         ScrollTblRsResultado.setViewportView(TablaRRSS);
 
-        jPanelRRSS.add(ScrollTblRsResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 580, 220));
+        jPanelRRSS.add(ScrollTblRsResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 580, 220));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel25.setText("Buscar");
-        jPanelRRSS.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 70, 30));
+        jPanelRRSS.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, 70, 30));
 
         jLabel52.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel52.setText("Estado");
         jPanelRRSS.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
-        jPanelRRSS.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 920, 10));
+        jPanelRRSS.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 158, 920, -1));
 
         jTabbedPane1.addTab("RRSS", jPanelRRSS);
 
@@ -2423,31 +2440,34 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelClientes.add(txtDireccionClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 116, -1));
 
         btnRegistrarCli.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnRegistrarCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnRegistrarCli.setText("Insertar");
         btnRegistrarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarCliActionPerformed(evt);
             }
         });
-        jPanelClientes.add(btnRegistrarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 100, -1));
+        jPanelClientes.add(btnRegistrarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 130, -1));
 
         btnLimpiarCli.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnLimpiarCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimpiarCli.setText("Limpiar");
         btnLimpiarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarCliActionPerformed(evt);
             }
         });
-        jPanelClientes.add(btnLimpiarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 86, -1));
+        jPanelClientes.add(btnLimpiarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 120, -1));
 
         btnModificarCli.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModificarCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModificarCli.setText("Modificar");
         btnModificarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarCliActionPerformed(evt);
             }
         });
-        jPanelClientes.add(btnModificarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 100, -1));
+        jPanelClientes.add(btnModificarCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 130, -1));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel20.setText("Buscar ");
@@ -2536,6 +2556,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         jScrollPane10.setViewportView(TableCatVenta);
 
         btnIngresarCatVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnIngresarCatVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngresarCatVenta.setText("Ingresar");
         btnIngresarCatVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2544,6 +2565,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
 
         btnModificarCatVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificarCatVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModificarCatVenta.setText("Modificar");
         btnModificarCatVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2552,6 +2574,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
 
         btnLimpiarCatVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiarCatVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimpiarCatVenta.setText("Limpiar");
 
         txtBuscarCatVenta.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -2589,12 +2612,12 @@ public class MenuMaestro extends javax.swing.JFrame {
                             .addComponent(txtCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelEstados_Ventas1Layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
-                        .addComponent(btnIngresarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnLimpiarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(249, 249, 249)
+                        .addComponent(btnIngresarCatVenta)
+                        .addGap(25, 25, 25)
+                        .addComponent(btnModificarCatVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnLimpiarCatVenta)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelEstados_Ventas1Layout.setVerticalGroup(
@@ -2680,27 +2703,30 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelCategoriaPacks.add(txtBusquedaCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 200, -1));
 
         btnIngCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnIngCatPack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngCatPack.setText("Ingresar");
         btnIngCatPack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngCatPackActionPerformed(evt);
             }
         });
-        jPanelCategoriaPacks.add(btnIngCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 100, -1));
+        jPanelCategoriaPacks.add(btnIngCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 130, -1));
 
         btnModCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModCatPack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModCatPack.setText("Modificar");
         btnModCatPack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModCatPackActionPerformed(evt);
             }
         });
-        jPanelCategoriaPacks.add(btnModCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 100, -1));
+        jPanelCategoriaPacks.add(btnModCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 60, 130, -1));
 
         btnLimCatPack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnLimCatPack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimCatPack.setText("Limpiar");
-        jPanelCategoriaPacks.add(btnLimCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 100, -1));
-        jPanelCategoriaPacks.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 876, 10));
+        jPanelCategoriaPacks.add(btnLimCatPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 130, -1));
+        jPanelCategoriaPacks.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 876, 10));
 
         jTabbedPane1.addTab("Categoria Packs", jPanelCategoriaPacks);
 
@@ -2738,26 +2764,29 @@ public class MenuMaestro extends javax.swing.JFrame {
         jPanelCategoriaArticulos.add(RadioButtonEstado0, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, -1, -1));
 
         btnCategoriaArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCategoriaArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnCategoriaArticulo.setText("Insertar");
         btnCategoriaArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCategoriaArticuloActionPerformed(evt);
             }
         });
-        jPanelCategoriaArticulos.add(btnCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
+        jPanelCategoriaArticulos.add(btnCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
         btnModificarCategoriaArticulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificarCategoriaArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModificarCategoriaArticulo.setText("Modificar");
         btnModificarCategoriaArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarCategoriaArticuloActionPerformed(evt);
             }
         });
-        jPanelCategoriaArticulos.add(btnModificarCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
+        jPanelCategoriaArticulos.add(btnModificarCategoriaArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, -1));
 
         btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
-        jPanelCategoriaArticulos.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, -1, -1));
+        jPanelCategoriaArticulos.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, -1, -1));
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -2828,29 +2857,36 @@ public class MenuMaestro extends javax.swing.JFrame {
         jLabel29.setText("Categoria Pack");
         jPanelPacks.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
+        btnIngresaPack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnIngresaPack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngresaPack.setText("Ingresar");
         btnIngresaPack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresaPackActionPerformed(evt);
             }
         });
-        jPanelPacks.add(btnIngresaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        jPanelPacks.add(btnIngresaPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 120, -1));
 
+        btnModPack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnModPack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModPack.setText("Modificar");
         btnModPack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModPackActionPerformed(evt);
             }
         });
-        jPanelPacks.add(btnModPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+        jPanelPacks.add(btnModPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
 
+        btnLimPack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLimPack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimPack.setText("Limpiar");
+        btnLimPack.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLimPack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimPackActionPerformed(evt);
             }
         });
-        jPanelPacks.add(btnLimPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 80, -1));
+        jPanelPacks.add(btnLimPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 180, -1, -1));
         jPanelPacks.add(txtStockPack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 90, -1));
 
         jLabel48.setText("Estado");
@@ -2998,15 +3034,15 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         jLabel59.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel59.setText("Telefono");
-        jPanelProveedores1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, -1, -1));
+        jPanelProveedores1.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, -1, -1));
 
         jLabel60.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel60.setText("Mail");
-        jPanelProveedores1.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+        jPanelProveedores1.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
 
         jLabel61.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel61.setText("Razón Social");
-        jPanelProveedores1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, -1, -1));
+        jPanelProveedores1.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, -1, -1));
         jPanelProveedores1.add(txtNombreProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 170, -1));
         jPanelProveedores1.add(txtDirProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 170, -1));
 
@@ -3015,30 +3051,31 @@ public class MenuMaestro extends javax.swing.JFrame {
                 txtTelProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(txtTelProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 170, -1));
-        jPanelProveedores1.add(txtMailProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 170, -1));
+        jPanelProveedores1.add(txtTelProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 170, -1));
+        jPanelProveedores1.add(txtMailProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 110, 170, -1));
 
         txtRazSocProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRazSocProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(txtRazSocProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 170, -1));
+        jPanelProveedores1.add(txtRazSocProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, 170, -1));
 
         btnIngProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnIngProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngProv.setText("Ingresar");
         btnIngProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(btnIngProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        jPanelProveedores1.add(btnIngProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 130, -1));
 
         rbtnInActivoProv.setBackground(new java.awt.Color(153, 204, 255));
         buttonGroupProv.add(rbtnInActivoProv);
         rbtnInActivoProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         rbtnInActivoProv.setText("Inactivo");
-        jPanelProveedores1.add(rbtnInActivoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
+        jPanelProveedores1.add(rbtnInActivoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, -1, -1));
 
         jLabel62.setText("Estado");
         jPanelProveedores1.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 164, 40, 0));
@@ -3052,29 +3089,31 @@ public class MenuMaestro extends javax.swing.JFrame {
                 rbtnActivoProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(rbtnActivoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
+        jPanelProveedores1.add(rbtnActivoProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
 
         jLabel63.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel63.setText("Estado");
-        jPanelProveedores1.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, -1, -1));
+        jPanelProveedores1.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, -1, -1));
 
         btnModProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnModProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModProv.setText("Modificar");
         btnModProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(btnModProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
+        jPanelProveedores1.add(btnModProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, -1, -1));
 
         btnLimProv.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btnLimProv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimProv.setText("Limpiar");
         btnLimProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimProvActionPerformed(evt);
             }
         });
-        jPanelProveedores1.add(btnLimProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
+        jPanelProveedores1.add(btnLimProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
         jPanelProveedores1.add(txtIdProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 170, -1));
 
         TablaProv.setModel(new javax.swing.table.DefaultTableModel(
@@ -3094,7 +3133,7 @@ public class MenuMaestro extends javax.swing.JFrame {
         });
         jScrollPane13.setViewportView(TablaProv);
 
-        jPanelProveedores1.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 840, 190));
+        jPanelProveedores1.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 840, 190));
 
         txtBuscarProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3106,11 +3145,11 @@ public class MenuMaestro extends javax.swing.JFrame {
                 txtBuscarProvKeyReleased(evt);
             }
         });
-        jPanelProveedores1.add(txtBuscarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 180, 20));
+        jPanelProveedores1.add(txtBuscarProv, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 180, 20));
 
         jLabel64.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel64.setText("Buscar");
-        jPanelProveedores1.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, -1, 30));
+        jPanelProveedores1.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, 30));
 
         jTabbedPane1.addTab("Proveedores", jPanelProveedores1);
 
@@ -3122,8 +3161,10 @@ public class MenuMaestro extends javax.swing.JFrame {
 
         jLabel35.setText("Repita Clave:");
 
+        btnLimpiarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpiar0.png"))); // NOI18N
         btnLimpiarUsuarios.setText("Limpiar");
 
+        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Guardar0.png"))); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3131,6 +3172,7 @@ public class MenuMaestro extends javax.swing.JFrame {
             }
         });
 
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modificar0.png"))); // NOI18N
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3163,7 +3205,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                         .addComponent(RadioButtonUserActivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(RadioButtonUserInactivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                         .addComponent(btnLimpiarUsuarios)
                         .addGap(21, 21, 21)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3183,8 +3225,8 @@ public class MenuMaestro extends javax.swing.JFrame {
                         .addComponent(txtIdUsuario)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnModificar)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -3262,7 +3304,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(266, 266, 266)
                         .addComponent(jLabel37)))
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3273,7 +3315,7 @@ public class MenuMaestro extends javax.swing.JFrame {
                 .addComponent(jLabel37)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Usuarios", jPanel8);
@@ -3656,6 +3698,10 @@ public class MenuMaestro extends javax.swing.JFrame {
         txtIdArticuloPack.setText(null);
         mostrarTablaArticuloHasPack();
     }//GEN-LAST:event_btnLimPackActionPerformed
+
+    private void btnLimpiarBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarBancoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarBancoActionPerformed
 
     /**
      * @param args the command line arguments
