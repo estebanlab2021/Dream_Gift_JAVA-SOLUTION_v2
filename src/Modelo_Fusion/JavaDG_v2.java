@@ -1,6 +1,6 @@
 
 package Modelo_Fusion;
-
+/*
 import controlador.CtrlArticulo;
 import modelo.Articulos;
 import modelo.ConsultasArticulos;
@@ -20,7 +20,10 @@ import modelo.ConsultasRRSS;
 import modelo.Cliente;
 import modelo.ConsultasCliente;
 import controlador.CtrlClientes;
-import modelo.RRSS;
+import modelo.RRSS;*/
+import controlador.crtlUsuario;
+import modelo.ConsultaUsuario;
+import modelo.Usuarios;
 import vista.Login;
 
 
@@ -61,6 +64,9 @@ public class JavaDG_v2 {
         //vistaA.setVisible(true);
         
         Login log = new Login();
+        Usuarios user = new Usuarios();
+        ConsultaUsuario userC = new ConsultaUsuario();
+        crtlUsuario ctrl  = new crtlUsuario(user, userC, log); 
         log.setVisible(true);
     }
     
