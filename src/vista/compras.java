@@ -268,7 +268,8 @@ public class compras extends javax.swing.JFrame {
             ResultSetMetaData rsMd = rs.getMetaData();
             int CantidadColumnas = rsMd.getColumnCount();
             
-            modelo1.addColumn("Id Orden Compra");
+            modelo1.addColumn("Id Orden Pedido");
+            modelo1.addColumn("Id Detalle Compra");
             //modelo1.addColumn("Id Articulo");
             modelo1.addColumn("Nombre Articulo");
             modelo1.addColumn("Cantidad");
@@ -306,7 +307,7 @@ public class compras extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT detalle_orden_compra.id_orden_compra_pk, articulo.art_descripcion, detalle_orden_compra.cantidades FROM detalle_orden_compra JOIN articulo ON detalle_orden_compra.id_articulo_pk = articulo.idarticulo WHERE (detalle_orden_compra.id_orden_compra_pk = ?)";
+            String sql = "SELECT orden_compra.idorden_compra, detalle_orden_compra.id_orden_compra_pk, articulo.art_descripcion, detalle_orden_compra.cantidades FROM detalle_orden_compra JOIN articulo ON detalle_orden_compra.id_articulo_pk = articulo.idarticulo JOIN orden_compra ON detalle_orden_compra.id_orden_compra_pk = orden_compra.idorden_compra WHERE (detalle_orden_compra.id_orden_compra_pk = ?)";
             
             ps = con.prepareStatement(sql);
             ps.setInt(1, ID);
@@ -315,7 +316,8 @@ public class compras extends javax.swing.JFrame {
             ResultSetMetaData rsMd = rs.getMetaData();
             int CantidadColumnas = rsMd.getColumnCount();
             
-            modelo1.addColumn("Id Orden Compra");
+            modelo1.addColumn("Id Orden Pedido");
+            modelo1.addColumn("Id Detalle Compra");
             modelo1.addColumn("Nombre Articulo");
             modelo1.addColumn("Cantidad");
             
