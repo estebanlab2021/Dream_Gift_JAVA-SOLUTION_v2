@@ -260,7 +260,7 @@ public class compras extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
             
-            String sql = "SELECT detalle_orden_compra.id_orden_compra_pk, articulo.art_descripcion, detalle_orden_compra.cantidades FROM detalle_orden_compra JOIN articulo ON detalle_orden_compra.id_articulo_pk = articulo.idarticulo";
+            String sql = "SELECT orden_compra.idorden_compra, detalle_orden_compra.id_orden_compra_pk, articulo.art_descripcion, detalle_orden_compra.cantidades FROM detalle_orden_compra JOIN articulo ON detalle_orden_compra.id_articulo_pk = articulo.idarticulo JOIN orden_compra ON detalle_orden_compra.id_orden_compra_pk = orden_compra.idorden_compra WHERE (orden_compra.edo_orden_compra='1')";
             
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -1908,6 +1908,7 @@ public class compras extends javax.swing.JFrame {
         RadioButtonActivoPedido.setEnabled(true);
         RadioButtonInactivoPedido.setEnabled(true);
         btnIngresarPedido.setEnabled(false);
+        btnModificarPedido.setEnabled(true);
         filtrarTableDetalleOrdenCompra();
     }//GEN-LAST:event_TableOrdenCompraMouseClicked
 
@@ -1999,12 +2000,14 @@ public class compras extends javax.swing.JFrame {
         buscarOrdenCompra();
         FechaPedido.setEnabled(true);
         RadioButtonActivoPedido.setEnabled(true);
+        RadioButtonInactivoPedido.setEnabled(true);
         txtIdPedido.setEditable(false);
     }//GEN-LAST:event_btnBuscarPedidoActionPerformed
 
     private void btnModificarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPedidoActionPerformed
         // TODO add your handling code here:
         mostrarTablaOrdenCompra();
+        mostrarTablaDetalleOrdenCompra();
     }//GEN-LAST:event_btnModificarPedidoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
