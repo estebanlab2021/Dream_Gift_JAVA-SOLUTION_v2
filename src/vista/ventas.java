@@ -785,7 +785,6 @@ public class ventas extends javax.swing.JFrame {
         txtHoraFin = new javax.swing.JTextField();
         txtCostoPack = new javax.swing.JTextField();
         FechaEntrega = new com.toedter.calendar.JDateChooser();
-        jButton3 = new javax.swing.JButton();
         btnRegistrarPedido = new javax.swing.JButton();
         btnLimpiarVenta = new javax.swing.JButton();
         jPanel2 = new FondoPanel();
@@ -801,14 +800,12 @@ public class ventas extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         txtNombreClienteConfirmacion = new javax.swing.JTextField();
         txtCodigoTransferencia = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
         btnConfirmarPago = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnBuscarConfirmacion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         ComboBoxEstadosVenta = new javax.swing.JComboBox<>();
         btnLimpiarConfirma = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
         fechaPagoConfirmacion = new com.toedter.calendar.JDateChooser();
         jScrollPane6 = new javax.swing.JScrollPane();
         tableVentas = new javax.swing.JTable();
@@ -1119,9 +1116,6 @@ public class ventas extends javax.swing.JFrame {
                         .addGap(36, 36, 36))))
         );
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar0.png"))); // NOI18N
-        jButton3.setText("Cancelar");
-
         btnRegistrarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Guardar0.png"))); // NOI18N
         btnRegistrarPedido.setText("Guardar");
 
@@ -1141,8 +1135,6 @@ public class ventas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLimpiarVenta)
-                .addGap(31, 31, 31)
-                .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrarPedido)
                 .addGap(121, 121, 121))
@@ -1156,7 +1148,6 @@ public class ventas extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
                     .addComponent(btnRegistrarPedido)
                     .addComponent(btnLimpiarVenta))
                 .addGap(14, 14, 14))
@@ -1183,9 +1174,6 @@ public class ventas extends javax.swing.JFrame {
         jLabel27.setText("Fecha Pago");
 
         jLabel28.setText("Codigo Transacción");
-
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar0.png"))); // NOI18N
-        jButton9.setText("Cancelar");
 
         btnConfirmarPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Guardar0.png"))); // NOI18N
         btnConfirmarPago.setText("Confirmar");
@@ -1214,8 +1202,6 @@ public class ventas extends javax.swing.JFrame {
                 btnLimpiarConfirmaActionPerformed(evt);
             }
         });
-
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         fechaPagoConfirmacion.setDateFormatString("y-MM-dd");
 
@@ -1258,7 +1244,7 @@ public class ventas extends javax.swing.JFrame {
                                         .addComponent(txtNombreClienteConfirmacion)
                                         .addGap(12, 12, 12))
                                     .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fechaPagoConfirmacion, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                                         .addContainerGap())))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel28)
@@ -1268,11 +1254,7 @@ public class ventas extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLimpiarConfirma)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton9)
-                        .addGap(16, 16, 16)
+                        .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnConfirmarPago)
@@ -1320,11 +1302,8 @@ public class ventas extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(btnLimpiarConfirma, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton9)
-                                    .addComponent(btnConfirmarPago)))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnConfirmarPago))
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1955,8 +1934,6 @@ public class ventas extends javax.swing.JFrame {
     public javax.swing.JButton btnRegistrarPedido;
     public javax.swing.JButton btnRegregarMenu;
     public com.toedter.calendar.JDateChooser fechaPagoConfirmacion;
-    public javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2000,7 +1977,6 @@ public class ventas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextPane jTextPane1;
