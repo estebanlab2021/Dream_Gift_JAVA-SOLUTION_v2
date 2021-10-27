@@ -52,7 +52,7 @@ public class Login extends javax.swing.JFrame {
                 btnEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 366, -1, -1));
+        jPanel1.add(btnEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 366, 120, -1));
 
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +82,7 @@ public class Login extends javax.swing.JFrame {
                 btnSalirLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalirLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 110, -1));
+        jPanel1.add(btnSalirLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 500));
 
