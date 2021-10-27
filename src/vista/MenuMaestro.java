@@ -688,9 +688,9 @@ public class MenuMaestro extends javax.swing.JFrame {
     
     private void MostrarCampoFecha(){
         if(CheckBoxVencimientoArticulo.isSelected()==true){
-            txtFechaArticulo.setVisible(false);
+            DateChooserFechaArticulo.setEnabled(false);
         }else{
-            txtFechaArticulo.setVisible(true);
+            DateChooserFechaArticulo.setEnabled(true);
         }
     }
     
