@@ -843,6 +843,8 @@ public class ventas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnRegregarMenu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRegregarMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/regresar0.png"))); // NOI18N
         btnRegregarMenu.setText("Regresar a Menú Principal");
         btnRegregarMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -995,6 +995,7 @@ public class compras extends javax.swing.JFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        btnLimpiarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiar0.png"))); // NOI18N
         btnLimpiarPedido.setText("Limpiar");
         btnLimpiarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1002,6 +1003,7 @@ public class compras extends javax.swing.JFrame {
             }
         });
 
+        btnGuardarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Guardar0.png"))); // NOI18N
         btnGuardarPedido.setText("Guardar");
         btnGuardarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1262,7 +1264,7 @@ public class compras extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Solicitudes de Pedido", jPanel1);

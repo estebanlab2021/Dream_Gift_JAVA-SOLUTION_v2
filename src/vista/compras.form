@@ -150,7 +150,7 @@
                           <Component id="jScrollPane5" min="-2" pref="110" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="167" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -470,6 +470,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnLimpiarPedido">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagenes/limpiar0.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Limpiar"/>
                   </Properties>
                   <Events>
@@ -481,6 +484,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnGuardarPedido">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagenes/Guardar0.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                   </Properties>
                   <Events>
