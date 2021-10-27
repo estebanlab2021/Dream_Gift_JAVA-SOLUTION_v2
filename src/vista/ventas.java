@@ -565,6 +565,7 @@ public class ventas extends javax.swing.JFrame {
             String sql ="SELECT * FROM pack WHERE (pck_nombre = '"+categoria+"')";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+            TextAreaVentas.setText(null);
             while(rs.next()){    
                 txtPack.setText(String.valueOf(rs.getString("idpack")));
                 TextAreaVentas.append("Pack Seleccionado: " + rs.getString("pck_nombre"));
