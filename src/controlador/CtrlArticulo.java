@@ -47,11 +47,10 @@ public class CtrlArticulo implements ActionListener{
             mod.setArt_descripcion(vistaA.txtNombreArticulo.getText());
             mod.setArt_stock(Integer.parseInt(vistaA.txtStockArticulo.getText()));
             
-            Date date = vistaA.DateChooserFechaArticulo.getDate();
-            long d = date.getTime();
-            java.sql.Date fecha = new java.sql.Date(d);
-            
-            if(vistaA.txtFechaArticulo.isVisible()==true){
+            if(vistaA.DateChooserFechaArticulo.isEnabled()==true){
+                Date date = vistaA.DateChooserFechaArticulo.getDate();
+                long d = date.getTime();
+                java.sql.Date fecha = new java.sql.Date(d);
                 mod.setArt_fecha_vencimiento(fecha.toString());
             }else{
                 mod.setArt_fecha_vencimiento(vistaA.txtDefaul.getText());
